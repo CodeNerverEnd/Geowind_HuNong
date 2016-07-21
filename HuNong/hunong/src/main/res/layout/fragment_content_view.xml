@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/colorAccent"
+                    android:layout_height="wrap_content">
+        <ImageButton android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/search"
+                     android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
+                     android:layout_marginLeft="240dp"
+                     android:id="@+id/bt_search"/>
+        <ImageButton android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/img_menu"
+                     android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
+                     android:layout_marginLeft="20dp"
+                     android:id="@+id/ib_menu"/>
+
+        <ImageButton android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/add"
+                     android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
+                     android:layout_marginLeft="300dp"
+                     android:id="@+id/bt_add"/>
+    </RelativeLayout>
+<android.support.v4.view.ViewPager android:layout_width="match_parent"
+                                   android:layout_weight="1"
+                                   android:id="@+id/vp_home"
+                                   android:layout_height="0dp">
+
+</android.support.v4.view.ViewPager>
+    <RadioGroup android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="#ffff"
+                android:id="@+id/rg_radio"
+                android:layout_height="wrap_content">
+      <RadioButton style="@style/radioButonStyle"
+                   android:text="首页"
+                   android:id="@+id/rb_home"
+                   android:drawableTop="@drawable/selector_base_zixun"/>
+
+        <RadioButton style="@style/radioButonStyle"
+                     android:text="消息"
+                     android:id="@+id/rb_msg"
+                     android:drawableTop="@drawable/selector_radiobutton_xiaoxi"/>
+
+        <RadioButton style="@style/radioButonStyle"
+                     android:text="资讯"
+                     android:id="@+id/rb_enquiry"
+                     android:drawableTop="@drawable/selector_base_zixun"/>
+
+        <RadioButton style="@style/radioButonStyle"
+                     android:text="我的"
+                     android:id="@+id/rb_my"
+                     android:drawableTop="@drawable/selector_radiobutton_wode"/>
+    </RadioGroup>
+</LinearLayout>

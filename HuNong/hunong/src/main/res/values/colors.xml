@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<color name="colorPrimary">#3F51B5</color>
+<color name="colorPrimaryDark">#303F9F</color>
+<color name="colorAccent">#4ba9a9</color>
+<color name="bt_startfeel_normal">#00000000</color>
+<color name="bt_startfeel_pressed">#aa99</color>
+<color name="guid_point">#848282</color>
+<color name="guide_1">#612886</color>
+<color name="guide_2">#dad656</color>
+<color name="guide_3">#4f5cb1</color>
+<color name="tb_bg">#33689e7c</color>
+</resources>

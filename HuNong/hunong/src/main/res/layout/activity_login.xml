@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<ImageView android:layout_width="wrap_content"
+           android:src="@mipmap/ic_launcher"
+           android:layout_marginTop="30dp"
+           android:layout_gravity="center_horizontal"
+           android:layout_height="wrap_content"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+              android:layout_height="match_parent"
+              android:layout_margin="20dp">
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/et_userName"
+                  android:textSize="25sp"
+                  android:hint="手机号/用户名"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/et_password"
+                  android:textSize="25sp"
+                  android:hint="密码"/>
+        <Button android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:id="@+id/bt_login"
+                android:text="登录"
+
+                android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="忘记密码？"
+                  android:layout_marginTop="10dp"
+                  android:clickable="true"
+                  android:id="@+id/tv_forgetPsw"
+                  android:layout_height="wrap_content"/>
+
+</LinearLayout>
+</LinearLayout>

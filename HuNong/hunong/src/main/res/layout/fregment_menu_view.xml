@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:background="@color/colorAccent"
+                  android:layout_height="wrap_content">
+        <ImageButton android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/account"
+                     android:background="@android:color/transparent"
+                     android:layout_gravity="center_horizontal"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="登录/注册"
+                  android:textSize="25dp"
+                  android:layout_gravity="center_horizontal"
+        />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="30dp"
+                  android:background="#ffff"
+                  android:orientation="vertical">
+        <TextView
+            style="@style/sliding_tv_style"
+            android:text="历史任务"/>
+        <TextView
+            style="@style/sliding_tv_style"
+            android:text="历史任务"/>
+    </LinearLayout>
+   <RelativeLayout android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+      <Button android:layout_width="wrap_content"
+              android:drawableTop="@drawable/setting"
+              android:background="@android:color/transparent"
+              android:layout_alignParentBottom="true"
+              android:layout_marginLeft="20dp"
+              android:text="设置"
+              android:id="@+id/bt_setting"
+              android:textSize="20dp"
+              android:layout_height="wrap_content"/>
+       <Button android:layout_width="wrap_content"
+               android:drawableTop="@drawable/exit"
+               android:background="@android:color/transparent"
+               android:layout_alignParentBottom="true"
+               android:layout_marginLeft="120dp"
+               android:text="退出"
+               android:id="@+id/bt_exit"
+               android:textSize="20dp"
+               android:layout_height="wrap_content"/>
+   </RelativeLayout>
+</LinearLayout>
