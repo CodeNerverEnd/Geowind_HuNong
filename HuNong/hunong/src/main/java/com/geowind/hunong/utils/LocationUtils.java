@@ -7,7 +7,7 @@ import android.text.TextUtils;
  */
 public class LocationUtils {
     public static String[] getAddr(Context context){
-        String[] ssq=new String[3];
+        String[] pcd=new String[3];
        if(!TextUtils.isEmpty(SpTools.getString(context,MyConstants.LOCATION,""))){
            String address=SpTools.getString(context,MyConstants.LOCATION,"").replace("中国","");
            String province="无";
@@ -86,11 +86,11 @@ public class LocationUtils {
                String[]   as2=as1[1].split("市");
                district=as2[0];
            }
-           ssq[0]=province;
-           ssq[1]=city;
-           ssq[2]=district;
+           pcd[0]=province;
+           pcd[1]=city;
+           pcd[2]=district;
 
        }
-        return ssq;
+        return pcd;
     }
 }

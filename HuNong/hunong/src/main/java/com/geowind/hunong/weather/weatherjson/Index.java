@@ -2,6 +2,7 @@ package com.geowind.hunong.weather.weatherjson;
 
 /**
  * Created by logaxy on 2016/7/18.
+ *
  */
 public class Index {
     private String title;

@@ -1,16 +1,10 @@
 package com.geowind.hunong.weather.weatherjson;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by logaxy on 2016/7/18.
  */
 public class Weather_data {
     private String date;
-    private String dayPictureUrl;
-    private Bitmap dayPicture;
-    private String nightPictureUrl;//
-    private Bitmap nightPicture;//
     private String weather;
     private String wind;
     private String temperature;
@@ -18,33 +12,13 @@ public class Weather_data {
     public Weather_data() {
     }
 
-    public Weather_data(String date, String dayPictureUrl,
-                        String nightPictureUrl, String weather, String wind,
+    public Weather_data(String date, String weather, String wind,
                         String temperature) {
         this.date = date;
-        this.dayPictureUrl = dayPictureUrl;
-        this.nightPictureUrl = nightPictureUrl;
         this.weather = weather;
         this.wind = wind;
         this.temperature = temperature;
     }
-
-    public Bitmap getDayPicture() {
-        return dayPicture;
-    }
-
-    public void setDayPicture(Bitmap dayPicture) {
-        this.dayPicture = dayPicture;
-    }
-
-    public Bitmap getNightPicture() {
-        return nightPicture;
-    }
-
-    public void setNightPicture(Bitmap nightPicture) {
-        this.nightPicture = nightPicture;
-    }
-
     public String getDate() {
         return date;
     }
@@ -53,21 +27,6 @@ public class Weather_data {
         this.date = date;
     }
 
-    public String getDayPictureUrl() {
-        return dayPictureUrl;
-    }
-
-    public void setDayPictureUrl(String dayPictureUrl) {
-        this.dayPictureUrl = dayPictureUrl;
-    }
-
-    public String getNightPictureUrl() {
-        return nightPictureUrl;
-    }
-
-    public void setNightPictureUrl(String nightPictureUrl) {
-        this.nightPictureUrl = nightPictureUrl;
-    }
 
     public String getWeather() {
         return weather;
@@ -91,13 +50,6 @@ public class Weather_data {
 
     public void setTemperature(String temperature) {
         this.temperature = temperature;
-    }
-
-    @Override
-    public String toString() {
-        return "{date:" + date + ", dayPictureUrl:" + dayPictureUrl
-                + ", nightPictureUrl:" + nightPictureUrl + ", temperature:"
-                + temperature + ", weather:" + weather + ", wind:" + wind + "}";
     }
 
 }

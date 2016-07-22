@@ -1,8 +1,6 @@
 package com.geowind.hunong.weather.tool;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.weather.region.City;
@@ -28,27 +26,60 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
  * Created by logaxy on 2016/7/18.
+ *
+ * 类名：WeatherUtils
+ * 方法：getJsonStr(String url)、getResult(InputStream in)
+ *      fromJson(String jsonStr)、getProvinces(Context context)
  */
 
 public class WeatherUtils {
 
-    public static String getURl(String location) {
-        String url = "http://api.map.baidu.com/telematics/v3/weather?location="
-                + location + "&output=json&ak=B95329fb7fdda1e32ba3e3a245193146";
-        return url;
+
+    /**
+     * 方法名：getURL(String location)
+     * 功能：获得天气相关的URL
+     * 参数：location，要获取天气的位置信息
+     * 返回值：String url
+     */
+    public static String getURL(String location) {
+        return "http://api.map.baidu.com/telematics/v3/weather?location="
+                + location + "&output=json&ak=" +"q9xQH20VoMP3nPxZBUdCinvK1xcIl8tO";
     }
 
-    public static String getJsonStr(String url) {
+    /**
+     *
+     * @param in
+     * @return
+     */
+    private static String getResult(InputStream in) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] b = new byte[1024];
+        int len = 0;
+        try {
+            while ((len = in.read(b)) != -1) {
+                byteArrayOutputStream.write(b, 0, len);
+                byteArrayOutputStream.flush();
+            }
+            return new String(byteArrayOutputStream.toByteArray(), "utf-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 方法名：getJsonString(String url)
+     * 功能：通过传入的url获取对应的JSON数据
+     * 参数：String url
+     * 返回值：String jsonString
+     */
+    public static String getJsonString(String url) {
         HttpGet get = new HttpGet(url);
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
@@ -56,7 +87,6 @@ public class WeatherUtils {
             response = client.execute(get);
             if (response.getStatusLine().getStatusCode() == 200) {
                 InputStream in = response.getEntity().getContent();
-
                 return getResult(in);
             }
         } catch (ClientProtocolException e) {
@@ -67,124 +97,57 @@ public class WeatherUtils {
         return null;
     }
 
-    public static Bitmap getImage(String imageUrl) {
-        HttpGet get = new HttpGet(imageUrl);
-        HttpClient client = new DefaultHttpClient();
-        HttpResponse response;
-        try {
-            response = client.execute(get);
-            if (response.getStatusLine().getStatusCode() == 200) {
-                InputStream in = response.getEntity().getContent();
-                Bitmap bm = BitmapFactory.decodeStream(in);
-                return bm;
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    public static String getJsonStr2(String url) {
-        URL url2 = null;
+    public static Weather fromJson(String jsonString) {
         try {
-            url2 = new URL(url);
-        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
-        }
-        HttpURLConnection conn;
-        try {
-            conn = (HttpURLConnection) url2.openConnection();
-            conn.setDoInput(true);
-            conn.setConnectTimeout(5000);
-            conn.setRequestMethod("GET");
-
-            if (conn.getResponseCode() == 200) {
-                InputStream in = conn.getInputStream();
-                return getResult(in);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private static String getResult(InputStream in) {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] b = new byte[1024];
-        int len = 0;
-        try {
-            while ((len = in.read(b)) != -1) {
-                bos.write(b, 0, len);
-                bos.flush();
-            }
-            return new String(bos.toByteArray(), "utf-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static Weather fromJson2(String jsonStr) {
-        return null;
-    }
-
-    public static Weather fromJson(String jsonStr) {
-        try {
-            JSONObject obj = new JSONObject(jsonStr);
-            String error = obj.getString("error");
-            String status = obj.getString("status");
-            String date = obj.getString("date");
-            // 根据具体的error值返回不同的信息，这儿做了统一处理，返回null;
+            JSONObject jsonObject = new JSONObject(jsonString);
+            String error = jsonObject.getString("error");
+            String status = jsonObject.getString("status");
+            String date = jsonObject.getString("date");
             if (Integer.parseInt(error) != 0) {
                 return null;
             } else {
-                Weather wea = new Weather();
-                wea.setError(error);
-                wea.setStatus(status);
-                wea.setDate(date);
-                // results信息
-                List<Result> results = new ArrayList<Result>();
-                JSONArray rArr = obj.getJSONArray("results");
-                for (int i = 0; i < rArr.length(); i++) {
-                    JSONObject rObj = rArr.getJSONObject(i);
-                    Result res = new Result();
-                    res.setCurrentCity(rObj.getString("currentCity"));
-                    res.setPm25(rObj.getString("pm25"));
-                    // index信息
-                    List<Index> index = new ArrayList<Index>();
-                    JSONArray iArr = rObj.getJSONArray("index");
-                    for (int j = 0; j < iArr.length(); j++) {
-                        JSONObject iObj = iArr.getJSONObject(i);
-                        Index ind = new Index();
-                        ind.setTitle(iObj.getString("title"));
-                        ind.setZs(iObj.getString("zs"));
-                        ind.setTipt(iObj.getString("tipt"));
-                        ind.setDes(iObj.getString("des"));
-                        index.add(ind);
+                Weather weather = new Weather();
+                weather.setError(error);
+                weather.setStatus(status);
+                weather.setDate(date);
+                List<Result> resultList = new ArrayList<Result>();
+                JSONArray rJsonArray = jsonObject.getJSONArray("results");
+                for (int i = 0; i < rJsonArray.length(); i++) {
+                    JSONObject  resultsJsonObject= rJsonArray.getJSONObject(i);
+                    Result result = new Result();
+                    result.setCurrentCity(resultsJsonObject.getString("currentCity"));
+                    result.setPm25(resultsJsonObject.getString("pm25"));
+                    List<Index> indexList = new ArrayList<Index>();
+                    JSONArray indexJsonArray = resultsJsonObject.getJSONArray("index");
+                    for (int j = 0; j < indexJsonArray.length(); j++) {
+                        JSONObject iJsonObject = indexJsonArray.getJSONObject(i);
+                        Index index = new Index();
+                        index.setTitle(iJsonObject.getString("title"));
+                        index.setZs(iJsonObject.getString("zs"));
+                        index.setTipt(iJsonObject.getString("tipt"));
+                        index.setDes(iJsonObject.getString("des"));
+                        indexList.add(index);
                     }
-                    res.setIndex(index);
-                    // weather_data信息
+                    result.setIndex(indexList);
+
                     List<Weather_data> weather_data = new ArrayList<Weather_data>();
-                    JSONArray wArr = rObj.getJSONArray("weather_data");
-                    for (int j = 0; j < wArr.length(); j++) {
-                        JSONObject wObj = wArr.getJSONObject(j);
-                        Weather_data wd = new Weather_data();
-                        wd.setDate(wObj.getString("date"));
-                        wd.setDayPictureUrl(wObj.getString("dayPictureUrl"));
-                        wd.setNightPictureUrl(wObj.getString("nightPictureUrl"));
-                        wd.setWeather(wObj.getString("weather"));
-                        wd.setWind(wObj.getString("wind"));
-                        wd.setTemperature(wObj.getString("temperature"));
-                        weather_data.add(wd);
+                    JSONArray wdJsonArray = resultsJsonObject.getJSONArray("weather_data");
+                    for (int j = 0; j < wdJsonArray.length(); j++) {
+                        JSONObject weatherDataJsonObject = wdJsonArray.getJSONObject(j);
+                        Weather_data weatherData = new Weather_data();
+                        weatherData.setDate(weatherDataJsonObject.getString("date"));
+                        weatherData.setWeather(weatherDataJsonObject.getString("weather"));
+                        weatherData.setWind(weatherDataJsonObject.getString("wind"));
+                        weatherData.setTemperature(weatherDataJsonObject.getString("temperature"));
+                        weather_data.add(weatherData);
                     }
-                    res.setWeather_data(weather_data);
-                    res.setIndex(index);
-                    results.add(res);
+                    result.setWeather_data(weather_data);
+                    result.setIndex(indexList);
+                    resultList.add(result);
                 }
-                wea.setResults(results);
-                return wea;
+                weather.setResults(resultList);
+                return weather;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -192,7 +155,14 @@ public class WeatherUtils {
         return null;
     }
 
-    // 解析xml文件
+    /**
+     * 方法名：getProvinces(Context context)
+     * 功能：解析省市区XML文件，获取Province类型集合
+     * @param context
+     * @return List<Province>
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
 
     public static List<Province> getProvinces(Context context)
             throws XmlPullParserException, IOException {
@@ -201,7 +171,7 @@ public class WeatherUtils {
         List<City> citys = null;
         City city = null;
         List<District> districts = null;
-        District district = null;
+        District district =null;
 
         InputStream in = context.getResources().openRawResource(
                 R.raw.citys_weather);
@@ -268,18 +238,10 @@ public class WeatherUtils {
                         province.setCitys(citys);
                         provinces.add(province);
                     }
-
                     break;
-
             }
             event = parser.next();
-
         }
         return provinces;
-    }
-
-    public static List<Map<String, Object>> toListMap(Result r) {
-        //从result中获取到天气信息，并将image转化为bitmap存入list
-        return null;
     }
 }
