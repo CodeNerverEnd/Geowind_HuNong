@@ -35,18 +35,24 @@
             android:value="u14REjjc2g17NmoD2XgOflW1Xkv1E4rc" />
 
         <activity android:name=".global.activitys.SplashActivity">
-        </activity>
-        <activity android:name=".map.BaiduMapActivity">
-
-        </activity>
-        <activity android:name=".global.activitys.GuideActivity"></activity>
-        <activity android:name=".global.activitys.MainActivity"/>
-        <activity android:name=".weather.WeatherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".map.BaiduMapActivity">
+
+        </activity>
+        <activity android:name=".global.activitys.GuideActivity"></activity>
+        <activity android:name=".global.activitys.MainActivity">
+
+        </activity>
+        <activity android:name=".weather.WeatherActivity">
+
+        </activity>
+        <activity android:name=".loginregist.LoginActvity">
+
         </activity>
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>

@@ -13,12 +13,12 @@ public class EnquryBaseTagPage extends BaseTagPage {
     }
 
     @Override
-    public void initDate() {
+    public void initData() {
         TextView tv_content=new TextView(context);
         tv_content.setText("资讯的内容");
         tv_content.setGravity(Gravity.CENTER);
         tv_content.setTextSize(25);
         mFl_content.addView(tv_content);
-        super.initDate();
+        super.initData();
     }
 }

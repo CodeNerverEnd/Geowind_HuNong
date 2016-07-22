@@ -41,7 +41,6 @@ public class BaiduMapActivity extends Activity {
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private Button bt_testArea;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,6 @@ public class BaiduMapActivity extends Activity {
 
     }
 
-
     /**
      * 初始化数据
      */
@@ -77,7 +75,7 @@ public class BaiduMapActivity extends Activity {
     /**
      * 初始化定位参数
      */
-    private void initLocation() {
+   private   void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
         option.setCoorType("bd09ll");// 可选，默认gcj02，设置返回的定位结果坐标系
@@ -93,9 +91,7 @@ public class BaiduMapActivity extends Activity {
         option.SetIgnoreCacheException(false);// 可选，默认false，设置是否收集CRASH信息，默认收集
         option.setEnableSimulateGps(false);// 可选，默认false，设置是否需要过滤gps仿真结果，默认需要
         mLocationClient.setLocOption(option);
-
     }
-
     /**
      * 初始化view
      */
@@ -166,9 +162,6 @@ public class BaiduMapActivity extends Activity {
         textOptions.fontSize(24);
         textOptions.bgColor(0xFF0000);
         mTextOverlay = mBaiduMap.addOverlay(textOptions);
-
-
-
     }
 
     private BDLocation mCurrentLocation;
@@ -212,8 +205,6 @@ public class BaiduMapActivity extends Activity {
         // 让地图中心跑到我的真实位置处
         LatLng latLng = new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
         MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.newLatLngZoom(latLng, 21);
-        // 没有动画效果
-        // mBaiduMap.setMapStatus(mapStatusUpdate);
         mBaiduMap.animateMapStatus(mapStatusUpdate, 1000);
     }
 

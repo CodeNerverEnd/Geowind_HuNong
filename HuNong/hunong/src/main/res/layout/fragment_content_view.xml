@@ -26,8 +26,16 @@
                      android:src="@drawable/add"
                      android:background="@android:color/transparent"
                      android:layout_centerVertical="true"
-                     android:layout_marginLeft="300dp"
+                     android:layout_marginLeft="290dp"
                      android:id="@+id/bt_add"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#ffff"
+            android:text="当前位置"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_location"/>
     </RelativeLayout>
 <android.support.v4.view.ViewPager android:layout_width="match_parent"
                                    android:layout_weight="1"

@@ -3,10 +3,17 @@ package com.geowind.hunong.global.activitys;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
 import com.geowind.hunong.myview.ContentFragment;
 import com.geowind.hunong.myview.MenuFragment;
+import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.SpTools;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
@@ -40,7 +47,9 @@ public class MainActivity extends SlidingActivity {
         //提交事务
         fragmentTransaction.commit();
 
+
     }
+
 
     private void initView() {
         setContentView(R.layout.fragement_main);

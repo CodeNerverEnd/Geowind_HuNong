@@ -90,7 +90,6 @@ public class WeatherActivity extends Activity {
         }
 
 
-
         provinceAdapter = new ArrayAdapter<Province>(this, R.layout.weather_myspinner,
                 android.R.id.text1, provinces);
         provinceAdapter

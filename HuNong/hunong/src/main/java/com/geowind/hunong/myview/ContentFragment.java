@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.basepage.BaseTagPage;
@@ -13,6 +14,7 @@ import com.geowind.hunong.global.basepage.EnquryBaseTagPage;
 import com.geowind.hunong.global.basepage.HomeBaseTagPage;
 import com.geowind.hunong.global.basepage.MapBaseTagPage;
 import com.geowind.hunong.global.basepage.MsgBaseTagPage;
+import com.geowind.hunong.utils.LocationUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -30,9 +32,10 @@ public class ContentFragment extends BaseFragment {
     private RadioGroup mRadioGroup;
     @ViewInject(R.id.ib_menu)
     private ImageButton mIb_menu;
+    @ViewInject(R.id.tv_location)
+    private TextView tv_location;
     private List<BaseTagPage> pages=new ArrayList<BaseTagPage>();
     private int mSelectIndex=0;//设置当前的选择编号
-
     @Override
     public View initView() {
        View root=View.inflate(mMainActivity, R.layout.fragment_content_view,null);
@@ -42,6 +45,8 @@ public class ContentFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        String[] address= LocationUtils.getAddr(mMainActivity);
+        tv_location.setText(address[1]);
         pages.add(new HomeBaseTagPage(mMainActivity));
         pages.add(new MsgBaseTagPage(mMainActivity));
         pages.add(new MapBaseTagPage(mMainActivity));
@@ -96,11 +101,6 @@ public class ContentFragment extends BaseFragment {
     //设置选择的页面
     private void switchPage() {
         mViewPager.setCurrentItem(mSelectIndex);
-//        if(mSelectIndex!=0){
-//            mMainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-//        }else {
-//            mMainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//        }
     }
     private class MyAdapter extends PagerAdapter{
 
