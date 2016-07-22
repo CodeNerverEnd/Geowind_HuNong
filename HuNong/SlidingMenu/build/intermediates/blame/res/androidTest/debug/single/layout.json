@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/SlidingMenu/build/intermediates/res/merged/androidTest/debug/layout/slidingmenumain.xml",
-        "source": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/SlidingMenu/build/intermediates/bundles/debug/res/layout/slidingmenumain.xml"
+        "merged": "E:\\home\\zhangwen\\AndroidStudioProjects\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\slidingmenumain.xml",
+        "source": "E:\\home\\zhangwen\\AndroidStudioProjects\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\bundles\\debug\\res\\layout\\slidingmenumain.xml"
+    },
+    {
+        "merged": "E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\slidingmenumain.xml",
+        "source": "E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\bundles\\debug\\res\\layout\\slidingmenumain.xml"
     }
 ]
