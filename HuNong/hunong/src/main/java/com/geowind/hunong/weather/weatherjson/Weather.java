@@ -4,11 +4,16 @@ import java.util.List;
 
 /**
  * Created by logaxy on 2016/7/18.
+ *
+ * 类名：Weather
+ * 描述：Weather类对象可以通过WeatherUtils类的fromJson(jsonStr)获得
+ *      通过Werther类对象对应的方法可以获得date,error、status信息以及
+ *      Result类型的集合
  */
 public class Weather {
+    private String date;
     private String error;
     private String status;
-    private String date;
     private List<Result> results;
 
     public Weather() {
