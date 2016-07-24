@@ -3,53 +3,83 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
+    <RelativeLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
                   android:background="@color/colorAccent"
-                  android:layout_height="wrap_content">
+                  android:layout_height="174dp">
         <ImageButton android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:src="@drawable/account"
-                     android:background="@android:color/transparent"
-                     android:layout_gravity="center_horizontal"/>
+                     android:background="@drawable/photo"
+                     android:layout_marginLeft="30dp"
+            android:id="@+id/ib_person"
+                     android:layout_marginTop="40dp"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="登录/注册"
                   android:textSize="25dp"
-                  android:layout_gravity="center_horizontal"
+                  android:layout_marginTop="61dp"
+                  android:layout_toRightOf="@+id/ib_person"
+                  android:layout_marginLeft="24dp"
+                  android:id="@+id/tv_userName"
         />
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="30dp"
-                  android:background="#ffff"
-                  android:orientation="vertical">
         <TextView
-            style="@style/sliding_tv_style"
-            android:text="历史任务"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/status"
+            android:layout_below="@+id/tv_userName"
+            android:layout_toRightOf="@+id/ib_person"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="24dp"
+            android:id="@+id/tv_status"
+            />
         <TextView
-            style="@style/sliding_tv_style"
-            android:text="历史任务"/>
-    </LinearLayout>
-   <RelativeLayout android:layout_width="match_parent"
-                   android:layout_height="match_parent">
-      <Button android:layout_width="wrap_content"
-              android:drawableTop="@drawable/setting"
-              android:background="@android:color/transparent"
-              android:layout_alignParentBottom="true"
-              android:layout_marginLeft="20dp"
-              android:text="设置"
-              android:id="@+id/bt_setting"
-              android:textSize="20dp"
-              android:layout_height="wrap_content"/>
-       <Button android:layout_width="wrap_content"
-               android:drawableTop="@drawable/exit"
-               android:background="@android:color/transparent"
-               android:layout_alignParentBottom="true"
-               android:layout_marginLeft="120dp"
-               android:text="退出"
-               android:id="@+id/bt_exit"
-               android:textSize="20dp"
-               android:layout_height="wrap_content"/>
-   </RelativeLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_level"
+            android:background="@drawable/level"
+            android:layout_toRightOf="@+id/tv_status"
+            android:layout_below="@+id/tv_userName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp"
+            android:text="Lv1"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            />
+    </RelativeLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_height="match_parent">
+      <TextView
+          style="@style/sliding_tv_style"
+          android:layout_marginTop="27dp"
+          android:text="    个人信息"
+          android:drawableLeft="@drawable/personal_info"
+          />
+      <TextView
+          style="@style/sliding_tv_style"
+          android:text="    信用记录"
+          android:drawableLeft="@drawable/credit"/>
+      <TextView
+          style="@style/sliding_tv_style"
+          android:text="    系统设置"
+          android:drawableLeft="@drawable/setting"/>
+      <TextView
+          style="@style/sliding_tv_style"
+          android:text="    注销"
+          android:drawableLeft="@drawable/exit"/>
+      <View
+          android:layout_width="234dp"
+          android:layout_marginLeft="32dp"
+          android:layout_marginTop="25dp"
+          android:layout_height="2dp"/>
+      <TextView
+          style="@style/sliding_tv_style"
+          android:text="      帮助"
+          android:drawableLeft="@drawable/help"/>
+      <TextView
+          style="@style/sliding_tv_style"
+          android:text="    关于"
+          android:drawableLeft="@drawable/about"/>
+  </LinearLayout>
 </LinearLayout>

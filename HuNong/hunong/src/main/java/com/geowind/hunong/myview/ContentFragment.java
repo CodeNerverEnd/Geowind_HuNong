@@ -20,13 +20,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by zhangwen on 16-7-18.
  */
 //主界面的fragment
 public class ContentFragment extends BaseFragment {
-    @ViewInject(R.id.vp_home)
+    @ViewInject(R.id.vp_main)
     private ViewPager mViewPager;
     @ViewInject(R.id.rg_radio)
     private RadioGroup mRadioGroup;
@@ -52,6 +51,26 @@ public class ContentFragment extends BaseFragment {
         pages.add(new MapBaseTagPage(mMainActivity));
         pages.add(new EnquryBaseTagPage(mMainActivity));
         MyAdapter adapter=new MyAdapter();
+        mViewPager.setAdapter(adapter);
+        switchPage();
+        mRadioGroup.check(R.id.rb_home);
+//        if(mSelectIndex==0){
+//            mIb_menu.setVisibility(View.VISIBLE);
+//        }else {
+//            mIb_menu.setVisibility(View.GONE);
+//        }
+        super.initData();
+    }
+//    监听事件
+    @Override
+    public void initEvent() {
+        //菜单按钮的点击事件
+        mIb_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               mMainActivity.getSlidingMenu().toggle();//左侧菜单的开关
+            }
+        });
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -62,37 +81,16 @@ public class ContentFragment extends BaseFragment {
                     case R.id.rb_msg:
                         mSelectIndex=1;
                         break;
-                    case R.id.rb_enquiry:
+                    case R.id.rb_library:
                         mSelectIndex=2;
                         break;
-                    case R.id.rb_my:
+                    case R.id.rb_map:
                         mSelectIndex=3;
                         break;
                     default:
                         break;
                 }
                 switchPage();
-            }
-        });
-        mViewPager.setAdapter(adapter);
-        switchPage();
-        mRadioGroup.check(R.id.rb_home);
-        if(mSelectIndex==0){
-            mIb_menu.setVisibility(View.VISIBLE);
-        }else {
-            mIb_menu.setVisibility(View.GONE);
-        }
-        super.initData();
-    }
-//    监听事件
-
-    @Override
-    public void initEvent() {
-        //菜单按钮的点击事件
-        mIb_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               mMainActivity.getSlidingMenu().toggle();//左侧菜单的开关
             }
         });
         super.initEvent();

@@ -1,14 +1,10 @@
 package com.geowind.hunong.loginregist;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.preference.PreferenceActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,11 +35,11 @@ public class LoginActvity extends Activity {
     private static final String TAG = "LoginActivity";
     private EditText mEt_userName;
     private EditText mEt_psw;
-    private Button mBt_login;
+    private ImageButton mBt_login;
     private TextView mTv_forgetPsw;
     private String mUserName;
     private String mPassword;
-    private ArrayList<User> mUsers;
+    private TextView tv_regist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +59,15 @@ public class LoginActvity extends Activity {
         mBt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mUserName = mEt_userName.getText().toString();
-                mPassword = mEt_psw.getText().toString();
-                requstLogin();//向服务器发送登录请求
+                System.out.println(mUserName+mPassword);
+                if(mEt_userName.getText()==null||mPassword==null){
+                    Toast.makeText(getApplicationContext(),"输入不能为空",Toast.LENGTH_SHORT).show();
+                }else {
+                    mUserName = mEt_userName.getText().toString();
+                    mPassword = mEt_psw.getText().toString();
+                    requstLogin();//向服务器发送登录请求
+                }
+
             }
         });
     }
@@ -94,8 +96,9 @@ public class LoginActvity extends Activity {
     private void initView() {
         mEt_userName = (EditText) findViewById(R.id.et_userName);
         mEt_psw = (EditText) findViewById(R.id.et_password);
-        mBt_login = (Button) findViewById(R.id.bt_login);
+        mBt_login = (ImageButton) findViewById(R.id.bt_login);
         mTv_forgetPsw = (TextView) findViewById(R.id.tv_forgetPsw);
+        tv_regist = (TextView) findViewById(R.id.tv_login_regist);
     }
 }
 

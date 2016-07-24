@@ -90,13 +90,6 @@ public class WeatherActivity extends Activity {
             e.printStackTrace();
         }
 
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 07e9cda91670ecee770b4aabda8707d3a95d2275
         provinceAdapter = new ArrayAdapter<Province>(this, R.layout.weather_myspinner,
                 android.R.id.text1, provinces);
         provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
