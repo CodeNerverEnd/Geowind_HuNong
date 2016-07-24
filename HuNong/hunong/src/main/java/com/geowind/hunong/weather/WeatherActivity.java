@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.weather.region.City;
 import com.geowind.hunong.weather.region.District;
 import com.geowind.hunong.weather.region.Province;
@@ -38,13 +41,21 @@ public class WeatherActivity extends Activity {
 
     private ArrayAdapter<City> intermCityAdapter;
 
+
+    private LinearLayout spinner;
+    private Button btn;
+    private boolean isSpinnerVisible=false;
+
+
+    private boolean isAutoLocate=true;
+
     private TextView cityName;//城市名
     private TextView pm25Value;//pm2.5值
-    private TextView date;//日期
+    private TextView Temperature1 ;//温度范围
     private TextView week1;//星期
     private TextView weather1;//天气情况
     private TextView windstrength1;//风力情况
-    private TextView temperature1;//温度
+    private TextView temperatureNow;//实时温度
 
     //第二天天气数据
     private TextView week2;
@@ -62,12 +73,14 @@ public class WeatherActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
+        btn=(Button)findViewById(R.id.btn);
+        spinner= (LinearLayout) findViewById(R.id.spinner);
+
         spinnerProvince = (Spinner)  findViewById(R.id.spinner1);
         spinnerCity     = (Spinner)  findViewById(R.id.spinner2);
         spinnerDistrict = (Spinner)  findViewById(R.id.spinner3);
         cityName        = (TextView) findViewById(R.id.cityName);
         pm25Value       = (TextView) findViewById(R.id.pm25Value);
-        date            = (TextView) findViewById(R.id.date);
         week2           = (TextView) findViewById(R.id.week2);
         weather2        = (TextView) findViewById(R.id.weather2);
         windstrength2   = (TextView) findViewById(R.id.windstrength2);
@@ -76,10 +89,10 @@ public class WeatherActivity extends Activity {
         weather3        = (TextView) findViewById(R.id.weather3);
         windstrength3   = (TextView) findViewById(R.id.windstrength3);
         temperature3    = (TextView) findViewById(R.id.temperature3);
-        week1           = (TextView) findViewById(R.id.week1);
         weather1        = (TextView) findViewById(R.id.weather1);
         windstrength1   = (TextView) findViewById(R.id.windstrength1);
-        temperature1    = (TextView) findViewById(R.id.temperature1);
+        temperatureNow  = (TextView) findViewById(R.id.temperatureNow);
+        Temperature1    = (TextView) findViewById(R.id.temperature1);
 
         try {
            provinces = WeatherUtils.getProvinces(this);
@@ -95,36 +108,17 @@ public class WeatherActivity extends Activity {
         provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
         spinnerProvince.setAdapter(provinceAdapter);
 
-        //设置下拉菜单样式，引用自定义的weather_myspinner
         provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-
 
         cityAdapter = new ArrayAdapter<City>(this, R.layout.weather_myspinner,
                 android.R.id.text1, provinces.get(0).getCitys());
         cityAdapter.setDropDownViewResource(R.layout.weather_myspinner);
         spinnerCity.setAdapter(cityAdapter);
 
-
         districtAdapter = new ArrayAdapter<District>(this, R.layout.weather_myspinner,
                 android.R.id.text1, provinces.get(0).getCitys().get(0).getDisList());
         districtAdapter.setDropDownViewResource(R.layout.weather_myspinner);
         spinnerDistrict.setAdapter(districtAdapter);
-
-
-//       设置默认值
-        spinnerProvince.setSelection(24,true);
-
-        intermCityAdapter  = new ArrayAdapter<City>(WeatherActivity.this,
-                R.layout.weather_myspinner, android.R.id.text1,
-                provinces.get(24).getCitys());
-        intermCityAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-        spinnerCity.setAdapter(intermCityAdapter);
-        spinnerCity.setSelection(3,true);
-
-        spinnerDistrict.setSelection(2,true);
-
-
-
 
         spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -145,6 +139,7 @@ public class WeatherActivity extends Activity {
 
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
@@ -154,6 +149,7 @@ public class WeatherActivity extends Activity {
                         .getCitys().get(position).getDisList());
                 districtAdapter.setDropDownViewResource(R.layout.weather_myspinner);
                 spinnerDistrict.setAdapter(districtAdapter);
+
             }
 
             @Override
@@ -167,6 +163,7 @@ public class WeatherActivity extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 District district= districtAdapter.getItem(position);
+
                 new WeatherAsyncTask().execute(district.getName());
             }
 
@@ -174,19 +171,52 @@ public class WeatherActivity extends Activity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        //设置spinner默认不可见
+        spinner.setVisibility(View.INVISIBLE);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isSpinnerVisible==true){
+                    spinner.setVisibility(View.INVISIBLE);
+                    isSpinnerVisible=false;
+                }
+                else {
+                    spinner.setVisibility(View.VISIBLE);
+                    isSpinnerVisible=true;
+                }
+            }
+        });
     }
+
 
     //异步类
     class WeatherAsyncTask extends AsyncTask<String, Void, Weather> {
 
         @Override
         protected Weather doInBackground(String... params) {
-            String url = WeatherUtils.getURL(params[0]);
-            String jsonStr =  WeatherUtils.getJsonString(url);
-            Weather weather =  WeatherUtils.fromJson(jsonStr);
+            String url;
+            String jsonString;
+            Weather weather;
+            String[] pcd=LocationUtils.getAddr(getApplicationContext());
+
+            if(isAutoLocate==true){
+                url = WeatherUtils.getURL(pcd[1]);
+//                isAutoLocate=false;
+            }
+            else {
+                url = WeatherUtils.getURL(params[0]);
+            }
+            jsonString =  WeatherUtils.getJsonString(url);
+            weather =  WeatherUtils.fromJson(jsonString);
             return weather;
         }
 
+        /**
+         * 方法名：onPostExecute(Weather w )
+         * 功能：与另开线程类似，用来更新UI
+         * @param w
+         */
         @Override
         protected void onPostExecute(Weather w ) {
             Result result = w.getResults().get(0);
@@ -196,13 +226,12 @@ public class WeatherActivity extends Activity {
 
                 String pm2_5 = "".equals(result.getPm25()) ? "75" : result.getPm25();
                 pm25Value.setText("pm2.5 : " + pm2_5);
-                date.setText(w.getDate());
+                Temperature1.setText(weather_data.getTemperature());
 
                 String string = weather_data.getDate();
-                week1.setText(string.substring(0, 2));
-                weather1.setText(weather_data.getWeather()+" "+weather_data.getTemperature());
+                weather1.setText(weather_data.getWeather());
                 windstrength1.setText(weather_data.getWind());
-                temperature1.setText(string.substring(14, string.length()-1));
+                temperatureNow.setText(string.substring(14, string.length()-1));
 
                 weather_data = result.getWeather_data().get(1);
 

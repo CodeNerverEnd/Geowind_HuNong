@@ -98,6 +98,7 @@ public class WeatherUtils {
     }
 
 
+
     public static Weather fromJson(String jsonString) {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
