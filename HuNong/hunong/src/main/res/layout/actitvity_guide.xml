@@ -54,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开始体验"
+        android:visibility="gone"
         android:id="@+id/bt_startfeel"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

@@ -3,17 +3,10 @@ package com.geowind.hunong.global.activitys;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
 import com.geowind.hunong.myview.ContentFragment;
 import com.geowind.hunong.myview.MenuFragment;
-import com.geowind.hunong.utils.MyConstants;
-import com.geowind.hunong.utils.SpTools;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
@@ -23,7 +16,6 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 public class MainActivity extends SlidingActivity {
     private static final String MENUE_TAG = "menue_tag";
     private static final String MAIN_TAG = "main_tag";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +23,6 @@ public class MainActivity extends SlidingActivity {
         initData();
         initEvent();
     }
-
     private void initEvent() {
 
     }
@@ -47,17 +38,15 @@ public class MainActivity extends SlidingActivity {
         //提交事务
         fragmentTransaction.commit();
 
-
     }
-
 
     private void initView() {
         setContentView(R.layout.fragement_main);
         setBehindContentView(R.layout.fragment_sliding_left);
         SlidingMenu menu=getSlidingMenu();
         menu.setMode(SlidingMenu.LEFT);//设置滑动模式
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);//设置全屏滑动
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);//设置侧边滑动
+//        menu.setAboveOffset(R.dimen.sliding_menue_offset);
         menu.setBehindOffsetRes(R.dimen.sliding_menue_offset);//设置主界面剩余的位置
-
     }
 }

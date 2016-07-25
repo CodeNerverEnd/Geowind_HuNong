@@ -43,18 +43,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".map.BaiduMapActivity" />
+        <activity android:name=".map.BaiduMapActivity"></activity>
         <activity android:name=".global.activitys.GuideActivity" />
-        <activity android:name=".global.activitys.MainActivity" />
-        <activity android:name=".weather.WeatherActivity" />
-        <activity android:name=".loginregist.LoginActvity" />
+        <activity android:name=".global.activitys.MainActivity"></activity>
+        <activity android:name=".weather.WeatherActivity"></activity>
+        <activity android:name=".loginregist.LoginActvity"></activity>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
+            android:process=":remote"></service>
 
-        <activity android:name=".agricultureLibrary.AgriculturalLibraryAvtivity"></activity>
     </application>
 
 </manifest>

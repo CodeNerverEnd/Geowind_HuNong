@@ -187,6 +187,8 @@ public class WeatherActivity extends Activity {
                 }
             }
         });
+
+
     }
 
 

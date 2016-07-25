@@ -1,5 +1,6 @@
 package com.geowind.hunong.global.basepage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -13,14 +14,13 @@ import com.geowind.hunong.utils.MyConstants;
  * Created by zhangwen on 16-7-18.
  */
 //界面上面标题栏布局基类
-public class BaseTagPage {
+public class BaseTagPage extends Activity{
     Context context;
    protected View mRoot;//界面的根布局
 //   protected ImageButton mIb_menu;
 //   protected TextView mTv_title;
    protected FrameLayout mFl_content;
     private TextView tv_location;
-
     public BaseTagPage(Context context){
         this.context=context;
         initView();

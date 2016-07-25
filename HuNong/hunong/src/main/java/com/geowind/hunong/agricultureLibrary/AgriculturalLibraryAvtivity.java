@@ -1,15 +1,13 @@
 package com.geowind.hunong.agricultureLibrary;
 
+
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.geowind.hunong.R;
-
-public class AgriculturalLibraryAvtivity extends AppCompatActivity {
+public class AgriculturalLibraryAvtivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agricultural_library_avtivity);
     }
 }

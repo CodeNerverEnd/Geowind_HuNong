@@ -29,4 +29,5 @@ android {
      compile files('libs/org.apache.http.legacy.jar')
      compile 'com.google.code.gson:gson:2.7'
      compile 'cz.msebera.android:httpclient:4.4.1.2'
+     compile files('libs/gson-2.7.jar')
  }

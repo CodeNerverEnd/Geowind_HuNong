@@ -97,7 +97,12 @@ public class WeatherUtils {
         return null;
     }
 
-
+    /**
+     * 方法名：fromJson(String jsonString)
+     * 功能： 解析Json数据
+     * @param jsonString
+     * @return weather
+     */
 
     public static Weather fromJson(String jsonString) {
         try {
