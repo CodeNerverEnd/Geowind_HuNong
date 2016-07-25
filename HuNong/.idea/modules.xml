@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HuNong.iml" filepath="$PROJECT_DIR$/HuNong.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SlidingMenu/SlidingMenu.iml" filepath="$PROJECT_DIR$/SlidingMenu/SlidingMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/hunong/hunong.iml" filepath="$PROJECT_DIR$/hunong/hunong.iml" />
     </modules>
   </component>

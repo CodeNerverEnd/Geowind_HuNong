@@ -1,1 +1,1 @@
-include ':hunong', ':SlidingMenu'
+include ':hunong'
