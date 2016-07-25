@@ -1,6 +1,9 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+=======
+        "outputFile": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +14,56 @@
                     "endOffset": 999
                 },
                 "from": {
-                    "file": "E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/E:\\Android\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 961,
+                        "endColumn": 42,
+                        "endOffset": 999
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/E:\\home\\zhangwen\\AndroidStudioProjects\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+>>>>>>> e2f908a464bb903adf10e398d16816d228c85d11
+        "map": [
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 961,
+                    "endColumn": 42,
+                    "endOffset": 999
+                },
+                "from": {
+                    "file": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/E:\\home\\zhangwen\\AndroidStudioProjects\\Geowind_HuNong\\HuNong\\SlidingMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 961,
+                        "endColumn": 42,
+                        "endOffset": 999
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/SlidingMenu/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 961,
+                    "endColumn": 42,
+                    "endOffset": 999
+                },
+                "from": {
+                    "file": "/home/zhangwen/AndroidStudioProjects/Geowind_HuNong/HuNong/SlidingMenu/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

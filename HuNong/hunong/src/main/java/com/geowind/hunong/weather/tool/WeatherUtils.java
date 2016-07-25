@@ -2,7 +2,6 @@ package com.geowind.hunong.weather.tool;
 
 import android.content.Context;
 
-import com.geowind.hunong.R;
 import com.geowind.hunong.weather.region.City;
 import com.geowind.hunong.weather.region.District;
 import com.geowind.hunong.weather.region.Province;
