@@ -1,14 +1,6 @@
 package com.geowind.hunong.global.activitys;
 
 import android.os.Bundle;
-<<<<<<< HEAD
-
-import com.geowind.hunong.R;
-import com.geowind.hunong.myview.ContentFragment;
-import com.geowind.hunong.myview.MenuFragment;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-=======
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -19,11 +11,10 @@ import com.geowind.hunong.global.fragment.RecyclerViewFragment;
 import com.geowind.hunong.global.fragment.WebViewFragment;
 import com.geowind.hunong.myview.HomeFragment;
 import com.geowind.hunong.myview.LibraryFragment;
-import com.geowind.hunong.myview.ZixunFragment;
 import com.geowind.hunong.myview.MsgFragment;
+import com.geowind.hunong.myview.ZixunFragment;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
->>>>>>> e2f908a464bb903adf10e398d16816d228c85d11
 
 import java.util.ArrayList;
 /**

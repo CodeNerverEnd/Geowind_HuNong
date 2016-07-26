@@ -4,14 +4,32 @@ package com.geowind.hunong.entity;
  * Created by Kui on 2016/7/23.
  */
 public class Library {
+    //编号
+    private int id;
+    //类别
+    private String category;
     //标题
     private String title;
-    //关键字
-    private String keyword;
     //url
     private String url;
-    //简述
-    private String headContent;
+    //头部
+    private String headHead;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getTitle() {
         return title;
@@ -19,14 +37,6 @@ public class Library {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
     }
 
     public String getUrl() {
@@ -37,12 +47,22 @@ public class Library {
         this.url = url;
     }
 
+    public String getHeadHead() {
+        return headHead;
+    }
+
+    public void setHeadHead(String headHead) {
+        this.headHead = headHead;
+    }
+
     @Override
     public String toString() {
         return "Library{" +
-                "title='" + title + '\'' +
-                ", keyword='" + keyword + '\'' +
+                "id=" + id +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", headHead='" + headHead + '\'' +
                 '}';
     }
 }

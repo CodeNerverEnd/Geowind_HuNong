@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by florentchampigny on 24/04/15.
  */
-public class TestListViewAdapter extends ArrayAdapter<Object> {
+public class  TestListViewAdapter extends ArrayAdapter<Object> {
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
