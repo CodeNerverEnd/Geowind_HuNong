@@ -20,13 +20,16 @@ import cz.msebera.android.httpclient.Header;
  */
 public class LibraryUtils {
 
+    //总的List
     public static List<Library> libraryArrayList;
     static {
         libraryArrayList = new ArrayList<>();
     }
 
+    //解析JSON
     public static List<Library> fromJson(String jsonString) {
-        List<Library> libraryArrayList = new ArrayList<>();
+        //临时List
+        List<Library> interimLbraryList = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(jsonString);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -42,17 +45,20 @@ public class LibraryUtils {
                 library.setTitle(title);
                 library.setUrl(url);
                 library.setHeadContent(headContent);
-                libraryArrayList.add(library);
-
+                interimLbraryList.add(library);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(libraryArrayList.size() + "pddwwwwwwwwwwwww");
-        return libraryArrayList;
+        return interimLbraryList;
 
     }
 
+    /**
+     *
+     * @param category 类别
+     * @param begin  起点
+     */
     public static void requstLibrary(int category, int begin) {
 
         AsyncHttpClient client=new AsyncHttpClient();
@@ -66,24 +72,14 @@ public class LibraryUtils {
 
                 String jsonString=new String(responseBody);
                 System.out.println(jsonString);
-                System.out.println(fromJson(jsonString).size() + "lllllllllllllllllllllllllll");
                 libraryArrayList.addAll(fromJson(jsonString));
-
-//                List<Library> list = fromJson(jsonString);
-//                libraryArrayList = list;
-                System.out.println("libraryArrayList  ppppppppppppppppppp" + libraryArrayList.size());
-//                libraryArrayList=libraryUtils.getLibraryArrayList();
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-                System.out.println("libraryArrayList  peeeeeeeeeee");
 
             }
         });
-
-        System.out.println("libraryArrayList  ppqqqqqqqqqqqqpp" + libraryArrayList.size());
-
     }
 
 

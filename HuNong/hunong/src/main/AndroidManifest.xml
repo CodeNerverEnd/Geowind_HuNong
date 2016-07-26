@@ -54,7 +54,6 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".weather.OtherActivity"></activity>
     </application>
 
 </manifest>
