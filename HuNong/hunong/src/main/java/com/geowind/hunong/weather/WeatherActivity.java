@@ -1,6 +1,7 @@
 package com.geowind.hunong.weather;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,8 @@ public class WeatherActivity extends Activity {
     private TextView windstrength3;
     private TextView temperature3;
 
+    Button btn1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +96,9 @@ public class WeatherActivity extends Activity {
         windstrength1   = (TextView) findViewById(R.id.windstrength1);
         temperatureNow  = (TextView) findViewById(R.id.temperatureNow);
         Temperature1    = (TextView) findViewById(R.id.temperature1);
+
+        btn1 = (Button) findViewById(R.id.btn1);
+
 
         try {
            provinces = WeatherUtils.getProvinces(this);
@@ -185,6 +191,14 @@ public class WeatherActivity extends Activity {
                     spinner.setVisibility(View.VISIBLE);
                     isSpinnerVisible=true;
                 }
+            }
+        });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(WeatherActivity.this,OtherActivity.class);
+                startActivity(intent);
             }
         });
 

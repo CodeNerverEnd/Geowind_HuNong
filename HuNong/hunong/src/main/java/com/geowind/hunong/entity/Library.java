@@ -7,13 +7,13 @@ public class Library {
     //编号
     private int id;
     //类别
-    private String category;
+    private int category;
     //标题
     private String title;
     //url
     private String url;
     //头部
-    private String headHead;
+    private String headContent;
 
     public int getId() {
         return id;
@@ -23,11 +23,11 @@ public class Library {
         this.id = id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
@@ -47,12 +47,12 @@ public class Library {
         this.url = url;
     }
 
-    public String getHeadHead() {
-        return headHead;
+    public String getHeadContent() {
+        return headContent;
     }
 
-    public void setHeadHead(String headHead) {
-        this.headHead = headHead;
+    public void setHeadContent(String headContent) {
+        this.headContent = headContent;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Library {
                 ", category='" + category + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
-                ", headHead='" + headHead + '\'' +
+                ", headContent='" + headContent + '\'' +
                 '}';
     }
 }

@@ -11,5 +11,5 @@ public interface MyConstants {
     String URL="http://192.168.1.110:8080/HuNong/UserServlet";
     String LOCATION="location";//当前的位置信息
     String ISLOGIN="islogin";//当前登录状态
-    String LibraryURL= "http://192.168.1.116:8080/HoNong/LibraryServlet";
+    String LibraryURL= "http://192.168.1.116:8080/HuNong/LibraryServlet";
 }

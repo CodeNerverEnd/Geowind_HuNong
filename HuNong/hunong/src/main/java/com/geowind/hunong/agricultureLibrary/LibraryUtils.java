@@ -1,51 +1,91 @@
 package com.geowind.hunong.agricultureLibrary;
 
 import com.geowind.hunong.entity.Library;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.geowind.hunong.utils.MyConstants;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-import java.lang.reflect.Type;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by logaxy on 2016/7/25.
  */
 public class LibraryUtils {
 
-    private ArrayList<Library> libraryArrayList;
-
-    public ArrayList<Library> getLibraryArrayList() {
-        return libraryArrayList;
+    public static List<Library> libraryArrayList;
+    static {
+        libraryArrayList = new ArrayList<>();
     }
 
-//    public String  getJsonString(String urlString) {
-//        try {
-//            URL httpUrl = new URL(urlString);
-//            HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//            StringBuffer sb = new StringBuffer();
-//            String line;
-//            while(null != (line = reader.readLine())) {
-//                sb.append(line);
-//            }
-//            return  sb.toString();
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public static List<Library> fromJson(String jsonString) {
+        List<Library> libraryArrayList = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                int id = jsonObject.getInt("id");
+                int category = jsonObject.getInt("category");
+                String title = jsonObject.getString("title");
+                String url = jsonObject.getString("url");
+                String headContent = jsonObject.getString("headContent");
+                Library library = new Library();
+                library.setId(id);
+                library.setCategory(category);
+                library.setTitle(title);
+                library.setUrl(url);
+                library.setHeadContent(headContent);
+                libraryArrayList.add(library);
 
-    public void fromJson(String jsonString){
-        Type listType = new TypeToken<LinkedList<Library>>(){}.getType();
-        Gson gson=new Gson();
-        LinkedList<Library> libraries=gson.fromJson(jsonString,listType);
-        for(Iterator iterator = libraries.iterator(); iterator.hasNext(); ){
-            Library library= (Library) iterator.next();
-            libraryArrayList.add(library);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        System.out.println(libraryArrayList.size() + "pddwwwwwwwwwwwww");
+        return libraryArrayList;
+
     }
+
+    public static void requstLibrary(int category, int begin) {
+
+        AsyncHttpClient client=new AsyncHttpClient();
+        RequestParams params =new RequestParams();
+        params.add("method","getTitles");
+        params.add("category",String.valueOf(category));
+        params.add("begin",String.valueOf(begin));
+        client.post(MyConstants.LibraryURL, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                String jsonString=new String(responseBody);
+                System.out.println(jsonString);
+                System.out.println(fromJson(jsonString).size() + "lllllllllllllllllllllllllll");
+                libraryArrayList.addAll(fromJson(jsonString));
+
+//                List<Library> list = fromJson(jsonString);
+//                libraryArrayList = list;
+                System.out.println("libraryArrayList  ppppppppppppppppppp" + libraryArrayList.size());
+//                libraryArrayList=libraryUtils.getLibraryArrayList();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                System.out.println("libraryArrayList  peeeeeeeeeee");
+
+            }
+        });
+
+        System.out.println("libraryArrayList  ppqqqqqqqqqqqqpp" + libraryArrayList.size());
+
+    }
+
+
+
 }

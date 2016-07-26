@@ -23,4 +23,7 @@ public class SpTools {
         SharedPreferences sp=context.getSharedPreferences(MyConstants.LOCATION,Context.MODE_PRIVATE);
         return sp.getString(key,value);
     }
+
+
+
 }
