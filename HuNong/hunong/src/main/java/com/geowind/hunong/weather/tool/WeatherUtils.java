@@ -1,7 +1,6 @@
 package com.geowind.hunong.weather.tool;
 
 import android.content.Context;
-
 import com.geowind.hunong.R;
 import com.geowind.hunong.weather.region.City;
 import com.geowind.hunong.weather.region.District;
@@ -97,6 +96,12 @@ public class WeatherUtils {
         return null;
     }
 
+    /**
+     * 方法名：fromJson(String jsonString)
+     * 功能： 解析Json数据
+     * @param jsonString
+     * @return weather
+     */
 
     public static Weather fromJson(String jsonString) {
         try {

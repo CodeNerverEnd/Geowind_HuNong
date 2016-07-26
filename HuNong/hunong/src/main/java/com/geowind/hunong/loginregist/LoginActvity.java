@@ -9,20 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.global.activitys.SplashActivity;
 import com.geowind.hunong.utils.EncryptUtils;
-import com.geowind.hunong.utils.InpustreamUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 

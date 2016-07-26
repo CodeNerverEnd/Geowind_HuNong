@@ -7,10 +7,19 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.Toolbar;
 
 import com.geowind.hunong.R;
+<<<<<<< HEAD
 import com.geowind.hunong.global.fragment.BbsScrollViewFragment;
 import com.geowind.hunong.global.fragment.LibraryRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.MsgRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.HomeScrollViewFragment;
+=======
+import com.geowind.hunong.global.fragment.RecyclerViewFragment;
+import com.geowind.hunong.global.fragment.WebViewFragment;
+import com.geowind.hunong.myview.HomeFragment;
+import com.geowind.hunong.myview.LibraryFragment;
+import com.geowind.hunong.myview.MsgFragment;
+import com.geowind.hunong.myview.ZixunFragment;
+>>>>>>> 54b583ff3a2abf407a623d33603764e71371ffdd
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
