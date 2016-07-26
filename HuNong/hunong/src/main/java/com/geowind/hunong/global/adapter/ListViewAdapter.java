@@ -13,11 +13,8 @@ import java.util.List;
 /**
  * Created by florentchampigny on 24/04/15.
  */
-<<<<<<< HEAD:HuNong/hunong/src/main/java/com/geowind/hunong/global/adapter/ListViewAdapter.java
 public class ListViewAdapter extends ArrayAdapter<Object> {
-=======
-public class  TestListViewAdapter extends ArrayAdapter<Object> {
->>>>>>> 54b583ff3a2abf407a623d33603764e71371ffdd:HuNong/hunong/src/main/java/com/geowind/hunong/global/TestListViewAdapter.java
+
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;

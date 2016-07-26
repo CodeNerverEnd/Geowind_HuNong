@@ -59,13 +59,9 @@
     <style name="cardView_standard_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">80dp</item>
-        <item name="app:cardCornerRadius">2dp</item>
-        <item name="app:cardElevation">2dp</item>
-        <item name="layout_marginBottom">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
         <item name="android:layout_marginLeft">@dimen/cardMarginVertical</item>
         <item name="android:layout_marginTop">@dimen/cardMarginVertical</item>
         <item name="android:layout_marginRight">@dimen/cardMarginHorizontal</item>
-        <item name="app:cardPreventCornerOverlap">false</item>
-        <item name="app:contentPadding">0dp</item>
     </style>
 </resources>
