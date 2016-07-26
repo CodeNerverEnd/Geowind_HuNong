@@ -4,4 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="sliding_menue_offset">100dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
+    <dimen name="home_textSize">22dp</dimen>
+    <dimen name="home_card_ing_text_paddingLeft">40dp</dimen>
+    <dimen name="home_card_ing_text_paddingTop">9dp</dimen>
+    <dimen name="home_card_bbs_text_paddingLeft">90dp</dimen>
+    <dimen name="home_card_bbs_text_paddingTop">18dp</dimen>
 </resources>

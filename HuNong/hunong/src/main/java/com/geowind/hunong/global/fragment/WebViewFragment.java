@@ -13,9 +13,7 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
 
 public class WebViewFragment extends Fragment {
-
     private ObservableWebView mWebView;
-
     public static WebViewFragment newInstance() {
         return new WebViewFragment();
     }
