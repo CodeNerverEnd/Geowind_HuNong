@@ -54,6 +54,7 @@
             android:enabled="true"
             android:process=":remote" />
 
+        <activity android:name=".weather.WeatherSelectCityActivity"></activity>
     </application>
 
 </manifest>

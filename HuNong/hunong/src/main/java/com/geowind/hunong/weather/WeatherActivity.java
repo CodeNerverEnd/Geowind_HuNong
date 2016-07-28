@@ -1,53 +1,27 @@
 package com.geowind.hunong.weather;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.utils.LocationUtils;
-import com.geowind.hunong.weather.region.City;
-import com.geowind.hunong.weather.region.District;
-import com.geowind.hunong.weather.region.Province;
+import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.weather.tool.WeatherUtils;
 import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.util.List;
-
 public class WeatherActivity extends Activity {
 
-    //省、市、区下拉菜单
-    private Spinner spinnerProvince;
-    private Spinner spinnerCity;
-    private Spinner spinnerDistrict;
-
-    private int currentProvince;
-    private ArrayAdapter<Province> provinceAdapter;
-    private ArrayAdapter<City> cityAdapter;
-    private ArrayAdapter<District> districtAdapter;
-    private List<Province> provinces;
-
-    private ArrayAdapter<City> intermCityAdapter;
-
-
-    private LinearLayout spinner;
     private Button btn;
-    private boolean isSpinnerVisible=false;
-
-
-    private boolean isAutoLocate=true;
 
     private TextView cityName;//城市名
     private TextView pm25Value;//pm2.5值
@@ -68,17 +42,28 @@ public class WeatherActivity extends Activity {
     private TextView windstrength3;
     private TextView temperature3;
 
+    private String selectCity;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                if(resultCode==RESULT_OK){
+                    selectCity=data.getStringExtra("returnString") ;
+                    new WeatherAsyncTask().execute(selectCity);
+
+                }
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
         btn=(Button)findViewById(R.id.btn);
-        spinner= (LinearLayout) findViewById(R.id.spinner);
 
-        spinnerProvince = (Spinner)  findViewById(R.id.spinner1);
-        spinnerCity     = (Spinner)  findViewById(R.id.spinner2);
-        spinnerDistrict = (Spinner)  findViewById(R.id.spinner3);
         cityName        = (TextView) findViewById(R.id.cityName);
         pm25Value       = (TextView) findViewById(R.id.pm25Value);
         week2           = (TextView) findViewById(R.id.week2);
@@ -94,100 +79,20 @@ public class WeatherActivity extends Activity {
         temperatureNow  = (TextView) findViewById(R.id.temperatureNow);
         Temperature1    = (TextView) findViewById(R.id.temperature1);
 
-        try {
-           provinces = WeatherUtils.getProvinces(this);
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        //自动定位
+        String[] pcd=LocationUtils.getAddr(getApplicationContext());
+        selectCity=pcd[1];
+        new WeatherAsyncTask().execute(selectCity);
 
-            e.printStackTrace();
-        }
-
-        provinceAdapter = new ArrayAdapter<Province>(this, R.layout.weather_myspinner,
-                android.R.id.text1, provinces);
-        provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-        spinnerProvince.setAdapter(provinceAdapter);
-
-        provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-
-        cityAdapter = new ArrayAdapter<City>(this, R.layout.weather_myspinner,
-                android.R.id.text1, provinces.get(0).getCitys());
-        cityAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-        spinnerCity.setAdapter(cityAdapter);
-
-        districtAdapter = new ArrayAdapter<District>(this, R.layout.weather_myspinner,
-                android.R.id.text1, provinces.get(0).getCitys().get(0).getDisList());
-        districtAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-        spinnerDistrict.setAdapter(districtAdapter);
-
-        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                currentProvince = position;
-                cityAdapter = new ArrayAdapter<City>(WeatherActivity.this,
-                        R.layout.weather_myspinner, android.R.id.text1,
-                        provinces.get(position).getCitys());
-                cityAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-                spinnerCity.setAdapter(cityAdapter);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                districtAdapter = new ArrayAdapter<District>(WeatherActivity.this,
-                        R.layout.weather_myspinner,
-                        android.R.id.text1, provinces.get(currentProvince)
-                        .getCitys().get(position).getDisList());
-                districtAdapter.setDropDownViewResource(R.layout.weather_myspinner);
-                spinnerDistrict.setAdapter(districtAdapter);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        spinnerDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                District district= districtAdapter.getItem(position);
-
-                new WeatherAsyncTask().execute(district.getName());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        //设置spinner默认不可见
-        spinner.setVisibility(View.INVISIBLE);
+        //按钮监听
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isSpinnerVisible==true){
-                    spinner.setVisibility(View.INVISIBLE);
-                    isSpinnerVisible=false;
-                }
-                else {
-                    spinner.setVisibility(View.VISIBLE);
-                    isSpinnerVisible=true;
-                }
+                //跳转到选择省市区
+                Intent intent=new Intent(WeatherActivity.this,WeatherSelectCityActivity.class);
+                startActivityForResult(intent,1);
             }
         });
-
     }
 
 
@@ -199,16 +104,16 @@ public class WeatherActivity extends Activity {
             String url;
             String jsonString;
             Weather weather;
-            String[] pcd=LocationUtils.getAddr(getApplicationContext());
+            url = WeatherUtils.getURL(params[0]);
 
-            if(isAutoLocate==true){
-                url = WeatherUtils.getURL(pcd[1]);
-//                isAutoLocate=false;
+            if(isNetworkAvailable(getApplicationContext())){
+                jsonString =  WeatherUtils.getJsonString(url);
+                SpTools.setString(getApplicationContext(),"key",jsonString);
             }
+
             else {
-                url = WeatherUtils.getURL(params[0]);
+                jsonString=SpTools.getString(getApplicationContext(),"key","");
             }
-            jsonString =  WeatherUtils.getJsonString(url);
             weather =  WeatherUtils.fromJson(jsonString);
             return weather;
         }
@@ -249,8 +154,19 @@ public class WeatherActivity extends Activity {
                 windstrength3.setText(weather_data.getWind());
                 temperature3.setText(weather_data.getTemperature());
             }
+        }
 
 
+        private boolean isNetworkAvailable(Context context) {
+            ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if( cm == null )
+                return false;
+            NetworkInfo netinfo = cm.getActiveNetworkInfo();
+            if (netinfo == null )
+                return false;
+            if(netinfo.isConnected())
+                return true;
+            return false;
         }
     }
 }
