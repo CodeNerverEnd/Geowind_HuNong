@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import com.geowind.hunong.R;
@@ -11,6 +12,8 @@ import com.geowind.hunong.global.fragment.BbsScrollViewFragment;
 import com.geowind.hunong.global.fragment.LibraryRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.MsgRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.HomeScrollViewFragment;
+import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.SpTools;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
@@ -19,7 +22,6 @@ import java.util.ArrayList;
  * Created by zhangwen on 16-7-16.
  */
 public class MainActivity extends DrawerActivity {
-    private ArrayList<Fragment> mFragments;
     private MaterialViewPager mViewPager;
     private Toolbar mToolbar;
     private ArrayList<String> mTitleNames;
@@ -42,23 +44,23 @@ public class MainActivity extends DrawerActivity {
                     case 0:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.colorAccent,
-                                "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                                "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg");
                     case 1:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.colorAccent,
-                                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
+                                "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg");
                     case 2:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.colorAccent,
-                                "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
+                                "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg");
                     case 3:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.colorAccent,
-                                "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                                "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg");
                 }
 
 
-                return null;
+                return HeaderDesign.fromColorResAndUrl(R.color.colorAccent,null);
             }
         });
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
@@ -71,7 +73,6 @@ public class MainActivity extends DrawerActivity {
         mTitleNames.add("消息");
         mTitleNames.add("论坛");
         mTitleNames.add("文库");
-
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
@@ -110,6 +111,12 @@ public class MainActivity extends DrawerActivity {
         mToolbar = mViewPager.getToolbar();
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
         }
 
     }

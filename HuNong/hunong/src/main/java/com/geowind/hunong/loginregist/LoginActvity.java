@@ -1,7 +1,10 @@
 package com.geowind.hunong.loginregist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Xml;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -9,13 +12,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.agricultureLibrary.LibraryUtils;
+import com.geowind.hunong.global.activitys.MainActivity;
 import com.geowind.hunong.utils.EncryptUtils;
 import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.SpTools;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.HttpConnection;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.util.TextUtils;
 
 /**
  * Created by zhangwen on 16-7-19.
@@ -35,7 +47,6 @@ public class LoginActvity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("404");
         init();
         initView();
         initData();
@@ -50,14 +61,12 @@ public class LoginActvity extends Activity {
         mBt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(mUserName+mPassword);
-                if(mEt_userName.getText()==null||mPassword==null){
-                    Toast.makeText(getApplicationContext(),"输入不能为空",Toast.LENGTH_SHORT).show();
-                }else {
-                    mUserName = mEt_userName.getText().toString();
-                    mPassword = mEt_psw.getText().toString();
-                    requstLogin();//向服务器发送登录请求
+                mUserName = mEt_userName.getText().toString();
+                mPassword = mEt_psw.getText().toString();
+                if(TextUtils.isEmpty(mUserName)||TextUtils.isEmpty(mPassword)){
+                    Toast.makeText(getApplicationContext(),"输入不能为空",Toast.LENGTH_LONG).show();
                 }
+                requstLogin();//向服务器发送登录请求
 
             }
         });
@@ -69,10 +78,21 @@ public class LoginActvity extends Activity {
         params.add("method","login");
         params.add("username",mUserName);
         params.add("password", EncryptUtils.md5AndSha(mPassword));
-        client.post(MyConstants.URL, params, new AsyncHttpResponseHandler() {
+
+        client.post(MyConstants.LOGINURL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Toast.makeText(getApplicationContext(),new String(responseBody),Toast.LENGTH_LONG).show();
+                String result=new String(responseBody);
+                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+                SpTools.setBoolean(getApplicationContext(), MyConstants.ISLOGIN,true);
+                //进入主界面
+                SpTools.setString(getApplicationContext(),MyConstants.UserId,mUserName);
+
+                if(result.equals("登录成功")){
+                    Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {

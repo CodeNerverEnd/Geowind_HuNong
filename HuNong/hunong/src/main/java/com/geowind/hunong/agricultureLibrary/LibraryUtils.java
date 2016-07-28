@@ -53,35 +53,4 @@ public class LibraryUtils {
         return interimLbraryList;
 
     }
-
-    /**
-     *
-     * @param category 类别
-     * @param begin  起点
-     */
-    public static void requstLibrary(int category, int begin) {
-
-        AsyncHttpClient client=new AsyncHttpClient();
-        RequestParams params =new RequestParams();
-        params.add("method","getTitles");
-        params.add("category",String.valueOf(category));
-        params.add("begin",String.valueOf(begin));
-        client.post(MyConstants.LibraryURL, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
-                String jsonString=new String(responseBody);
-                System.out.println(jsonString);
-                libraryArrayList.addAll(fromJson(jsonString));
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-
-            }
-        });
-    }
-
-
-
 }

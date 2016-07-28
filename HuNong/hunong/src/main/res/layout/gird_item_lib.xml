@@ -15,10 +15,26 @@
         android:layout_marginTop="@dimen/cardMarginVertical"
         app:cardPreventCornerOverlap="false"
         app:contentPadding="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:textSize="15dp"
             android:id="@+id/tv_lib_sortType"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_title"
+            android:textSize="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/psts_background_tab_pressed"
+            android:id="@+id/tv_headContent"/>
+    </LinearLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

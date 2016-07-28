@@ -9,4 +9,9 @@
     <dimen name="home_card_ing_text_paddingTop">9dp</dimen>
     <dimen name="home_card_bbs_text_paddingLeft">90dp</dimen>
     <dimen name="home_card_bbs_text_paddingTop">18dp</dimen>
+    <dimen name="home_viewpager_height">164dp</dimen>
+    <dimen name="headerHeight">114dp</dimen>
+    <dimen name="toolbar_layout_marginTop">16dp</dimen>
+    <dimen name="toolbar_ib_layout_marginLeft">27dp</dimen>
+    <dimen name="toolbar_ib_layout_marginRight">16dp</dimen>
 </resources>

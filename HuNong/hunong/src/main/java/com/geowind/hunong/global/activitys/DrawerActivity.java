@@ -1,4 +1,5 @@
 package com.geowind.hunong.global.activitys;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -6,8 +7,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.loginregist.LoginActvity;
+import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.SpTools;
+
+import cz.msebera.android.httpclient.util.TextUtils;
 
 /**
  * Created by zhangwen on 16-7-24.
@@ -15,9 +24,13 @@ import com.geowind.hunong.R;
 public class DrawerActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mDrawerToggle;
+    private TextView mTv_userName;
+    private TextView mTv_exit;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -25,6 +38,9 @@ public class DrawerActivity extends AppCompatActivity {
         mDrawer = (DrawerLayout) findViewById(R.id.dl_main);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
         mDrawer.setDrawerListener(mDrawerToggle);
+        mTv_userName = (TextView) mDrawer.findViewById(R.id.tv_userName);
+        mTv_exit = (TextView) mDrawer.findViewById(R.id.tv_exit);
+
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -33,8 +49,20 @@ public class DrawerActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
+        initEvent();
         super.onStart();
 
+    }
+
+    private void initEvent() {
+        mTv_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpTools.setBoolean(getApplicationContext(),MyConstants.ISLOGIN,false);
+                Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

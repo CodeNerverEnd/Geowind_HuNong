@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.loginregist.LoginActvity;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 
@@ -66,7 +67,6 @@ public class GuideActivity extends Activity {
               }else {
                   mBt_startfeel.setVisibility(View.GONE);
               }
-
           }
 
           @Override
@@ -80,9 +80,11 @@ public class GuideActivity extends Activity {
             @Override
             public void onClick(View view) {
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISSETUP,true);
-                //进入主界面
-                 Intent intent=new Intent(GuideActivity.this, MainActivity.class);
+                Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
                 startActivity(intent);
+                //进入主界面
+//                 Intent intent=new Intent(GuideActivity.this, MainActivity.class);
+//                startActivity(intent);
                 finish();//关闭自己
             }
         });

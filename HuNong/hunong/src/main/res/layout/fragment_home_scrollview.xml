@@ -19,46 +19,22 @@
                 <android.support.v4.view.ViewPager
                     android:layout_width="match_parent"
                     android:background="@color/left_textView_select"
-                    android:layout_height="144dp">
+                    android:id="@+id/home_slidingShow"
+                    android:layout_height="@dimen/home_viewpager_height">
                 </android.support.v4.view.ViewPager>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ll_home_piont"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="114dp"
+                    android:layout_marginTop="144dp"
                     android:orientation="horizontal">
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:background="@drawable/guidepoint"/>
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/guidepoint"/>
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/guidepoint"/>
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/guidepoint"/>
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/guidepoint"/>
                 </LinearLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             style="@style/cardView_style">
-
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
@@ -77,7 +53,7 @@
                     <ImageButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/enqurey"
+                        android:src="@mipmap/zixun"
                         android:id="@+id/ib_zixun"
                         android:background="@drawable/selector_home_ib_pressed"
                         android:layout_weight="1"/>
@@ -111,7 +87,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="病虫妨害"
+                        android:text="病虫防害"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textSize="18dp"/>
@@ -119,66 +95,53 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.CardView
-                android:layout_weight="1"
-                android:id="@+id/cv_map"
-                app:cardCornerRadius="8dp"
-                style="@style/cardView_style">
-                <TextView
-                    android:layout_width="44dp"
-                    android:text="地图"
-                    android:textColor="@color/menue_bg"
-                    android:textSize="@dimen/home_textSize"
-                    android:layout_marginTop="@dimen/home_card_bbs_text_paddingTop"
-                    android:layout_marginLeft="@dimen/home_card_bbs_text_paddingLeft"
-                    android:layout_height="wrap_content"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/bbs"/>
-            </android.support.v7.widget.CardView>
-           <android.support.v7.widget.CardView
-               android:layout_weight="1"
-               android:id="@+id/cv_ing"
-               app:cardCornerRadius="8dp"
-               style="@style/cardView_style">
-               <ImageView
-                   android:layout_width="wrap_content"
-                   android:layout_gravity="center"
-                   android:layout_height="wrap_content"
-                   android:src="@mipmap/ing"/>
-               <TextView
-                   android:layout_width="44dp"
-                   android:text="正在进行"
-                   android:textColor="@color/colorAccent"
-                   android:textSize="@dimen/home_textSize"
-                   android:layout_marginTop="@dimen/home_card_ing_text_paddingTop"
-                   android:layout_marginLeft="@dimen/home_card_ing_text_paddingLeft"
-                   android:layout_height="wrap_content"/>
-           </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-     <android.support.v7.widget.CardView
-         app:cardCornerRadius="2dp"
-         app:cardElevation="2dp"
-         app:cardPreventCornerOverlap="false"
-         style="@style/cardView_standard_style">
-     </android.support.v7.widget.CardView>
-
         <android.support.v7.widget.CardView
-            style="@style/cardView_standard_style">
+            style="@style/cardView_style">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:layout_weight="1"
+                    android:id="@+id/cv_map"
+                    app:cardCornerRadius="8dp"
+                    style="@style/cardView_style">
+                    <TextView
+                        android:layout_width="44dp"
+                        android:text="地图"
+                        android:textColor="@color/menue_bg"
+                        android:textSize="@dimen/home_textSize"
+                        android:layout_marginTop="@dimen/home_card_bbs_text_paddingTop"
+                        android:layout_marginLeft="@dimen/home_card_bbs_text_paddingLeft"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/bbs"/>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_weight="1"
+                    android:id="@+id/cv_ing"
+                    app:cardCornerRadius="8dp"
+                    style="@style/cardView_style">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ing"/>
+                    <TextView
+                        android:layout_width="44dp"
+                        android:text="正在进行"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/home_textSize"
+                        android:layout_marginTop="@dimen/home_card_ing_text_paddingTop"
+                        android:layout_marginLeft="@dimen/home_card_ing_text_paddingLeft"
+                        android:layout_height="wrap_content"/>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            style="@style/cardView_standard_style">
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            style="@style/cardView_standard_style">
-        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>

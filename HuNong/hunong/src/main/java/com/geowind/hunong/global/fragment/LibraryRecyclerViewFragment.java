@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter;
+import com.geowind.hunong.entity.LibrariesBean;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 
 import java.util.ArrayList;
@@ -22,10 +23,10 @@ import java.util.List;
  * Created by zhangwen on 16-7-25.这文库的Fragment
  */
 public class LibraryRecyclerViewFragment extends Fragment {
-    static final boolean GRID_LAYOUT = true;
-    static final int ITEM_COUNT = 6;
+    static final boolean GRID_LAYOUT = false;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    LibrariesBean mBean;
     private List<Object> mContentItems = new ArrayList<Object>();
 
     public static LibraryRecyclerViewFragment newInstance() {
@@ -41,6 +42,7 @@ public class LibraryRecyclerViewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.lib_recyclerView);
+        mBean=new LibrariesBean();
         RecyclerView.LayoutManager layoutManager;
 
         if (GRID_LAYOUT) {
@@ -58,7 +60,7 @@ public class LibraryRecyclerViewFragment extends Fragment {
         //设置adapter
         mRecyclerView.setAdapter(mAdapter);
         {
-            for (int i = 0; i < ITEM_COUNT; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 mContentItems.add(new Object());
             }
             mAdapter.notifyDataSetChanged();
