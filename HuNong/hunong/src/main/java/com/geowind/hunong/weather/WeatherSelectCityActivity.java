@@ -38,17 +38,6 @@ public class WeatherSelectCityActivity extends Activity {
     private Button ack;//确认按钮
 
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if(keyCode==KeyEvent.KEYCODE_BACK){
-//            Intent intent=new Intent();
-//            intent.putExtra("returnString",returnString);
-//            setResult(RESULT_OK,intent);
-//            finish();
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,18 +121,6 @@ public class WeatherSelectCityActivity extends Activity {
                 District district= districtAdapter.getItem(position);
 
                 returnString=district.getName();
-
-//                new WeatherAsyncTask().execute(district.getName());
-
-
-//                if(isAutoLocate==true){
-//                    String[] pcd= LocationUtils.getAddr(getApplicationContext());
-//                    new WeatherAsyncTask().execute(pcd[1]);
-//
-//                }
-//                else {
-//                    new WeatherAsyncTask().execute(district.getName());
-//                }
 
             }
 

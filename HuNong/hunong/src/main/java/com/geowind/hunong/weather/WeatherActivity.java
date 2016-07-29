@@ -44,6 +44,12 @@ public class WeatherActivity extends Activity {
 
     private String selectCity;
 
+    /**
+     * 功能：获取selectCityActivity中传回的已选择的城市名
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
@@ -125,34 +131,53 @@ public class WeatherActivity extends Activity {
          */
         @Override
         protected void onPostExecute(Weather w ) {
-            Result result = w.getResults().get(0);
-            if(result!=null){
-                Weather_data weather_data = result.getWeather_data().get(0);
-                cityName.setText(result.getCurrentCity());
+            /**
+             * 若一开始使用时没有网,无法拿到天气信息，则只显示当前定位城市，
+             * 再若没开启定位权限，显示默认城市北京
+             */
+            if(w==null){
+                String[] pcd=LocationUtils.getAddr(getApplicationContext());
+                if(pcd[1]!=null)
+                    cityName.setText(pcd[1]);
+                else
+                    cityName.setText("北京");
+            }
 
-                String pm2_5 = "".equals(result.getPm25()) ? "75" : result.getPm25();
-                pm25Value.setText("pm2.5 : " + pm2_5);
-                Temperature1.setText(weather_data.getTemperature());
+            /**
+             * 若已在有网环境下使用过，则显示传入的Weather类对象w里的天气信息，此w对象在
+             * 当前没网情况下是上一次有网时保存下来的，在当前有网的情况下是当前获取到的
+             */
+            else{
+                Result result = w.getResults().get(0);
+                if(result!=null){
+                    Weather_data weather_data = result.getWeather_data().get(0);
+                    cityName.setText(result.getCurrentCity());
 
-                String string = weather_data.getDate();
-                weather1.setText(weather_data.getWeather());
-                windstrength1.setText(weather_data.getWind());
-                temperatureNow.setText(string.substring(14, string.length()-1));
+                    String pm2_5 = "".equals(result.getPm25()) ? "75" : result.getPm25();
+                    pm25Value.setText("pm2.5 : " + pm2_5);
+                    Temperature1.setText(weather_data.getTemperature());
 
-                weather_data = result.getWeather_data().get(1);
+                    String string = weather_data.getDate();
+                    weather1.setText(weather_data.getWeather());
+                    windstrength1.setText(weather_data.getWind());
+                    temperatureNow.setText(string.substring(14, string.length()-1));
 
-                temperature2.setText(weather_data.getTemperature());
-                week2.setText(weather_data.getDate());
-                weather2.setText(weather_data.getWeather());
-                windstrength2.setText(weather_data.getWind());
-                temperature2.setText(weather_data.getTemperature());
+                    weather_data = result.getWeather_data().get(1);
 
-                weather_data = result.getWeather_data().get(2);
+                    temperature2.setText(weather_data.getTemperature());
+                    week2.setText(weather_data.getDate());
+                    weather2.setText(weather_data.getWeather());
+                    windstrength2.setText(weather_data.getWind());
+                    temperature2.setText(weather_data.getTemperature());
 
-                week3.setText(weather_data.getDate());
-                weather3.setText(weather_data.getWeather());
-                windstrength3.setText(weather_data.getWind());
-                temperature3.setText(weather_data.getTemperature());
+                    weather_data = result.getWeather_data().get(2);
+
+                    week3.setText(weather_data.getDate());
+                    weather3.setText(weather_data.getWeather());
+                    windstrength3.setText(weather_data.getWind());
+                    temperature3.setText(weather_data.getTemperature());
+
+                }
             }
         }
 
