@@ -6,7 +6,5 @@
     android:layout_width="fill_parent"
     android:layout_height="40dp"
     android:ellipsize="marquee"
-    android:textColor="#DADADA"
-    android:background="#415965"
     />
 <!--ellipsize指定文字超过控件长度时的显示方式     -->

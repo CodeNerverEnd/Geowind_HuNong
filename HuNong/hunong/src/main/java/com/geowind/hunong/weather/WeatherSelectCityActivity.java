@@ -20,13 +20,12 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.List;
 
-public class WeatherSelectCityActivity extends Activity {
+public class  WeatherSelectCityActivity extends Activity {
 
     //省、市、区下拉菜单
     private Spinner spinnerProvince;
     private Spinner spinnerCity;
     private Spinner spinnerDistrict;
-
     private int currentProvince;
     private ArrayAdapter<Province> provinceAdapter;
     private ArrayAdapter<City> cityAdapter;
@@ -63,6 +62,7 @@ public class WeatherSelectCityActivity extends Activity {
                 android.R.id.text1, provinces);
         provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
         spinnerProvince.setAdapter(provinceAdapter);
+//        spinnerProvince.setPrompt("省份");
 
         provinceAdapter.setDropDownViewResource(R.layout.weather_myspinner);
 
@@ -87,6 +87,7 @@ public class WeatherSelectCityActivity extends Activity {
                         provinces.get(position).getCitys());
                 cityAdapter.setDropDownViewResource(R.layout.weather_myspinner);
                 spinnerCity.setAdapter(cityAdapter);
+//                spinnerCity.setPrompt("城市");
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -105,6 +106,7 @@ public class WeatherSelectCityActivity extends Activity {
                         .getCitys().get(position).getDisList());
                 districtAdapter.setDropDownViewResource(R.layout.weather_myspinner);
                 spinnerDistrict.setAdapter(districtAdapter);
+//                spinnerDistrict.setPrompt("区县");
 
             }
 
