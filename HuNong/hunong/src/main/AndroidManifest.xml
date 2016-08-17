@@ -48,14 +48,20 @@
         <activity android:name=".global.activitys.MainActivity" />
         <activity android:name=".weather.WeatherActivity" />
         <activity android:name=".loginregist.LoginActvity" />
+<<<<<<< HEAD
         <activity android:name=".agricultureLibrary.LibraryWebViewActivity"/>
         <activity android:name=".agricultureLibrary.ArticleDetailsActivity"/>
+=======
+        <activity android:name=".agricultureLibrary.LibraryWebViewActivity" />
+
+>>>>>>> a76fde4c8979be31209ab1a23ae13244cb2350f8
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".weather.WeatherSelectCityActivity"></activity>
+        <activity android:name=".weather.WeatherSelectCityActivity" />
+        <activity android:name=".pestControl.pestControlActivity"></activity>
     </application>
 
 </manifest>

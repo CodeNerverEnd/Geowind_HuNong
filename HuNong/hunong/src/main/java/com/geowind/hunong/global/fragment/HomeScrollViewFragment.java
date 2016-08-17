@@ -25,6 +25,7 @@ import com.geowind.hunong.R;
 import com.geowind.hunong.global.activitys.SplashActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
+import com.geowind.hunong.pestControl.pestControlActivity;
 import com.geowind.hunong.utils.DensityUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.weather.WeatherActivity;
@@ -62,6 +63,7 @@ public class HomeScrollViewFragment extends Fragment {
     private LinearLayout mLl_ponits;
     private int mPotinIsSelect;
     private SlidingShow mMySliding;
+<<<<<<< HEAD
     //测试用的图片URL
     String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
@@ -71,6 +73,10 @@ public class HomeScrollViewFragment extends Fragment {
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
+=======
+    private ImageButton mIb_pestControl;
+
+>>>>>>> a76fde4c8979be31209ab1a23ae13244cb2350f8
     public static HomeScrollViewFragment newInstance() {
         return new HomeScrollViewFragment();}
 
@@ -84,6 +90,7 @@ public class HomeScrollViewFragment extends Fragment {
     private void initView() {
         mIb_weather = (ImageButton) mView.findViewById(R.id.ib_weather);
         mCv_map = (CardView) mView.findViewById(R.id.cv_map);
+        mIb_pestControl = (ImageButton) mView.findViewById(R.id.ib_debug);
         mSlidingShow = (ViewPager) mView.findViewById(R.id.home_slidingShow);
         mSlidingShowDatas = new ArrayList<HomeData.SlidingShow>();
         mBitmapUtils = new BitmapUtils(getActivity().getApplicationContext());
@@ -252,6 +259,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
         mIb_weather.setOnClickListener(mListener);
         //地图
         mCv_map.setOnClickListener(mListener);
+        mIb_pestControl.setOnClickListener(mListener);
         //轮播图
         mSlidingShow.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -304,6 +312,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
                     toActivity(BaiduMapActivity.class);
                     break;
                 case R.id.ib_debug:
+                    toActivity(pestControlActivity.class);
                     break;
                 case R.id.cv_map:
                     toActivity(BaiduMapActivity.class);
