@@ -1,68 +1,72 @@
 package com.geowind.hunong.entity;
 
+import java.util.List;
+
 /**
  * Created by Kui on 2016/7/23.
  */
-public class Library {
-    //编号
-    private int id;
-    //类别
-    private int category;
-    //标题
-    private String title;
-    //url
-    private String url;
-    //头部
-    private String headContent;
-
-    public int getId() {
-        return id;
+public  class Library {
+    public  List<ArticleList> getArticleList() {
+        return articleList;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setArticleList(List<ArticleList> articleList) {
+        this.articleList = articleList;
     }
 
-    public int getCategory() {
-        return category;
+    public  List<ArticleList> articleList;
+    public class ArticleList {
+        //编号
+        private String id;
+        //类别
+        private String category;
+        //标题
+        private String title;
+        //url
+        private String url;
+        //头部
+        private String headContent;
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getHeadContent() {
+            return headContent;
+        }
+
+        public void setHeadContent(String headContent) {
+            this.headContent = headContent;
+        }
+
+
     }
 
-    public void setCategory(int category) {
-        this.category = category;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getHeadContent() {
-        return headContent;
-    }
-
-    public void setHeadContent(String headContent) {
-        this.headContent = headContent;
-    }
-
-    @Override
-    public String toString() {
-        return "Library{" +
-                "id=" + id +
-                ", category='" + category + '\'' +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
-                ", headContent='" + headContent + '\'' +
-                '}';
-    }
 }

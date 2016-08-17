@@ -16,11 +16,11 @@ public class SpTools {
         return sp.getBoolean(key,value);
     }
     public static void setString(Context context,String key,String value){
-        SharedPreferences sp=context.getSharedPreferences(MyConstants.LOCATION,Context.MODE_PRIVATE);
+        SharedPreferences sp=context.getSharedPreferences(MyConstants.CONFIGFILE,Context.MODE_PRIVATE);
         sp.edit().putString(key,value).commit();
     }
     public static String getString(Context context,String key,String value){
-        SharedPreferences sp=context.getSharedPreferences(MyConstants.LOCATION,Context.MODE_PRIVATE);
+        SharedPreferences sp=context.getSharedPreferences(MyConstants.CONFIGFILE,Context.MODE_PRIVATE);
         return sp.getString(key,value);
     }
 

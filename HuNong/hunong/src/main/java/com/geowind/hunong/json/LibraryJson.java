@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryJson {
@@ -24,9 +25,9 @@ public class LibraryJson {
         return libraryList;
 
     }
-    public static Library parseJsonObject(String jsonString){
-        Gson gson=new Gson();
-        Library library=gson.fromJson(jsonString,Library.class);
+    public static Library parseJsonObject(String jsonString) {
+        Gson gson = new Gson();
+        Library library = gson.fromJson(jsonString, Library.class);
         return library;
     }
 }

@@ -35,12 +35,22 @@ public class DrawerActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+
+        initView();
+        initData();
+        initEvent();
+        super.onStart();
+
+    }
+
+    private void initView() {
         mDrawer = (DrawerLayout) findViewById(R.id.dl_main);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
         mDrawer.setDrawerListener(mDrawerToggle);
         mTv_userName = (TextView) mDrawer.findViewById(R.id.tv_userName);
         mTv_exit = (TextView) mDrawer.findViewById(R.id.tv_exit);
-
+    }
+    private void initData() {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -49,16 +59,17 @@ public class DrawerActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
-        initEvent();
-        super.onStart();
-
+        mTv_userName.setText(SpTools.getString(getApplicationContext(),MyConstants.USERNAME,""));
     }
+
+
 
     private void initEvent() {
         mTv_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SpTools.setBoolean(getApplicationContext(),MyConstants.ISLOGIN,false);
+                SpTools.setString(getApplicationContext(),MyConstants.USERNAME,"");
                 Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
                 startActivity(intent);
             }

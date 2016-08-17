@@ -14,11 +14,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.SplashActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
 import com.geowind.hunong.utils.DensityUtils;
@@ -54,17 +58,19 @@ public class HomeScrollViewFragment extends Fragment {
     private List<HomeData.SlidingShow> mSlidingShowDatas;
     private BitmapUtils mBitmapUtils;
     private int pointSelectIndex;
-//测试用的图片URL
-    String imgPaths[]={"http://pic.baike.soso.com/p/20130802/20130802214330-825586008.jpg",
-        "http://img03.tooopen.com/uploadfile/downs/images/20110811/sy_20110811170230819021.jpg","http://img.zcool.cn/community/03396a3554c74f700000158fc16b02b.jpg",
-        "http://rios.co/wp-content/uploads/2012/11/rioswing_diy_field_02.jpg",
-        "http://abc.2008php.com/2012_Website_appreciate/2012-06-24/20120624160018.jpg"
 
-};
     private LinearLayout mLl_ponits;
     private int mPotinIsSelect;
     private SlidingShow mMySliding;
-
+    //测试用的图片URL
+    String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
+            "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
+            "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg",
+            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
+            "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg",
+            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
+            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
+    };
     public static HomeScrollViewFragment newInstance() {
         return new HomeScrollViewFragment();}
 
@@ -114,14 +120,11 @@ public class HomeScrollViewFragment extends Fragment {
     @Override
     public void run() {
         //控制轮播图的显示
-        mSlidingShow.setCurrentItem((mSlidingShow.getCurrentItem()+1)%mSlidingShow.getAdapter().getCount());
+        mSlidingShow.setCurrentItem((mSlidingShow.getCurrentItem()+1)%mSlidingShow.getAdapter().getCount(),true);
         postDelayed(this,5000);
     }
 }
-    //处理数据
-    private void processData() {
 
-    }
     //设置数据
 
     private void setData() {
@@ -133,14 +136,16 @@ public class HomeScrollViewFragment extends Fragment {
 //设置轮播图上的点
     private void initPoints() {
         mLl_ponits.removeAllViews();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<7;i++){
             View v_point=new View(getActivity().getApplicationContext());
             v_point.setBackgroundResource(R.drawable.selector_point);
             v_point.setEnabled(false);//默认都是灰色点
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(DensityUtils.dipToPx(getActivity(), 5), DensityUtils.dipToPx(getActivity(), 5));
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(DensityUtils.dipToPx(getActivity(), 7), DensityUtils.dipToPx(getActivity(), 7));
             layoutParams.leftMargin=DensityUtils.dipToPx(getActivity(),10);
             v_point.setLayoutParams(layoutParams);
             mLl_ponits.addView(v_point);
+            if(i==0||i==6)
+                mLl_ponits.getChildAt(i).setVisibility(View.GONE);
 
         }
     }
@@ -176,8 +181,8 @@ public class HomeScrollViewFragment extends Fragment {
     }
 //设置轮播图上的点是否选中
     public void setPotinIsSelect(int potinIsSelect) {
-        for (int i=0;i<5;i++){
-            mLl_ponits.getChildAt(i).setEnabled(i==pointSelectIndex);
+        for (int i=0;i<7;i++){
+            mLl_ponits.getChildAt(i).setEnabled(i==potinIsSelect);
         }
     }
 
@@ -188,16 +193,18 @@ private  class SlidingShowAdapter extends PagerAdapter{
 
         @Override
         public int getCount() {
-            return 5;
+            return 7;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ImageView iv_SlidingImage=new ImageView(getActivity().getApplicationContext());
+            ImageView iv_SlidingImage= new ImageView(getActivity().getApplicationContext());
+            ViewGroup.LayoutParams layoutParams=new ViewPager.LayoutParams();
+            layoutParams.height= ViewPager.LayoutParams.MATCH_PARENT;
+            layoutParams.width= ViewPager.LayoutParams.MATCH_PARENT;
+            iv_SlidingImage.setLayoutParams(layoutParams);
 //            设置默认图片
             iv_SlidingImage.setImageResource(R.drawable.defualt);
-            //给图片添加数据
-//            mSlidingShowDatas.get(position);
             //Xutils的BitMap异步加载图片并显示
             mBitmapUtils.display(iv_SlidingImage,imgPaths[position]);
             container.addView(iv_SlidingImage);
@@ -254,9 +261,18 @@ private  class SlidingShowAdapter extends PagerAdapter{
 
             @Override
             public void onPageSelected(int position) {
+
+                if ( position == 0) { //首位之前，跳转到末尾（N）
+                    position = 5; //注意这里是mList，而不是mViews
+                    mSlidingShow.setCurrentItem(5,false);
+                } else if ( position ==6) { //末位之后，跳转到首位（1）
+                    mSlidingShow.setCurrentItem(1,false);
+                    position = 1;
+                }
                 //当滑动到此页面时,设置点被选中
                 pointSelectIndex=position;
                 setPotinIsSelect(position);
+
 
             }
 

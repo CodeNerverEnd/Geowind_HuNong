@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@drawable/pop_map_task_bg"
+              android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="22dp"
+        android:text="地图模式"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:text="普通模式"
+        android:id="@+id/bt_normalMode"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:text="交通模式"
+        android:id="@+id/bt_trafficMode"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:text="卫星模式"
+        android:id="@+id/bt_sateliteMode"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

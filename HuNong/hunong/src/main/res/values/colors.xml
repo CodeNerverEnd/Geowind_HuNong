@@ -13,4 +13,6 @@
     <color name="menue_bg">#9bba6d</color>
     <color name="left_textView_select">#DFDFDF</color>
     <color name="white">#ffff</color>
+    <color name="transparent">#22000000</color>
+    <color name="map_pop_backround">#eeffffff</color>
 </resources>

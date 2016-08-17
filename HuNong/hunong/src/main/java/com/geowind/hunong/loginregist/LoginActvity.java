@@ -86,9 +86,9 @@ public class LoginActvity extends Activity {
                 Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISLOGIN,true);
                 //进入主界面
-                SpTools.setString(getApplicationContext(),MyConstants.UserId,mUserName);
-
                 if(result.equals("登录成功")){
+                    SpTools.setString(getApplicationContext(),MyConstants.USERNAME,mUserName);
+                    SpTools.setBoolean(getApplicationContext(),MyConstants.ISLOGIN,true);
                     Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

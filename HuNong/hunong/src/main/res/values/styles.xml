@@ -2,6 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ff7f7f7f</item>
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
 
@@ -13,7 +15,7 @@
         <item name="windowActionBar">false</item>
 
         <!-- Material Theme -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
@@ -24,6 +26,14 @@
 
     </style>
 
+    <style name="Bubble.TextAppearance.Light" parent="AppBaseTheme">
+        <item name="android:textColor">#ffeeeeee</item>
+    </style>
+    <style name="ClusterIcon.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">#ffeeeeee</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="radioButonStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:width">0dp</item>

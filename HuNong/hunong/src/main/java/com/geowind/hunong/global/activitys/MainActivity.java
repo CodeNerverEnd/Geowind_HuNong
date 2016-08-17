@@ -1,5 +1,6 @@
 package com.geowind.hunong.global.activitys;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,27 +41,28 @@ public class MainActivity extends DrawerActivity {
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
-                switch (page) {
-                    case 0:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorAccent,
-                                "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg");
-                    case 1:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorAccent,
-                                "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg");
-                    case 2:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorAccent,
-                                "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg");
-                    case 3:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorAccent,
-                                "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg");
-                }
+
+//                switch (page) {
+//                    case 0:
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.colorAccent,
+//                                "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg");
+//                    case 1:
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.colorAccent,
+//                                "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg");
+//                    case 2:
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.colorAccent,
+//                                "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg");
+//                    case 3:
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.colorAccent,
+//                                "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg");
+//                }
 
 
-                return HeaderDesign.fromColorResAndUrl(R.color.colorAccent,null);
+                return HeaderDesign.fromColorAndDrawable(getResources().getColor(R.color.colorAccent),getResources().getDrawable(R.drawable.selector_header_bg));
             }
         });
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());

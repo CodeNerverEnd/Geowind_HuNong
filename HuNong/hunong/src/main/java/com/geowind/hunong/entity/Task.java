@@ -7,92 +7,110 @@ import java.util.Date;
  * Created by Jiang on 2016/7/20.
  */
 public class Task {
-    //任务编号
-    private int no;
+private int no;
     //农机手
-    private String uname;
+    private String mUname;
+    //种粮大户
+    private String fUname;
     //农田编号
     private int fno;
     //工作量
-    private int workLoad;
+    private String workLoad;
     //农机编号
     private int mno;
     //作业类型
-    private int workStyle;
+    private String  type;
     //日期
-    private Date date;
-
-    // 无参构造函数
-    public Task(){
-
-    }
-
-    public int getNo() {
+    private String date;
+    //状态
+    private int state;
+    //农田分区编号
+    private int fzno;
+    //农田总面积
+    private double farea;
+    //农田地址
+    private String faddr;
+    //经度
+    private double longitude;
+    //纬度
+    private double latitude;
+    //农田照片
+    private String fpic;
+    //作物类型
+    private String cropType;
+    //农机类型
+    private String mstyle;
+    //备注
+    private String note;
+   public int getNo() {
         return no;
     }
 
-    public void setNo(int no) {
-        this.no = no;
-    }
-
     public String getUname() {
-        return uname;
+        return mUname;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public String getfUname() {
+        return fUname;
     }
 
     public int getFno() {
         return fno;
     }
 
-    public void setFno(int fno) {
-        this.fno = fno;
-    }
-
-    public int getWorkLoad() {
+    public String getWorkLoad() {
         return workLoad;
-    }
-
-    public void setWorkLoad(int workLoad) {
-        this.workLoad = workLoad;
     }
 
     public int getMno() {
         return mno;
     }
 
-    public void setMno(int mno) {
-        this.mno = mno;
-    }
-
-    public int getWorkStyle() {
-        return workStyle;
-    }
-
-    public void setWorkStyle(int workStyle) {
-        this.workStyle = workStyle;
-    }
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public String getType() {
+        return type;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "no=" + no +
-                ", uname='" + uname + '\'' +
-                ", fno=" + fno +
-                ", workLoad=" + workLoad +
-                ", mno=" + mno +
-                ", workStyle=" + workStyle +
-                ", date=" + date +
-                '}';
+    public int getState() {
+        return state;
+    }
+
+    public int getFzno() {
+        return fzno;
+    }
+
+    public double getFarea() {
+        return farea;
+    }
+
+    public String getFaddr() {
+        return faddr;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public String getFpic() {
+        return fpic;
+    }
+
+    public String getCropType() {
+        return cropType;
+    }
+
+    public String getMstyle() {
+        return mstyle;
+    }
+
+    public String getNote() {
+        return note;
     }
 }

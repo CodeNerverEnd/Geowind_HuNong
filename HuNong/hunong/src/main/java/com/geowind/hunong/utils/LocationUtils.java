@@ -3,14 +3,6 @@ package com.geowind.hunong.utils;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.model.LatLng;
 
 /**
  * Created by zhangwen on 16-7-20.

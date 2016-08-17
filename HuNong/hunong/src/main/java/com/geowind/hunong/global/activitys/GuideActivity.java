@@ -82,9 +82,6 @@ public class GuideActivity extends Activity {
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISSETUP,true);
                 Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
                 startActivity(intent);
-                //进入主界面
-//                 Intent intent=new Intent(GuideActivity.this, MainActivity.class);
-//                startActivity(intent);
                 finish();//关闭自己
             }
         });

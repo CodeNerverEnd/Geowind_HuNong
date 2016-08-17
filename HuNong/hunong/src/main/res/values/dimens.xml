@@ -10,8 +10,21 @@
     <dimen name="home_card_bbs_text_paddingLeft">90dp</dimen>
     <dimen name="home_card_bbs_text_paddingTop">18dp</dimen>
     <dimen name="home_viewpager_height">164dp</dimen>
-    <dimen name="headerHeight">114dp</dimen>
-    <dimen name="toolbar_layout_marginTop">16dp</dimen>
+    <dimen name="headerHeight">128dp</dimen>
+    <dimen name="toolbar_layout_marginTop">30dp</dimen>
     <dimen name="toolbar_ib_layout_marginLeft">27dp</dimen>
     <dimen name="toolbar_ib_layout_marginRight">16dp</dimen>
+    <dimen name="red_action_button_size">108dp</dimen>
+    <dimen name="red_action_button_margin">48dp</dimen>
+
+    <dimen name="red_action_button_content_size">16dp</dimen>
+    <dimen name="red_action_button_content_margin">36dp</dimen>
+
+    <dimen name="red_action_menu_radius">96dp</dimen>
+    <dimen name="blue_sub_action_button_size">48dp</dimen>
+    <dimen name="blue_sub_action_button_content_margin">16dp</dimen>
+
+    <dimen name="radius_large">120dp</dimen>
+    <dimen name="radius_small">30dp</dimen>
+    <dimen name="radius_medium">72dp</dimen>
 </resources>

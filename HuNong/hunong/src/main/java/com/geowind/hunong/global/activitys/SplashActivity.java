@@ -9,15 +9,28 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
+import com.geowind.hunong.entity.Library;
+import com.geowind.hunong.json.LibraryJson;
+import com.geowind.hunong.loginregist.LoginActvity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
+import com.lidroid.xutils.BitmapUtils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  *
@@ -31,6 +44,9 @@ public class SplashActivity  extends Activity{
     public BDLocationListener myListener = new MyLocationListener();
     private BDLocation mCurrentLocation;//当前位置
     private boolean isFristLocate=true;
+    public static List<ImageView> mSlidingImgs;
+    Library mLibrary;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +71,25 @@ public class SplashActivity  extends Activity{
             @Override
             public void onAnimationStart(Animation animation) {
                 mLocationClient.start();
+                //联网操作
+                getDataFromNet();
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                if(SpTools.getBoolean(getApplicationContext(), MyConstants.ISSETUP,false)){
-                   //进入主界面
-                  Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-                   startActivity(intent);
-                   finish();
+                   if(SpTools.getBoolean(getApplicationContext(),MyConstants.ISLOGIN,false)){
+                       //进入主界面
+                       Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                       startActivity(intent);
+                       finish();
+                   }else{
+                       //进入登录界面
+                       Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
+                       startActivity(intent);
+                       finish();
+                   }
+
                }else {
                    //进入向导界面
                    Intent intent=new Intent(getApplicationContext(),GuideActivity.class);
@@ -105,6 +131,37 @@ public class SplashActivity  extends Activity{
         option.setIgnoreKillProcess(false);// 可选，默认false，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认杀死
         mLocationClient.setLocOption(option);
     }
+
+    public void getDataFromNet() {
+        //请求文库数据
+        requstLibrary();
+    }
+    public static List<ImageView> getImgFromNet(){
+        return mSlidingImgs;
+    }
+
+    private void requstLibrary() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        RequestParams params =new RequestParams();
+        params.add("method","getTitles");
+        params.add("category",String.valueOf(1));
+        params.add("begin",String.valueOf(0));
+        client.post(MyConstants.LibraryURL,params,new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String jsonString=new String(responseBody);
+                SpTools.setString(getApplicationContext(),MyConstants.LIBRARY_JSON,jsonString);
+                System.out.println(jsonString);
+//                mLibrary=LibraryJson.parseJsonObject(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,""));
+                mLibrary= LibraryJson.parseJsonObject(jsonString);
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getApplicationContext(),"哎呀，没网了",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     /**
      * 注册监听事件
      */
