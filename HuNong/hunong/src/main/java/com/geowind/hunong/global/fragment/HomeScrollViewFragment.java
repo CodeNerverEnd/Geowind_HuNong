@@ -63,7 +63,6 @@ public class HomeScrollViewFragment extends Fragment {
     private LinearLayout mLl_ponits;
     private int mPotinIsSelect;
     private SlidingShow mMySliding;
-<<<<<<< HEAD
     //测试用的图片URL
     String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
@@ -73,10 +72,8 @@ public class HomeScrollViewFragment extends Fragment {
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
-=======
     private ImageButton mIb_pestControl;
 
->>>>>>> a76fde4c8979be31209ab1a23ae13244cb2350f8
     public static HomeScrollViewFragment newInstance() {
         return new HomeScrollViewFragment();}
 
