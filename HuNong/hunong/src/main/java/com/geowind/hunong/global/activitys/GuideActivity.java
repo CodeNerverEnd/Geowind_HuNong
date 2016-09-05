@@ -15,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.loginregist.LoginActvity;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
+import com.jchat.android.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +80,7 @@ public class GuideActivity extends Activity {
             @Override
             public void onClick(View view) {
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISSETUP,true);
-                Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
+                Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();//关闭自己
             }

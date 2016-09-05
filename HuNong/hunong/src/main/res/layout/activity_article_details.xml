@@ -5,14 +5,17 @@
               android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/header_height"
     android:orientation="horizontal"
+    android:elevation="8dp"
     android:background="@color/colorAccent">
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@mipmap/map_back"
+        android:background="@android:color/transparent"
         android:id="@+id/bt_lib_back"
-        android:text="返回"/>
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,12 +24,6 @@
         android:layout_marginRight="10dp"
         android:text="分享"/>
 </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="文章标题"
-        android:id="@+id/tv_article_title"
-        android:textSize="25dp"/>
     <WebView
         android:layout_width="match_parent"
         android:id="@+id/wv_article_content"

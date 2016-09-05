@@ -1,7 +1,10 @@
 package com.geowind.hunong.global.activitys;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -18,18 +21,21 @@ import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
 import com.geowind.hunong.entity.Library;
 import com.geowind.hunong.json.LibraryJson;
-import com.geowind.hunong.loginregist.LoginActvity;
+import com.geowind.hunong.utils.EncryptUtils;
+import com.geowind.hunong.utils.ExampleUtil;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
-import com.lidroid.xutils.BitmapUtils;
+import com.jchat.android.activity.LoginActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.im.android.api.JMessageClient;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -46,11 +52,12 @@ public class SplashActivity  extends Activity{
     private boolean isFristLocate=true;
     public static List<ImageView> mSlidingImgs;
     Library mLibrary;
-
+    public static boolean isForeground = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        JMessageClient.init(this);
+        JPushInterface.setDebugMode(true);
         initView();
         initData();
         startAnimation();
@@ -72,7 +79,7 @@ public class SplashActivity  extends Activity{
             public void onAnimationStart(Animation animation) {
                 mLocationClient.start();
                 //联网操作
-                getDataFromNet();
+//                getDataFromNet();
             }
 
             @Override
@@ -85,7 +92,7 @@ public class SplashActivity  extends Activity{
                        finish();
                    }else{
                        //进入登录界面
-                       Intent intent=new Intent(getApplicationContext(), LoginActvity.class);
+                       Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                        startActivity(intent);
                        finish();
                    }
@@ -110,6 +117,7 @@ public class SplashActivity  extends Activity{
         setContentView(R.layout.activity_splash);
         mIv_icon = (ImageView) findViewById(R.id.iv_icon_hunong);
         mRl_splash = (RelativeLayout) findViewById(R.id.rl_splash);
+        registerMessageReceiver();  // used for receive msg
     }
     private void startAnimation() {
         mAs = new AnimationSet(false);
@@ -132,35 +140,11 @@ public class SplashActivity  extends Activity{
         mLocationClient.setLocOption(option);
     }
 
-    public void getDataFromNet() {
-        //请求文库数据
-        requstLibrary();
-    }
     public static List<ImageView> getImgFromNet(){
         return mSlidingImgs;
     }
 
-    private void requstLibrary() {
-        AsyncHttpClient client=new AsyncHttpClient();
-        RequestParams params =new RequestParams();
-        params.add("method","getTitles");
-        params.add("category",String.valueOf(1));
-        params.add("begin",String.valueOf(0));
-        client.post(MyConstants.LibraryURL,params,new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String jsonString=new String(responseBody);
-                SpTools.setString(getApplicationContext(),MyConstants.LIBRARY_JSON,jsonString);
-                System.out.println(jsonString);
-//                mLibrary=LibraryJson.parseJsonObject(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,""));
-                mLibrary= LibraryJson.parseJsonObject(jsonString);
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getApplicationContext(),"哎呀，没网了",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 
     /**
      * 注册监听事件
@@ -176,6 +160,55 @@ public class SplashActivity  extends Activity{
                 isFristLocate=false;
             }else {
                 mLocationClient.stop();
+            }
+        }
+    }
+    @Override
+    protected void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+    }
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.geowind.hunong.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                String messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
             }
         }
     }

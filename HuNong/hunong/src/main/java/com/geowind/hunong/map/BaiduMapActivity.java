@@ -5,8 +5,6 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +35,6 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.overlayutil.DrivingRouteOverlay;
-import com.baidu.mapapi.overlayutil.TransitRouteOverlay;
-import com.baidu.mapapi.overlayutil.WalkingRouteOverlay;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
@@ -48,7 +43,6 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 
-import com.baidu.mapapi.search.route.BikingRoutePlanOption;
 import com.baidu.mapapi.search.route.BikingRouteResult;
 import com.baidu.mapapi.search.route.DrivingRouteLine;
 import com.baidu.mapapi.search.route.DrivingRoutePlanOption;
@@ -56,17 +50,11 @@ import com.baidu.mapapi.search.route.DrivingRouteResult;
 import com.baidu.mapapi.search.route.OnGetRoutePlanResultListener;
 import com.baidu.mapapi.search.route.PlanNode;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
-import com.baidu.mapapi.search.route.TransitRouteLine;
-import com.baidu.mapapi.search.route.TransitRoutePlanOption;
 import com.baidu.mapapi.search.route.TransitRouteResult;
-import com.baidu.mapapi.search.route.WalkingRouteLine;
-import com.baidu.mapapi.search.route.WalkingRoutePlanOption;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
-import com.baidu.mapapi.utils.route.RouteParaOption;
 import com.geowind.hunong.R;
 import com.geowind.hunong.entity.Task;
-import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
@@ -78,14 +66,13 @@ import com.oguzdev.circularfloatingactionmenu.lib.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.lib.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.lib.SubActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.GridHolder;
-import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.util.TextUtils;
 
 /**
  * Created by zhangwen on 16-7-9.
@@ -99,7 +86,6 @@ public class BaiduMapActivity extends Activity {
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private MarkerOptions mMark;
-    private Marker mNormalMark;
     private BDLocation mCurrentLocation;
     private boolean isFirst = true;
     private LatLng mLatLng;
@@ -118,41 +104,37 @@ public class BaiduMapActivity extends Activity {
     private MapStatusUpdate mMapStatusUpdate;
     private MapStatus mMapStatus;
     private TextView mTv_task_name;
-    private List<ImageView> mPopImgs;
     private FloatingActionMenu mLeftLowerMenu;
     private ImageView mFabIconNew;
     private ImageView mRlIcon1;
     private ImageView mRlIcon2;
     private ImageView mRlIcon3;
     private ImageView mRlIcon4;
-    private AlertDialog mModeDialog;
     private AlertDialog mTaskDetailsDialog;
     private ImageButton mIb_map_back;
     private ImageView mIv_task;
     private PoiSearch mPoiSearch;
-    private ListView mLv_taskList;
-    private AlertDialog mTaskListDialog;
     private DialogPlus mTaskListdialog;
     private List<String> mPois;
     private List<LatLng> mLatLngs;
     private DialogPlus mMapPoiDialog;
     private ArrayAdapter mPoiAdapter;
-    private DialogPlus mTaskDialog;
     private DialogPlus mMapModeDialog;
     private DialogPlus mRoutPlanDialog;
-    private RoutePlanSearch mPlanSearch;
     private RoutePlanSearch mRoutePlanSearch;
-    private WalkingRouteOverlay mWalkingRouteOverlay;
-    private DialogPlus mRoutTypeDialog;
     private LatLng mPt_end;
-    private TransitRouteOverlay mTransitRouteOverlay;
     private DrivingRouteOverlay mDrivingRouteOverlay;
+    private TextView mTv_StartInfo;
+    private TextView mTv_endInfo;
+    private List<PoiInfo> mAllPoi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPois=new ArrayList<String>();
         mLatLngs=new ArrayList<LatLng>();
+        mTv_endInfo = new TextView(getApplicationContext());
+        mTv_StartInfo = new TextView(getApplicationContext());
         // 在使用SDK各组件之前初始化context信息，传入ApplicationContext
         // 注意该方法要再setContentView方法之前实现
         /**
@@ -184,9 +166,10 @@ public class BaiduMapActivity extends Activity {
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                if(marker.equals(mNormalMark)){
-                  routePaln(mNormalMark.getPosition());
-               }else {
+            if(TextUtils.isEmpty(marker.getTitle())){
+                   //什么也不做
+                }
+                else {
                     int i=Integer.parseInt(marker.getTitle());
                     mMark=(MarkerOptions)mMarkers.get(i);
                     LatLng lating=new LatLng(mTasks.get(i).getLatitude(),mTasks.get(i).getLongitude());
@@ -195,7 +178,6 @@ public class BaiduMapActivity extends Activity {
                     else{
                         AlertDialog.Builder builder=new AlertDialog.Builder(BaiduMapActivity.this);
                         View view=View.inflate(getApplicationContext(),R.layout.map_popwindow,null);
-
                         //获取弹出框中的组件
                         mTv_task_name = (TextView) view.findViewById(R.id.tv_taskName);
                         mIb_quxiao = (ImageButton) view.findViewById(R.id.ib_pop_quxiao);
@@ -240,7 +222,6 @@ public class BaiduMapActivity extends Activity {
             }
         });
         //浮动菜单的点击事件
-
         FloatMenuItemClickListener listener=new FloatMenuItemClickListener();
 
         mRlIcon1.setOnClickListener(listener);
@@ -304,100 +285,16 @@ public class BaiduMapActivity extends Activity {
                         break;
                 }
             }else if(dialog.equals(mMapPoiDialog)){
-                //添加标注
-                if(mNormalMark!=null)
-                    mNormalMark.remove();
-                OverlayOptions options = new MarkerOptions()
-                        .position(mLatLngs.get(position))  //设置marker的位置
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.mark_normal))  //设置marker图标
-                        .zIndex(12);  //设置marker所在层级
-              //将marker添加到地图上
-                mNormalMark = (Marker)(mBaiduMap.addOverlay(options));
-                showLoction(mLatLngs.get(position));
-            }else if(dialog.equals(mRoutPlanDialog)){
-                if(position==0)
+                LatLng poiLating=mLatLngs.get(position);
+                if(mAllPoi.size()!=0)
+                mTv_endInfo.setText(mAllPoi.get(position).address);
+                //显示路线规划结果
+                routePaln(poiLating);
+            }else if(dialog.equals(mRoutPlanDialog)) {
+                if (position == 0)
                     showLoction(mLatLng);
                 else
-               routePaln(new LatLng(mTasks.get(position).getLatitude(),mTasks.get(position).getLongitude()));
-            }else if (dialog.equals(mRoutPlanDialog)){
-                PlanNode fromPlanNode=PlanNode.withLocation(mLatLng);
-                PlanNode toPlanNode=PlanNode.withLocation(mPt_end);
-                System.out.println(mLatLng+"end:"+mPt_end);
-                switch (position){
-                    case 0:
-                        //walkPlan
-                        WalkingRoutePlanOption walkingRoutePlanOption=new WalkingRoutePlanOption();
-                        walkingRoutePlanOption.from(fromPlanNode);
-                        walkingRoutePlanOption.to(toPlanNode);
-                        mRoutePlanSearch.walkingSearch(walkingRoutePlanOption);
-                        break;
-                    case 1:
-                        TransitRoutePlanOption  transitRoutePlanOption=new TransitRoutePlanOption();
-                        transitRoutePlanOption.from(fromPlanNode);
-                        transitRoutePlanOption.to(toPlanNode);
-                        mRoutePlanSearch.transitSearch(transitRoutePlanOption);
-                        break;
-                    case 2:
-                        DrivingRoutePlanOption drivingRoutePlanOption=new DrivingRoutePlanOption();
-                        drivingRoutePlanOption.from(fromPlanNode);
-                        drivingRoutePlanOption.to(toPlanNode);
-                        mRoutePlanSearch.drivingSearch(drivingRoutePlanOption);
-                        break;
-                    default:
-                        // 构建 route搜索参数以及策略，起终点也可以用name构造
-                   BaiduMapRoutePlan.setSupportWebRoute(true);
-                    RouteParaOption para = new RouteParaOption()
-                            .startPoint(mLatLng)
-                            .endPoint(mPt_end)
-                            .busStrategyType(RouteParaOption.EBusStrategyType.bus_recommend_way);
-                    try {
-                        BaiduMapRoutePlan.openBaiduMapTransitRoute(para, BaiduMapActivity.this);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                        break;
-                }
-                OnGetRoutePlanResultListener onGetRoutePlanResultListener=new OnGetRoutePlanResultListener() {
-                    @Override
-                    public void onGetWalkingRouteResult(WalkingRouteResult walkingRouteResult) {
-                        if(mWalkingRouteOverlay!=null)
-                            mWalkingRouteOverlay.removeFromMap();
-                        mWalkingRouteOverlay = new WalkingRouteOverlay(mBaiduMap);
-                        WalkingRouteLine walkingRouteLine=walkingRouteResult.getRouteLines().get(0);
-//                TaxiInfo taxiInfo = walkingRouteResult.getTaxiInfo();
-
-                        mWalkingRouteOverlay.setData(walkingRouteLine);
-                        mWalkingRouteOverlay.addToMap();
-                    }
-
-                    @Override
-                    public void onGetTransitRouteResult(TransitRouteResult transitRouteResult) {
-                        if(mTransitRouteOverlay!=null)
-                            mTransitRouteOverlay.removeFromMap();
-                        mTransitRouteOverlay = new TransitRouteOverlay(mBaiduMap);
-                        TransitRouteLine transitRouteLine=transitRouteResult.getRouteLines().get(0);
-                        mTransitRouteOverlay.setData(transitRouteLine);
-                        mTransitRouteOverlay.addToMap();
-                    }
-
-                    @Override
-                    public void onGetDrivingRouteResult(DrivingRouteResult drivingRouteResult) {
-                        if(mDrivingRouteOverlay!=null)
-                            mDrivingRouteOverlay.removeFromMap();
-                        mDrivingRouteOverlay = new DrivingRouteOverlay(mBaiduMap);
-                        DrivingRouteLine drivingRouteLine=drivingRouteResult.getRouteLines().get(0);
-                        mDrivingRouteOverlay.setData(drivingRouteLine);
-                        mDrivingRouteOverlay.addToMap();
-                    }
-
-                    @Override
-                    public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
-
-                    }
-                };
-                mRoutePlanSearch.setOnGetRoutePlanResultListener(onGetRoutePlanResultListener);
-                //结束调启功能时调用finish方法以释放相关资源
-                BaiduMapRoutePlan.finish(BaiduMapActivity.this);
+                    routePaln(new LatLng(mTasks.get(position-1).getLatitude(), mTasks.get(position-1).getLongitude()));
             }
             dialog.dismiss();
         }
@@ -406,23 +303,41 @@ public class BaiduMapActivity extends Activity {
     //路线规划
 
     private void routePaln(LatLng latLng) {
-        LatLng pt_start = mLatLng;
         mPt_end = latLng;
         mRoutePlanSearch = RoutePlanSearch.newInstance();
-        String[] routeTypes={"步行","公交","驾驶","百度规划"};
-        ArrayAdapter routeTypeAdapte=new ArrayAdapter(BaiduMapActivity.this,android.R.layout.simple_dropdown_item_1line,routeTypes);
-        mRoutTypeDialog = DialogPlus.newDialog(BaiduMapActivity.this)
-                .setAdapter(routeTypeAdapte)
-                .setContentHolder(new GridHolder(4))
-                .setInAnimation(R.anim.abc_fade_in)
-                .setOutAnimation(R.anim.abc_fade_out)
-                .setCancelable(false)
-                .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setOnItemClickListener(mOnItemClickListener)
-                .setExpanded(true)
-                .setGravity(Gravity.CENTER)
-                .create();
-        mRoutTypeDialog.show();
+        PlanNode fromPlanNode=PlanNode.withLocation(mLatLng);
+        PlanNode toPlanNode=PlanNode.withLocation(mPt_end);
+        DrivingRoutePlanOption drivingRoutePlanOption=new DrivingRoutePlanOption();
+        drivingRoutePlanOption.from(fromPlanNode);
+        drivingRoutePlanOption.to(toPlanNode);
+        mRoutePlanSearch.drivingSearch(drivingRoutePlanOption);
+        OnGetRoutePlanResultListener onGetRoutePlanResultListener=new OnGetRoutePlanResultListener() {
+            @Override
+            public void onGetWalkingRouteResult(WalkingRouteResult walkingRouteResult) {
+            }
+
+            @Override
+            public void onGetTransitRouteResult(TransitRouteResult transitRouteResult) {
+            }
+
+            @Override
+            public void onGetDrivingRouteResult(DrivingRouteResult drivingRouteResult) {
+                if(mDrivingRouteOverlay!=null)
+                    mDrivingRouteOverlay.removeFromMap();
+                mDrivingRouteOverlay = new DrivingRouteOverlay(mBaiduMap);
+                DrivingRouteLine drivingRouteLine=drivingRouteResult.getRouteLines().get(0);
+                mDrivingRouteOverlay.setData(drivingRouteLine);
+                mDrivingRouteOverlay.addToMap();
+            }
+
+            @Override
+            public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
+
+            }
+        };
+        mRoutePlanSearch.setOnGetRoutePlanResultListener(onGetRoutePlanResultListener);
+        //结束调启功能时调用finish方法以释放相关资源
+        BaiduMapRoutePlan.finish(BaiduMapActivity.this);
     }
 
     //floatMenu的图标点击事件
@@ -430,19 +345,23 @@ public class BaiduMapActivity extends Activity {
         @Override
         public void onClick(View view) {
            if(view.equals(mRlIcon1)){//查看任务清单
-               mTaskListdialog = DialogPlus.newDialog(BaiduMapActivity.this)
-                       .setAdapter(new PopAdapter())
-                       .setContentBackgroundResource(R.drawable.pop_map_task_bg)
-                       .setInAnimation(R.anim.abc_fade_in)
-                       .setOutAnimation(R.anim.abc_fade_out)
-                       .setHeader(R.layout.header_map_task_)
-                       .setCancelable(true)
-                       .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                       .setOnItemClickListener(mOnItemClickListener)
-                       .setExpanded(true,300)
-                       .setGravity(Gravity.TOP)
-                       .create();
-               mTaskListdialog.show();
+              if(mTasks!=null){
+                  mTaskListdialog = DialogPlus.newDialog(BaiduMapActivity.this)
+                          .setAdapter(new PopAdapter())
+                          .setContentBackgroundResource(R.drawable.pop_map_task_bg)
+                          .setInAnimation(R.anim.abc_fade_in)
+                          .setOutAnimation(R.anim.abc_fade_out)
+                          .setHeader(R.layout.header_map_task_)
+                          .setCancelable(true)
+                          .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                          .setOnItemClickListener(mOnItemClickListener)
+                          .setExpanded(true,300)
+                          .setGravity(Gravity.TOP)
+                          .create();
+                  mTaskListdialog.show();
+              }else {
+                  Toast.makeText(getApplicationContext(),"当前没用任务哦",Toast.LENGTH_SHORT).show();
+              }
            }else if(view.equals(mRlIcon2)){//更改地图模式
                List<String> modes=new ArrayList<String>();
                modes.add("普通模式");
@@ -491,7 +410,7 @@ public class BaiduMapActivity extends Activity {
                    }
                });
 
-           }else if(view.equals(mRlIcon4)){//用户当前位置和任务位置
+           }else if(view.equals(mRlIcon4)){//路线规划
                List<String> destinations=new ArrayList<String>();
                destinations.add("我的位置");
                if(mTasks!=null){
@@ -533,15 +452,15 @@ public class BaiduMapActivity extends Activity {
         OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener(){
             public void onGetPoiResult(final PoiResult result){
                 //获取POI检索结果
-                List<PoiInfo> allPoi = result.getAllPoi();
-                if (allPoi==null){
+                mAllPoi = result.getAllPoi();
+                if (mAllPoi ==null){
                     return;
                 }
                 mPois.clear();
                 mLatLngs.clear();
-                for(int i=0;i<allPoi.size();i++){
-                    mPois.add(allPoi.get(i).name+"\n"+allPoi.get(i).address+"\n");
-                    mLatLngs.add(allPoi.get(i).location);
+                for(int i = 0; i< mAllPoi.size(); i++){
+                    mPois.add(mAllPoi.get(i).name+"\n"+ mAllPoi.get(i).address+"\n");
+                    mLatLngs.add(mAllPoi.get(i).location);
                 }
                 mPoiAdapter.notifyDataSetChanged();
             }
@@ -601,11 +520,9 @@ public class BaiduMapActivity extends Activity {
         mMapView = (MapView) findViewById(R.id.bmapView);
         mIb_map_back = (ImageButton) findViewById(R.id.ib_map_back);
         mBaiduMap = mMapView.getMap();
-        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);//设置地图默认模式为卫星模式
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);//设置地图默认模式为卫星模式
         //显示浮动菜单
         showFloatingActionMenu();
-
-
     }
 
 
@@ -690,9 +607,7 @@ public class BaiduMapActivity extends Activity {
         asyncHttpClient.post(MyConstants.TASKURL,params,new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                System.out.println("连接成功");
                 String jsonString=new String(responseBody);
-                System.out.println(jsonString);
                 mTasks=new ArrayList<Task>();
                 mTasks.addAll(TaskJson.paseJson(jsonString));
                 mMarkers = new ArrayList<OverlayOptions>();
@@ -700,7 +615,6 @@ public class BaiduMapActivity extends Activity {
                     for (int i = 0; i < mTasks.size(); i++) {
                         //添加标注
                         mMark = new MarkerOptions();
-                        System.out.println(mTasks.get(i).getLatitude()+"  "+mTasks.get(i).getLongitude());
                         LatLng latLng = new LatLng(mTasks.get(i).getLatitude(), mTasks.get(i).getLongitude());
                         mMark.icon(BitmapDescriptorFactory.fromResource(mMakerIconsRes[i]))
                                 .draggable(true)
@@ -714,7 +628,6 @@ public class BaiduMapActivity extends Activity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                System.out.println("连接失败");
                 Toast.makeText(getApplicationContext(),"哎呀，没网了！",Toast.LENGTH_LONG);
             }
         });
@@ -746,7 +659,7 @@ public class BaiduMapActivity extends Activity {
         //定义地图状态
         mMapStatus = new MapStatus.Builder()
                 .target(mLatLng)
-                .zoom(18)
+                .zoom(16)
                 .build();
         //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
@@ -778,6 +691,7 @@ public class BaiduMapActivity extends Activity {
         // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
         mLocationClient.stop();
+        if(mPoiSearch!=null)
         mPoiSearch.destroy();
     }
 

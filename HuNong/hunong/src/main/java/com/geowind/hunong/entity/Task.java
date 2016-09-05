@@ -17,15 +17,15 @@ private int no;
     //工作量
     private String workLoad;
     //农机编号
-    private int mno;
+    private String mno;
     //作业类型
     private String  type;
     //日期
     private String date;
     //状态
-    private int state;
+    private String state;
     //农田分区编号
-    private int fzno;
+    private String fzno;
     //农田总面积
     private double farea;
     //农田地址
@@ -62,7 +62,7 @@ private int no;
         return workLoad;
     }
 
-    public int getMno() {
+    public String getMno() {
         return mno;
     }
 
@@ -74,11 +74,11 @@ private int no;
         return type;
     }
 
-    public int getState() {
+    public String getState() {
         return state;
     }
 
-    public int getFzno() {
+    public String getFzno() {
         return fzno;
     }
 

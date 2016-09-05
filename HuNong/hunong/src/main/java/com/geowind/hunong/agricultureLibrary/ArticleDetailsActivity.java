@@ -1,11 +1,15 @@
 package com.geowind.hunong.agricultureLibrary;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
@@ -16,10 +20,10 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
  */
 public class ArticleDetailsActivity extends Activity{
 
-    private TextView mTv_title;
     private WebView mWv_content;
-    private Button mBt_back;
+    private ImageButton mBt_back;
     private Button mBt_shell;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class ArticleDetailsActivity extends Activity{
             @Override
             public void onPageFinished(WebView view, String url) {
                 MaterialViewPagerHelper.injectHeader(mWv_content, true);
+                mProgressBar.setVisibility(View.GONE);
             }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -53,14 +58,21 @@ public class ArticleDetailsActivity extends Activity{
         });
 
         mWv_content.loadUrl(getIntent().getStringExtra("articleUrl"));
-        mTv_title.setText(getIntent().getStringExtra("title"));
+        mWv_content.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
+                mProgressBar.setBackgroundColor(Color.WHITE);
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void initView() {
         setContentView(R.layout.activity_article_details);
-        mTv_title = (TextView) findViewById(R.id.tv_article_title);
         mWv_content = (WebView) findViewById(R.id.wv_article_content);
-        mBt_back = (Button) findViewById(R.id.bt_lib_back);
+        mBt_back = (ImageButton) findViewById(R.id.bt_lib_back);
         mBt_shell = (Button) findViewById(R.id.bt_lib_share);
+        mProgressBar = new ProgressBar(ArticleDetailsActivity.this);
+        mProgressBar.setVisibility(View.GONE);
     }
 }
