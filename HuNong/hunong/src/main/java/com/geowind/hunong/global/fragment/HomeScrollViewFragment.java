@@ -14,15 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.global.activitys.SplashActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
 import com.geowind.hunong.pestControl.pestControlActivity;
@@ -63,7 +59,6 @@ public class HomeScrollViewFragment extends Fragment {
     private LinearLayout mLl_ponits;
     private int mPotinIsSelect;
     private SlidingShow mMySliding;
-<<<<<<< HEAD
     //测试用的图片URL
     String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
@@ -73,10 +68,9 @@ public class HomeScrollViewFragment extends Fragment {
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
-=======
+
     private ImageButton mIb_pestControl;
 
->>>>>>> a76fde4c8979be31209ab1a23ae13244cb2350f8
     public static HomeScrollViewFragment newInstance() {
         return new HomeScrollViewFragment();}
 

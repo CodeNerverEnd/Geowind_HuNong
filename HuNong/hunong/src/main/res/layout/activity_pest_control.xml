@@ -7,7 +7,7 @@
     tools:context="com.geowind.hunong.pestControl.pestControlActivity">
 
     <ImageView
-        android:id="@+id/myImageView"
+        android:id="@+id/ImageView"
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
@@ -21,12 +21,12 @@
         android:gravity="center"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/openAlbum"
+            android:id="@+id/btnOpenAlbum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="打开相册"/>
         <Button
-            android:id="@+id/openCamera"
+            android:id="@+id/btnOpenCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="打开相机"/>
