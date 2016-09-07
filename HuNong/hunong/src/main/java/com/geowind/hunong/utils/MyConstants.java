@@ -15,4 +15,5 @@ public interface MyConstants {
     String TASKURL="http://115.159.125.122:8080/HuNong/TaskServlet";
     String LIBRARY_JSON="libraryJson";//文库的json数据
     String HOMEURL="";//主页数据的URL
+    String CACHED_APP_KEY="cachedAppkey";//缓存的appkey
 }

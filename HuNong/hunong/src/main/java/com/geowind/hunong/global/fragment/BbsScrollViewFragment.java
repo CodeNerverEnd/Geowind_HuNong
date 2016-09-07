@@ -33,7 +33,6 @@ public class BbsScrollViewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mScrollView = (ObservableScrollView) view.findViewById(R.id.scrollView);
-
         MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
     }
 }

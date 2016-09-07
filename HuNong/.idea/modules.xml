@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" filepath="$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/HuNong.iml" filepath="$PROJECT_DIR$/HuNong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat/chat.iml" filepath="$PROJECT_DIR$/chat/chat.iml" />
       <module fileurl="file://$PROJECT_DIR$/hunong/hunong.iml" filepath="$PROJECT_DIR$/hunong/hunong.iml" />
     </modules>
   </component>

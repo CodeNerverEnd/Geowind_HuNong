@@ -25,6 +25,7 @@ import com.geowind.hunong.pestControl.pestControlActivity;
 import com.geowind.hunong.utils.DensityUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.weather.WeatherActivity;
+import com.geowind.hunong.zixun.ZixunActivity;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.google.gson.Gson;
@@ -63,13 +64,18 @@ public class HomeScrollViewFragment extends Fragment {
     String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg",
-            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
+            "http://192.168.1.105:8080/shopping/images/prod_xia.jpg",
             "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     private ImageButton mIb_pestControl;
+    private CardView mCv_currentTask;
+    private ImageButton mIb_zixun;
 
     public static HomeScrollViewFragment newInstance() {
         return new HomeScrollViewFragment();}
@@ -83,7 +89,9 @@ public class HomeScrollViewFragment extends Fragment {
 
     private void initView() {
         mIb_weather = (ImageButton) mView.findViewById(R.id.ib_weather);
+        mIb_zixun = (ImageButton) mView.findViewById(R.id.ib_zixun);
         mCv_map = (CardView) mView.findViewById(R.id.cv_map);
+        mCv_currentTask = (CardView) mView.findViewById(R.id.cv_ing);
         mIb_pestControl = (ImageButton) mView.findViewById(R.id.ib_debug);
         mSlidingShow = (ViewPager) mView.findViewById(R.id.home_slidingShow);
         mSlidingShowDatas = new ArrayList<HomeData.SlidingShow>();
@@ -104,8 +112,6 @@ public class HomeScrollViewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mListener = new MyClickListener();
         mMySliding = new SlidingShow();
-//        getDataFromNet();
-//        processData();
         setData();
 
         initEvent();
@@ -253,7 +259,12 @@ private  class SlidingShowAdapter extends PagerAdapter{
         mIb_weather.setOnClickListener(mListener);
         //地图
         mCv_map.setOnClickListener(mListener);
+        //病虫害反馈
         mIb_pestControl.setOnClickListener(mListener);
+        //正在进行
+        mCv_currentTask.setOnClickListener(mListener);
+        //专家咨询
+        mIb_zixun.setOnClickListener(mListener);
         //轮播图
         mSlidingShow.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -303,7 +314,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
                     toActivity(WeatherActivity.class);
                     break;
                 case R.id.ib_zixun:
-                    toActivity(BaiduMapActivity.class);
+                    toActivity(ZixunActivity.class);
                     break;
                 case R.id.ib_debug:
                     toActivity(pestControlActivity.class);
@@ -312,6 +323,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
                     toActivity(BaiduMapActivity.class);
                     break;
                 case R.id.cv_ing:
+                    toActivity(CurrentTaskActivity.class);
                     break;
             }
         }

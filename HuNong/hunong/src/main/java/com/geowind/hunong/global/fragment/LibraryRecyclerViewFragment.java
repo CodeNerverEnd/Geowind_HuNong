@@ -2,7 +2,6 @@ package com.geowind.hunong.global.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,18 +12,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.agricultureLibrary.ArticleDetailsActivity;
 import com.geowind.hunong.entity.Library;
+import com.geowind.hunong.global.activitys.SplashActivity;
 import com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter;
 import com.geowind.hunong.json.LibraryJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 
 /**
@@ -33,8 +39,8 @@ import java.util.List;
 public class LibraryRecyclerViewFragment extends Fragment {
     static final boolean GRID_LAYOUT = false;
     private RecyclerView mRecyclerView;
-    private LibraryRecyclerViewAdapter mAdapter;
     private List<Object> mContentItems = new ArrayList<Object>();
+    private LibraryRecyclerViewAdapter mAdapter=new LibraryRecyclerViewAdapter(mContentItems);
     Library mLibrary;
     private SwipeRefreshLayout mSr_refrsh;
     private TextView mTv_noMoreData;
@@ -56,6 +62,7 @@ public class LibraryRecyclerViewFragment extends Fragment {
         mSr_refrsh = (SwipeRefreshLayout) view.findViewById(R.id.sr_refresh);
         mSr_refrsh.setColorSchemeResources(R.color.colorAccent);
         RecyclerView.LayoutManager layoutManager;
+        requstLibrary();
         if (GRID_LAYOUT) {
             layoutManager = new GridLayoutManager(getActivity(), 2);
         } else {
@@ -66,8 +73,6 @@ public class LibraryRecyclerViewFragment extends Fragment {
 
         //设置分割线
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        //RecyclerView的适配器
-        mAdapter = new LibraryRecyclerViewAdapter(mContentItems);
 
         //设置adapter
         mRecyclerView.setAdapter(mAdapter);
@@ -91,7 +96,26 @@ public class LibraryRecyclerViewFragment extends Fragment {
         }
         initEvent();
     }
-
+    public void requstLibrary() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        RequestParams params =new RequestParams();
+        params.add("method","getTitles");
+        params.add("category",String.valueOf(1));
+        params.add("begin",String.valueOf(0));
+        client.post(MyConstants.LibraryURL,params,new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String jsonString=new String(responseBody);
+                SpTools.setString(getActivity(),MyConstants.LIBRARY_JSON,jsonString);
+                mLibrary= LibraryJson.parseJsonObject(jsonString);
+                mAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getActivity(),"哎呀，没网了",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void initEvent() {
         mSr_refrsh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -99,12 +123,11 @@ public class LibraryRecyclerViewFragment extends Fragment {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(2000);
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 mSr_refrsh.setRefreshing(false);
-                                mAdapter.notifyDataSetChanged();
+                                requstLibrary();
                             }
                         });
                     }

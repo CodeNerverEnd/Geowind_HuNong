@@ -9,10 +9,6 @@
         android:layout_height="88dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="@dimen/cardMarginHorizontal"
-        android:layout_marginRight="@dimen/cardMarginHorizontal"
-        android:layout_marginTop="0dp"
         app:cardPreventCornerOverlap="false"
         app:contentPadding="0dp">
     <LinearLayout

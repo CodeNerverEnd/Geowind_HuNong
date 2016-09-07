@@ -105,10 +105,7 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
        }
 
     }
-    public  Library getLibrary(){
-        return  mLibrary;
-    }
-  //recyclerView的item点击事件
+
   public interface OnItemClickLitener
   {
       void onItemClick(View view, int position);
