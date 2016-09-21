@@ -1,1 +1,1 @@
-include ':CircularFloatingActionMenu', ':hunong', ':chat'
+include ':CircularFloatingActionMenu', ':hunong'
