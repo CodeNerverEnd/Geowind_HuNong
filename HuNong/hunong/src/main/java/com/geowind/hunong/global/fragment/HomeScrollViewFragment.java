@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.currenttask.CurrentTaskActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
 import com.geowind.hunong.pestControl.pestControlActivity;
@@ -69,10 +70,9 @@ public class HomeScrollViewFragment extends Fragment {
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
+
+
     private ImageButton mIb_pestControl;
     private CardView mCv_currentTask;
     private ImageButton mIb_zixun;
