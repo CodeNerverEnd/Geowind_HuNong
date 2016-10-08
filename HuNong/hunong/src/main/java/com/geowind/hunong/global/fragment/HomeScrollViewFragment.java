@@ -22,7 +22,7 @@ import com.geowind.hunong.R;
 import com.geowind.hunong.currenttask.CurrentTaskActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
-import com.geowind.hunong.pestControl.pestControlActivity;
+import com.geowind.hunong.pestControl.PestControlActivity;
 import com.geowind.hunong.utils.DensityUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.weather.WeatherActivity;
@@ -317,7 +317,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
                     toActivity(ZixunActivity.class);
                     break;
                 case R.id.ib_debug:
-                    toActivity(pestControlActivity.class);
+                    toActivity(PestControlActivity.class);
                     break;
                 case R.id.cv_map:
                     toActivity(BaiduMapActivity.class);

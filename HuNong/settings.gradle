@@ -1,1 +1,1 @@
-include ':CircularFloatingActionMenu', ':hunong'
+include ':CircularFloatingActionMenu', ':hunong', ':multiple-images-selector'

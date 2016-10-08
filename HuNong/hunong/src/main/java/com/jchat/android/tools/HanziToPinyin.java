@@ -399,7 +399,7 @@ public class HanziToPinyin {
                 || locale[i].equals(newChina)) {
                     // Do self validation just once.
                     if (DEBUG) {
-                        Log.d(TAG, "Self validation. Result: " + doSelfValidation());
+                        Log.d(TAG, "Self validation. ResultActivity: " + doSelfValidation());
                     }
                     sInstance = new HanziToPinyin(true);
                     return sInstance;

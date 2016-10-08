@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by logaxy on 2016/7/18.
  *
- * 类名：Result
+ * 类名：ResultActivity
  * 描述：Result类集合可通过Weather类getResults()方法获得
  *      通过调用Result类对象对应的方法可以获得当前城市名currentCity，
  *      pm2.5值pm25以及Index类和Weather_data类集合

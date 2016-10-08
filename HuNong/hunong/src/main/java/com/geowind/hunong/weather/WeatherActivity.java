@@ -1,28 +1,31 @@
 package com.geowind.hunong.weather;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
+import com.geowind.hunong.weather.tool.MyUtils;
 import com.geowind.hunong.weather.tool.WeatherUtils;
 import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
 public class WeatherActivity extends Activity {
+
+    private RelativeLayout rootRelativeLayout;
+    private LinearLayout linearLayout3;
 
     /**
      * 固定不变的几张图片，在代码中指定图片资源
@@ -78,6 +81,9 @@ public class WeatherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+
+        rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
+        linearLayout3      = (LinearLayout)   findViewById(R.id.linearLayout3);
 
         imageView_today         = (ImageView) findViewById(R.id.imageView_today);
         imageView_tomorrow      = (ImageView) findViewById(R.id.imageView_tomorrow);
@@ -135,7 +141,7 @@ public class WeatherActivity extends Activity {
             Weather weather;
             url = WeatherUtils.getURL(params[0]);
 
-            if(isNetworkAvailable(getApplicationContext())){
+            if(MyUtils.isNetworkAvailable(getApplicationContext())){
                 jsonString =  WeatherUtils.getJsonString(url);
                 SpTools.setString(getApplicationContext(),"key",jsonString);
             }
@@ -158,12 +164,16 @@ public class WeatherActivity extends Activity {
              * 若一开始使用时没有网,无法拿到天气信息，则只显示当前定位城市，
              * 再若没开启定位权限，显示默认城市北京
              */
+//            if(w==null){
+//                String[] pcd=LocationUtils.getAddr(getApplicationContext());
+//                if(pcd[1]!=null)
+//                    cityName.setText(pcd[1]);
+//                else
+//                    cityName.setText("北京");
+//            }
             if(w==null){
-                String[] pcd=LocationUtils.getAddr(getApplicationContext());
-                if(pcd[1]!=null)
-                    cityName.setText(pcd[1]);
-                else
-                    cityName.setText("北京");
+                rootRelativeLayout.setBackgroundResource(R.drawable.ic_launcher);
+
             }
 
             /**
@@ -171,6 +181,10 @@ public class WeatherActivity extends Activity {
              * 当前没网情况下是上一次有网时保存下来的，在当前有网的情况下是当前获取到的
              */
             else{
+
+                linearLayout3.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                rootRelativeLayout.setBackgroundColor(Color.parseColor("#ECECEC"));
+
                 Result result = w.getResults().get(0);
                 if(result!=null){
                     Weather_data weather_data = result.getWeather_data().get(0);
@@ -245,7 +259,7 @@ public class WeatherActivity extends Activity {
                     /**
                      * 根据pm2.5的值来决定显示优、良、中、差四个等级中对应图片
                      */
-                    switch (pm2_5Rank(pm2_5)){
+                    switch (MyUtils.pm2_5Rank(pm2_5)){
                         case 1:
                             pm2_5Rank.setImageResource(R.mipmap.excellent);break;
                         case 2:
@@ -332,45 +346,6 @@ public class WeatherActivity extends Activity {
                 }
         }
 
-    }
-
-    /**
-     * 方法名 ：isNetworkAvailable(Context context)
-     * 功能：判断网络是否可用
-     * @param context
-     * @return
-     */
-    private boolean isNetworkAvailable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if( cm == null )
-            return false;
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-        if (netinfo == null )
-            return false;
-        if(netinfo.isConnected())
-            return true;
-        return false;
-    }
-
-    /**
-     * 方法名：pm2_5Rank(String pm2_5)
-     * 功能：判断pm2.5等级
-     * @param pm2_5
-     * @return
-     */
-    private int pm2_5Rank(String pm2_5){
-        if(pm2_5!=null){
-            int pm=Integer.parseInt(pm2_5);
-            if (pm<=50)
-                return 1;//优
-            if (pm<=100)
-                return 2;//良
-            if (pm<=200)
-                return 3;//中
-            if (pm>200)
-                return 4;//差
-        }
-        return 0;//异常、无数据
     }
 
 }
