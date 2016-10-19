@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.JChatDemoApplication;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.ChatActivity;
 import com.jchat.android.controller.CreateGroupController;
 import com.jchat.android.view.CreateGroupView;

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.JChatDemoApplication;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.adapter.AlbumListAdapter;
 import com.jchat.android.entity.ImageBean;
 import com.jchat.android.tools.SortPictureList;

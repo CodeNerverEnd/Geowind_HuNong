@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.drawer.AboutActivity;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.utils.DialogCreator;
 import com.jchat.android.chatting.utils.HandleResponseCode;
 import com.jchat.android.view.SlipButton;

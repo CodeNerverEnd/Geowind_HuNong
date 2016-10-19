@@ -8,6 +8,7 @@ import android.text.TextUtils;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.JChatDemoApplication;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.ChatActivity;
 import com.jchat.android.chatting.utils.DialogCreator;
 import com.jchat.android.chatting.utils.HandleResponseCode;

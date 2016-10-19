@@ -3,6 +3,7 @@ package com.jchat.android.activity;
 import android.os.Bundle;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.controller.GroupSettingController;
 import com.jchat.android.view.GroupSettingView;
 

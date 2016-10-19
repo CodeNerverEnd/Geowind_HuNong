@@ -12,7 +12,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -20,23 +19,16 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
 import com.geowind.hunong.entity.Library;
-import com.geowind.hunong.json.LibraryJson;
-import com.geowind.hunong.utils.EncryptUtils;
 import com.geowind.hunong.utils.ExampleUtil;
-import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 import com.jchat.android.activity.LoginActivity;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
-import cz.msebera.android.httpclient.Header;
 
 /**
  *

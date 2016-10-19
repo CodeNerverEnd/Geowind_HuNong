@@ -25,7 +25,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.jchat.android.activity.BaseActivity;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.activity.ChatDetailActivity;
 import com.jchat.android.activity.PickPictureTotalActivity;
 import com.jchat.android.chatting.utils.BitmapLoader;
@@ -53,12 +53,7 @@ import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 import de.greenrobot.event.EventBus;
 
-/*
- * 对话界面,合并了ChatController,整个chatting文件夹下的文件都使用反射机制获取相关资源文件,
- * 主要是为了实现插件式的聊天界面,让开发者可以即拿即用,会与UIKit的Chatting模块保持同步,如果只要聊天界面,
- * 拷贝chatting文件夹下的所有文件,并且从github下载相关资源文件,省去手动筛选复制相关资源的麻烦.
- * UIKit github地址:https://github.com/jpush/jmessage-android-uikit/tree/master/Chatting
- */
+
 public class ChatActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener,
         ChatView.OnSizeChangedListener, ChatView.OnKeyBoardChangeListener {
 

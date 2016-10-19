@@ -1,21 +1,15 @@
 package com.geowind.hunong.global.activitys;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.JChatDemoApplication;
@@ -25,21 +19,18 @@ import com.geowind.hunong.global.fragment.HomeScrollViewFragment;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.jchat.android.activity.ConversationListFragment;
-import com.jchat.android.activity.CropImageActivity;
+
 import com.jchat.android.activity.FixProfileActivity;
 import com.jchat.android.activity.LoginActivity;
 import com.jchat.android.activity.ReloginActivity;
-import com.jchat.android.chatting.utils.FileHelper;
-import com.jchat.android.chatting.utils.HandleResponseCode;
+
 import com.jchat.android.chatting.utils.SharePreferenceManager;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.UserInfo;
-import cn.jpush.im.api.BasicCallback;
 
 /**
  * Created by zhangwen on 16-7-16.
@@ -49,6 +40,7 @@ public class MainActivity extends DrawerActivity {
     private MaterialViewPager mViewPager;
     private Toolbar mToolbar;
     private ArrayList<String> mTitleNames;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,18 +48,17 @@ public class MainActivity extends DrawerActivity {
         initDate();
         initEvent();
     }
-
     private void initEvent() {
-
-
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
                 return HeaderDesign.fromColorAndDrawable(getResources().getColor(R.color.colorAccent),getResources().getDrawable(R.drawable.selector_header_bg));
             }
+
         });
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
+
     }
 
     private void initDate() {
@@ -95,6 +86,7 @@ public class MainActivity extends DrawerActivity {
                         return HomeScrollViewFragment.newInstance();
                 }
             }
+
 
             @Override
             public int getCount() {
@@ -151,7 +143,6 @@ public class MainActivity extends DrawerActivity {
                 finish();
             }
         }
-//        mConversationListFragment.sortConvList();
         super.onResume();
     }
 

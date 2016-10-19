@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.JChatDemoApplication;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.utils.BitmapLoader;
 import com.jchat.android.view.CropImageView;
 

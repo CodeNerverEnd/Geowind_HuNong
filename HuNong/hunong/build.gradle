@@ -7,6 +7,7 @@ android {
     defaultConfig {
         applicationId "com.geowind.hunong"
         minSdkVersion 15
+        multiDexEnabled true
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -37,4 +38,6 @@ android {
      compile 'com.orhanobut:dialogplus:1.11@aar'
      compile project(':multiple-images-selector')
      compile files('libs/httpmime-4.1.2.jar')
+     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
  }

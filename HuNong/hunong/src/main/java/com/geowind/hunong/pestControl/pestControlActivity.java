@@ -82,7 +82,7 @@ public class PestControlActivity extends Activity implements View.OnClickListene
                 // TODO Auto-generated method stub
                 new Thread() {
                     public void run() {
-                        
+
                         ArrayList<File> fileArrayList=new ArrayList<File>();
                         for (String s:mResults) {
                             File file=new File(s);
@@ -165,5 +165,6 @@ public class PestControlActivity extends Activity implements View.OnClickListene
         startActivityForResult(intent, REQUEST_CODE);
     }
 }
+
 
 

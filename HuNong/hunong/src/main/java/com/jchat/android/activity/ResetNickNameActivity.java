@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.utils.DialogCreator;
 import com.jchat.android.chatting.utils.HandleResponseCode;
 

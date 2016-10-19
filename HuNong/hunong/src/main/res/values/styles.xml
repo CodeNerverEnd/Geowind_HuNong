@@ -13,6 +13,7 @@
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionBar">false</item>
+        <item name="android:fitsSystemWindows">true</item>
 
         <!-- Material Theme -->
         <item name="colorPrimary">@color/colorAccent</item>

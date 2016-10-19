@@ -1,15 +1,21 @@
 package com.geowind.hunong.global.activitys;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.geowind.hunong.R;
@@ -18,6 +24,7 @@ import com.jchat.android.activity.ReloginActivity;
 import com.jchat.android.chatting.utils.DialogCreator;
 import com.jchat.android.chatting.utils.FileHelper;
 import com.jchat.android.chatting.utils.SharePreferenceManager;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.io.File;
 
@@ -37,6 +44,7 @@ public class BaseActivity extends AppCompatActivity {
     protected int mWidth;
     protected int mHeight;
     private Context mContext;
+    private SystemBarTintManager tintManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,18 @@ public class BaseActivity extends AppCompatActivity {
         mWidth = dm.widthPixels;
         mHeight = dm.heightPixels;
         mAvatarSize = (int) (50 * mDensity);
+        initWindow();
+    }
+
+    @TargetApi(19)
+    private void initWindow(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintColor(getColor(R.color.colorAccent));
+            tintManager.setStatusBarTintEnabled(true);
+        }
     }
 
     private Dialog dialog;

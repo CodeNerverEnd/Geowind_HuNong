@@ -13,12 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 
 /**
  * Created by zhangwen on 16-8-1.
  */
-public class ArticleDetailsActivity extends Activity{
+public class ArticleDetailsActivity extends BaseActivity{
 
     private WebView mWv_content;
     private ImageButton mBt_back;

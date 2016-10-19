@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.chatting.utils.BitmapLoader;
 import com.jchat.android.chatting.utils.SharePreferenceManager;
 import com.jchat.android.controller.ReloginController;

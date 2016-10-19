@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.jchat.android.controller.RegisterController;
 import com.jchat.android.view.RegisterView;
 
