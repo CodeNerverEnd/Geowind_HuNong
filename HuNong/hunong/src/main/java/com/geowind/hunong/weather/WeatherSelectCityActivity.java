@@ -1,15 +1,17 @@
 package com.geowind.hunong.weather;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.weather.region.City;
 import com.geowind.hunong.weather.region.District;
 import com.geowind.hunong.weather.region.Province;
@@ -20,7 +22,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.List;
 
-public class  WeatherSelectCityActivity extends Activity {
+public class  WeatherSelectCityActivity extends BaseActivity {
 
     //省、市、区下拉菜单
     private Spinner spinnerProvince;
@@ -36,6 +38,8 @@ public class  WeatherSelectCityActivity extends Activity {
     private String returnString;//选择的城市名，返回给WeatherActivity
     private Button ack;//确认按钮
 
+    private TextView titil;
+    private ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +53,25 @@ public class  WeatherSelectCityActivity extends Activity {
 
         ack= (Button) findViewById(R.id.ack);
 
+        //titlebar设置
+        titil=(TextView) findViewById(R.id.title);
+        returnButton= (ImageButton) findViewById(R.id.return_btn);
+        titil.setText("选择城市");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent=new Intent(WeatherActivity.this, MainActivity.class);
+//                startActivity(intent);
+                finish();
+            }
+        });
+
+
         try {
             provinces = WeatherUtils.getProvinces(this);
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
 

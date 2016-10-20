@@ -40,4 +40,7 @@ android {
      compile files('libs/httpmime-4.1.2.jar')
      compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
+     //圆形进度条，信用管理处使用到
+     compile 'com.github.shinelw:library:1.0.1'
+
  }

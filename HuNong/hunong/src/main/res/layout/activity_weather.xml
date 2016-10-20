@@ -5,15 +5,17 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="58dp"
     android:background="#FFFFFF"
     tools:context="com.geowind.hunong.weather.WeatherActivity">
+
+    <include layout="@layout/menu_title_bar"
+        android:id="@+id/titleBar"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_below="@+id/titleBar"
         android:orientation="horizontal"
         android:gravity="center">
 

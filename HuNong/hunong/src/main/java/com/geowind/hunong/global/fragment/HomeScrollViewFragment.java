@@ -71,8 +71,6 @@ public class HomeScrollViewFragment extends Fragment {
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"
     };
 
-
-
     private ImageButton mIb_pestControl;
     private CardView mCv_currentTask;
     private ImageButton mIb_zixun;

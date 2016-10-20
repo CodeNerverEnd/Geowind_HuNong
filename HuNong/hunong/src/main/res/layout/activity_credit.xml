@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:text="信用记录"
-        android:layout_height="match_parent"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0ffff"
+    tools:context=".drawer.CreditActivity">
+
+    <include layout="@layout/menu_title_bar" />
+
+    <com.shinelw.library.ColorArcProgressBar
+        android:layout_marginTop="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/progressBar"
+        app:is_need_content="true"
+        app:front_color1="#ff4040"
+        app:front_color2="#ffd700"
+        app:front_color3="@color/colorAccent"
+        app:max_value="100"
+        app:back_width="3dp"
+        app:front_width="15dp"
+        app:total_engle="270"
+        app:is_need_title="true"
+        app:string_title="信誉值"
+        app:is_need_dial="true"
+        app:back_color="@android:color/darker_gray"
+        />
+    <!--app:is_need_unit="true"-->
+    <!--app:string_unit="ABC"-->
+
 </LinearLayout>

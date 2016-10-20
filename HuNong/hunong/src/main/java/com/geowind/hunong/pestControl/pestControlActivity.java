@@ -1,6 +1,5 @@
 package com.geowind.hunong.pestControl;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,11 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.zfdang.multiple_images_selector.ImagesSelectorActivity;
 import com.zfdang.multiple_images_selector.SelectorSettings;
 
@@ -25,7 +27,7 @@ import java.util.Map;
  * Created by logaxy on 2016/9/22.
  * 病虫妨害，上传图片和描述
  */
-public class PestControlActivity extends Activity implements View.OnClickListener{
+public class PestControlActivity extends BaseActivity implements View.OnClickListener{
 
     private static final int REQUEST_CODE = 100;
     private int MAX_IMAGES=4;//最多选择的图片数量
@@ -42,6 +44,12 @@ public class PestControlActivity extends Activity implements View.OnClickListene
 
     private ArrayList<String> mResults = new ArrayList<>();//存放选图片路径的ArrayList
 
+    /*
+     * titlebar相关
+     * */
+    private TextView titil;
+    private ImageButton returnButton;
+
     /**
      * 服务器地址
      */
@@ -51,6 +59,20 @@ public class PestControlActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pest_control);
+
+        /*
+        * titlebar设置
+        * */
+        titil=(TextView) findViewById(R.id.title);
+        returnButton= (ImageButton) findViewById(R.id.return_btn);
+        titil.setText("病虫害反馈");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
         //必须初始化，否则不能使用
         Fresco.initialize(getApplicationContext());

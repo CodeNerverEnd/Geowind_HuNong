@@ -1,6 +1,5 @@
 package com.geowind.hunong.weather;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -13,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
@@ -22,7 +22,7 @@ import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends BaseActivity {
 
     private RelativeLayout rootRelativeLayout;
     private LinearLayout linearLayout3;
@@ -75,6 +75,8 @@ public class WeatherActivity extends Activity {
     private int weatherType3;
     private WeatherHelper weatherHelper=new WeatherHelper();
 
+    private TextView titil;
+    private ImageButton returnButton;
 
 
     @Override
@@ -113,6 +115,22 @@ public class WeatherActivity extends Activity {
         windstrength1   = (TextView)     findViewById(R.id.windstrength1);
         temperatureNow  = (TextView)     findViewById(R.id.temperatureNow);
         Temperature1    = (TextView)     findViewById(R.id.temperature1);
+
+        /*
+        * titlebar相关设置,返回按钮事件等
+        * */
+        titil=(TextView) findViewById(R.id.title);
+        returnButton= (ImageButton) findViewById(R.id.return_btn);
+        titil.setText("天气预报");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent=new Intent(WeatherActivity.this, MainActivity.class);
+//                startActivity(intent);
+                finish();
+            }
+        });
+
 
         //自动定位
         String[] pcd=LocationUtils.getAddr(getApplicationContext());
