@@ -1,1 +1,1 @@
-include ':CircularFloatingActionMenu', ':hunong', ':multiple-images-selector'
+include ':CircularFloatingActionMenu', ':hunong', ':multiple-images-selector', ':JPushExample(515827)'

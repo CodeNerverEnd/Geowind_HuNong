@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" filepath="$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/HuNong.iml" filepath="$PROJECT_DIR$/HuNong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JPushExample(515827)/JPushExample(515827).iml" filepath="$PROJECT_DIR$/JPushExample(515827)/JPushExample(515827).iml" />
       <module fileurl="file://$PROJECT_DIR$/hunong/hunong.iml" filepath="$PROJECT_DIR$/hunong/hunong.iml" />
       <module fileurl="file://$PROJECT_DIR$/multiple-images-selector/multiple-images-selector.iml" filepath="$PROJECT_DIR$/multiple-images-selector/multiple-images-selector.iml" />
     </modules>
