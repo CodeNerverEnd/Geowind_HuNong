@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<RelativeLayout
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/header_height"
+    android:orientation="horizontal"
+    android:elevation="8dp"
+    android:background="@color/colorAccent">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/map_back"
+        android:background="@android:color/transparent"
+        android:id="@+id/bt_lib_back"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_lib_share"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="分享"/>
+</RelativeLayout>
+    <WebView
+        android:layout_width="match_parent"
+        android:id="@+id/wv_article_content"
+        android:layout_height="wrap_content">
+
+    </WebView>
+</LinearLayout>

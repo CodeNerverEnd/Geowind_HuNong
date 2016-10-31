@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/menu_title_bar"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20px"
+        android:layout_height="wrap_content">
+        <com.geowind.hunong.view.RegisterEditView
+            android:layout_width="wrap_content"
+            app:contentHint="    请输入用户名"
+            android:id="@+id/et_register_username"
+            android:layout_height="wrap_content"/>
+
+        <com.geowind.hunong.view.RegisterEditView
+            android:layout_width="wrap_content"
+            app:contentHint="    请输入真实姓名"
+            android:id="@+id/et_register_realname"
+            android:layout_height="wrap_content"/>
+        <com.geowind.hunong.view.RegisterEditView
+            android:layout_width="wrap_content"
+            app:contentHint="    请输入手机号"
+            android:id="@+id/et_register_phone"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:id="@+id/rg_userType"
+            android:paddingBottom="20dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/rb_farmer"
+                android:text="种田大户"
+                android:textColor="#f6646262"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:text="农机手"
+                android:textColor="#f6646262"
+                android:id="@+id/rb_machiner"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_userType_warror"
+                android:textColor="@color/red"
+                android:text="请选择用户类型"
+                android:visibility="gone"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_centerName"
+            android:text="            请选择服务中心"
+            android:textColor="@color/chat_text_color"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:id="@+id/sp_center"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content"></Spinner>
+        <com.geowind.hunong.view.RegisterEditView
+            android:layout_width="wrap_content"
+            app:contentHint="     请输入密码"
+            android:id="@+id/et_register_psw"
+            app:register_password="true"
+            android:layout_height="wrap_content"/>
+        <com.geowind.hunong.view.RegisterEditView
+            android:layout_width="wrap_content"
+            android:id="@+id/et_register_rePsw"
+            app:register_password="true"
+            app:contentHint="     请再次确认密码"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:id="@+id/bt_register"
+        android:text="注册"
+        style="@style/register_button_style"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

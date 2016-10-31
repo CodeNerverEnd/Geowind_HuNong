@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="lib_sortTpe">
+        <item>"虫害"</item>
+        <item>"水灾"</item>
+        <item>"病害"</item>
+        <item>"旱灾"</item>
+        <item>"冰灾"</item>
+        <item>"其它"</item>
+    </array>
+
+</resources>
