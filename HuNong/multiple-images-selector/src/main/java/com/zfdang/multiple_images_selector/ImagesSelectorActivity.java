@@ -1,13 +1,16 @@
 package com.zfdang.multiple_images_selector;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -21,11 +24,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.zfdang.multiple_images_selector.models.FolderItem;
 import com.zfdang.multiple_images_selector.models.FolderListContent;
 import com.zfdang.multiple_images_selector.models.ImageItem;
@@ -73,10 +78,26 @@ public class ImagesSelectorActivity extends AppCompatActivity
     private File mTempImageFile;
     private static final int CAMERA_REQUEST_CODE = 694;
 
+    private SystemBarTintManager tintManager;
+
+    @TargetApi(19)
+    private void initWindow(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            tintManager = new SystemBarTintManager(this);
+            //互农主颜色
+            tintManager.setStatusBarTintColor(Color.argb(0xff,0x42,0xce,0xb8));
+            tintManager.setStatusBarTintEnabled(true);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images_selector);
+
+        initWindow();
 
         // hide actionbar
         ActionBar actionBar = getSupportActionBar();
