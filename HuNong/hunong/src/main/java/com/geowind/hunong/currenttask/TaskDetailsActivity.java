@@ -9,13 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.map.MyPopTextView;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
  * Created by zhangwen on 16-8-26.
  */
-public class TaskDetailsActivity extends Activity {
+public class TaskDetailsActivity extends BaseActivity {
 
     private ImageButton mIb_back;
 

@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -135,18 +136,15 @@ public class BaiduMapActivity extends Activity {
         mLatLngs=new ArrayList<LatLng>();
         mTv_endInfo = new TextView(getApplicationContext());
         mTv_StartInfo = new TextView(getApplicationContext());
-        // 在使用SDK各组件之前初始化context信息，传入ApplicationContext
-        // 注意该方法要再setContentView方法之前实现
-        /**
-         * 发送key给服务 校验key是否正确
-         */
-        SDKInitializer.initialize(getApplicationContext());
-        setContentView(R.layout.baidumap);
+
+
         /**
          * 初始化百度定位
          */
         mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient类
         mLocationClient.registerLocationListener(myListener); // 注册监听函数
+
+        setContentView(R.layout.baidumap);
         //任务标注
         mMakerIconsRes = new int[]{R.drawable.icon_mark1, R.drawable.icon_mark2, R.drawable.icon_mark3,
                 R.drawable.icon_mark4, R.drawable.icon_mark5, R.drawable.icon_mark6};
@@ -537,7 +535,7 @@ public class BaiduMapActivity extends Activity {
         mFabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new_light));
         final FloatingActionButton rightLowerButton = new FloatingActionButton.Builder(this)
                 .setContentView(mFabIconNew)
-                .setPosition(FloatingActionButton.POSITION_BOTTOM_LEFT)
+                .setPosition(FloatingActionButton.POSITION_LEFT_CENTER)
                 .build();
 
 

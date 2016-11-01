@@ -54,6 +54,7 @@ public class MyPopTextView extends LinearLayout {
         requestLayout();
     }
 
+
     public void setContent(String content) {
          mTv_content.setText(content);
         invalidate();

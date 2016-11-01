@@ -65,7 +65,7 @@ public class HomeScrollViewFragment extends Fragment {
     String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
             "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg",
-            "http://192.168.1.105:8080/shopping/images/prod_xia.jpg",
+            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"

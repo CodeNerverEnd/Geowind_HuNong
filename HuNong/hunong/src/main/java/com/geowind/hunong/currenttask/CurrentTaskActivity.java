@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.entity.Task;
+import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.global.activitys.MainActivity;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.MyConstants;
@@ -31,7 +32,7 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by zhangwen on 16-8-26.
  */
-public class CurrentTaskActivity extends Activity {
+public class CurrentTaskActivity extends BaseActivity {
 
     private ImageButton mIv_back;
     private ListView mLv_task;

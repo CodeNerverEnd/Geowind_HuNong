@@ -18,7 +18,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,33 +30,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.application.JChatDemoApplication;
+import com.geowind.hunong.application.HunongApplication;
 import com.geowind.hunong.drawer.AboutActivity;
 import com.geowind.hunong.drawer.CreditActivity;
 import com.geowind.hunong.drawer.HelpActivity;
 import com.geowind.hunong.drawer.HistoryTaskActivity;
+import com.geowind.hunong.utils.BitmapLoader;
+import com.geowind.hunong.utils.DialogCreator;
+import com.geowind.hunong.utils.FileHelper;
 import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.NativeImageLoader;
 import com.geowind.hunong.utils.SpTools;
-import com.jchat.android.activity.*;
-import com.jchat.android.chatting.CircleImageView;
-import com.jchat.android.chatting.utils.BitmapLoader;
-import com.jchat.android.chatting.utils.DialogCreator;
-import com.jchat.android.chatting.utils.FileHelper;
-import com.jchat.android.chatting.utils.HandleResponseCode;
-import com.jchat.android.chatting.utils.SharePreferenceManager;
-import com.jchat.android.tools.NativeImageLoader;
+import com.geowind.hunong.view.CircleImageView;
+
 
 import java.io.File;
-
-import cn.jpush.im.android.api.JMessageClient;
-import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
-import cn.jpush.im.android.api.model.UserInfo;
-import cn.jpush.im.api.BasicCallback;
 
 /**
  * Created by zhangwen on 16-7-24.
  */
-public class DrawerActivity extends BaseActivity {
+public class DrawerActivity extends AppCompatActivity {
 
 
     private static  final String TAG="DrawerActitvity";
@@ -62,7 +57,6 @@ public class DrawerActivity extends BaseActivity {
     private DrawerLayout mDrawer;
     private TextView mTv_userName;
     private TextView mTv_exit;
-    private UserInfo mUserInfo;
     private CircleImageView mTakePhotoBtn;
     private TextView mUserNameTv;
     private TextView mNickNameTv;
@@ -84,15 +78,29 @@ public class DrawerActivity extends BaseActivity {
     private static int OUTPUT_X = 720;
     private static int OUTPUT_Y = 720;
     private TextView mTv_setting;
+    protected float mDensity;
+    protected int mDensityDpi;
+    protected int mAvatarSize;
+    protected int mWidth;
+    protected int mHeight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        mDensity = dm.density;
+        mDensityDpi = dm.densityDpi;
+        mWidth = dm.widthPixels;
+        mHeight = dm.heightPixels;
+        mAvatarSize = (int) (50 * mDensity);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
         mDrawer = (DrawerLayout) findViewById(R.id.dl_main);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
@@ -135,10 +143,10 @@ public class DrawerActivity extends BaseActivity {
                         mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
                         break;
                     case R.id.tv_personal_info://个人信息
-                        startOntherActivity(MeInfoActivity.class);
+                     //   startOntherActivity(MeInfoActivity.class);
                         break;
                     case R.id.tv_setting://系统设置
-                        startOntherActivity(SettingActivity.class);
+                     //   startOntherActivity(SettingActivity.class);
                         break;
 //			//退出登录 清除Notification，清除缓存
                     case R.id.tv_exit://注销
@@ -191,7 +199,6 @@ public class DrawerActivity extends BaseActivity {
     }
 
     private void initView() {
-        mUserInfo = JMessageClient.getMyInfo();
         mTv_userName = (TextView)mDrawer.findViewById(R.id.tv_userName);
         mTv_exit = (TextView)mDrawer.findViewById(R.id.tv_exit);
         mTv_historTask = (TextView)mDrawer.findViewById(R.id.tv_historyTask);
@@ -209,7 +216,7 @@ public class DrawerActivity extends BaseActivity {
         if (resultCode == Activity.RESULT_CANCELED) {
             return;
         }
-        if (requestCode == JChatDemoApplication.REQUEST_CODE_TAKE_PHOTO) {
+        if (requestCode == HunongApplication.REQUEST_CODE_TAKE_PHOTO) {
             String path = getPhotoPath();
             if (path != null) {
                 File file = new File(path);
@@ -220,10 +227,10 @@ public class DrawerActivity extends BaseActivity {
                     Intent intent = new Intent();
                     intent.putExtra("filePath", mUri.getPath());
                     intent.setClass(this, CropImageActivity.class);
-                    startActivityForResult(intent, JChatDemoApplication.REQUEST_CODE_CROP_PICTURE);
+                    startActivityForResult(intent, HunongApplication.REQUEST_CODE_CROP_PICTURE);
                 }
             }
-        } else if (requestCode == JChatDemoApplication.REQUEST_CODE_SELECT_PICTURE) {
+        } else if (requestCode == HunongApplication.REQUEST_CODE_SELECT_PICTURE) {
             if (data != null) {
                 Uri selectedImg = data.getData();
                 if (selectedImg != null) {
@@ -262,16 +269,11 @@ public class DrawerActivity extends BaseActivity {
                     }
                 }
             }
-        } else if (requestCode == JChatDemoApplication.REQUEST_CODE_CROP_PICTURE) {
+        } else if (requestCode == HunongApplication.REQUEST_CODE_CROP_PICTURE) {
 //            uploadUserAvatar(mUri.getPath());
             String path = data.getStringExtra("filePath");
             if (path != null) {
                 uploadUserAvatar(path);
-            }
-        } else if (resultCode == JChatDemoApplication.RESULT_CODE_ME_INFO) {
-            String newName = data.getStringExtra("newName");
-            if (!TextUtils.isEmpty(newName)) {
-                refreshNickname(newName);
             }
         }
     }
@@ -288,30 +290,7 @@ public class DrawerActivity extends BaseActivity {
     }
     @Override
     public void onResume() {
-        if (!mIsShowAvatar) {
-            UserInfo myInfo = JMessageClient.getMyInfo();
-            if (myInfo != null) {
-                if (!android.text.TextUtils.isEmpty(myInfo.getAvatar())) {
-                    myInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
-                        @Override
-                        public void gotResult(int status, String desc, Bitmap bitmap) {
-                            if (status == 0) {
-                                showPhoto(bitmap);
-                                mIsShowAvatar = true;
-                            } else {
-                                HandleResponseCode.onHandle(getApplicationContext(), status, false);
-                            }
-                        }
-                    });
-                }
-                showNickName(myInfo.getNickname());
-                //用户由于某种原因导致登出,跳转到重新登录界面
-            } else {
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), ReloginActivity.class);
-                startActivity(intent);
-            }
-        }
+
         super.onResume();
     }
     public void showPhoto(final Bitmap bitmap) {
@@ -334,29 +313,8 @@ public class DrawerActivity extends BaseActivity {
     }
     //退出登录
     public void Logout() {
-        // TODO Auto-generated method stub
-        final Intent intent = new Intent();
-        UserInfo info = JMessageClient.getMyInfo();
-        if (null != info) {
-            intent.putExtra("userName", info.getUserName());
-            File file = info.getAvatarFile();
-            if (file != null && file.isFile()) {
-                intent.putExtra("avatarFilePath", file.getAbsolutePath());
-            } else {
-                String path = FileHelper.getUserAvatarPath(info.getUserName());
-                file = new File(path);
-                if (file.exists()) {
-                    intent.putExtra("avatarFilePath", file.getAbsolutePath());
-                }
-            }
-            SharePreferenceManager.setCachedUsername(info.getUserName());
-            SharePreferenceManager.setCachedAvatarPath(file.getAbsolutePath());
-            JMessageClient.logout();
-            intent.setClass(this, ReloginActivity.class);
-            startActivity(intent);
-        } else {
-            Log.d(TAG, "user info is null!");
-        }
+        SpTools.setBoolean(getApplicationContext(),MyConstants.ISLOGIN,false);
+       startOntherActivity(LoginActivity.class);
     }
 
     public void cancelNotification() {
@@ -377,7 +335,7 @@ public class DrawerActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.putExtra("filePath", mUri.getPath());
                 intent.setClass(DrawerActivity.this, CropImageActivity.class);
-                startActivityForResult(intent, JChatDemoApplication.REQUEST_CODE_CROP_PICTURE);
+                startActivityForResult(intent, HunongApplication.REQUEST_CODE_CROP_PICTURE);
             }
         });
     }
@@ -402,7 +360,7 @@ public class DrawerActivity extends BaseActivity {
         intent.putExtra("return-data", false);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        startActivityForResult(intent, JChatDemoApplication.REQUEST_CODE_CROP_PICTURE);
+        startActivityForResult(intent, HunongApplication.REQUEST_CODE_CROP_PICTURE);
     }
 
     public void uploadUserAvatar(final String path) {
@@ -410,33 +368,33 @@ public class DrawerActivity extends BaseActivity {
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.setMessage(getString(R.string.updating_avatar_hint));
         mProgressDialog.show();
-        JMessageClient.updateUserAvatar(new File(path), new BasicCallback() {
-            @Override
-            public void gotResult(final int status, final String desc) {
-                mProgressDialog.dismiss();
-                if (status == 0) {
-                    Log.i(TAG, "Update avatar succeed path " + path);
-                    loadUserAvatar(path);
-                    //如果头像上传失败，删除剪裁后的文件
-                }else {
-                    HandleResponseCode.onHandle(getApplicationContext(), status, false);
-                    File file = new File(path);
-                    if (file.delete()) {
-                        Log.d(TAG, "Upload failed, delete cropped file succeed");
-                    }
-                }
-            }
-        });
+//        JMessageClient.updateUserAvatar(new File(path), new BasicCallback() {
+//            @Override
+//            public void gotResult(final int status, final String desc) {
+//                mProgressDialog.dismiss();
+//                if (status == 0) {
+//                    Log.i(TAG, "Update avatar succeed path " + path);
+//                    loadUserAvatar(path);
+//                    //如果头像上传失败，删除剪裁后的文件
+//                }else {
+//                    HandleResponseCode.onHandle(getApplicationContext(), status, false);
+//                    File file = new File(path);
+//                    if (file.delete()) {
+//                        Log.d(TAG, "Upload failed, delete cropped file succeed");
+//                    }
+//                }
+//            }
+//        });
     }
 
     //照相
     public void takePhoto() {
         if (FileHelper.isSdCardExist()) {
-            mPath = FileHelper.createAvatarPath(JMessageClient.getMyInfo().getUserName());
+            mPath = FileHelper.createAvatarPath(SpTools.getString(getApplicationContext(),MyConstants.USERNAME,""));
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPath)));
             try {
-                startActivityForResult(intent, JChatDemoApplication.REQUEST_CODE_TAKE_PHOTO);
+                startActivityForResult(intent, HunongApplication.REQUEST_CODE_TAKE_PHOTO);
             } catch (ActivityNotFoundException anf) {
                 Toast.makeText(this, this.getString(R.string.camera_not_prepared), Toast.LENGTH_SHORT).show();
             }
@@ -460,7 +418,7 @@ public class DrawerActivity extends BaseActivity {
                 intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             }
-            startActivityForResult(intent, JChatDemoApplication.REQUEST_CODE_SELECT_PICTURE);
+            startActivityForResult(intent, HunongApplication.REQUEST_CODE_SELECT_PICTURE);
         } else {
             Toast.makeText(this, getString(R.string.jmui_sdcard_not_exist_toast),
                     Toast.LENGTH_SHORT).show();
@@ -473,49 +431,6 @@ public class DrawerActivity extends BaseActivity {
             showPhoto(path);
     }
 
-    //预览头像
-    public void startBrowserAvatar() {
-        final UserInfo myInfo = JMessageClient.getMyInfo();
-        //如果本地保存了图片，直接加载，否则下载
-        if (mIsGetAvatar) {
-            String path = FileHelper.getUserAvatarPath(myInfo.getUserName());
-            File file = new File(path);
-            if (file.exists()) {
-                Intent intent = new Intent();
-                intent.putExtra("browserAvatar", true);
-                intent.putExtra("avatarPath", path);
-                intent.setClass(this, BrowserViewPagerActivity.class);
-                startActivity(intent);
-            } else if (!TextUtils.isEmpty(myInfo.getAvatar())) {
-                getBigAvatar(myInfo);
-            }
-        } else if (!TextUtils.isEmpty(myInfo.getAvatar())) {
-            getBigAvatar(myInfo);
-        }
-    }
-
-    private void getBigAvatar(final UserInfo myInfo) {
-        final Dialog dialog = DialogCreator.createLoadingDialog(this,
-                getString(R.string.jmui_loading));
-        dialog.show();
-        myInfo.getBigAvatarBitmap(new GetAvatarBitmapCallback() {
-            @Override
-            public void gotResult(int status, String desc, Bitmap bitmap) {
-                if (status == 0) {
-                    mIsGetAvatar = true;
-                    String path = BitmapLoader.saveBitmapToLocal(bitmap, getApplicationContext(), myInfo.getUserName());
-                    Intent intent = new Intent();
-                    intent.putExtra("browserAvatar", true);
-                    intent.putExtra("avatarPath", path);
-                    intent.setClass(getApplicationContext(), BrowserViewPagerActivity.class);
-                    startActivity(intent);
-                } else {
-                    HandleResponseCode.onHandle(getApplicationContext(), status, false);
-                }
-                dialog.dismiss();
-            }
-        });
-    }
     public  void startOntherActivity(Class c){
         Intent intent=new Intent(this,c);
         startActivity(intent);

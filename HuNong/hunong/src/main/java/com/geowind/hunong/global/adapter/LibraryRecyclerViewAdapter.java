@@ -78,16 +78,16 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
 
 
     @Override
-    public void onBindViewHolder( final  MyViewHolder holder, final int position) {
-        //如果本地
-        if(!TextUtils.isEmpty(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,"")))
-            mLibrary=LibraryJson.parseJsonObject(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,""));
-       if(position>0){
-           if(mLibrary!=null)
-           {
-               holder.tv_headContent.setText(mLibrary.getArticleList().get(position).getHeadContent());
-               holder.tv_title.setText(mLibrary.getArticleList().get(position).getTitle());
-           }
+           public void onBindViewHolder( final  MyViewHolder holder, final int position) {
+               //如果本地
+               if(!TextUtils.isEmpty(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,"")))
+                   mLibrary=LibraryJson.parseJsonObject(SpTools.getString(mContext,MyConstants.LIBRARY_JSON,""));
+               if(position>0){
+                   if(mLibrary!=null)
+                   {
+                       holder.tv_headContent.setText(mLibrary.getArticleList().get(position).getHeadContent());
+                       holder.tv_title.setText(mLibrary.getArticleList().get(position).getTitle());
+                   }
 
            // 如果设置了回调，则设置点击事件
            if (mOnItemClickLitener != null)

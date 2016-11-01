@@ -1,113 +1,121 @@
 package com.geowind.hunong.entity;
 
+import java.util.Date;
+
+
 /**
- * Created by Kui on 2016/7/20.
+ * User entity. @author MyEclipse Persistence Tools
  */
 public class User {
 
-    //用户名
-    private String username;
-    //密码
-    private String password;
-    //手机号
-    private String phone;
-    //用户类型
-    private String sytle;
-    //姓名
-    private String name;
-    //头像url
-    private String picUrl;
-    //地址
-    private String address;
-    //信誉
-    private String credit;
-    //所属服务中心
-    private int scno;
+	// Fields
+	private String username;
+	private Center center;
+	private String password;
+	private String realname;
+	private String sex;
+	private Date birthday;
+	private String phone;
+	private Integer type;
+	private String picture;
+	private String address;
+	private String credit;
+	private Integer valid;
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return this.username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public Center getCenter() {
+		return this.center;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setCenter(Center center) {
+		this.center = center;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public String getPassword() {
+		return this.password;
+	}
 
-    public String getSytle() {
-        return sytle;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setSytle(String sytle) {
-        this.sytle = sytle;
-    }
+	public String getRealname() {
+		return this.realname;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getSex() {
+		return this.sex;
+	}
 
-    public String getPicUrl() {
-        return picUrl;
-    }
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
+	public Date getBirthday() {
+		return this.birthday;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getPhone() {
+		return this.phone;
+	}
 
-    public String getCredit() {
-        return credit;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setCredit(String credit) {
-        this.credit = credit;
-    }
+	public Integer getType() {
+		return this.type;
+	}
 
-    public int getScno() {
-        return scno;
-    }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-    public void setScno(int scno) {
-        this.scno = scno;
-    }
+	public String getPicture() {
+		return this.picture;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sytle='" + sytle + '\'' +
-                ", name='" + name + '\'' +
-                ", picUrl='" + picUrl + '\'' +
-                ", address='" + address + '\'' +
-                ", credit='" + credit + '\'' +
-                ", scno='" + scno + '\'' +
-                '}';
-    }
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCredit() {
+		return this.credit;
+	}
+
+	public void setCredit(String credit) {
+		this.credit = credit;
+	}
+
+	public Integer getValid() {
+		return this.valid;
+	}
+
+	public void setValid(Integer valid) {
+		this.valid = valid;
+	}
 }

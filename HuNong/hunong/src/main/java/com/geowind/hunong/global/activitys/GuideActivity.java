@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,6 @@ import android.widget.RelativeLayout;
 import com.geowind.hunong.R;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
-import com.jchat.android.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +136,9 @@ public class GuideActivity extends Activity {
 
     private void initView() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //去掉Activity上面的状态栏
+        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
+                WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.actitvity_guide);
         mVp_guidePager = (ViewPager) findViewById(R.id.vp_guide_pager);
         mLl_points = (LinearLayout) findViewById(R.id.ll_piont);

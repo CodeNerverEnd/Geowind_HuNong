@@ -5,24 +5,35 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#ff7f7f7f</item>
     </style>
+
+    <!--推送部分-->
+    <style name="push_style">
+        <item name="android:hint">@string/style_hint</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="push_alias">
+        <item name="android:hint">@string/alias_hint</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="push_tag">
+        <item name="android:hint">@string/tag_hint</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <style name="AppTheme" parent="AppBaseTheme">
 
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
-
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionBar">false</item>
-        <item name="android:fitsSystemWindows">true</item>
+
 
         <!-- Material Theme -->
         <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:statusBarColor" tools:targetApi="21">@color/statusBarColor</item>
-        <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationBarColor</item>
-        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+
 
 
     </style>
@@ -31,6 +42,14 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowAnimationStyle">@style/AnimFade</item>
     </style>
+    <!--自定义的注册控件RegisterEditView-->
+    <style name="registerEditView_style">
+        <item name="android:minHeight">40dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:minWidth">100dp</item>
+    </style>
+
     <style name="Bubble.TextAppearance.Light" parent="AppBaseTheme">
         <item name="android:textColor">#ffeeeeee</item>
     </style>
@@ -78,19 +97,6 @@
         <item name="android:layout_marginLeft">@dimen/cardMarginVertical</item>
         <item name="android:layout_marginTop">@dimen/cardMarginVertical</item>
         <item name="android:layout_marginRight">@dimen/cardMarginHorizontal</item>
-    </style>
-    <style name="push_style">
-        <item name="android:hint">@string/style_hint</item>
-        <item name="android:inputType">number</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-    <style name="push_alias">
-        <item name="android:hint">@string/alias_hint</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-    <style name="push_tag">
-        <item name="android:hint">@string/tag_hint</item>
-        <item name="android:textSize">14sp</item>
     </style>
     <!--消息部分-->
     <style name="round_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
@@ -162,26 +168,9 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="ChatDetailItemHit">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/chat_detail_item_hit_color</item>
-    </style>
 
-    <style name="ChatDetailItemContent">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">45dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:gravity">right</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:textColorHint">@color/gray</item>
-    </style>
+
+
 
     <style name="MeInfoItemContent">
         <item name="android:layout_width">0dp</item>
@@ -196,24 +185,9 @@
         <item name="android:textColor">#808080</item>
     </style>
 
-    <style name="ChatDetailItem">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">55dp</item>
-        <item name="android:padding">5dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:background">@drawable/jmui_list_item_bg</item>
-        <item name="android:clickable">true</item>
-    </style>
 
-    <style name="ChatDetailArrow">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginRight">5dp</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:layout_alignParentRight">true</item>
-        <item name="android:background">@drawable/arrow</item>
-    </style>
+
+
 
     <style name="BaseDialog">
         <item name="android:windowIsFloating">true</item>
@@ -479,5 +453,13 @@
 
     <style name="Widget.EditText.White" parent="@android:style/Widget.EditText">
         <item name="android:textColor">#1a1a1a</item>
+    </style>
+
+    <style name="register_button_style">
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/jmui_register_btn_bg</item>
     </style>
 </resources>

@@ -3,9 +3,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<RelativeLayout
+<android.support.v7.widget.Toolbar
     android:layout_width="match_parent"
     android:elevation="3dp"
+    android:fitsSystemWindows="true"
     android:background="@color/colorAccent"
     android:layout_height="@dimen/header_height">
    <ImageButton
@@ -23,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
     <ListView
     android:layout_width="match_parent"
     android:id="@+id/lv_task_ing"

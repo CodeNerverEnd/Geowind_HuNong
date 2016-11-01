@@ -6,7 +6,7 @@
 
     <include layout="@layout/menu_title_bar_with_button"/>
 
-    <com.jchat.android.view.CropImageView
+    <com.geowind.hunong.view.CropImageView
         android:id="@+id/crop_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
