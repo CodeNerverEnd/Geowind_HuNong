@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_failed_to_upload"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.geowind.hunong.pestControl.FailedToUpload">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="上传失败！\n请检查网络"
+        android:textColor="#ff0000"
+        android:gravity="center" />
+
+</LinearLayout>

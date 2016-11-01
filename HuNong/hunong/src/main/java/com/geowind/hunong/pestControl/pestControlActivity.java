@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.activitys.BaseActivity;
+import com.geowind.hunong.utils.MyConstants;
 import com.zfdang.multiple_images_selector.ImagesSelectorActivity;
 import com.zfdang.multiple_images_selector.SelectorSettings;
 
@@ -53,7 +56,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
     /**
      * 服务器地址
      */
-    public static final String url = "http://192.168.1.113:8080/test/uploadServlet";
+    public static final String uploadUrl = MyConstants.PESTCONTROL_UPLOAD_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-
-        //必须初始化，否则不能使用
+        //必须初始化Fresco，否则不能使用图片多选择器
         Fresco.initialize(getApplicationContext());
 
         confirm= (Button) findViewById(R.id.btn_comfirm);
@@ -95,38 +97,65 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
         imageViews[currentImageView].setClickable(true);
         imageViews[currentImageView].setImageResource(R.drawable.add_pre);
 
-
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(PestControlActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
 
+                /****************************/
+                //利用Handler判断是否上传成功
+                final Handler handler=new Handler(){
+                    @Override
+                    public void handleMessage(Message msg) {
+                        //上传成功
+                        if(msg.what == 1)
+                        {
+                            Intent intent=new Intent(PestControlActivity.this,ResultActivity.class);
+                            startActivity(intent);
+                        }
+                        //上传不成功
+                        else
+                        {
+                            Intent intent=new Intent(PestControlActivity.this,FailedToUpload.class);
+                            startActivity(intent);
+                        }
+                    }
+                };
+                /****************************/
+
+
                 // TODO Auto-generated method stub
                 new Thread() {
                     public void run() {
 
+                        String result="0";//服务器返回结果
+
                         ArrayList<File> fileArrayList=new ArrayList<File>();
                         for (String s:mResults) {
                             File file=new File(s);
-                            fileArrayList.add(file);
+                            fileArrayList.add(file);//待上传文件列表
                         }
 
                         final Map<String, String> map = new HashMap<String, String>();
-                        map.put("id", "10000");//id
-                        map.put("detail", ""+editText.getText().toString());//文本框文本
+                        map.put("op", "askInsertInfo");
+                        map.put("username", "geowind");//id
+                        map.put("describe", ""+editText.getText().toString());//文本框文本
                         try {
-                            String result;
-                            result = multiImagesUploadUtil.uploadSubmit(url, map, fileArrayList);
-                            System.out.println("11111111111111result:" + result);
+
+                            result = multiImagesUploadUtil.uploadSubmit(uploadUrl, map, fileArrayList);
+                            System.out.println("服务器返回的结果，成功为1，否则为0:" + result);
+
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
+
+                        //把“1”或“0”以int形式传回个给主线程，以便后续界面处理
+                        Message msg = handler.obtainMessage(Integer.parseInt(result));
+                        msg.sendToTarget();
                     }
                 }.start();
 
-                Intent intent=new Intent(PestControlActivity.this,ResultActivity.class);
-                startActivity(intent);
             }
         });
     }

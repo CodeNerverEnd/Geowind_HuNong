@@ -16,4 +16,7 @@ public interface MyConstants {
     String LIBRARY_JSON="libraryJson";//文库的json数据
     String HOMEURL="";//主页数据的URL
     String CACHED_APP_KEY="cachedAppkey";//缓存的appkey
+    //病虫害反馈处，服务器地址
+
+    String PESTCONTROL_UPLOAD_URL="http://192.168.1.119:8080/MutualAgriculture/insectInfoUploadServlet";
 }

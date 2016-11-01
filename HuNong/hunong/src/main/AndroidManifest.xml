@@ -246,6 +246,7 @@
             android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name=".pestControl.ResultActivity" />
+        <activity android:name=".pestControl.FailedToUpload"></activity>
     </application>
 
 </manifest>

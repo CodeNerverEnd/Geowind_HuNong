@@ -46,7 +46,7 @@ public class multiImagesUploadUtil {
         }
         //添加图片文件到entity对象中
         for(int i=0,j=fileArrayList.size();i<j;i++){
-            entity.addPart("file"+i,new FileBody(fileArrayList.get(i)));
+            entity.addPart("images",new FileBody(fileArrayList.get(i)));
         }
         post.setEntity(entity);
         HttpResponse response = httpClient.execute(post);
