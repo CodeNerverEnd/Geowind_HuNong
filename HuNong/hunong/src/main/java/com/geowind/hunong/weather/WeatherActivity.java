@@ -173,7 +173,7 @@ public class WeatherActivity extends BaseActivity {
 
         /**
          * 方法名：onPostExecute(Weather w )
-         * 功能：与另开线程类似，用来更新UI
+         * 功能：更新UI，与另开线程类似
          * @param w
          */
         @Override

@@ -186,7 +186,6 @@ public class ImagesSelectorActivity extends AppCompatActivity
         }
     }
 
-
     public void requestCameraRuntimePermissions() {
         if (ContextCompat.checkSelfPermission(ImagesSelectorActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(ImagesSelectorActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

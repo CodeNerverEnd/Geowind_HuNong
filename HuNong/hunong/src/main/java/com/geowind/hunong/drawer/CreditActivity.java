@@ -50,7 +50,4 @@ public class CreditActivity extends BaseActivity {
         progressBar.setCurrentValues(reputationValue);
 
     }
-
-
-
 }

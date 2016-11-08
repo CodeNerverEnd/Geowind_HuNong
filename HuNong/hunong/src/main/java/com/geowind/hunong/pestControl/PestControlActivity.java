@@ -123,11 +123,9 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                 };
                 /****************************/
 
-
                 // TODO Auto-generated method stub
                 new Thread() {
                     public void run() {
-
                         String result="0";//服务器返回结果
 
                         ArrayList<File> fileArrayList=new ArrayList<File>();
@@ -141,7 +139,6 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                         map.put("username", "geowind");//id
                         map.put("describe", ""+editText.getText().toString());//文本框文本
                         try {
-
                             result = multiImagesUploadUtil.uploadSubmit(uploadUrl, map, fileArrayList);
                             System.out.println("服务器返回的结果，成功为1，否则为0:" + result);
 
@@ -155,7 +152,6 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                         msg.sendToTarget();
                     }
                 }.start();
-
             }
         });
     }

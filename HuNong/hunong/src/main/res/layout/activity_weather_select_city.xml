@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:fitsSystemWindows="true"
     tools:context="com.geowind.hunong.weather.WeatherSelectCityActivity">
 
     <include layout="@layout/menu_title_bar"/>

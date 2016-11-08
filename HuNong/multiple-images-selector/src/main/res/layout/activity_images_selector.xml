@@ -2,12 +2,8 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
               android:orientation="vertical">
-    
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="28dp"-->
-        <!--android:background="#21282C"/>-->
 
     <include
         layout="@layout/selector_custom_actionbar"
