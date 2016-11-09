@@ -74,9 +74,6 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
         return holder;
     }
 
-
-
-
     @Override
            public void onBindViewHolder( final  MyViewHolder holder, final int position) {
                //如果本地

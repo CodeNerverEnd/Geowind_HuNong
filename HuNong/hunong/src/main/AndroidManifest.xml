@@ -46,7 +46,7 @@
     <application
         android:name=".application.HunongApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -85,7 +85,10 @@
         <activity android:name=".drawer.CreditActivity" />
         <activity android:name=".drawer.HelpActivity" />
         <activity android:name=".drawer.HistoryTaskActivity" />
-
+        <activity android:name=".global.activitys.MsgDetailsActivity"/>
+        <activity android:name=".global.activitys.AddBbsActivity"/>
+        <activity android:name=".drawer.AboutActivity"/>
+        <activity android:name=".drawer.SettingActivity"/>
         <!-- 病虫害反馈相关 -->
         <activity
             android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity"

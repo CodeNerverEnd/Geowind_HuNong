@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:background="@color/white"
+              android:fitsSystemWindows="true"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 <android.support.v7.widget.Toolbar
@@ -20,7 +22,6 @@
         android:layout_width="wrap_content"
         android:text="正在进行"
         android:textSize="18sp"
-        android:textColor="@color/white"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"/>
@@ -31,4 +32,13 @@
     android:layout_height="wrap_content">
 
 </ListView>
-</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="暂无任务"
+        android:id="@+id/tv_nomoreTask"
+        android:visibility="gone"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:layout_height="match_parent"/>
+</FrameLayout>

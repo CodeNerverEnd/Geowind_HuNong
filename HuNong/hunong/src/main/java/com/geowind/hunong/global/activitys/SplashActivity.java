@@ -77,7 +77,8 @@ public class SplashActivity  extends Activity{
                        finish();
                    }else{
                        //进入登录界面
-                       Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                  //     Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                       Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                        startActivity(intent);
                        finish();
                    }
@@ -107,7 +108,7 @@ public class SplashActivity  extends Activity{
     private void startAnimation() {
         mAs = new AnimationSet(false);
         AlphaAnimation alphaAnimation=new AlphaAnimation(0.0f,1.0f);
-        mAs.setDuration(2000);
+        mAs.setDuration(1000);
         mAs.setFillAfter(true);
         mAs.addAnimation(alphaAnimation);
         mRl_splash.startAnimation(mAs);

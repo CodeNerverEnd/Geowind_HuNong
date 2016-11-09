@@ -38,13 +38,14 @@ public class CurrentTaskActivity extends BaseActivity {
     private ListView mLv_task;
     private List<Task> mTasks=new ArrayList<Task>();
     private MyAdapter adapter=new MyAdapter();
+    private TextView mTv_nomoreTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_ing);
-        initData();
         initView();
+        initData();
         initEvent();
     }
 
@@ -81,7 +82,11 @@ public class CurrentTaskActivity extends BaseActivity {
     }
 
     private void initData() {
+        mLv_task.setAdapter(adapter);
         getDataFromNet();
+        if(mTasks==null||mTasks.size()==0){
+            mTv_nomoreTask.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getDataFromNet() {
@@ -96,12 +101,11 @@ public class CurrentTaskActivity extends BaseActivity {
 
                 mTasks.addAll(TaskJson.paseJson(jsonString));
                 adapter.notifyDataSetChanged();
-                System.out.println("==========="+mTasks.size());
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getApplicationContext(),"哎呀，服务器挂了！",Toast.LENGTH_LONG);
+
             }
         });
     }
@@ -109,8 +113,7 @@ public class CurrentTaskActivity extends BaseActivity {
     private void initView() {
         mIv_back = (ImageButton) findViewById(R.id.ib_task_ing_back);
         mLv_task = (ListView) findViewById(R.id.lv_task_ing);
-        mLv_task.setAdapter(adapter);
-        System.out.println(mTasks.size());
+        mTv_nomoreTask = (TextView) findViewById(R.id.tv_nomoreTask);
     }
     private class MyAdapter extends BaseAdapter{
 

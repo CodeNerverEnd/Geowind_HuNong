@@ -212,6 +212,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
             iv_SlidingImage.setImageResource(R.drawable.defualt);
             //Xutils的BitMap异步加载图片并显示
             mBitmapUtils.display(iv_SlidingImage,imgPaths[position]);
+            iv_SlidingImage.setScaleType(ImageView.ScaleType.FIT_XY);
             container.addView(iv_SlidingImage);
 //            给图片添加点击事件，在图片轮播的时候，用户按住图片可停止播放松开继续播放
             iv_SlidingImage.setOnTouchListener(new View.OnTouchListener() {

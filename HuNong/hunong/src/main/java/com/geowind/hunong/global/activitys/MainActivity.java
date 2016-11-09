@@ -5,28 +5,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.fragment.BbsFragment;
-import com.geowind.hunong.global.fragment.BbsScrollViewFragment;
 import com.geowind.hunong.global.fragment.LibraryRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.HomeScrollViewFragment;
+import com.geowind.hunong.global.fragment.MessageFragment;
 import com.geowind.hunong.utils.JpushUtil;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -96,7 +93,7 @@ public class MainActivity extends DrawerActivity {
                     case 0://主页
                         return HomeScrollViewFragment.newInstance();
                     case 1://消息
-                          return LibraryRecyclerViewFragment.newInstance();
+                          return MessageFragment.newInstance();
                     case 2://论坛
                          return BbsFragment.newInstance();
                     case 3://文库

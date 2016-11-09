@@ -13,6 +13,13 @@ import com.geowind.hunong.R;
  */
 
 public class BbsRecyclerViewAdapter extends RecyclerView.Adapter<BbsRecyclerViewAdapter.MyViewHolder> {
+    private OnItemClickLister mItemClickLister;
+    public interface  OnItemClickLister{
+        void onItemClick(View view,int position);
+    }
+    public void setOnClickListener(OnItemClickLister onClickListener){
+        this.mItemClickLister=onClickListener;
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater
@@ -20,8 +27,15 @@ public class BbsRecyclerViewAdapter extends RecyclerView.Adapter<BbsRecyclerView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+       if(mItemClickLister!=null){
+           holder.itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   mItemClickLister.onItemClick(v,position);
+               }
+           });
+       }
     }
 
     @Override
@@ -47,6 +61,7 @@ public class BbsRecyclerViewAdapter extends RecyclerView.Adapter<BbsRecyclerView
             mTv__agreeCount = (TextView) view.findViewById(R.id.bbs_agree);
             mTv_commentCount = (TextView) view.findViewById(R.id.commentCount);
         }
+
 
     }
 }

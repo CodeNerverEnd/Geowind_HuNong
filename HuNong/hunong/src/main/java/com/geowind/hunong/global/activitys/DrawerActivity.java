@@ -35,6 +35,8 @@ import com.geowind.hunong.drawer.AboutActivity;
 import com.geowind.hunong.drawer.CreditActivity;
 import com.geowind.hunong.drawer.HelpActivity;
 import com.geowind.hunong.drawer.HistoryTaskActivity;
+import com.geowind.hunong.drawer.MeInfoActivity;
+import com.geowind.hunong.drawer.SettingActivity;
 import com.geowind.hunong.utils.BitmapLoader;
 import com.geowind.hunong.utils.DialogCreator;
 import com.geowind.hunong.utils.FileHelper;
@@ -143,10 +145,10 @@ public class DrawerActivity extends AppCompatActivity {
                         mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
                         break;
                     case R.id.tv_personal_info://个人信息
-                     //   startOntherActivity(MeInfoActivity.class);
+                       startOntherActivity(MeInfoActivity.class);
                         break;
                     case R.id.tv_setting://系统设置
-                     //   startOntherActivity(SettingActivity.class);
+                       startOntherActivity(SettingActivity.class);
                         break;
 //			//退出登录 清除Notification，清除缓存
                     case R.id.tv_exit://注销
