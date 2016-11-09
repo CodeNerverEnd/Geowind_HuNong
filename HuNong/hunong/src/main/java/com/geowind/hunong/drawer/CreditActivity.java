@@ -9,7 +9,6 @@ import com.geowind.hunong.R;
 import com.geowind.hunong.global.activitys.BaseActivity;
 import com.shinelw.library.ColorArcProgressBar;
 
-
 /**
  * Created by logaxy on 16-10-18.
  */
@@ -17,6 +16,7 @@ public class CreditActivity extends BaseActivity {
 
     private ColorArcProgressBar progressBar;
     private int reputationValue;
+    private TextView textView;
 
     /*
     * titlebar相关
@@ -24,17 +24,17 @@ public class CreditActivity extends BaseActivity {
     private TextView titil;
     private ImageButton returnButton;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit);
 
+
         /*
         * titlebar设置
         * */
         titil=(TextView) findViewById(R.id.title);
-        returnButton= (ImageButton) findViewById(R.id.return_btn);
+        returnButton=(ImageButton) findViewById(R.id.return_btn);
         titil.setText("信用信息");
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,10 +43,11 @@ public class CreditActivity extends BaseActivity {
             }
         });
 
-        progressBar= (ColorArcProgressBar) findViewById(R.id.progressBar);
+        progressBar = (ColorArcProgressBar) findViewById(R.id.progressBar);
+        textView= (TextView) findViewById(R.id.textView);
 
-        reputationValue=100;
+        reputationValue = 100;
         progressBar.setCurrentValues(reputationValue);
-    }
 
+    }
 }

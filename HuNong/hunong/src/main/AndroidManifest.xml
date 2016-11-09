@@ -191,6 +191,14 @@
         </receiver>
 
 
+        <!-- 病虫害反馈相关 -->
+        <activity
+            android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".pestControl.ResultActivity" />
+        <activity android:name=".pestControl.FailedToUpload"></activity>
+
+
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="f43df3de43d49c5f8a30d4e4" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -198,7 +206,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/> <!--  </>值来自开发者平台取得的AppKey-->
-
     </application>
 
 </manifest>

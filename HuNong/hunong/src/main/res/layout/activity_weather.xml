@@ -6,6 +6,7 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
     tools:context="com.geowind.hunong.weather.WeatherActivity">
 
     <include layout="@layout/menu_title_bar"
