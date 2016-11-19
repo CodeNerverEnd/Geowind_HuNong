@@ -8,15 +8,14 @@ import android.widget.ImageView;
  * Created by logaxy on 2016/9/22.
  * 自定义的正方形ImageView，其高度保持与宽度一致
  */
-
-public class MyImageView extends ImageView {
-    public MyImageView(Context context) {
+public class MySquareImageView extends ImageView {
+    public MySquareImageView(Context context) {
         super(context);
     }
-    public MyImageView(Context context, AttributeSet attrs) {
+    public MySquareImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public MyImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MySquareImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
     @Override

@@ -21,7 +21,7 @@ public class CreditActivity extends BaseActivity {
     /*
     * titlebar相关
     * */
-    private TextView titil;
+    private TextView title;
     private ImageButton returnButton;
 
     @Override
@@ -33,9 +33,9 @@ public class CreditActivity extends BaseActivity {
         /*
         * titlebar设置
         * */
-        titil=(TextView) findViewById(R.id.title);
+        title=(TextView) findViewById(R.id.title);
         returnButton=(ImageButton) findViewById(R.id.return_btn);
-        titil.setText("信用信息");
+        title.setText("信用信息");
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

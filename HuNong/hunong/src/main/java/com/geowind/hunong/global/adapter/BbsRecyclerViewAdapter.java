@@ -15,7 +15,8 @@ import com.geowind.hunong.R;
 public class BbsRecyclerViewAdapter extends RecyclerView.Adapter<BbsRecyclerViewAdapter.MyViewHolder> {
     private OnItemClickLister mItemClickLister;
     public interface  OnItemClickLister{
-        void onItemClick(View view,int position);
+        void onItemClick(
+                View view,int position);
     }
     public void setOnClickListener(OnItemClickLister onClickListener){
         this.mItemClickLister=onClickListener;

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" filepath="$PROJECT_DIR$/CircularFloatingActionMenu/CircularFloatingActionMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/HuNong.iml" filepath="$PROJECT_DIR$/HuNong.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hunong/hunong.iml" filepath="$PROJECT_DIR$/hunong/hunong.iml" />
-      <module fileurl="file://$PROJECT_DIR$/multiple-images-selector/multiple-images-selector.iml" filepath="$PROJECT_DIR$/multiple-images-selector/multiple-images-selector.iml" />
     </modules>
   </component>
 </project>
