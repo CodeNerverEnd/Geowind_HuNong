@@ -11,19 +11,32 @@ import com.geowind.hunong.weather.weatherjson.Weather_data;
  * Created by logaxy on 2016/7/21.
  */
 public class WeatherHelper {
-
-    static final  int RAINANDCLOUD=1;               //  雨+云
-    static final int RAINANDTHUNDER=2;             //  雨+雷
-    static final int RAINANDSNOW=3;                //  雨+雪
-    static final int RAINANDOVERCAST=4;            //  雨+阴
-    static final int CLOUDOROVERCAST=5;            //  云/阴
-    static final int SMOG=6;                       //  雾/霾
-    static final int RAIN=7;                       //  雨
-    static final int SNOW=8;                       //  雪
-    static final int WIND=9;                       //  风
-    static final int SANDSTORM=10;                 //  沙
-    static final int SUNNY=11;                     //  晴
-    static final int DEFAULT=12;                   //  默认
+    /*
+    1、雨+云
+    2、雨+雷
+    3、雨+雪
+    4、雨+阴
+    5、雪/冰
+    6、云/阴
+    7、雾/霾
+    8、雨
+    9、风
+    10、沙
+    11、晴
+    12、默认
+    */
+    static final int RAINandCLOUD=1;
+    static final int RAINandTHUNDER=2;
+    static final int RAINandSNOW=3;
+    static final int RAINandOVERCAST=4;
+    static final int SNOWorICE=5;
+    static final int CLOUDorOVERCAST=6;
+    static final int SMOG=7;
+    static final int RAIN=8;
+    static final int WIND=9;
+    static final int SandSTorM=10;
+    static final int SUNNY=11;
+    static final int DEFAULT=12;
 
 
     public String weatherDetails="";
@@ -75,25 +88,25 @@ public class WeatherHelper {
     public int Sort(String weatherDetails){
 
         if((weatherDetails.indexOf("雨")!=-1)&&(weatherDetails.indexOf("云")!=-1))
-            return RAINANDCLOUD;
+            return RAINandCLOUD;
         else if((weatherDetails.indexOf("雨")!=-1)&&(weatherDetails.indexOf("雷")!=-1))
-            return RAINANDTHUNDER;
+            return RAINandTHUNDER;
         else if((weatherDetails.indexOf("雨")!=-1)&&(weatherDetails.indexOf("雪")!=-1))
-            return RAINANDSNOW;
-        else if((weatherDetails.indexOf("雨")!=-1)&&(weatherDetails.indexOf("阴")!=-1))
-            return RAINANDOVERCAST;
+            return RAINandSNOW;
+        else if((weatherDetails.indexOf("雨")!=-1)||(weatherDetails.indexOf("阴")!=-1))
+            return RAINandOVERCAST;
+        else if((weatherDetails.indexOf("雪")!=-1)||(weatherDetails.indexOf("冰")!=-1))
+            return SNOWorICE;
         else if((weatherDetails.indexOf("云")!=-1)||(weatherDetails.indexOf("阴")!=-1))
-            return CLOUDOROVERCAST;
-        else if((weatherDetails.indexOf("雾霾")!=-1)||(weatherDetails.indexOf("阴")!=-1))
+            return CLOUDorOVERCAST;
+        else if((weatherDetails.indexOf("雾")!=-1)||(weatherDetails.indexOf("霾")!=-1))
             return SMOG;
         else if((weatherDetails.indexOf("雨")!=-1))
             return RAIN;
-        else if((weatherDetails.indexOf("雪")!=-1))
-            return SNOW;
         else if((weatherDetails.indexOf("风")!=-1))
             return WIND;
         else if((weatherDetails.indexOf("沙")!=-1))
-            return SANDSTORM;
+            return SandSTorM;
         else if((weatherDetails.indexOf("晴")!=-1))
             return SUNNY;
         else

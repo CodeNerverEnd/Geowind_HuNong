@@ -22,7 +22,6 @@ import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
-import static com.baidu.location.h.i.R;
 
 public class WeatherActivity extends BaseActivity {
 
@@ -296,79 +295,79 @@ public class WeatherActivity extends BaseActivity {
 
                     switch (weatherType2) {
                         case 1:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather1);
                             break;
                         case 2:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather2);
                             break;
                         case 3:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather3);
                             break;
                         case 4:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather4);
                             break;
                         case 5:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather5);
                             break;
                         case 6:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather6);
                             break;
                         case 7:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather7);
                             break;
                         case 8:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather8);
                             break;
                         case 9:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather9);
                             break;
                         case 10:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather10);
                             break;
                         case 11:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather11);
                             break;
                         case 12:
-                            image2.setImageResource(R.drawable.ic_launcher);
+                            image2.setImageResource(R.drawable.weather12);
                             break;
                     }
 
                     switch (weatherType3) {
                         case 1:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather1);
                             break;
                         case 2:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather2);
                             break;
                         case 3:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather3);
                             break;
                         case 4:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather4);
                             break;
                         case 5:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather5);
                             break;
                         case 6:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather6);
                             break;
                         case 7:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather7);
                             break;
                         case 8:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather8);
                             break;
                         case 9:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather9);
                             break;
                         case 10:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather10);
                             break;
                         case 11:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather11);
                             break;
                         case 12:
-                            image3.setImageResource(R.drawable.ic_launcher);
+                            image3.setImageResource(R.drawable.weather12);
                             break;
                     }
 
