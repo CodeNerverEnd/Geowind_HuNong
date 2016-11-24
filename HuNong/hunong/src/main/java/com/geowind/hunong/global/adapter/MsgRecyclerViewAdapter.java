@@ -1,5 +1,8 @@
 package com.geowind.hunong.global.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.activitys.MsgDetailsActivity;
 import com.geowind.hunong.view.CircleImageView;
 
 /**
@@ -14,6 +18,7 @@ import com.geowind.hunong.view.CircleImageView;
  */
 
 public class MsgRecyclerViewAdapter extends RecyclerView.Adapter<MsgRecyclerViewAdapter.MyViewHolder> {
+    private  String msgType;
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -21,28 +26,38 @@ public class MsgRecyclerViewAdapter extends RecyclerView.Adapter<MsgRecyclerView
         ,parent,false));
     }
 
+    public String getMsgType(){
+        return msgType;
+    }
+    public void setMsgType(String msgType){
+        this.msgType=msgType;
+    }
     @Override
-    public void onBindViewHolder(MyViewHolder holder,final int position) {
+    public void onBindViewHolder(final MyViewHolder  holder,final int position) {
+
         switch (position){
             case 0:
              //   holder.headIcon.setImageDrawable();
                 holder.convName.setText("任务提醒");
-
+                holder.headIcon.setImageResource(R.drawable.msg_task);
                 break;
             case 1:
                 holder.convName.setText("专家回复");
+                holder.headIcon.setImageResource(R.drawable.msg_reply);
                 break;
             case 2:
                 holder.convName.setText("系统消息");
+                holder.headIcon.setImageResource(R.drawable.msg_system);
                 break;
-
         }
 
         if(mOnItemClickLitener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    setMsgType(holder.convName.getText().toString());
                     mOnItemClickLitener.onItemClick(view,position);
+
                 }
             });
         }

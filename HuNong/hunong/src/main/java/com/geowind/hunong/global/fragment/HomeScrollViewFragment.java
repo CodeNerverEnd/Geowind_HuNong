@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.currenttask.CurrentTaskActivity;
+import com.geowind.hunong.global.activitys.CurrentTaskActivity;
 import com.geowind.hunong.json.HomeData;
 import com.geowind.hunong.map.BaiduMapActivity;
 import com.geowind.hunong.pestControl.PestControlActivity;

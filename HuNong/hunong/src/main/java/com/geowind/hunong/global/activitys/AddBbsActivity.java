@@ -8,6 +8,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.dao.impl.TaskDaoImpl;
+import com.geowind.hunong.entity.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhangwen on 2016/11/6.
@@ -34,8 +39,6 @@ public class AddBbsActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initData() {
-        mTv_title.setText("发帖");
-
     }
 
     private void initView() {

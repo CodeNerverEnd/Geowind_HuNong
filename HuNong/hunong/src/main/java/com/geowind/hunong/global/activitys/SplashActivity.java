@@ -16,7 +16,9 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.geowind.hunong.R;
+import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Library;
+import com.geowind.hunong.entity.Task;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 
@@ -65,6 +67,7 @@ public class SplashActivity  extends Activity{
                 mLocationClient.start();
                 //联网操作
 //                getDataFromNet();
+
             }
 
             @Override
@@ -77,8 +80,7 @@ public class SplashActivity  extends Activity{
                        finish();
                    }else{
                        //进入登录界面
-                  //     Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
-                       Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                       Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
                        startActivity(intent);
                        finish();
                    }

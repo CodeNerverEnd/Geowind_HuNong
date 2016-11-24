@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/menu_title_bar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/title_bar_height"
     android:background="@color/colorAccent"
+    android:layout_height="@dimen/title_bar_height"
     android:orientation="vertical" >
-    
         <ImageButton
             android:id="@+id/return_btn"
             android:layout_width="@dimen/title_bar_height"
@@ -13,8 +13,8 @@
             android:layout_alignParentLeft="true"
             android:src="@drawable/jmui_back_btn"
             android:background="@drawable/jmui_back_btn_bg"/>
-        
-        <TextView 
+
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,4 +24,5 @@
             android:layout_centerInParent="true"
             android:singleLine="true"
             android:textSize="20sp"/>
+
 </RelativeLayout>

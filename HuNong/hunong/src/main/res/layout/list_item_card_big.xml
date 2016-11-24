@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
         android:layout_marginBottom="2dp"
@@ -18,29 +17,6 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_height="48dp">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@mipmap/article_search"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:background="@android:color/transparent"
-                    android:layout_gravity="center"
-                    android:id="@+id/et_article_sort"
-                    android:layout_height="wrap_content"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="right"
-                    android:src="@mipmap/sound"
-                    android:background="@android:color/transparent"
-                    android:layout_height="wrap_content"/>
-            </android.support.v7.widget.CardView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -49,27 +25,65 @@
                 android:layout_height="wrap_content">
                 <Button
                     android:layout_width="wrap_content"
-                    android:text="虫害"
-                    android:background="#632879"
-                    android:textColor="@android:color/background_light"
+                    android:text="植物业"
+                    android:layout_margin="3dp"
+                    android:id="@+id/category_1"
+                    android:background="@drawable/lib_catagory_bg"
                     android:layout_height="wrap_content"/>
                 <Button
                     android:layout_width="wrap_content"
-                    android:text="旱涝"
-                    android:background="#5989c9"
-                    android:textColor="@android:color/background_light"
+                    android:text="畜牧业"
+                    android:id="@+id/category_2"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/lib_catagory_bg"
                     android:layout_height="wrap_content"/>
                 <Button
                     android:layout_width="wrap_content"
-                    android:text="农技"
-                    android:background="#1fa431"
-                    android:textColor="@android:color/background_light"
+                    android:text="林业"
+                    android:id="@+id/category_3"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/lib_catagory_bg"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="渔业"
+                    android:id="@+id/category_4"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/lib_catagory_bg"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="副业"
+                    android:layout_margin="3dp"
+                    android:id="@+id/category_5"
+                    android:background="@drawable/lib_catagory_bg"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="密集农业"
+                    android:layout_margin="3dp"
+                    android:id="@+id/category_6"
+                    android:background="@drawable/lib_catagory_bg"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="混合业"
+                    android:id="@+id/category_7"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/lib_catagory_bg"
                     android:layout_height="wrap_content"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:text="其他"
-                    android:textColor="@android:color/background_light"
-                    android:background="#faed8719"
+                    android:id="@+id/category_8"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/lib_catagory_bg"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>

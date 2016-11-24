@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +25,12 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.util.HashMap;
+
+
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends Activity {
@@ -36,7 +41,11 @@ public class LoginActivity extends Activity {
     private ImageButton mIb_login;
     private String mUserId;
     private String mPassword;
+    //此APPKEY仅供测试使用，且不定期失效，请到mob.com后台申请正式APPKEY
+    private static String APPKEY = "18fa794006b50";
 
+    // 填写从短信SDK应用后台注册得到的APPSECRET
+    private static String APPSECRET = "5bff0085b70667fbc15429b2e1b83f34";
     //@RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +54,24 @@ public class LoginActivity extends Activity {
         initView();
         Window window=this.getWindow();
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        initShareSDK();
     }
-
+    private void initShareSDK() {
+        // 初始化短信SDK
+        SMSSDK.initSDK(this, APPKEY, APPSECRET, true);
+        final Handler handler = new Handler();
+        EventHandler eventHandler = new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                Message msg = new Message();
+                msg.arg1 = event;
+                msg.arg2 = result;
+                msg.obj = data;
+                handler.sendMessage(msg);
+            }
+        };
+        // 注册回调监听接口
+        SMSSDK.registerEventHandler(eventHandler);
+    }
 
     private void initView() {
         mEt_userId = (EditText) findViewById(R.id.et_userName);
@@ -141,8 +165,22 @@ public class LoginActivity extends Activity {
     }
     public void startForgetPasswordActivity(){
 
-      //  Intent intent=new Intent(this,ResetPasswordActivity.class);
-      //  startActivity(intent);
+        // 打开注册页面
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.setRegisterCallback(new EventHandler() {
+            public void afterEvent(int event, int result, Object data) {
+                // 解析注册结果
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    @SuppressWarnings("unchecked")
+                    HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
+                    String country = (String) phoneMap.get("country");
+                    String phone = (String) phoneMap.get("phone");
+                    // 提交用户信息
+               //     registerUser(country, phone);
+                }
+            }
+        });
+        registerPage.show(this);
     }
 
     public void requstLogin() {
@@ -157,6 +195,7 @@ public class LoginActivity extends Activity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISLOGIN,true);
                 SpTools.setString(getApplicationContext(),MyConstants.USERNAME,mUserId);
+
                 startMainActivity();
             }
             @Override

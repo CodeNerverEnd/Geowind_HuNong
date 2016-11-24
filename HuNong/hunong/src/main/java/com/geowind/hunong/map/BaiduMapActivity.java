@@ -55,6 +55,7 @@ import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
 import com.geowind.hunong.R;
+import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Task;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.MyConstants;
@@ -194,10 +195,13 @@ public class BaiduMapActivity extends Activity {
                         mTv_machineName.setContent(mTasks.get(i).getMstyle());
                         mTv_plantsType.setContent(mTasks.get(i).getCropType());
                         mTv_taskTime.setContent(mTasks.get(i).getDate());
-                        mTv_taskState.setContent(mTasks.get(i).getDate());
                         mTv_note.setText(mTasks.get(i).getNote());
                         mBitmapUtils.display(mIv_task,mTasks.get(i).getFpic());
-
+                        if(mTasks.get(i).getState().equals(0)){
+                            mTv_taskState.setContent("正在进行");
+                        }else {
+                            mTv_taskState.setContent("未完成");
+                        }
                         builder.setView(view);
                         mTaskDetailsDialog = builder.create();
                         //设置dialog背景为透明
@@ -595,40 +599,28 @@ public class BaiduMapActivity extends Activity {
     }
 
 
-    //从服务器获取pop数据
+    //从数据库获取pop数据
 
-    public void getPOpJsonFromNet() {
-        AsyncHttpClient asyncHttpClient=new AsyncHttpClient();
-        RequestParams params=new RequestParams();
-        params.add("method","getTaskInfo");
-        params.add("username", SpTools.getString(getApplicationContext(),MyConstants.USERNAME,""));
-        asyncHttpClient.post(MyConstants.TASKURL,params,new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String jsonString=new String(responseBody);
-                mTasks=new ArrayList<Task>();
-                mTasks.addAll(TaskJson.paseJson(jsonString));
-                mMarkers = new ArrayList<OverlayOptions>();
-                if (mTasks.size() > 0) {
-                    for (int i = 0; i < mTasks.size(); i++) {
-                        //添加标注
-                        mMark = new MarkerOptions();
-                        LatLng latLng = new LatLng(mTasks.get(i).getLatitude(), mTasks.get(i).getLongitude());
-                        mMark.icon(BitmapDescriptorFactory.fromResource(mMakerIconsRes[i]))
-                                .draggable(true)
-                                .position(latLng)
+    public void getPOpJsonFromDB() {
+        mTasks=new ArrayList<Task>();
+        TaskDaoImpl taskDao=new TaskDaoImpl(getApplicationContext());
+        String[] columns={"workLoad","mno","date","state","fzon", "farea","faddr","fpic","cropType","mstyle","note"};
+     //   mTasks.addAll(taskDao.findByCondition(columns,"state=?",new String[]{"0"},null,null));
+        mTasks.addAll(taskDao.findAll());
+        mMarkers = new ArrayList<OverlayOptions>();
+        if (mTasks.size() > 0) {
+            for (int i = 0; i < mTasks.size(); i++) {
+                //添加标注
+                mMark = new MarkerOptions();
+                LatLng latLng = new LatLng(mTasks.get(i).getLatitude(), mTasks.get(i).getLongitude());
+                mMark.icon(BitmapDescriptorFactory.fromResource(mMakerIconsRes[i%6]))
+                        .draggable(true)
+                        .position(latLng)
                         .title(i+"");
-                        mMarkers.add(mMark);
-                    }
-                    mBaiduMap.addOverlays(mMarkers);
-                }
+                mMarkers.add(mMark);
             }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getApplicationContext(),"哎呀，没网了！",Toast.LENGTH_LONG);
-            }
-        });
+            mBaiduMap.addOverlays(mMarkers);
+        }
     }
 
 
@@ -670,7 +662,7 @@ public class BaiduMapActivity extends Activity {
      */
 
     private void addMark() {
-        getPOpJsonFromNet();
+        getPOpJsonFromDB();
     }
 
     /**

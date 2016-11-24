@@ -11,7 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.geowind.hunong.R;
@@ -19,6 +22,7 @@ import com.geowind.hunong.global.fragment.BbsFragment;
 import com.geowind.hunong.global.fragment.LibraryRecyclerViewFragment;
 import com.geowind.hunong.global.fragment.HomeScrollViewFragment;
 import com.geowind.hunong.global.fragment.MessageFragment;
+import com.geowind.hunong.receiver.MyReceiver;
 import com.geowind.hunong.utils.JpushUtil;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
@@ -34,13 +38,14 @@ import cn.jpush.android.api.TagAliasCallback;
 /**
  * Created by zhangwen on 16-7-16.
  */
-public class MainActivity extends DrawerActivity {
+public class MainActivity extends DrawerActivity{
     private final static String TAG = "MainActivity";
     private MaterialViewPager mViewPager;
     private Toolbar mToolbar;
     private ArrayList<String> mTitleNames;
     public static boolean isForeground = false;
     private ImageView mAddImage;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +67,11 @@ public class MainActivity extends DrawerActivity {
         });
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
-
     }
 
 
     private void initDate() {
+
        //极光推送的初始化
         registerMessageReceiver();  // used for receive msg
         String alias= SpTools.getString(getApplicationContext(), MyConstants.USERNAME,"");
@@ -78,6 +83,10 @@ public class MainActivity extends DrawerActivity {
 
             }
         });
+
+        //创建自定义广播对象
+
+        MyReceiver receiver=new MyReceiver();
         //主页的viewpager标签
         mTitleNames=new ArrayList<String>();
         mTitleNames.add("主页");
@@ -116,17 +125,12 @@ public class MainActivity extends DrawerActivity {
         });
 
 
-        //测试极光推送
-        String udid =  JpushUtil.getImei(getApplicationContext(), "");
-
-        String appKey = JpushUtil.getAppKey(getApplicationContext());
-        if (null == appKey) appKey = "AppKey异常";
 
     }
 
     //接收来自服务器自定义的消息
     private MessageReceiver mMessageReceiver;
-    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String MESSAGE_RECEIVED_ACTION = "com.geowind.hunong.MESSAGE_RECEIVED_ACTION";
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_EXTRAS = "extras";
@@ -137,7 +141,9 @@ public class MainActivity extends DrawerActivity {
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(MESSAGE_RECEIVED_ACTION);
         registerReceiver(mMessageReceiver, filter);
+
     }
+
 
     public class MessageReceiver extends BroadcastReceiver {
 
@@ -158,7 +164,8 @@ public class MainActivity extends DrawerActivity {
 
 //对接收到的消息进行处理
     private void setCostomMsg(String msg){
-       System.out.println("接收到的极光消息："+msg);
+     //  System.out.println("接收到的极光消息："+msg);
+       // Toast.makeText(MainActivity.this,msg,Toast.LENGTH_LONG).show();
     }
 
 

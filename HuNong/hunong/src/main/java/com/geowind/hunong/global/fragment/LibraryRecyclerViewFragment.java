@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.agricultureLibrary.ArticleDetailsActivity;
+import com.geowind.hunong.global.activitys.ArticleDetailsActivity;
 import com.geowind.hunong.entity.Library;
-import com.geowind.hunong.global.activitys.SplashActivity;
+import com.geowind.hunong.global.activitys.LibrarySearchActiviy;
 import com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter;
 import com.geowind.hunong.json.LibraryJson;
 import com.geowind.hunong.utils.MyConstants;
@@ -26,6 +26,7 @@ import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDeco
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +37,15 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by zhangwen on 16-7-25.这文库的Fragment
  */
-public class LibraryRecyclerViewFragment extends Fragment {
+public class LibraryRecyclerViewFragment extends Fragment implements View.OnClickListener{
     static final boolean GRID_LAYOUT = false;
     private RecyclerView mRecyclerView;
     private List<Object> mContentItems = new ArrayList<Object>();
-    private LibraryRecyclerViewAdapter mAdapter=new LibraryRecyclerViewAdapter(mContentItems);
+    private LibraryRecyclerViewAdapter mAdapter=new LibraryRecyclerViewAdapter();
     Library mLibrary;
     private SwipeRefreshLayout mSr_refrsh;
     private TextView mTv_noMoreData;
+    private FloatingActionButton mFab_search;
 
     public static LibraryRecyclerViewFragment newInstance() {
         return new LibraryRecyclerViewFragment();
@@ -61,8 +63,12 @@ public class LibraryRecyclerViewFragment extends Fragment {
         mTv_noMoreData = (TextView) view.findViewById(R.id.tv_noMoreData);
         mSr_refrsh = (SwipeRefreshLayout) view.findViewById(R.id.sr_refresh);
         mSr_refrsh.setColorSchemeResources(R.color.colorAccent);
+        //floatActionButton
+        mFab_search = (FloatingActionButton) view.findViewById(R.id.fab_libSearch);
+        mFab_search.attachToRecyclerView(mRecyclerView);
+        mFab_search.show();
+
         RecyclerView.LayoutManager layoutManager;
-        requstLibrary();
         if (GRID_LAYOUT) {
             layoutManager = new GridLayoutManager(getActivity(), 2);
         } else {
@@ -96,26 +102,9 @@ public class LibraryRecyclerViewFragment extends Fragment {
         }
         initEvent();
     }
-    public void requstLibrary() {
-        AsyncHttpClient client=new AsyncHttpClient();
-        RequestParams params =new RequestParams();
-        params.add("method","getTitles");
-        params.add("category",String.valueOf(1));
-        params.add("begin",String.valueOf(0));
-        client.post(MyConstants.LibraryURL,params,new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String jsonString=new String(responseBody);
-                SpTools.setString(getActivity(),MyConstants.LIBRARY_JSON,jsonString);
-                mLibrary= LibraryJson.parseJsonObject(jsonString);
-                mAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getActivity(),"哎呀，没网了",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
+
+
     private void initEvent() {
         mSr_refrsh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -127,12 +116,25 @@ public class LibraryRecyclerViewFragment extends Fragment {
                             @Override
                             public void run() {
                                 mSr_refrsh.setRefreshing(false);
-                                requstLibrary();
+                             //   requstLibrary();
                             }
                         });
                     }
                 }).start();
             }
         });
+
+        mFab_search.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab_libSearch:
+                Intent intent=new Intent(getActivity(), LibrarySearchActiviy.class);
+                startActivity(intent);
+                break;
+        }
+
     }
 }

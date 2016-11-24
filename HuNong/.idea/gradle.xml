@@ -10,8 +10,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CircularFloatingActionMenu" />
+            <option value="$PROJECT_DIR$/SMSSDK" />
+            <option value="$PROJECT_DIR$/ShortMessageSDKGUI" />
             <option value="$PROJECT_DIR$/hunong" />
             <option value="$PROJECT_DIR$/multiple-images-selector" />
+            <option value="$PROJECT_DIR$/sqlitetest" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

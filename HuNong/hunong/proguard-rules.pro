@@ -17,4 +17,3 @@
 #}
 -optimizations optimization_filter
 -keepattributes InnerClasses
--dontoptimize

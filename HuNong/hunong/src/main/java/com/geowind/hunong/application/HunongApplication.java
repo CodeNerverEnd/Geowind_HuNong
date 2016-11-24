@@ -1,18 +1,9 @@
 package com.geowind.hunong.application;
 
 import android.app.Application;
-
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
-import com.geowind.hunong.R;
-import com.geowind.hunong.global.activitys.SplashActivity;
-import com.geowind.hunong.utils.MyConstants;
-import com.geowind.hunong.utils.SpTools;
-
 import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by zhangwen on 2016/10/22.
@@ -39,8 +30,9 @@ public class HunongApplication extends Application {
  */
         SDKInitializer.initialize(getApplicationContext());
 
-
     }
+
+
 
 
 }

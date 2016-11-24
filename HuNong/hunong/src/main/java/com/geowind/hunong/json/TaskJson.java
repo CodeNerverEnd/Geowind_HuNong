@@ -1,5 +1,6 @@
 package com.geowind.hunong.json;
 
+import com.geowind.hunong.annotation.TableName;
 import com.geowind.hunong.entity.Task;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,12 +14,9 @@ import java.util.List;
 
 public class TaskJson {
     private static Gson gson;
-    public static List<Task> paseJson(String jsonString){
-        Type listType = new TypeToken<List<Task>>(){}.getType();
-        if(gson==null)
-            //创建gson对象
-            gson = new Gson();
-        List<Task> list=gson.fromJson(jsonString,listType);
-        return list;
+    public static Task parseJsonObject(String jsonString) {
+        Gson gson = new Gson();
+        Task task = gson.fromJson(jsonString, Task.class);
+        return task;
     }
 }

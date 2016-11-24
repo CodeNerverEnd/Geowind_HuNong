@@ -51,7 +51,8 @@ public class MessageFragment extends Fragment {
         mAdapter.setOnItemClickLitener(new MsgRecyclerViewAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(getActivity(), MsgDetailsActivity.class);
+                Intent intent=new Intent(getActivity(),MsgDetailsActivity.class);
+                intent.putExtra("msgType",mAdapter.getMsgType());
                 startActivity(intent);
             }
         });

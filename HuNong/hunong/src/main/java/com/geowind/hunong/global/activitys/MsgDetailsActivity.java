@@ -1,13 +1,20 @@
 package com.geowind.hunong.global.activitys;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.global.adapter.MsgDetailAdapter;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by zhangwen on 2016/11/6.
@@ -16,7 +23,9 @@ import com.geowind.hunong.R;
 public class MsgDetailsActivity extends BaseActivity {
 
     private ListView mLv_msgList;
-    private MyAdapter mAdapter;
+    private MsgDetailAdapter mAdapter;
+    private TextView mTv_title;
+    private ImageButton mIb_return;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,37 +33,29 @@ public class MsgDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_msg_details);
         initView();
         initData();
+        initEvent();
+    }
+
+    private void initEvent() {
+        mIb_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initData() {
-        mAdapter = new MyAdapter();
+        mAdapter = new MsgDetailAdapter(getApplicationContext(),getIntent());
         mLv_msgList.setAdapter(mAdapter);
+        mTv_title.setText(getIntent().getStringExtra("msgType"));
     }
-    private  class MyAdapter extends BaseAdapter{
 
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
-        }
-    }
 
     private void initView() {
         mLv_msgList = (ListView) findViewById(R.id.lv_msgDetails);
+        mTv_title = (TextView) findViewById(R.id.title);
+        mIb_return = (ImageButton) findViewById(R.id.return_btn);
     }
 
 }

@@ -6,14 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.geowind.hunong.dao.impl.TaskDaoImpl;
+import com.geowind.hunong.entity.Task;
 import com.geowind.hunong.global.activitys.MainActivity;
-import com.geowind.hunong.global.activitys.SplashActivity;
+import com.geowind.hunong.global.activitys.MsgDetailsActivity;
+import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.JpushUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -29,14 +34,14 @@ public class MyReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		//初始化数据库辅助类
         Bundle bundle = intent.getExtras();
 		Log.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
-		
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
             Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
             //send the Registration Id to your server...
-                        
+
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
         	Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
         	processCustomMessage(context, bundle);
@@ -45,27 +50,75 @@ public class MyReceiver extends BroadcastReceiver {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
+			if(bundle!=null)
+			{
+				InsertDataToDb(context,bundle);
+			}
         	
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
             
         	//打开自定义的Activity
-        //	Intent i = new Intent(context, TestActivity.class);
-        //	i.putExtras(bundle);
-        	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
-        //	context.startActivity(i);
+        	Intent i = new Intent(context, MsgDetailsActivity.class);
+			i.putExtras(bundle);
+			i.putExtra("msgType",bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE));
+			i.putExtra("json",bundle.getString(JPushInterface.EXTRA_EXTRA));
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		//	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			context.startActivity(i);
         	
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
             //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
-        	
+			System.out.println( "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
+
         } else if(JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {
         	boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
         	Log.w(TAG, "[MyReceiver]" + intent.getAction() +" connected state change to "+connected);
         } else {
         	Log.d(TAG, "[MyReceiver] Unhandled intent - " + intent.getAction());
         }
+	}
+
+	private void InsertDataToDb(Context context,Bundle bundle) {
+		String bundleString=bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
+		if(bundleString!=null){
+			String jsonString=bundle.getString(JPushInterface.EXTRA_EXTRA);
+			switch (bundleString){
+				case "任务提醒":
+					TaskDaoImpl taskDao=new TaskDaoImpl(context);
+
+					try {
+						JSONObject extraJson = new JSONObject(jsonString);
+					//	Object jsonExtra = extraJson.get("jsonExtra");
+						String s="{\"workLoad\":\"100\",\"no\":41,\"state\":\"0\",\"date\":\"2016-11-30\",\"type\":\"收割\",\"fno\":10041,\"farea\":100,\"fUname\":\"yuede123\",\"fzno\":\"A\",\"faddr\":\"湖南省衡阳市石鼓区Y101\",\"mno\":\"x0001\",\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"fpic\":\"http:\\/\\/192.168.176.2:8080\\/MutualAgriculture\\/..\\/HN_upload\\\\imgupload\\/1479389055507_2200.JPG\"" +
+								",\"longitude\":112.58888,\"latitude\":26.939681,\"note\":\"你好\",\"mstyle\":\"收获机械\"}";
+						Task task=TaskJson.parseJsonObject(s);
+						taskDao.insert(task);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					break;
+				case  "专家回复":
+					try {
+						JSONObject extraJson = new JSONObject(jsonString);
+						System.out.println(extraJson);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					break;
+				case   "系统消息":
+					try {
+						JSONObject extraJson = new JSONObject(jsonString);
+						System.out.println(extraJson);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					break;
+
+			}
+		}
+
 	}
 
 	// 打印所有的 intent extra 数据
