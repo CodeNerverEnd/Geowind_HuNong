@@ -78,7 +78,6 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".weather.WeatherSelectCityActivity" />
         <activity android:name=".pestControl.PestControlActivity" />
         <activity android:name=".currenttask.CurrentTaskActivity" />
         <activity android:name=".currenttask.TaskDetailsActivity" />
@@ -100,7 +99,7 @@
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
             android:exported="false"
-            android:theme="@style/MyDialogStyle"></activity>
+            android:theme="@style/MyDialogStyle" />
 
         <!-- Required SDK核心功能 -->
         <activity
@@ -119,7 +118,7 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
@@ -212,7 +211,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" /> <!-- </>值来自开发者平台取得的AppKey -->
-        <activity android:name=".pestControl.Recodes"></activity>
+        <activity android:name=".pestControl.Recodes" />
+        <activity android:name=".weather.WeatherSelectCity.activity.SelectCityActivity" />
+        <activity android:name=".weather.WeatherSelectCity.activity.BaseActivity"></activity>
     </application>
 
 </manifest>

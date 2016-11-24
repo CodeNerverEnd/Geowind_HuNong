@@ -1,6 +1,7 @@
 package com.geowind.hunong.weather.tool;
 
 import android.content.Context;
+
 import com.geowind.hunong.R;
 import com.geowind.hunong.weather.region.City;
 import com.geowind.hunong.weather.region.District;
@@ -31,10 +32,10 @@ import java.util.List;
 
 /**
  * Created by logaxy on 2016/7/18.
- *
+ * <p/>
  * 类名：WeatherUtils
  * 方法：getJsonStr(String url)、getResult(InputStream in)
- *      fromJson(String jsonStr)、getProvinces(Context context)
+ * fromJson(String jsonStr)、getProvinces(Context context)
  */
 
 public class WeatherUtils {
@@ -48,11 +49,10 @@ public class WeatherUtils {
      */
     public static String getURL(String location) {
         return "http://api.map.baidu.com/telematics/v3/weather?location="
-                + location + "&output=json&ak=" +"q9xQH20VoMP3nPxZBUdCinvK1xcIl8tO";
+                + location + "&output=json&ak=" + "q9xQH20VoMP3nPxZBUdCinvK1xcIl8tO";
     }
 
     /**
-     *
      * @param in
      * @return
      */
@@ -99,6 +99,7 @@ public class WeatherUtils {
     /**
      * 方法名：fromJson(String jsonString)
      * 功能： 解析Json数据
+     *
      * @param jsonString
      * @return weather
      */
@@ -119,7 +120,7 @@ public class WeatherUtils {
                 List<Result> resultList = new ArrayList<Result>();
                 JSONArray rJsonArray = jsonObject.getJSONArray("results");
                 for (int i = 0; i < rJsonArray.length(); i++) {
-                    JSONObject  resultsJsonObject= rJsonArray.getJSONObject(i);
+                    JSONObject resultsJsonObject = rJsonArray.getJSONObject(i);
                     Result result = new Result();
                     result.setCurrentCity(resultsJsonObject.getString("currentCity"));
                     result.setPm25(resultsJsonObject.getString("pm25"));
@@ -163,8 +164,9 @@ public class WeatherUtils {
     /**
      * 方法名：getProvinces(Context context)
      * 功能：解析省市区XML文件，获取Province类型集合
+     *
      * @param context
-     * @return List<Province>
+     * @return List<ProvinceModel>
      * @throws XmlPullParserException
      * @throws IOException
      */
@@ -176,7 +178,7 @@ public class WeatherUtils {
         List<City> citys = null;
         City city = null;
         List<District> districts = null;
-        District district =null;
+        District district = null;
 
         InputStream in = context.getResources().openRawResource(
                 R.raw.citys_weather);

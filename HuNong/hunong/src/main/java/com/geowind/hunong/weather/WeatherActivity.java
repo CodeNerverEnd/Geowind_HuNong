@@ -16,12 +16,12 @@ import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
+import com.geowind.hunong.weather.WeatherSelectCity.activity.SelectCityActivity;
 import com.geowind.hunong.weather.tool.MyUtils;
 import com.geowind.hunong.weather.tool.WeatherUtils;
 import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
-
 
 public class WeatherActivity extends BaseActivity {
 
@@ -133,7 +133,6 @@ public class WeatherActivity extends BaseActivity {
             }
         });
 
-
         //自动定位
         String[] pcd = LocationUtils.getAddr(getApplicationContext());
         selectCity = pcd[1];
@@ -144,7 +143,7 @@ public class WeatherActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //跳转到选择省市区
-                Intent intent = new Intent(WeatherActivity.this, WeatherSelectCityActivity.class);
+                Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -200,7 +199,6 @@ public class WeatherActivity extends BaseActivity {
              * 当前没网情况下是上一次有网时保存下来的，在当前有网的情况下是当前获取到的
              */
             else {
-
                 linearLayout3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 rootRelativeLayout.setBackgroundColor(Color.parseColor("#ECECEC"));
 
@@ -239,7 +237,7 @@ public class WeatherActivity extends BaseActivity {
                     date.setText(w.getDate().substring(5, 10).replace("-", "/"));
 
 
-                    Temperature1.setText(weather_data.getTemperature());
+                    Temperature1.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     presentWeather.setImageResource(R.mipmap.presentweather);
                     weather1.setText(weather_data.getWeather());
                     windstrength1.setText(weather_data.getWind());
@@ -250,11 +248,10 @@ public class WeatherActivity extends BaseActivity {
                      */
                     weather_data = result.getWeather_data().get(1);
 
-                    temperature2.setText(weather_data.getTemperature());
+                    temperature2.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     week2.setText(weather_data.getDate());
                     weather2.setText(weather_data.getWeather());
                     windstrength2.setText(weather_data.getWind());
-                    temperature2.setText(weather_data.getTemperature());
                     secondDayLayout.setBackgroundResource(R.mipmap.rounded);
                     imageView_tomorrow.setImageResource(R.mipmap.tomorrow);
 
@@ -268,7 +265,7 @@ public class WeatherActivity extends BaseActivity {
                     week3.setText(weather_data.getDate());
                     weather3.setText(weather_data.getWeather());
                     windstrength3.setText(weather_data.getWind());
-                    temperature3.setText(weather_data.getTemperature());
+                    temperature3.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     thirdDayLayout.setBackgroundResource(R.mipmap.rounded);
                     imageView_aftertomorrow.setImageResource(R.mipmap.aftertomorrow);
 
