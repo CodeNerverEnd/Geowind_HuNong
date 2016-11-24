@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:fitsSystemWindows="true"
+              android:layout_height="match_parent">
+<include layout="@layout/menu_title_bar"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:textSize="18sp"
+        android:id="@+id/et_verifyPhone_phone"
+        android:hint="手机号（仅支持中国大陆号）"
+        android:layout_height="40dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:hint="验证码"
+            android:id="@+id/et_verifyPhone_verifyCode"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:text="获取验证码"
+            android:layout_margin="10dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:id="@+id/tv_verifyPhone_getVerifyCode"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            android:id="@+id/tv_verifyPhone_timer"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+
+<Button
+    android:layout_width="match_parent"
+    style="@style/register_button_style"
+    android:text="下一步"
+    android:id="@+id/bt_verifyPhone_next"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

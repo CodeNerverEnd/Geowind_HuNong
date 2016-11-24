@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:fitsSystemWindows="true"
+              android:layout_height="match_parent">
+<include layout="@layout/menu_title_bar"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:background="@color/transparent"
+        android:textSize="18sp"
+        android:id="@+id/et_verifyPhone_newPsw"
+        android:hint="请输入6-16位新密码"
+        android:layout_height="40dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/left_textView_select"
+        android:layout_height="2dp"/>
+
+<Button
+    android:layout_width="match_parent"
+    style="@style/register_button_style"
+    android:text="确认"
+    android:id="@+id/bt_verifyPhone_ok"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -15,7 +15,7 @@ public class ResultActivity extends BaseActivity {
     /*
      * titlebar相关
      * */
-    private TextView titil;
+    private TextView title;
     private ImageButton returnButton;
 
     String description;

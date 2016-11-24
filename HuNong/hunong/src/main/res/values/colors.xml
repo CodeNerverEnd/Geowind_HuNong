@@ -97,4 +97,6 @@
     <color name="white">#FFFFFF</color>
 
     <color name="light_blue">#8CA4FF</color>
+
+    <color name="province_line_border">#C7C7C7</color>
 </resources>

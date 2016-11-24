@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:orientation="vertical"
+          android:layout_height="match_parent">
+          <TextView
+              android:layout_width="match_parent"
+              android:text="问题描述"
+              android:layout_margin="10dp"
+              android:layout_height="wrap_content"/>
+
+          <TextView
+              android:layout_width="match_parent"
+              android:id="@+id/tv_feedbackDesc"
+              android:layout_margin="5dp"
+              android:ellipsize="end"
+              android:lines="12"
+              android:layout_height="150dp"/>
+
+          <TextView
+              android:layout_width="match_parent"
+              android:text="专家回复"
+              android:layout_margin="10dp"
+              android:layout_height="wrap_content"/>
+
+          <TextView
+              android:layout_width="match_parent"
+              android:id="@+id/tv_expertReply"
+              android:layout_margin="5dp"
+              android:ellipsize="end"
+              android:lines="12"
+              android:layout_height="150dp"/>
+      </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="16sp"
+        android:textColor="@color/gray"
+        android:text="2016-11-11"
+        android:id="@+id/tv_msg_date"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

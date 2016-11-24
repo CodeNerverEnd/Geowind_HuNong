@@ -26,7 +26,7 @@ import com.geowind.hunong.pestControl.PestControlActivity;
 import com.geowind.hunong.utils.DensityUtils;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.weather.WeatherActivity;
-import com.geowind.hunong.zixun.ZixunActivity;
+import com.geowind.hunong.consult.ConsultActivity;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.google.gson.Gson;
@@ -313,7 +313,7 @@ private  class SlidingShowAdapter extends PagerAdapter{
                     toActivity(WeatherActivity.class);
                     break;
                 case R.id.ib_zixun:
-                    toActivity(ZixunActivity.class);
+                    toActivity(ConsultActivity.class);
                     break;
                 case R.id.ib_debug:
                     toActivity(PestControlActivity.class);

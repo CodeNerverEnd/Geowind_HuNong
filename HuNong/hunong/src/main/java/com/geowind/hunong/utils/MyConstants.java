@@ -23,7 +23,6 @@ public interface MyConstants {
     String LIBRARY_JSON="libraryJson";//文库的json数据
     String HOMEURL="";//主页数据的URL
     String CACHED_APP_KEY="cachedAppkey";//缓存的appkey
-
     //病虫害反馈处，服务器地址
     String PESTCONTROL_UPLOAD_URL="http://192.168.1.119:8080/MutualAgriculture/insectInfoUploadServlet";
     String REGISTER="http://115.159.125.122:8080/MutualAgriculture/UserServlet";//注册的
@@ -33,5 +32,4 @@ public interface MyConstants {
     String TABLE_TASK="task";//任务表名
     String TABLE_SYSTEM_MSG="system_msg";//系统消息表
     String TABLE_EXPERT_REPLY="expert_reply";//专家回复
-
 }

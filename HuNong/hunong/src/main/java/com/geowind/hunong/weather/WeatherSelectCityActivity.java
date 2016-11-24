@@ -38,7 +38,10 @@ public class  WeatherSelectCityActivity extends BaseActivity {
     private String returnString;//选择的城市名，返回给WeatherActivity
     private Button ack;//确认按钮
 
-    private TextView titil;
+    /**
+     * titlebar相关
+     */
+    private TextView title;
     private ImageButton returnButton;
 
     @Override
@@ -54,9 +57,9 @@ public class  WeatherSelectCityActivity extends BaseActivity {
         ack= (Button) findViewById(R.id.ack);
 
         //titlebar设置
-        titil=(TextView) findViewById(R.id.title);
+        title=(TextView) findViewById(R.id.title);
         returnButton= (ImageButton) findViewById(R.id.return_btn);
-        titil.setText("选择城市");
+        title.setText("选择城市");
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

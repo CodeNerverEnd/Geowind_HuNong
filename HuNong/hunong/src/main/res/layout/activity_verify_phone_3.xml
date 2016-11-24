@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:fitsSystemWindows="true"
+              android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="发送成功"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="密码重置成功，请登录"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"/>
+<Button
+    android:layout_marginTop="40dp"
+    android:layout_width="match_parent"
+    style="@style/register_button_style"
+    android:text="回到登录页"
+    android:id="@+id/bt_verifyPhone_backToLogin"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -16,6 +16,7 @@ import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
+import com.geowind.hunong.weather.WeatherSelectCity.activity.SelectCityActivity;
 import com.geowind.hunong.weather.tool.MyUtils;
 import com.geowind.hunong.weather.tool.WeatherUtils;
 import com.geowind.hunong.weather.weatherjson.Result;
@@ -47,7 +48,7 @@ public class WeatherActivity extends BaseActivity {
     private TextView cityName;//城市名
     private TextView pm25Value;//pm2.5值
     private ImageView pm2_5Rank;//pm2.5等级
-    private TextView Temperature1 ;//温度范围
+    private TextView Temperature1;//温度范围
     private TextView week1;//星期
     private TextView date;
     private TextView temperatureUnit;//温度单位
@@ -73,9 +74,12 @@ public class WeatherActivity extends BaseActivity {
     private int weatherType1;
     private int weatherType2;
     private int weatherType3;
-    private WeatherHelper weatherHelper=new WeatherHelper();
+    private WeatherHelper weatherHelper = new WeatherHelper();
 
-    private TextView titil;
+    /**
+     * titlebar相关
+     */
+    private TextView title;
     private ImageButton returnButton;
 
 
@@ -85,56 +89,53 @@ public class WeatherActivity extends BaseActivity {
         setContentView(R.layout.activity_weather);
 
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
-        linearLayout3      = (LinearLayout)   findViewById(R.id.linearLayout3);
+        linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
 
-        imageView_today         = (ImageView) findViewById(R.id.imageView_today);
-        imageView_tomorrow      = (ImageView) findViewById(R.id.imageView_tomorrow);
+        imageView_today = (ImageView) findViewById(R.id.imageView_today);
+        imageView_tomorrow = (ImageView) findViewById(R.id.imageView_tomorrow);
         imageView_aftertomorrow = (ImageView) findViewById(R.id.imageView_aftertomorrow);
-        secondDayLayout         = (LinearLayout) findViewById(R.id.secondDayLayout);
-        thirdDayLayout          = (LinearLayout) findViewById(R.id.thirdDayLayout);
+        secondDayLayout = (LinearLayout) findViewById(R.id.secondDayLayout);
+        thirdDayLayout = (LinearLayout) findViewById(R.id.thirdDayLayout);
 
-        btn             = (ImageButton)  findViewById(R.id.btn);
-        cityName        = (TextView)     findViewById(R.id.cityName);
-        pm25Value       = (TextView)     findViewById(R.id.pm25Value);
-        pm2_5Rank       = (ImageView)    findViewById(R.id.pm2_5Rank);
-        presentWeather  = (ImageView)    findViewById(R.id.presentWeather);
-        date            = (TextView)     findViewById(R.id.date);
-        temperatureUnit = (TextView)     findViewById(R.id.temperatureUnit);
-        line            = (ImageView)    findViewById(R.id.line);
-        week2           = (TextView)     findViewById(R.id.week2);
-        weather2        = (TextView)     findViewById(R.id.weather2);
-        windstrength2   = (TextView)     findViewById(R.id.windstrength2);
-        temperature2    = (TextView)     findViewById(R.id.temperature2);
-        image2          = (ImageView)    findViewById(R.id.image2);
-        week3           = (TextView)     findViewById(R.id.week3);
-        weather3        = (TextView)     findViewById(R.id.weather3);
-        windstrength3   = (TextView)     findViewById(R.id.windstrength3);
-        temperature3    = (TextView)     findViewById(R.id.temperature3);
-        image3          = (ImageView)    findViewById(R.id.image3);
-        weather1        = (TextView)     findViewById(R.id.weather1);
-        windstrength1   = (TextView)     findViewById(R.id.windstrength1);
-        temperatureNow  = (TextView)     findViewById(R.id.temperatureNow);
-        Temperature1    = (TextView)     findViewById(R.id.temperature1);
+        btn = (ImageButton) findViewById(R.id.btn);
+        cityName = (TextView) findViewById(R.id.cityName);
+        pm25Value = (TextView) findViewById(R.id.pm25Value);
+        pm2_5Rank = (ImageView) findViewById(R.id.pm2_5Rank);
+        presentWeather = (ImageView) findViewById(R.id.presentWeather);
+        date = (TextView) findViewById(R.id.date);
+        temperatureUnit = (TextView) findViewById(R.id.temperatureUnit);
+        line = (ImageView) findViewById(R.id.line);
+        week2 = (TextView) findViewById(R.id.week2);
+        weather2 = (TextView) findViewById(R.id.weather2);
+        windstrength2 = (TextView) findViewById(R.id.windstrength2);
+        temperature2 = (TextView) findViewById(R.id.temperature2);
+        image2 = (ImageView) findViewById(R.id.image2);
+        week3 = (TextView) findViewById(R.id.week3);
+        weather3 = (TextView) findViewById(R.id.weather3);
+        windstrength3 = (TextView) findViewById(R.id.windstrength3);
+        temperature3 = (TextView) findViewById(R.id.temperature3);
+        image3 = (ImageView) findViewById(R.id.image3);
+        weather1 = (TextView) findViewById(R.id.weather1);
+        windstrength1 = (TextView) findViewById(R.id.windstrength1);
+        temperatureNow = (TextView) findViewById(R.id.temperatureNow);
+        Temperature1 = (TextView) findViewById(R.id.temperature1);
 
         /*
         * titlebar相关设置,返回按钮事件等
         * */
-        titil=(TextView) findViewById(R.id.title);
-        returnButton= (ImageButton) findViewById(R.id.return_btn);
-        titil.setText("天气预报");
+        title = (TextView) findViewById(R.id.title);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
+        title.setText("天气预报");
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(WeatherActivity.this, MainActivity.class);
-//                startActivity(intent);
                 finish();
             }
         });
 
-
         //自动定位
-        String[] pcd=LocationUtils.getAddr(getApplicationContext());
-        selectCity=pcd[1];
+        String[] pcd = LocationUtils.getAddr(getApplicationContext());
+        selectCity = pcd[1];
         new WeatherAsyncTask().execute(selectCity);
 
         //按钮监听
@@ -142,8 +143,8 @@ public class WeatherActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //跳转到选择省市区
-                Intent intent=new Intent(WeatherActivity.this,WeatherSelectCityActivity.class);
-                startActivityForResult(intent,1);
+                Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -159,25 +160,24 @@ public class WeatherActivity extends BaseActivity {
             Weather weather;
             url = WeatherUtils.getURL(params[0]);
 
-            if(MyUtils.isNetworkAvailable(getApplicationContext())){
-                jsonString =  WeatherUtils.getJsonString(url);
-                SpTools.setString(getApplicationContext(),"key",jsonString);
+            if (MyUtils.isNetworkAvailable(getApplicationContext())) {
+                jsonString = WeatherUtils.getJsonString(url);
+                SpTools.setString(getApplicationContext(), "key", jsonString);
+            } else {
+                jsonString = SpTools.getString(getApplicationContext(), "key", "");
             }
-
-            else {
-                jsonString=SpTools.getString(getApplicationContext(),"key","");
-            }
-            weather =  WeatherUtils.fromJson(jsonString);
+            weather = WeatherUtils.fromJson(jsonString);
             return weather;
         }
 
         /**
          * 方法名：onPostExecute(Weather w )
          * 功能：更新UI，与另开线程类似
+         *
          * @param w
          */
         @Override
-        protected void onPostExecute(Weather w ) {
+        protected void onPostExecute(Weather w) {
             /**
              * 若一开始使用时没有网,无法拿到天气信息，则只显示当前定位城市，
              * 再若没开启定位权限，显示默认城市北京
@@ -189,7 +189,7 @@ public class WeatherActivity extends BaseActivity {
 //                else
 //                    cityName.setText("北京");
 //            }
-            if(w==null){
+            if (w == null) {
                 rootRelativeLayout.setBackgroundResource(R.drawable.ic_launcher);
 
             }
@@ -198,17 +198,16 @@ public class WeatherActivity extends BaseActivity {
              * 若已在有网环境下使用过，则显示传入的Weather类对象w里的天气信息，此w对象在
              * 当前没网情况下是上一次有网时保存下来的，在当前有网的情况下是当前获取到的
              */
-            else{
-
+            else {
                 linearLayout3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 rootRelativeLayout.setBackgroundColor(Color.parseColor("#ECECEC"));
 
                 Result result = w.getResults().get(0);
-                if(result!=null){
+                if (result != null) {
                     Weather_data weather_data = result.getWeather_data().get(0);
 
 //                    btn.setImageResource(R.mipmap.select );
-                    btn.setBackgroundResource(R.mipmap.select );
+                    btn.setBackgroundResource(R.mipmap.select);
 
                     imageView_today.setImageResource(R.mipmap.today);
 
@@ -221,8 +220,8 @@ public class WeatherActivity extends BaseActivity {
                      * 显示实时温度
                      */
                     String string = weather_data.getDate();
-                    String s=string.substring(14, string.length()-1);
-                    temperatureNow.setText(s.replace("℃",""));
+                    String s = string.substring(14, string.length() - 1);
+                    temperatureNow.setText(s.replace("℃", ""));
 
                     temperatureUnit.setText("℃");//显示“℃”
 
@@ -235,10 +234,10 @@ public class WeatherActivity extends BaseActivity {
                     /**
                      * 按xx/xx的格式显示日期
                      */
-                    date.setText(w.getDate().substring(5,10).replace("-","/"));
+                    date.setText(w.getDate().substring(5, 10).replace("-", "/"));
 
 
-                    Temperature1.setText(weather_data.getTemperature());
+                    Temperature1.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     presentWeather.setImageResource(R.mipmap.presentweather);
                     weather1.setText(weather_data.getWeather());
                     windstrength1.setText(weather_data.getWind());
@@ -249,15 +248,14 @@ public class WeatherActivity extends BaseActivity {
                      */
                     weather_data = result.getWeather_data().get(1);
 
-                    temperature2.setText(weather_data.getTemperature());
+                    temperature2.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     week2.setText(weather_data.getDate());
                     weather2.setText(weather_data.getWeather());
                     windstrength2.setText(weather_data.getWind());
-                    temperature2.setText(weather_data.getTemperature());
                     secondDayLayout.setBackgroundResource(R.mipmap.rounded);
                     imageView_tomorrow.setImageResource(R.mipmap.tomorrow);
 
-                    weatherType2=weatherHelper.Sort(weather_data.getWeather());
+                    weatherType2 = weatherHelper.Sort(weather_data.getWeather());
 
                     /**
                      * 显示第三天天气基本数据
@@ -267,79 +265,107 @@ public class WeatherActivity extends BaseActivity {
                     week3.setText(weather_data.getDate());
                     weather3.setText(weather_data.getWeather());
                     windstrength3.setText(weather_data.getWind());
-                    temperature3.setText(weather_data.getTemperature());
+                    temperature3.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     thirdDayLayout.setBackgroundResource(R.mipmap.rounded);
                     imageView_aftertomorrow.setImageResource(R.mipmap.aftertomorrow);
 
-                    weatherType3=weatherHelper.Sort(weather_data.getWeather());
+                    weatherType3 = weatherHelper.Sort(weather_data.getWeather());
 
 
                     /**
                      * 根据pm2.5的值来决定显示优、良、中、差四个等级中对应图片
                      */
-                    switch (MyUtils.pm2_5Rank(pm2_5)){
+                    switch (MyUtils.pm2_5Rank(pm2_5)) {
                         case 1:
-                            pm2_5Rank.setImageResource(R.mipmap.excellent);break;
+                            pm2_5Rank.setImageResource(R.mipmap.excellent);
+                            break;
                         case 2:
-                            pm2_5Rank.setImageResource(R.mipmap.fine);break;
+                            pm2_5Rank.setImageResource(R.mipmap.fine);
+                            break;
                         case 3:
-                            pm2_5Rank.setImageResource(R.mipmap.medium);break;
+                            pm2_5Rank.setImageResource(R.mipmap.medium);
+                            break;
                         case 4:
-                            pm2_5Rank.setImageResource(R.mipmap.poor);break;
+                            pm2_5Rank.setImageResource(R.mipmap.poor);
+                            break;
                     }
 
-                    switch (weatherType2){
+                    switch (weatherType2) {
                         case 1:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather1);
+                            break;
                         case 2:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather2);
+                            break;
                         case 3:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather3);
+                            break;
                         case 4:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather4);
+                            break;
                         case 5:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather5);
+                            break;
                         case 6:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather6);
+                            break;
                         case 7:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather7);
+                            break;
                         case 8:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather8);
+                            break;
                         case 9:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather9);
+                            break;
                         case 10:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather10);
+                            break;
                         case 11:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather11);
+                            break;
                         case 12:
-                            image2.setImageResource(R.drawable.ic_launcher);break;
+                            image2.setImageResource(R.drawable.weather12);
+                            break;
                     }
 
-                    switch (weatherType3){
+                    switch (weatherType3) {
                         case 1:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather1);
+                            break;
                         case 2:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather2);
+                            break;
                         case 3:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather3);
+                            break;
                         case 4:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather4);
+                            break;
                         case 5:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather5);
+                            break;
                         case 6:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather6);
+                            break;
                         case 7:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather7);
+                            break;
                         case 8:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather8);
+                            break;
                         case 9:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather9);
+                            break;
                         case 10:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather10);
+                            break;
                         case 11:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather11);
+                            break;
                         case 12:
-                            image3.setImageResource(R.drawable.ic_launcher);break;
+                            image3.setImageResource(R.drawable.weather12);
+                            break;
                     }
 
                 }
@@ -349,16 +375,17 @@ public class WeatherActivity extends BaseActivity {
 
     /**
      * 功能：获取selectCityActivity中传回的已选择的城市名
+     *
      * @param requestCode
      * @param resultCode
      * @param data
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case 1:
-                if(resultCode==RESULT_OK){
-                    selectCity=data.getStringExtra("returnString") ;
+                if (resultCode == RESULT_OK) {
+                    selectCity = data.getStringExtra("returnString");
                     new WeatherAsyncTask().execute(selectCity);
 
                 }
