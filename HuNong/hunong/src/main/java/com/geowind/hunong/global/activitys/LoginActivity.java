@@ -42,10 +42,10 @@ public class LoginActivity extends Activity {
     private String mUserId;
     private String mPassword;
     //此APPKEY仅供测试使用，且不定期失效，请到mob.com后台申请正式APPKEY
-    private static String APPKEY = "18fa794006b50";
+    private static String APPKEY = "f3fc6baa9ac4";
 
     // 填写从短信SDK应用后台注册得到的APPSECRET
-    private static String APPSECRET = "5bff0085b70667fbc15429b2e1b83f34";
+    private static String APPSECRET = "7f3dedcb36d92deebcb373af921d635a";
     //@RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
         initView();
         Window window=this.getWindow();
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        initShareSDK();
+
     }
     private void initShareSDK() {
         // 初始化短信SDK
@@ -164,8 +164,7 @@ public class LoginActivity extends Activity {
         startActivity(intent);
     }
     public void startForgetPasswordActivity(){
-
-        // 打开注册页面
+        initShareSDK();
         RegisterPage registerPage = new RegisterPage();
         registerPage.setRegisterCallback(new EventHandler() {
             public void afterEvent(int event, int result, Object data) {

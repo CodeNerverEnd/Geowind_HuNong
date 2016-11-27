@@ -18,6 +18,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter{
         mContext = context;
         mData = data;
         mLayoutId = layoutId;
+        System.out.println("mData==="+mData.size());
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.application.HunongApplication;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Task;
 import com.lidroid.xutils.BitmapUtils;
@@ -67,6 +68,7 @@ public class MsgDetailAdapter  extends BaseAdapter{
 
             switch (mMsgType){
                 case "任务提醒":
+                    HunongApplication.NEW_TASK_COUNT=0;
                     convertView=View.inflate(mContext, R.layout.item_task_msglist,null);
                     mTv_title = (TextView) convertView.findViewById(R.id.tv_msg_taskTile);
                     mIv_msg_taskImg = (ImageView) convertView.findViewById(R.id.iv_msg_taskImg);
@@ -83,10 +85,12 @@ public class MsgDetailAdapter  extends BaseAdapter{
 
                     break;
                 case "专家回复":
+                    HunongApplication.NEW_EXPERT_REPLY_COUNT=0;
                     convertView=View.inflate(mContext, R.layout.item_expert_reply,null);
                     mTv_expertReply = (TextView) convertView.findViewById(R.id.tv_expertReply);
                     break;
                 case "系统消息":
+                    HunongApplication.NEW_SYSTEM_MSG_COUNT=0;
                     convertView=View.inflate(mContext, R.layout.item_system_msglist,null);
                     mTv_title = (TextView) convertView.findViewById(R.id.tv_sysMsgTitle);
 

@@ -19,6 +19,9 @@ public class HunongApplication extends Application {
     public static final int REQUEST_CODE_BROWSER_PICTURE = 12;
     public static final int RESULT_CODE_BROWSER_PICTURE = 13;
     public static final int REQUEST_CODE_CROP_PICTURE = 18;
+    public static  int NEW_TASK_COUNT=0;
+    public static  int NEW_EXPERT_REPLY_COUNT=0;
+    public static  int NEW_SYSTEM_MSG_COUNT=0;
 
     @Override
     public void onCreate() {

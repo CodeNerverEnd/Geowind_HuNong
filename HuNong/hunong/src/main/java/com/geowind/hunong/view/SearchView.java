@@ -68,6 +68,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
      */
     private SearchViewListener mListener;
     private ImageButton mIb_search;
+    private TextView mTv_title;
 
     /**
      * 设置搜索回调接口
@@ -91,7 +92,8 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
         btnBack = (ImageButton) findViewById(R.id.search_btn_back);
         lvTips = (ListView) findViewById(R.id.search_lv_tips);
         mIb_search = (ImageButton) findViewById(R.id.ib_libearch);
-
+        mTv_title = (TextView) findViewById(R.id.tv_libTitle);
+        mTv_title.setText(R.string.lib_search_title);
         lvTips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -227,6 +229,9 @@ public class SearchView extends LinearLayout implements View.OnClickListener {
 //         * 提示列表项点击时回调方法 (提示/自动补全)
 //         */
 //        void onTipsItemClick(String text);
+    }
+    public void setHintVisible(int visible){
+        lvTips.setVisibility(visible);
     }
 
 }

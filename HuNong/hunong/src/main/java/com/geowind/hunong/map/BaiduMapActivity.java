@@ -91,6 +91,7 @@ public class BaiduMapActivity extends Activity {
     private BDLocation mCurrentLocation;
     private boolean isFirst = true;
     private LatLng mLatLng;
+    private LatLng mCurrentLatLng;
     private ImageButton mIb_quxiao;
     private List<Task> mTasks;
     private List<OverlayOptions> mMarkers;
@@ -294,7 +295,8 @@ public class BaiduMapActivity extends Activity {
                 routePaln(poiLating);
             }else if(dialog.equals(mRoutPlanDialog)) {
                 if (position == 0)
-                    showLoction(mLatLng);
+
+                    showLoction(mCurrentLatLng);
                 else
                     routePaln(new LatLng(mTasks.get(position-1).getLatitude(), mTasks.get(position-1).getLongitude()));
             }
@@ -307,7 +309,7 @@ public class BaiduMapActivity extends Activity {
     private void routePaln(LatLng latLng) {
         mPt_end = latLng;
         mRoutePlanSearch = RoutePlanSearch.newInstance();
-        PlanNode fromPlanNode=PlanNode.withLocation(mLatLng);
+        PlanNode fromPlanNode=PlanNode.withLocation(mCurrentLatLng);
         PlanNode toPlanNode=PlanNode.withLocation(mPt_end);
         DrivingRoutePlanOption drivingRoutePlanOption=new DrivingRoutePlanOption();
         drivingRoutePlanOption.from(fromPlanNode);
@@ -604,7 +606,7 @@ public class BaiduMapActivity extends Activity {
     public void getPOpJsonFromDB() {
         mTasks=new ArrayList<Task>();
         TaskDaoImpl taskDao=new TaskDaoImpl(getApplicationContext());
-        String[] columns={"workLoad","mno","date","state","fzon", "farea","faddr","fpic","cropType","mstyle","note"};
+//        String[] columns={"workLoad","mno","date","state","fzon", "farea","faddr","fpic","cropType","mstyle","note"};
      //   mTasks.addAll(taskDao.findByCondition(columns,"state=?",new String[]{"0"},null,null));
         mTasks.addAll(taskDao.findAll());
         mMarkers = new ArrayList<OverlayOptions>();
@@ -634,10 +636,13 @@ public class BaiduMapActivity extends Activity {
         @Override
         public void onReceiveLocation(BDLocation location) {
             mCurrentLocation = location;
+            if(mCurrentLocation!=null)
+            mCurrentLatLng=new LatLng(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
             if (isFirst) {
                 isFirst = false;
-                setUserMapCept();
                 addMark();//在当ia前定位加上标注
+                setUserMapCept();
+
             }
         }
     }
@@ -645,7 +650,12 @@ public class BaiduMapActivity extends Activity {
 //    设置中心点
 
     private void setUserMapCept() {
-        mLatLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        if(mTasks.size()>0){
+            mLatLng = new LatLng(mTasks.get(0).getLatitude(), mTasks.get(0).getLongitude());
+        }else {
+            mLatLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        }
+
         //定义地图状态
         mMapStatus = new MapStatus.Builder()
                 .target(mLatLng)

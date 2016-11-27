@@ -8,11 +8,14 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.dao.impl.LibSearchDaoImpl;
 import com.geowind.hunong.entity.LibSearch;
 import com.geowind.hunong.entity.SearchBean;
+import com.geowind.hunong.entity.SystemMsg;
 import com.geowind.hunong.global.adapter.SearchAdapter;
 import com.geowind.hunong.json.LibSearchJson;
 import com.geowind.hunong.utils.EncryptUtils;
@@ -27,12 +30,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.util.TextUtils;
 
 /**
  * Created by zhangwen on 2016/11/16.
  */
 
-public class LibrarySearchActiviy extends Activity implements SearchView.SearchViewListener {
+public class LibrarySearchActiviy extends BaseActivity implements SearchView.SearchViewListener {
     /**
      * 搜索结果列表view
      */
@@ -88,6 +92,10 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
      * 提示框显示项的个数
      */
     private static int hintSize = DEFAULT_HINT_SIZE;
+    private TextView mTv_title;
+    private List<LibSearch> mLibSearches;
+    private LibSearchDaoImpl mLibSearchDao;
+    private boolean mDbHasKeyword;
 
     /**
      * 设置提示框显示项的个数
@@ -102,7 +110,6 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_library_search);
         initData();
         initViews();
@@ -119,11 +126,13 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
         //设置adapter
         searchView.setTipsHintAdapter(hintAdapter);
         searchView.setAutoCompleteAdapter(autoCompleteAdapter);
-
         lvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(LibrarySearchActiviy.this, position + "", Toast.LENGTH_SHORT).show();
+                String url = resultData.get(position).getUrl();
+                Intent intent=new Intent(LibrarySearchActiviy.this,ArticleDetailsActivity.class);
+                intent.putExtra("articleUrl",url);
+                startActivity(intent);
             }
         });
     }
@@ -134,18 +143,14 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
     private void initData() {
         //初始化热搜版数据
         getHintData();
-        //初始化自动补全数据
-        getAutoCompleteData(null);
         //初始化搜索结果数据
-        getResultData(null);
+//        getResultData(null);
     }
 
     /**
      * 获取db 数据
      */
     private void getServerData(String text) {
-        int size = 100;
-        dbData = new ArrayList<LibSearch>(size);
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params =new RequestParams();
         params.add("method","searchLib");
@@ -153,9 +158,24 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
         client.post(MyConstants.LIBRARYSEARCH, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String url=new String(responseBody);
-                System.out.println("文库搜索=========="+url);
-                dbData.addAll(LibSearchJson.paseJson(url));
+                String result=new String(responseBody);
+                    if(TextUtils.isEmpty(result)){
+                    Toast.makeText(getApplicationContext(),"没有要找的内容",Toast.LENGTH_LONG).show();
+                }else {
+                        lvResults.setVisibility(View.VISIBLE);
+                        searchView.setHintVisible(View.VISIBLE);
+                        if(resultData.size()>0)
+                            resultData.clear();
+                    resultData.addAll(LibSearchJson.paseJson(result));
+                        System.out.println("文库搜索=====size====="+resultData.size());
+                        if (resultAdapter == null) {
+                            resultAdapter = new SearchAdapter(LibrarySearchActiviy.this, resultData, R.layout.item_bean_list);
+                            lvResults.setAdapter(resultAdapter);
+                        } else {
+                            resultAdapter.notifyDataSetChanged();
+                        }
+                }
+
 
             }
             @Override
@@ -171,71 +191,33 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
      */
     private void getHintData() {
         hintData = new ArrayList<>(hintSize);
-        for (int i = 1; i <= hintSize; i++) {
-            hintData.add("热搜版" + i + "：Android自定义View");
-        }
-        hintAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, hintData);
-    }
-
-    /**
-     * 获取自动补全data 和adapter
-     */
-    private void getAutoCompleteData(String text) {
-        if (autoCompleteData == null) {
-            //初始化
-            autoCompleteData = new ArrayList<>(hintSize);
-        } else {
-            // 根据text 获取auto data
-            autoCompleteData.clear();
-            for (int i = 0, count = 0; i < dbData.size()
-                    && count < hintSize; i++) {
-                if (dbData.get(i).getTitle().contains(text.trim())) {
-                    autoCompleteData.add(dbData.get(i).getTitle());
-                    count++;
-                }
+        mLibSearchDao = new LibSearchDaoImpl(getApplicationContext());
+        mLibSearches = mLibSearchDao.findAll();
+        if(mLibSearches !=null&& mLibSearches.size()>0){
+            for (LibSearch libSearch : mLibSearches){
+                hintData.add(libSearch.getTitle());
+                System.out.println("hintData====="+libSearch.getTitle());
             }
         }
-        if (autoCompleteAdapter == null) {
-            autoCompleteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, autoCompleteData);
-        } else {
-            autoCompleteAdapter.notifyDataSetChanged();
-        }
+
+        hintAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, hintData);
     }
 
     /**
      * 获取搜索结果data和adapter
      */
    private void getResultData(String text) {
+       int size = 100;
+       resultData=new ArrayList<LibSearch>(size);
         //从数据库获取数据
         getServerData(text);
-        if (resultData == null) {
-            // 初始化
-            resultData = new ArrayList<LibSearch>();
-        } else {
-            resultData.clear();
-            for (int i = 0; i < dbData.size(); i++) {
-                if (dbData.get(i).getTitle().contains(text.trim())) {
-                    resultData.add(dbData.get(i));
-                }
-            }
-        }
-
-        if (resultAdapter == null) {
-            resultAdapter = new SearchAdapter(this, resultData, R.layout.item_bean_list);
-        } else {
-            resultAdapter.notifyDataSetChanged();
-        }
 
     }
 
-    /**
-     * 当搜索框 文本改变时 触发的回调 ,更新自动补全数据
-     * @param text
-     */
+
     @Override
     public void onRefreshAutoComplete(String text) {
-        //更新数据
-        getAutoCompleteData(text);
+
     }
 
     /**
@@ -245,18 +227,21 @@ public class LibrarySearchActiviy extends Activity implements SearchView.SearchV
      */
     @Override
     public void onSearch(String text) {
+        for(LibSearch search:mLibSearchDao.findAll()){
+            if(search.getTitle().equals(text))
+                mDbHasKeyword = true;
+        }
+        if(!mDbHasKeyword){
+            LibSearch libSearch=new LibSearch();
+            libSearch.setTitle(text);
+            mLibSearchDao.insert(libSearch);
+            mDbHasKeyword=false;
+        }
+
         //更新result数据
         getResultData(text);
-        lvResults.setVisibility(View.VISIBLE);
-        //第一次获取结果 还未配置适配器
-        if (lvResults.getAdapter() == null) {
-            //获取搜索数据 设置适配器
-            lvResults.setAdapter(resultAdapter);
-        } else {
-            //更新搜索数据
-            resultAdapter.notifyDataSetChanged();
-        }
-        Toast.makeText(this, "完成搜素", Toast.LENGTH_SHORT).show();
+
+
     }
 
 }

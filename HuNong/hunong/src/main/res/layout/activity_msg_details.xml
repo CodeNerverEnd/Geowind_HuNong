@@ -5,9 +5,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/menu_title_bar"/>
+
+    <!--设置listView从底部显示-->
 <ListView
     android:layout_width="match_parent"
     android:id="@+id/lv_msgDetails"
+
+    android:stackFromBottom="true"
+    android:transcriptMode="alwaysScroll"
     android:layout_height="wrap_content">
 
 </ListView>

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.application.HunongApplication;
+import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.global.activitys.MsgDetailsActivity;
 import com.geowind.hunong.view.CircleImageView;
 
@@ -19,9 +21,10 @@ import com.geowind.hunong.view.CircleImageView;
 
 public class MsgRecyclerViewAdapter extends RecyclerView.Adapter<MsgRecyclerViewAdapter.MyViewHolder> {
     private  String msgType;
+    private  Context mContext;
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+        mContext=parent.getContext();
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_msg_recyclerview
         ,parent,false));
     }
@@ -38,20 +41,33 @@ public class MsgRecyclerViewAdapter extends RecyclerView.Adapter<MsgRecyclerView
         switch (position){
             case 0:
              //   holder.headIcon.setImageDrawable();
+                if(HunongApplication.NEW_TASK_COUNT!=0){
+                    holder.newMsgNumber.setText(HunongApplication.NEW_TASK_COUNT+"");
+                    holder.newMsgNumber.setVisibility(View.VISIBLE);
+                }
                 holder.convName.setText("任务提醒");
                 holder.headIcon.setImageResource(R.drawable.msg_task);
                 break;
             case 1:
+                if(HunongApplication.NEW_EXPERT_REPLY_COUNT!=0){
+                    holder.newMsgNumber.setText(HunongApplication.NEW_EXPERT_REPLY_COUNT+"");
+                    holder.newMsgNumber.setVisibility(View.VISIBLE);
+                }
                 holder.convName.setText("专家回复");
                 holder.headIcon.setImageResource(R.drawable.msg_reply);
                 break;
             case 2:
+                if(HunongApplication.NEW_SYSTEM_MSG_COUNT!=0){
+                    holder.newMsgNumber.setText(HunongApplication.NEW_SYSTEM_MSG_COUNT+"");
+                    holder.newMsgNumber.setVisibility(View.VISIBLE);
+                }
                 holder.convName.setText("系统消息");
                 holder.headIcon.setImageResource(R.drawable.msg_system);
                 break;
         }
 
         if(mOnItemClickLitener!=null){
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

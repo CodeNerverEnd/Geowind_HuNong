@@ -96,7 +96,7 @@ public class GuideActivity extends Activity {
 
     private void initData() {
 
-        mPics = new int[]{R.drawable.guide_1,R.drawable.guide_2,R.drawable.guide_3,R.drawable.guide_4};
+        mPics = new int[]{R.drawable.guide_1,R.drawable.guide_2,R.drawable.guide_3,R.drawable.guide_4,R.drawable.guide_5};
         //定义viewPager的容器
         mGuids = new ArrayList<ImageView>();
         mPoints=new ArrayList<ImageView>();

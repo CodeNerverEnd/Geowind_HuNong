@@ -15,8 +15,8 @@ public interface MyConstants {
 
     String LOCATION="location";//当前的位置信息
     String ISLOGIN="islogin";//当前登录状态
-//    String LibraryURL= "http://115.159.125.122:8080/MutualAgriculture/LibraryServlet";//文库
-    String LibraryURL= "http://192.168.1.123:8080/MutualAgriculture/LibraryServlet";//文库
+    String LibraryURL= "http://115.159.125.122:8080/MutualAgriculture/LibraryServlet";//文库
+//    String LibraryURL= "http://192.168.1.123:8080/MutualAgriculture/LibraryServlet";//文库
     //String TASKURL="http://115.159.125.122:8080/HuNong/TaskServlet";
     String TASKURL="http://115.159.125.122:8080/MutualAgriculture/TaskServlet";//任务
 

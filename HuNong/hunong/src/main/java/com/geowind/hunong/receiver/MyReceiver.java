@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.geowind.hunong.application.HunongApplication;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Task;
 import com.geowind.hunong.global.activitys.MainActivity;
@@ -86,8 +87,8 @@ public class MyReceiver extends BroadcastReceiver {
 			String jsonString=bundle.getString(JPushInterface.EXTRA_EXTRA);
 			switch (bundleString){
 				case "任务提醒":
+					HunongApplication.NEW_TASK_COUNT++;
 					TaskDaoImpl taskDao=new TaskDaoImpl(context);
-
 					try {
 						JSONObject extraJson = new JSONObject(jsonString);
 					//	Object jsonExtra = extraJson.get("jsonExtra");
@@ -100,6 +101,7 @@ public class MyReceiver extends BroadcastReceiver {
 					}
 					break;
 				case  "专家回复":
+					HunongApplication.NEW_EXPERT_REPLY_COUNT++;
 					try {
 						JSONObject extraJson = new JSONObject(jsonString);
 						System.out.println(extraJson);
@@ -108,6 +110,7 @@ public class MyReceiver extends BroadcastReceiver {
 					}
 					break;
 				case   "系统消息":
+					HunongApplication.NEW_SYSTEM_MSG_COUNT++;
 					try {
 						JSONObject extraJson = new JSONObject(jsonString);
 						System.out.println(extraJson);

@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
+import com.geowind.hunong.application.HunongApplication;
 import com.geowind.hunong.global.adapter.MsgDetailAdapter;
 
 import cn.jpush.android.api.JPushInterface;

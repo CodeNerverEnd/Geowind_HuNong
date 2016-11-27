@@ -12,26 +12,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.global.activitys.ArticleDetailsActivity;
 import com.geowind.hunong.entity.Library;
+import com.geowind.hunong.entity.SystemMsg;
+import com.geowind.hunong.global.activitys.ArticleDetailsActivity;
 import com.geowind.hunong.global.activitys.LibrarySearchActiviy;
 import com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter;
 import com.geowind.hunong.json.LibraryJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+
+import static com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter.CATEGORY;
+import static com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter.NOWPAGE;
 
 
 /**
@@ -40,13 +40,12 @@ import cz.msebera.android.httpclient.Header;
 public class LibraryRecyclerViewFragment extends Fragment implements View.OnClickListener{
     static final boolean GRID_LAYOUT = false;
     private RecyclerView mRecyclerView;
-    private List<Object> mContentItems = new ArrayList<Object>();
-    private LibraryRecyclerViewAdapter mAdapter=new LibraryRecyclerViewAdapter();
-    Library mLibrary;
+    private LibraryRecyclerViewAdapter mAdapter;
     private SwipeRefreshLayout mSr_refrsh;
     private TextView mTv_noMoreData;
     private FloatingActionButton mFab_search;
-
+    private final int REFRESHING=0;
+    private final int LOADING_MORE=1;
     public static LibraryRecyclerViewFragment newInstance() {
         return new LibraryRecyclerViewFragment();
     }
@@ -59,12 +58,24 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mAdapter=new LibraryRecyclerViewAdapter();
+        initView(view);
+        initData();
+        initEvent();
+    }
+
+    private void initView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.lib_recyclerView);
         mTv_noMoreData = (TextView) view.findViewById(R.id.tv_noMoreData);
         mSr_refrsh = (SwipeRefreshLayout) view.findViewById(R.id.sr_refresh);
-        mSr_refrsh.setColorSchemeResources(R.color.colorAccent);
         //floatActionButton
         mFab_search = (FloatingActionButton) view.findViewById(R.id.fab_libSearch);
+    }
+
+
+    private void initData() {
+
+        mSr_refrsh.setColorSchemeResources(R.color.colorAccent);
         mFab_search.attachToRecyclerView(mRecyclerView);
         mFab_search.show();
 
@@ -82,30 +93,23 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
 
         //设置adapter
         mRecyclerView.setAdapter(mAdapter);
-        mLibrary=LibraryJson.parseJsonObject(SpTools.getString(getActivity().getApplicationContext(),MyConstants.LIBRARY_JSON,""));
-        mContentItems.add(new Object());
-        if(mLibrary!=null)
-        {
-            for (int i = 1; i <mLibrary.getArticleList().size(); ++i) {
-                mContentItems.add(new Object());
-            }
-            mAdapter.notifyDataSetChanged();
-            mAdapter.setOnItemClickLitener(new LibraryRecyclerViewAdapter.OnItemClickLitener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Intent intent=new Intent(getActivity(), ArticleDetailsActivity.class);
-                    intent.putExtra("title",mLibrary.getArticleList().get(position).getTitle());
-                    intent.putExtra("articleUrl",mLibrary.getArticleList().get(position).getUrl());
-                    startActivity(intent);
-                }
-            });
-        }
-        initEvent();
+        mAdapter.requstLibrary(NOWPAGE,CATEGORY,REFRESHING);
+        mAdapter.notifyDataSetChanged();
+
     }
 
 
 
     private void initEvent() {
+
+        mAdapter.setOnItemClickLitener(new LibraryRecyclerViewAdapter.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(getActivity(), ArticleDetailsActivity.class);
+                intent.putExtra("articleUrl",mAdapter.getLibraries().get(position-1).getUrl());
+                startActivity(intent);
+            }
+        });
         mSr_refrsh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -116,7 +120,8 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
                             @Override
                             public void run() {
                                 mSr_refrsh.setRefreshing(false);
-                             //   requstLibrary();
+                                mAdapter. requstLibrary(0,CATEGORY,REFRESHING);
+                                mAdapter.notifyDataSetChanged();
                             }
                         });
                     }

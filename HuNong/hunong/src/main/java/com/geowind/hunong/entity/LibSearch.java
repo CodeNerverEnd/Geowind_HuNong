@@ -1,9 +1,14 @@
 package com.geowind.hunong.entity;
 
+import com.geowind.hunong.annotation.Colnum;
+import com.geowind.hunong.annotation.ID;
+import com.geowind.hunong.annotation.TableName;
+import com.geowind.hunong.dao.DBHelper;
+
 /**
  * Created by zhangwen on 2016/11/22.
  */
-
+@TableName(DBHelper.LIBSEARCH_TABLE_NAME)
 public class LibSearch {
     public String getUrl() {
         return url;
@@ -21,7 +26,9 @@ public class LibSearch {
         this.title = title;
     }
 
+    private String id;
     private String url;
+    @Colnum(DBHelper.ARTICLE_TITLE)
     private String title;
 
 }
