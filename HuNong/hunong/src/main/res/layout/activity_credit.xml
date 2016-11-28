@@ -45,6 +45,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="信誉优秀\n继续保持"
+        android:textColor="#ff3300"
         android:textSize="36dp"/>
 
 </RelativeLayout>

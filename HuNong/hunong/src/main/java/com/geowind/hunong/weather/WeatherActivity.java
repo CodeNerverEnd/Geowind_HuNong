@@ -49,7 +49,6 @@ public class WeatherActivity extends BaseActivity {
     private TextView pm25Value;//pm2.5值
     private ImageView pm2_5Rank;//pm2.5等级
     private TextView Temperature1;//温度范围
-    private TextView week1;//星期
     private TextView date;
     private TextView temperatureUnit;//温度单位
     private TextView weather1;//天气情况
@@ -71,16 +70,9 @@ public class WeatherActivity extends BaseActivity {
 
     private String selectCity;
 
-    private int weatherType1;
     private int weatherType2;
     private int weatherType3;
     private WeatherHelper weatherHelper = new WeatherHelper();
-
-    /**
-     * titlebar相关
-     */
-    private TextView title;
-    private ImageButton returnButton;
 
 
     @Override
@@ -88,6 +80,42 @@ public class WeatherActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
+        initTitleBar();
+        initView();
+
+        //自动定位
+        String[] pcd = LocationUtils.getAddr(getApplicationContext());
+        selectCity = pcd[1];
+        new WeatherAsyncTask().execute(selectCity);
+
+        //按钮监听
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到选择省市区
+                Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    private void initTitleBar() {
+
+        TextView title;
+        ImageButton returnButton;
+
+        title = (TextView) findViewById(R.id.title);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
+        title.setText("天气预报");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    private void initView() {
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
         linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
 
@@ -119,34 +147,6 @@ public class WeatherActivity extends BaseActivity {
         windstrength1 = (TextView) findViewById(R.id.windstrength1);
         temperatureNow = (TextView) findViewById(R.id.temperatureNow);
         Temperature1 = (TextView) findViewById(R.id.temperature1);
-
-        /*
-        * titlebar相关设置,返回按钮事件等
-        * */
-        title = (TextView) findViewById(R.id.title);
-        returnButton = (ImageButton) findViewById(R.id.return_btn);
-        title.setText("天气预报");
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        //自动定位
-        String[] pcd = LocationUtils.getAddr(getApplicationContext());
-        selectCity = pcd[1];
-        new WeatherAsyncTask().execute(selectCity);
-
-        //按钮监听
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //跳转到选择省市区
-                Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
-                startActivityForResult(intent, 1);
-            }
-        });
     }
 
 
@@ -182,13 +182,6 @@ public class WeatherActivity extends BaseActivity {
              * 若一开始使用时没有网,无法拿到天气信息，则只显示当前定位城市，
              * 再若没开启定位权限，显示默认城市北京
              */
-//            if(w==null){
-//                String[] pcd=LocationUtils.getAddr(getApplicationContext());
-//                if(pcd[1]!=null)
-//                    cityName.setText(pcd[1]);
-//                else
-//                    cityName.setText("北京");
-//            }
             if (w == null) {
                 rootRelativeLayout.setBackgroundResource(R.drawable.ic_launcher);
 
@@ -225,9 +218,6 @@ public class WeatherActivity extends BaseActivity {
 
                     temperatureUnit.setText("℃");//显示“℃”
 
-                    /**
-                     * 显示pm2.5数值
-                     */
                     String pm2_5 = "".equals(result.getPm25()) ? "75" : result.getPm25();
                     pm25Value.setText("PM2.5: " + pm2_5);
 
@@ -271,102 +261,11 @@ public class WeatherActivity extends BaseActivity {
 
                     weatherType3 = weatherHelper.Sort(weather_data.getWeather());
 
+                    int PmType = MyUtils.pm2_5Rank(pm2_5);
+                    pm2_5Rank.setImageResource(MyUtils.getResourceBasem2_5Rank(PmType));
+                    image2.setImageResource(MyUtils.getResourceBaseWertherType(weatherType2));
+                    image3.setImageResource(MyUtils.getResourceBaseWertherType(weatherType3));
 
-                    /**
-                     * 根据pm2.5的值来决定显示优、良、中、差四个等级中对应图片
-                     */
-                    switch (MyUtils.pm2_5Rank(pm2_5)) {
-                        case 1:
-                            pm2_5Rank.setImageResource(R.mipmap.excellent);
-                            break;
-                        case 2:
-                            pm2_5Rank.setImageResource(R.mipmap.fine);
-                            break;
-                        case 3:
-                            pm2_5Rank.setImageResource(R.mipmap.medium);
-                            break;
-                        case 4:
-                            pm2_5Rank.setImageResource(R.mipmap.poor);
-                            break;
-                    }
-
-                    switch (weatherType2) {
-                        case 1:
-                            image2.setImageResource(R.drawable.weather1);
-                            break;
-                        case 2:
-                            image2.setImageResource(R.drawable.weather2);
-                            break;
-                        case 3:
-                            image2.setImageResource(R.drawable.weather3);
-                            break;
-                        case 4:
-                            image2.setImageResource(R.drawable.weather4);
-                            break;
-                        case 5:
-                            image2.setImageResource(R.drawable.weather5);
-                            break;
-                        case 6:
-                            image2.setImageResource(R.drawable.weather6);
-                            break;
-                        case 7:
-                            image2.setImageResource(R.drawable.weather7);
-                            break;
-                        case 8:
-                            image2.setImageResource(R.drawable.weather8);
-                            break;
-                        case 9:
-                            image2.setImageResource(R.drawable.weather9);
-                            break;
-                        case 10:
-                            image2.setImageResource(R.drawable.weather10);
-                            break;
-                        case 11:
-                            image2.setImageResource(R.drawable.weather11);
-                            break;
-                        case 12:
-                            image2.setImageResource(R.drawable.weather12);
-                            break;
-                    }
-
-                    switch (weatherType3) {
-                        case 1:
-                            image3.setImageResource(R.drawable.weather1);
-                            break;
-                        case 2:
-                            image3.setImageResource(R.drawable.weather2);
-                            break;
-                        case 3:
-                            image3.setImageResource(R.drawable.weather3);
-                            break;
-                        case 4:
-                            image3.setImageResource(R.drawable.weather4);
-                            break;
-                        case 5:
-                            image3.setImageResource(R.drawable.weather5);
-                            break;
-                        case 6:
-                            image3.setImageResource(R.drawable.weather6);
-                            break;
-                        case 7:
-                            image3.setImageResource(R.drawable.weather7);
-                            break;
-                        case 8:
-                            image3.setImageResource(R.drawable.weather8);
-                            break;
-                        case 9:
-                            image3.setImageResource(R.drawable.weather9);
-                            break;
-                        case 10:
-                            image3.setImageResource(R.drawable.weather10);
-                            break;
-                        case 11:
-                            image3.setImageResource(R.drawable.weather11);
-                            break;
-                        case 12:
-                            image3.setImageResource(R.drawable.weather12);
-                            break;
-                    }
 
                 }
             }

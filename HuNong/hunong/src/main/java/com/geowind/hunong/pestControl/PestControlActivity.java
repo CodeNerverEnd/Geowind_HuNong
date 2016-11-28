@@ -47,13 +47,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
 
     private ArrayList<String> mResults = new ArrayList<>();//存放选图片路径的ArrayList
 
-    /*
-     * titlebar相关
-     * */
-    private TextView title;
-    private ImageButton returnButton;
     private Button confirm;//确认按钮
-
 
     /**
      * 服务器地址
@@ -65,25 +59,11 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pest_control);
 
-        /*
-        * titlebar设置
-        * */
-        title = (TextView) findViewById(R.id.jmui_title_tv);
-        returnButton = (ImageButton) findViewById(R.id.return_btn);
-        title.setText("病虫害反馈");
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        confirm= (Button) findViewById(R.id.jmui_commit_btn);
-        confirm.setText("上传");
+        initTitleBar();
 
         //必须初始化Fresco，否则不能使用图片多选择器
         Fresco.initialize(getApplicationContext());
 
-//        confirm = (Button) findViewById(R.id.btn_comfirm);
         editText = (EditText) findViewById(R.id.editText);
         imageView1 = (ImageView) findViewById(R.id.imageView1);
         imageView2 = (ImageView) findViewById(R.id.imageView2);
@@ -99,7 +79,8 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
             iv.setClickable(false);
         }
         imageViews[currentImageView].setClickable(true);
-        imageViews[currentImageView].setImageResource(R.drawable.chat_detail_add);
+        imageViews[currentImageView].setImageResource(R.mipmap.newadd);
+
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +88,8 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                 Toast.makeText(PestControlActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
 
                 /*************调试使用 ***************/
-                Intent intent = new Intent(PestControlActivity.this, Recodes.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PestControlActivity.this, Recodes.class);
+                //startActivity(intent);
                 /****************************/
 
                 //利用Handler判断是否上传成功
@@ -122,7 +103,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                         }
                         //上传不成功
                         else {
-                            Intent intent = new Intent(PestControlActivity.this, FailedToUpload.class);
+                            Intent intent = new Intent(PestControlActivity.this, ResultActivity.class);
                             startActivity(intent);
                         }
                     }
@@ -161,6 +142,24 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
+    private void initTitleBar() {
+
+        TextView title;
+        ImageButton returnButton;
+
+        title = (TextView) findViewById(R.id.jmui_title_tv);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
+        title.setText("病虫识别");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        confirm = (Button) findViewById(R.id.jmui_commit_btn);
+        confirm.setText("上传");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
@@ -195,7 +194,8 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                 //设置当前imageView图片为“选择”图片，并设置为可以点击
                 if (currentImageView < MAX_IMAGES) {
                     imageViews[currentImageView].setClickable(true);
-                    imageViews[currentImageView].setImageResource(R.drawable.chat_detail_add);
+                    //imageViews[currentImageView].setImageResource(R.drawable.chat_detail_add);
+                    imageViews[currentImageView].setImageResource(R.mipmap.newadd);
                 }
 
                 //即使已经选择了最后一张图片，最后一个imageView也应该可以点击

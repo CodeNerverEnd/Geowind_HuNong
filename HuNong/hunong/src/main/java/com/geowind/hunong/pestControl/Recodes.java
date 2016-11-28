@@ -28,30 +28,23 @@ public class Recodes extends BaseActivity {
 
     private SwipeRefreshLayout recodesRefresh;
 
-    /*
-     * titlebar相关
-     * */
-    private TextView title;
-    private ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recodes);
 
-        /*
-        * titlebar设置
-        * */
-        title = (TextView) findViewById(R.id.title);
-        returnButton = (ImageButton) findViewById(R.id.return_btn);
-        title.setText("历史纪录");
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
+        //**************************
+
+        //recodeItems.add();
+
+
+        // **************************
+
+
+
+        initTitleBar();
 
         recodesRecyclerView = (RecyclerView) findViewById(R.id.recodes_recyclerView);
         recodesRecyclerView.setAdapter(recodesAdapter = new RecodesRecyclerViewAdapter());
@@ -61,6 +54,22 @@ public class Recodes extends BaseActivity {
         recodesRefresh = (SwipeRefreshLayout) findViewById(R.id.recodes_sr_refresh);
         recodesRefresh.setColorSchemeResources(R.color.colorAccent);
 
+    }
+
+    private void initTitleBar() {
+
+        TextView title;
+        ImageButton returnButton;
+
+        title = (TextView) findViewById(R.id.title);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
+        title.setText("历史纪录");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 
@@ -93,9 +102,9 @@ public class Recodes extends BaseActivity {
             public MyViewHolder(View view) {
                 super(view);
 
-                recodesDate= (TextView) view.findViewById(R.id.recodes_date);
-                recodesFirstImage= (MySquareImageView) view.findViewById(R.id.recodes_firstImage);
-                recodesDescrition= (TextView) view.findViewById(R.id.recodes_descrition);
+                recodesDate = (TextView) view.findViewById(R.id.recodes_date);
+                recodesFirstImage = (MySquareImageView) view.findViewById(R.id.recodes_firstImage);
+                recodesDescrition = (TextView) view.findViewById(R.id.recodes_descrition);
             }
 
         }
