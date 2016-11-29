@@ -4,13 +4,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.geowind.hunong.application.HunongApplication;
+import com.geowind.hunong.dao.impl.ExpertReplyDaoImpl;
+import com.geowind.hunong.dao.impl.SystemMsgDaoImpl;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
+import com.geowind.hunong.entity.ExpertReply;
+import com.geowind.hunong.entity.SystemMsg;
 import com.geowind.hunong.entity.Task;
 import com.geowind.hunong.global.activitys.MainActivity;
 import com.geowind.hunong.global.activitys.MsgDetailsActivity;
+import com.geowind.hunong.json.ExpertReplyJson;
+import com.geowind.hunong.json.SystemMsgJson;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.JpushUtil;
 
@@ -85,41 +92,79 @@ public class MyReceiver extends BroadcastReceiver {
 		String bundleString=bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
 		if(bundleString!=null){
 			String jsonString=bundle.getString(JPushInterface.EXTRA_EXTRA);
-			switch (bundleString){
-				case "任务提醒":
-					HunongApplication.NEW_TASK_COUNT++;
-					TaskDaoImpl taskDao=new TaskDaoImpl(context);
-					try {
-						JSONObject extraJson = new JSONObject(jsonString);
-					//	Object jsonExtra = extraJson.get("jsonExtra");
-						String s="{\"workLoad\":\"100\",\"no\":41,\"state\":\"0\",\"date\":\"2016-11-30\",\"type\":\"收割\",\"fno\":10041,\"farea\":100,\"fUname\":\"yuede123\",\"fzno\":\"A\",\"faddr\":\"湖南省衡阳市石鼓区Y101\",\"mno\":\"x0001\",\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"fpic\":\"http:\\/\\/192.168.176.2:8080\\/MutualAgriculture\\/..\\/HN_upload\\\\imgupload\\/1479389055507_2200.JPG\"" +
-								",\"longitude\":112.58888,\"latitude\":26.939681,\"note\":\"你好\",\"mstyle\":\"收获机械\"}";
-						Task task=TaskJson.parseJsonObject(s);
-						taskDao.insert(task);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					break;
-				case  "专家回复":
-					HunongApplication.NEW_EXPERT_REPLY_COUNT++;
-					try {
-						JSONObject extraJson = new JSONObject(jsonString);
-						System.out.println(extraJson);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					break;
-				case   "系统消息":
-					HunongApplication.NEW_SYSTEM_MSG_COUNT++;
-					try {
-						JSONObject extraJson = new JSONObject(jsonString);
-						System.out.println(extraJson);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					break;
+			System.out.println(jsonString);
+			JSONObject extraJson = null;
+				switch (bundleString){
+					case "任务提醒":
+						try {
+							extraJson = new JSONObject(jsonString);
+							Object jsonExtra = extraJson.get("jsonExtra");
+							HunongApplication.NEW_TASK_COUNT++;
+							TaskDaoImpl taskDao=new TaskDaoImpl(context);
+//							String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
+//							Task task=TaskJson.parseJsonObject(s);
+							Task task=null;
+							if(jsonExtra==null){
+								 task=TaskJson.parseJsonObject(jsonString);
 
-			}
+							}else {
+								System.out.println("s==="+jsonExtra.toString());
+								 task= TaskJson.parseJsonObject(jsonExtra.toString());
+								String t=task.getFpic().replace("\\","");
+								System.out.print("=======t======="+t);
+								task.setFpic(t);
+//						    System.out.println(task.getFpic());
+							}
+
+							taskDao.insert(task);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+						break;
+					case  "专家回复":
+						try {
+							extraJson = new JSONObject(jsonString);
+							Object jsonExtra = extraJson.get("jsonExtra");
+							HunongApplication.NEW_EXPERT_REPLY_COUNT++;
+							TaskDaoImpl taskDao=new TaskDaoImpl(context);
+//							String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
+//							Task task=TaskJson.parseJsonObject(s);
+							Task task=null;
+							if(jsonExtra==null){
+								task=TaskJson.parseJsonObject(jsonString);
+
+							}else {
+								System.out.println("s==="+jsonExtra.toString());
+								task= TaskJson.parseJsonObject(jsonExtra.toString());
+								String t=task.getFpic().replace("\\","");
+								System.out.print("=======t======="+t);
+								task.setFpic(t);
+//						    System.out.println(task.getFpic());
+							}
+
+							taskDao.insert(task);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+
+//						ExpertReplyDaoImpl expertReplyDao=new ExpertReplyDaoImpl(context);
+//						ExpertReply expertReply= ExpertReplyJson.parseJsonObject(jsonExtra.toString());
+//						expertReplyDao.insert(expertReply);
+						break;
+					case   "系统消息":
+//						HunongApplication.NEW_SYSTEM_MSG_COUNT++;
+//						SystemMsgDaoImpl systemMsgDao=new SystemMsgDaoImpl(context);
+//						SystemMsg systemMsg= SystemMsgJson.parseJsonObject(jsonExtra.toString());
+//						systemMsgDao.insert(systemMsg);
+						break;
+
+				}
+
+
+
+
 		}
 
 	}

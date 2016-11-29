@@ -4,7 +4,7 @@
               android:fitsSystemWindows="true"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<include layout="@layout/menu_title_bar_with_button"/>
+<include layout="@layout/menu_title_bar"/>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_margin="5dp"

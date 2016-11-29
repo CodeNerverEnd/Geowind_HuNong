@@ -15,6 +15,16 @@ public  class Library {
     private String url;
     //头部
     private String summary;
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+
+    private  String imgURL;
     public String getId() {
         return id;
     }

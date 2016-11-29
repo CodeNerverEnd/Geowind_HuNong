@@ -14,22 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.entity.Library;
-import com.geowind.hunong.entity.SystemMsg;
 import com.geowind.hunong.global.activitys.ArticleDetailsActivity;
 import com.geowind.hunong.global.activitys.LibrarySearchActiviy;
 import com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter;
-import com.geowind.hunong.json.LibraryJson;
-import com.geowind.hunong.utils.MyConstants;
-import com.geowind.hunong.utils.SpTools;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.melnykov.fab.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
-
 import static com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter.CATEGORY;
 import static com.geowind.hunong.global.adapter.LibraryRecyclerViewAdapter.NOWPAGE;
 
@@ -74,8 +63,7 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
 
 
     private void initData() {
-
-        mSr_refrsh.setColorSchemeResources(R.color.colorAccent);
+        mSr_refrsh.setColorSchemeResources(R.color.float_button_bg_color);
         mFab_search.attachToRecyclerView(mRecyclerView);
         mFab_search.show();
 
@@ -101,7 +89,6 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
 
 
     private void initEvent() {
-
         mAdapter.setOnItemClickLitener(new LibraryRecyclerViewAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -120,7 +107,7 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
                             @Override
                             public void run() {
                                 mSr_refrsh.setRefreshing(false);
-                                mAdapter. requstLibrary(0,CATEGORY,REFRESHING);
+                                mAdapter. requstLibrary(0,0,REFRESHING);
                                 mAdapter.notifyDataSetChanged();
                             }
                         });

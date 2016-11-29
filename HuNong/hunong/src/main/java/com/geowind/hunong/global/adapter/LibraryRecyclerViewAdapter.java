@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.geowind.hunong.entity.SystemMsg;
 import com.geowind.hunong.json.LibraryJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
+import com.lidroid.xutils.BitmapUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -118,6 +120,8 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
                if(position>0){
                    holder.tv_headContent.setText(mLibraries.get(position-1).getSummary());
                    holder.tv_title.setText(mLibraries.get(position-1).getTitle());
+                   BitmapUtils bitmapUtils=new BitmapUtils(mContext);
+                   bitmapUtils.display(holder.mIv_library,mLibraries.get(position-1).getImgURL());
 
            // 如果设置了回调，则设置点击事件
            if (mOnItemClickLitener != null)
@@ -209,12 +213,14 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
         private final Button mButton6;
         private final Button mButton7;
         private final Button mButton8;
+        private final ImageView mIv_library;
 
         public MyViewHolder(View view)
         {
             super(view);
             tv_title = (TextView) view.findViewById(R.id.tv_title);
             tv_headContent = (TextView) view.findViewById(R.id.tv_headContent);
+            mIv_library = (ImageView) view.findViewById(R.id.iv_library);
             mButton1 = (Button) view.findViewById(R.id.category_1);
             mButton2 = (Button) view.findViewById(R.id.category_2);
             mButton3 = (Button) view.findViewById(R.id.category_3);

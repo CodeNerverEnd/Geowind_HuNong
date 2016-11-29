@@ -183,8 +183,7 @@ public class DrawerActivity extends AppCompatActivity {
                         startOntherActivity(HistoryTaskActivity.class);
                         break;
                     case R.id.tv_help://帮助
-                      //  startOntherActivity(HelpActivity.class);
-                        startOntherActivity(LibrarySearchActiviy.class);
+                        startOntherActivity(GuideActivity.class);
                         break;
                 }
             }

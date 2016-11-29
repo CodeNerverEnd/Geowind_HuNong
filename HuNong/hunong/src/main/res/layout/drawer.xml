@@ -6,6 +6,7 @@
               android:layout_gravity="start"
               android:background="@color/white"
               android:layout_height="match_parent">
+
     <RelativeLayout android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:background="@color/colorAccent"
@@ -18,17 +19,8 @@
                      android:layout_marginLeft="30dp"
                      android:id="@+id/iv_avatar"
                      android:layout_marginTop="44dp"/>
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="登录/注册"
-                  android:textSize="16dp"
-                  android:textColor="@color/white"
-                  android:layout_marginTop="56dp"
-                  android:layout_toRightOf="@+id/iv_avatar"
-                  android:layout_marginLeft="24dp"
-                  android:id="@+id/tv_userName"
-            />
-        <TextView
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/status"
@@ -38,20 +30,33 @@
             android:layout_marginLeft="24dp"
             android:id="@+id/tv_status"
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_level"
-            android:background="@mipmap/level"
-            android:layout_toRightOf="@+id/tv_status"
-            android:layout_below="@+id/tv_userName"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="9dp"
+            android:textSize="10sp"
+            android:background="@drawable/user_level"
             android:text="Lv1"
             android:gravity="center"
             android:textColor="@color/colorAccent"
-            />
+            android:layout_toRightOf="@+id/tv_userName"
+            android:layout_toEndOf="@+id/tv_userName"
+            android:layout_alignTop="@+id/tv_status"
+            android:layout_alignBottom="@+id/tv_status"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="登录/注册"
+                  android:textSize="16dp"
+                  android:textColor="@color/white"
+                  android:layout_marginTop="12dp"
+                  android:id="@+id/tv_userName"
+                  android:layout_alignTop="@+id/iv_avatar"
+                  android:layout_alignLeft="@+id/tv_status"
+                  android:layout_alignStart="@+id/tv_status"/>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -63,11 +68,13 @@
             android:drawableLeft="@mipmap/person_info"
             android:id="@+id/tv_personal_info"
             />
+
         <TextView
             style="@style/sliding_tv_style"
             android:text="    信用记录"
             android:id="@+id/tv_credit"
             android:drawableLeft="@mipmap/credit"/>
+
         <TextView
            style="@style/sliding_tv_style"
            android:id="@+id/tv_historyTask"

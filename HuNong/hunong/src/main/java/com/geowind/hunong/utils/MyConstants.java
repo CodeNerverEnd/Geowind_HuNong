@@ -28,6 +28,7 @@ public interface MyConstants {
     String REGISTER="http://115.159.125.122:8080/MutualAgriculture/UserServlet";//注册的
     String GETCENTER="http://115.159.125.122:8080/MutualAgriculture/UserServlet";//获取服务中心
     String LIBRARYSEARCH="http://115.159.125.122:8080/MutualAgriculture/LibraryServlet";//文库搜索
+//    String LIBRARYSEARCH="http://192.168.1.118:8080/MutualAgriculture/LibraryServlet";//文库搜索
     String DATABASE="honong";//数据库名
     String TABLE_TASK="task";//任务表名
     String TABLE_SYSTEM_MSG="system_msg";//系统消息表

@@ -1,34 +1,25 @@
 package com.geowind.hunong.global.activitys;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.geowind.hunong.R;
 import com.geowind.hunong.dao.impl.LibSearchDaoImpl;
 import com.geowind.hunong.entity.LibSearch;
-import com.geowind.hunong.entity.SearchBean;
-import com.geowind.hunong.entity.SystemMsg;
 import com.geowind.hunong.global.adapter.SearchAdapter;
 import com.geowind.hunong.json.LibSearchJson;
-import com.geowind.hunong.utils.EncryptUtils;
 import com.geowind.hunong.utils.MyConstants;
-import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.view.SearchView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.util.TextUtils;
 
@@ -159,15 +150,16 @@ public class LibrarySearchActiviy extends BaseActivity implements SearchView.Sea
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
+                System.out.println("文库搜索=========="+result);
                     if(TextUtils.isEmpty(result)){
                     Toast.makeText(getApplicationContext(),"没有要找的内容",Toast.LENGTH_LONG).show();
                 }else {
                         lvResults.setVisibility(View.VISIBLE);
-                        searchView.setHintVisible(View.VISIBLE);
+                        searchView.setHintVisible(View.GONE);
                         if(resultData.size()>0)
                             resultData.clear();
                     resultData.addAll(LibSearchJson.paseJson(result));
-                        System.out.println("文库搜索=====size====="+resultData.size());
+
                         if (resultAdapter == null) {
                             resultAdapter = new SearchAdapter(LibrarySearchActiviy.this, resultData, R.layout.item_bean_list);
                             lvResults.setAdapter(resultAdapter);

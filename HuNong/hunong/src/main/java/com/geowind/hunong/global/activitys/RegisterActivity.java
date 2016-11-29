@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -30,8 +29,6 @@ import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.util.TextUtils;
-
-import static com.geowind.hunong.R.color.chat_text_color;
 
 /**
  * Created by ASUS on 2016/10/25.

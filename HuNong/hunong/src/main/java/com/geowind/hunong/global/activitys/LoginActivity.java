@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -79,6 +80,14 @@ public class LoginActivity extends Activity {
         mTv_register = (Button) findViewById(R.id.bt_register);
         mTv_forgetPsw = (Button) findViewById(R.id.tv_forgetPsw);
         mIb_login = (ImageButton) findViewById(R.id.login_btn);
+        Drawable usrDrawable=getResources().getDrawable(R.drawable.username);
+        Drawable pswDrawble=getResources().getDrawable(R.drawable.password);
+        usrDrawable.setBounds(0, 0, usrDrawable.getMinimumWidth(), usrDrawable.getMinimumHeight());
+        pswDrawble.setBounds(0, 0, pswDrawble.getMinimumWidth(), pswDrawble.getMinimumHeight());
+        mEt_userId.setCompoundDrawables(usrDrawable,null,null,null);//设置左边图片
+        mEt_password.setCompoundDrawables(pswDrawble,null,null,null);
+        mEt_userId.setCompoundDrawablePadding(35);//设置图片与text的间距
+        mEt_password.setCompoundDrawablePadding(35);
 
     }
 

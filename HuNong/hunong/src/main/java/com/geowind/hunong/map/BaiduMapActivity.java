@@ -130,7 +130,6 @@ public class BaiduMapActivity extends Activity {
     private TextView mTv_StartInfo;
     private TextView mTv_endInfo;
     private List<PoiInfo> mAllPoi;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

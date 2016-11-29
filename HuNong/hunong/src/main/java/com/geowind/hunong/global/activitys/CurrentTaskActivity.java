@@ -36,6 +36,7 @@ public class CurrentTaskActivity extends BaseActivity {
     private List<Task> mTasks = new ArrayList<Task>();
     private MyAdapter adapter = new MyAdapter();
     private TextView mTv_nomoreTask;
+    private TextView mTv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class CurrentTaskActivity extends BaseActivity {
     }
 
     private void initData() {
+        mTv_title.setText("正在进行");
         mLv_task.setAdapter(adapter);
         getDataFromDB();
         if (mTasks == null || mTasks.size() == 0) {
@@ -105,9 +107,10 @@ public class CurrentTaskActivity extends BaseActivity {
     }
 
     private void initView() {
-        mIv_back = (ImageButton) findViewById(R.id.ib_task_ing_back);
+        mIv_back = (ImageButton) findViewById(R.id.return_btn);
         mLv_task = (ListView) findViewById(R.id.lv_task_ing);
         mTv_nomoreTask = (TextView) findViewById(R.id.tv_nomoreTask);
+        mTv_title = (TextView) findViewById(R.id.title);
     }
 
     private class MyAdapter extends BaseAdapter {

@@ -42,10 +42,11 @@ public class AddBbsActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        mTv_title = (TextView) findViewById(R.id.jmui_title_tv);
+        mTv_title = (TextView) findViewById(R.id.title);
         mIb_back = (ImageButton) findViewById(R.id.return_btn);
         mEt_bbsContent = (EditText) findViewById(R.id.et_bbs_edit);
         mBt_release = (Button) findViewById(R.id.bt_bbs_release);
+        mTv_title.setText(R.string.add_bbs_title);
     }
 
     @Override

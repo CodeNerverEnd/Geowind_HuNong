@@ -17,6 +17,8 @@
 <color name="btn_pressed_bg">#37cbb2</color>
     <!-- 全局使用的颜色 -->
     <color name="titlebar_bg_color">#3C3C3C</color>
+    <color name="default_text_color">#343434</color>
+    <color name="float_button_bg_color">#8142ceb8</color>
     <!-- 这是Login相关界面中的颜色 -->
     <color name="login_txt_hint_color">#555555</color>
     <color name="register_split_line_color">#c2d4ec</color>
@@ -28,6 +30,7 @@
     <color name="swich_user_sel_color">#3F80DC</color>
     <color name="circular_progressbar_color">#3F80DD</color>
     <color name="circular_progressbar_bg_color">#D0D4D8</color>
+
     <!-- 注册头像设置页面 -->
     <color name="regist_photo_focus_color">#3F80DD</color>
     <!-- 主页面 -->

@@ -54,7 +54,7 @@ public class BbsFragment extends Fragment {
         //设置分割线
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         mRecyclerView.setAdapter(mAdapter);
-        mRl_refresh.setColorSchemeResources(R.color.colorAccent);
+        mRl_refresh.setColorSchemeResources(R.color.float_button_bg_color);
         initEnvent();
     }
 

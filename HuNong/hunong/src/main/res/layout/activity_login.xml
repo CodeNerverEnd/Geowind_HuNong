@@ -11,18 +11,19 @@
                       android:layout_marginTop="155dp"
                       android:layout_gravity="center"
             >
+
             <EditText android:layout_width="match_parent"
                       android:layout_height="40dp"
                       android:id="@+id/et_userName"
                       android:layout_marginLeft="20dp"
                       android:layout_marginRight="16dp"
                       android:background="@android:color/transparent"
-                      android:textSize="18sp"
-                      android:textColor="#000000"
+                      android:textSize="16sp"
+                      android:textColor="@color/default_text_color"
                       android:textColorHint="#c9c9c9"
                       android:layout_marginTop="20dp"
-                      android:drawableLeft="@drawable/username"
-                      android:hint="  用户名"/>
+                      android:hint="用户名"/>
+
             <EditText android:layout_width="match_parent"
                       android:layout_height="40dp"
                       android:id="@+id/et_password"
@@ -31,33 +32,14 @@
                       android:layout_marginLeft="20dp"
                       android:background="@android:color/transparent"
                       android:textColorHint="#c9c9c9"
-                      android:textColor="#000000"
-                      android:textSize="18sp"
-                      android:drawableLeft="@drawable/password"
-                      android:hint=" 密码"/>
+                      android:textColor="@color/default_text_color"
+                      android:textSize="16sp"
+                      android:hint="密 码"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="77dp">
-                <Button android:layout_width="wrap_content"
-                          android:text="注册"
-                          android:textSize="16sp"
-                          android:textColor="#585050"
-                          android:onClick="onClick"
-                          android:id="@+id/bt_register"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/transparent"
-                          android:layout_height="wrap_content"/>
-                <Button android:layout_width="wrap_content"
-                          android:text="忘记密码"
-                          android:textSize="16sp"
-                          android:layout_marginLeft="165dp"
-                          android:onClick="onClick"
-                          android:textColor="#585050"
-                          android:layout_marginTop="10dp"
-                          android:id="@+id/tv_forgetPsw"
-                        android:background="@android:color/transparent"
-                          android:layout_height="wrap_content"/>
+
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,6 +49,30 @@
                     android:background="@android:color/transparent"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/selector_login_bt"/>
+
+                <Button android:layout_width="wrap_content"
+                        android:text="忘记密码"
+                        android:textSize="14sp"
+                        android:onClick="onClick"
+                        android:textColor="#585050"
+                        android:id="@+id/tv_forgetPsw"
+                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/login_btn"
+                        android:layout_toEndOf="@+id/login_btn"/>
+
+                <Button android:layout_width="wrap_content"
+                        android:text="注   册"
+                        android:textSize="14sp"
+                        android:textColor="#585050"
+                        android:onClick="onClick"
+                        android:id="@+id/bt_register"
+                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toLeftOf="@+id/login_btn"
+                        android:layout_toStartOf="@+id/login_btn"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

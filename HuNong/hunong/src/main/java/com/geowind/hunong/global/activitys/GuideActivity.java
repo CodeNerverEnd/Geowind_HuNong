@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,7 +32,7 @@ public class GuideActivity extends Activity {
 
     private ViewPager mVp_guidePager;
     private View mView_movePoint;
-    private Button mBt_startfeel;
+    private ImageButton mBt_startfeel;
     private int[] mPics;
     private List<ImageView> mGuids;
     private MyAdapter mAdapter;
@@ -64,6 +66,7 @@ public class GuideActivity extends Activity {
           public void onPageSelected(int position) {
               if(position==mGuids.size()-1){
                   mBt_startfeel.setVisibility(View.VISIBLE);
+                  mBt_startfeel.setAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bt_start_feel));
               }else {
                   mBt_startfeel.setVisibility(View.GONE);
               }
@@ -143,6 +146,6 @@ public class GuideActivity extends Activity {
         mVp_guidePager = (ViewPager) findViewById(R.id.vp_guide_pager);
         mLl_points = (LinearLayout) findViewById(R.id.ll_piont);
         mView_movePoint = findViewById(R.id.view_movepoint);
-        mBt_startfeel = (Button) findViewById(R.id.bt_startfeel);
+        mBt_startfeel = (ImageButton) findViewById(R.id.bt_startfeel);
     }
 }
