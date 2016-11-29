@@ -3,79 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#EBEBEB"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.geowind.hunong.pestControl.PestControlActivity">
 
-    <include layout="@layout/menu_title_bar_with_button"/>
+    <include layout="@layout/menu_title_bar_with_button" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:background="@drawable/roundrectangle"
-            android:textColor="#000000"
-            android:gravity="top"
-            android:textSize="18dp"
-            android:hint="请输入描述..."
-            android:layout_marginBottom="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="32dp"
             android:layout_weight="3"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="#ffffff"
-            android:orientation="horizontal">
+            android:background="#ffffff">
 
-            <com.geowind.hunong.pestControl.MySquareImageView
-                android:id="@+id/imageView1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:layout_marginRight="12dp" />
-
-            <com.geowind.hunong.pestControl.MySquareImageView
-                android:id="@+id/imageView2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="12dp" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="6dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="请输入描述..."
+                android:textColor="#343434"
+                android:textSize="18dp" />
 
         </LinearLayout>
 
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="#ffffff"
-            android:orientation="horizontal">
+            android:layout_weight="6"
+            android:orientation="vertical">
 
-            <com.geowind.hunong.pestControl.MySquareImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginRight="12dp" />
+                android:orientation="horizontal">
 
-            <com.geowind.hunong.pestControl.MySquareImageView
-                android:id="@+id/imageView4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+                <com.geowind.hunong.pestControl.MySquareImageView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <com.geowind.hunong.pestControl.MySquareImageView
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp" />
+                android:orientation="horizontal">
+
+                <com.geowind.hunong.pestControl.MySquareImageView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <com.geowind.hunong.pestControl.MySquareImageView
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/imageView4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
         </LinearLayout>
 

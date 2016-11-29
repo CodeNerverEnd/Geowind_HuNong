@@ -18,6 +18,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.multiFilesUploadUtil;
 import com.zfdang.multiple_images_selector.ImagesSelectorActivity;
 import com.zfdang.multiple_images_selector.SelectorSettings;
 
@@ -52,7 +53,10 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
     /**
      * 服务器地址
      */
-    public static final String uploadUrl = MyConstants.PESTCONTROL_UPLOAD_URL;
+    public static final String uploadUrl = MyConstants.PEST_OR_CONSULT_UPLOAD_URL;
+    private static String op = "pestInfo";
+    private String userName = "geowind";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +83,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
             iv.setClickable(false);
         }
         imageViews[currentImageView].setClickable(true);
-        imageViews[currentImageView].setImageResource(R.mipmap.newadd);
+        imageViews[currentImageView].setImageResource(R.mipmap.my_add);
 
 
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -87,10 +91,6 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
             public void onClick(View view) {
                 Toast.makeText(PestControlActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
 
-                /*************调试使用 ***************/
-                //Intent intent = new Intent(PestControlActivity.this, Recodes.class);
-                //startActivity(intent);
-                /****************************/
 
                 //利用Handler判断是否上传成功
                 final Handler handler = new Handler() {
@@ -98,12 +98,12 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                     public void handleMessage(Message msg) {
                         //上传成功
                         if (msg.what == 1) {
-                            Intent intent = new Intent(PestControlActivity.this, Recodes.class);
+                            Intent intent = new Intent(PestControlActivity.this, PestControlRecodes.class);
                             startActivity(intent);
                         }
                         //上传不成功
                         else {
-                            Intent intent = new Intent(PestControlActivity.this, ResultActivity.class);
+                            Intent intent = new Intent(PestControlActivity.this, PestControlRecodes.class);
                             startActivity(intent);
                         }
                     }
@@ -113,6 +113,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                 new Thread() {
                     public void run() {
                         String result = "0";//服务器返回结果
+                        String pestDescribe = editText.getText().toString();
 
                         ArrayList<File> fileArrayList = new ArrayList<File>();
                         for (String s : mResults) {
@@ -121,11 +122,11 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                         }
 
                         final Map<String, String> map = new HashMap<String, String>();
-                        map.put("op", "askInsertInfo");
-                        map.put("username", "geowind");//id
-                        map.put("describe", "" + editText.getText().toString());//文本框文本
+                        map.put("op", op);
+                        map.put("username", userName);//id
+                        map.put("describe", pestDescribe);
                         try {
-                            result = multiImagesUploadUtil.uploadSubmit(uploadUrl, map, fileArrayList);
+                            result = multiFilesUploadUtil.uploadSubmit(uploadUrl, map, fileArrayList);
                             System.out.println("服务器返回的结果，成功为1，否则为0:" + result);
 
                         } catch (Exception e) {
@@ -158,6 +159,8 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
         });
         confirm = (Button) findViewById(R.id.jmui_commit_btn);
         confirm.setText("上传");
+
+
     }
 
     @Override
@@ -195,7 +198,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                 if (currentImageView < MAX_IMAGES) {
                     imageViews[currentImageView].setClickable(true);
                     //imageViews[currentImageView].setImageResource(R.drawable.chat_detail_add);
-                    imageViews[currentImageView].setImageResource(R.mipmap.newadd);
+                    imageViews[currentImageView].setImageResource(R.mipmap.my_add);
                 }
 
                 //即使已经选择了最后一张图片，最后一个imageView也应该可以点击

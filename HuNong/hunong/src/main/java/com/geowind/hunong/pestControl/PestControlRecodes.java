@@ -20,7 +20,7 @@ import java.util.List;
  * Created by logaxy on 16-11-15.
  * 用于展示病虫识别的历史纪录
  */
-public class Recodes extends BaseActivity {
+public class PestControlRecodes extends BaseActivity {
 
     private RecyclerView recodesRecyclerView;
     private List<Object> recodeItems;
@@ -78,7 +78,7 @@ public class Recodes extends BaseActivity {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                    Recodes.this).inflate(R.layout.item_pestcontrol_recodes_recyclerview, parent,
+                    PestControlRecodes.this).inflate(R.layout.item_pestcontrol_recodes_recyclerview, parent,
                     false));
             return holder;
         }

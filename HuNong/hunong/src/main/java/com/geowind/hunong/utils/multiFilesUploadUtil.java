@@ -1,4 +1,4 @@
-package com.geowind.hunong.pestControl;
+package com.geowind.hunong.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by logaxy on 2016/9/23.
  */
 
-public class multiImagesUploadUtil {
+public class multiFilesUploadUtil {
 
     /**
      *
@@ -45,9 +45,15 @@ public class multiImagesUploadUtil {
             }
         }
         //添加图片文件到entity对象中
-        for(int i=0,j=fileArrayList.size();i<j;i++){
-            entity.addPart("images",new FileBody(fileArrayList.get(i)));
+        if(fileArrayList!=null&&fileArrayList.size()>0){
+            for(int i=0,j=fileArrayList.size();i<j;i++){
+                entity.addPart("images",new FileBody(fileArrayList.get(i)));
+            }
         }
+        else {
+            System.out.println("服务器aaaaaaaaaaaaaaaa");
+        }
+
         post.setEntity(entity);
         HttpResponse response = httpClient.execute(post);
         int stateCode = response.getStatusLine().getStatusCode();

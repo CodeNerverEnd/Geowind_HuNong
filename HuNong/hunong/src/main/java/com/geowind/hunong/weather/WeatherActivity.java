@@ -173,8 +173,6 @@ public class WeatherActivity extends BaseActivity {
         /**
          * 方法名：onPostExecute(Weather w )
          * 功能：更新UI，与另开线程类似
-         *
-         * @param w
          */
         @Override
         protected void onPostExecute(Weather w) {
@@ -265,8 +263,6 @@ public class WeatherActivity extends BaseActivity {
                     pm2_5Rank.setImageResource(MyUtils.getResourceBasem2_5Rank(PmType));
                     image2.setImageResource(MyUtils.getResourceBaseWertherType(weatherType2));
                     image3.setImageResource(MyUtils.getResourceBaseWertherType(weatherType3));
-
-
                 }
             }
         }
