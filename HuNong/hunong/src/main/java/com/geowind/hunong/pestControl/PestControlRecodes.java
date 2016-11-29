@@ -20,7 +20,7 @@ import java.util.List;
  * Created by logaxy on 16-11-15.
  * 用于展示病虫识别的历史纪录
  */
-public class Recodes extends BaseActivity {
+public class PestControlRecodes extends BaseActivity {
 
     private RecyclerView recodesRecyclerView;
     private List<Object> recodeItems;
@@ -28,30 +28,23 @@ public class Recodes extends BaseActivity {
 
     private SwipeRefreshLayout recodesRefresh;
 
-    /*
-     * titlebar相关
-     * */
-    private TextView title;
-    private ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recodes);
 
-        /*
-        * titlebar设置
-        * */
-        title = (TextView) findViewById(R.id.title);
-        returnButton = (ImageButton) findViewById(R.id.return_btn);
-        title.setText("历史纪录");
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
+        //**************************
+
+        //recodeItems.add();
+
+
+        // **************************
+
+
+
+        initTitleBar();
 
         recodesRecyclerView = (RecyclerView) findViewById(R.id.recodes_recyclerView);
         recodesRecyclerView.setAdapter(recodesAdapter = new RecodesRecyclerViewAdapter());
@@ -63,13 +56,29 @@ public class Recodes extends BaseActivity {
 
     }
 
+    private void initTitleBar() {
+
+        TextView title;
+        ImageButton returnButton;
+
+        title = (TextView) findViewById(R.id.title);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
+        title.setText("历史纪录");
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
 
     class RecodesRecyclerViewAdapter extends RecyclerView.Adapter<RecodesRecyclerViewAdapter.MyViewHolder> {
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                    Recodes.this).inflate(R.layout.item_pestcontrol_recodes_recyclerview, parent,
+                    PestControlRecodes.this).inflate(R.layout.item_pestcontrol_recodes_recyclerview, parent,
                     false));
             return holder;
         }
@@ -93,9 +102,9 @@ public class Recodes extends BaseActivity {
             public MyViewHolder(View view) {
                 super(view);
 
-                recodesDate= (TextView) view.findViewById(R.id.recodes_date);
-                recodesFirstImage= (MySquareImageView) view.findViewById(R.id.recodes_firstImage);
-                recodesDescrition= (TextView) view.findViewById(R.id.recodes_descrition);
+                recodesDate = (TextView) view.findViewById(R.id.recodes_date);
+                recodesFirstImage = (MySquareImageView) view.findViewById(R.id.recodes_firstImage);
+                recodesDescrition = (TextView) view.findViewById(R.id.recodes_descrition);
             }
 
         }

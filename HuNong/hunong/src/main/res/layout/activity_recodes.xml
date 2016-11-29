@@ -4,20 +4,22 @@
     android:id="@+id/activity_recodes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.geowind.hunong.pestControl.Recodes"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.geowind.hunong.pestControl.PestControlRecodes">
 
-    <include layout="@layout/menu_title_bar"/>
+    <include layout="@layout/menu_title_bar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
         android:id="@+id/recodes_sr_refresh"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recodes_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

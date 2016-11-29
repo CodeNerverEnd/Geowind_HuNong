@@ -29,14 +29,15 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@mipmap/daofeisi"/>
             <TextView
                 android:id="@+id/recodes_descrition"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="48px"
-                android:text="俺家田里长这种虫子啦，这是什么虫？"/>
+                android:text="俺家田里长这种虫子了，应该用什么农药？"/>
         </LinearLayout>
 
     </LinearLayout>

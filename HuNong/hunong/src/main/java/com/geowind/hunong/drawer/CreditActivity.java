@@ -33,8 +33,8 @@ public class CreditActivity extends BaseActivity {
         /*
         * titlebar设置
         * */
-        title=(TextView) findViewById(R.id.title);
-        returnButton=(ImageButton) findViewById(R.id.return_btn);
+        title = (TextView) findViewById(R.id.title);
+        returnButton = (ImageButton) findViewById(R.id.return_btn);
         title.setText("信用信息");
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +44,9 @@ public class CreditActivity extends BaseActivity {
         });
 
         progressBar = (ColorArcProgressBar) findViewById(R.id.progressBar);
-        textView= (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.textView);
 
-        reputationValue = 100;
+        reputationValue = 92;
         progressBar.setCurrentValues(reputationValue);
 
     }

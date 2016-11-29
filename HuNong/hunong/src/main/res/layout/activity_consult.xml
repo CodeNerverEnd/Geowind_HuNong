@@ -2,67 +2,82 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:background="#EBEBEB"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <include layout="@layout/menu_title_bar_with_button"/>
+    <include layout="@layout/menu_title_bar_with_button" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="9">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/line"/>
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:gravity="top"
-            android:textSize="18dp"
-            android:hint="请输入您想要咨询的内容\n相关专家解答后将会通知您！" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/line"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/line"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="#ffffff">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="输入您想要咨询的内容\n专家解答后将会通知您！"
+                android:textColor="#343434"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:background="#FFFFFF">
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
-                android:text="电话号码"/>
-            <EditText
+                android:text="关键字："
+                android:textColor="#343434"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/keywortextview"
+                android:textColor="#343434"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="18dp"
-                android:textColor="#000000"/>
+                android:gravity="center|left" />
 
         </LinearLayout>
-        <ImageView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/line"/>
+            android:layout_height="0dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="28dp"
+            android:layout_weight="5"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <com.geowind.hunong.consult.KeywordsFlow
+                android:id="@+id/keywordsflow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
     </LinearLayout>
-
-
 
 </LinearLayout>

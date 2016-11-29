@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 
 import com.geowind.hunong.R;
+
 import kankan.wheel.widget.OnWheelChangedListener;
 
 import kankan.wheel.widget.WheelView;
@@ -25,11 +26,13 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_select_city);
+        setContentView(R.layout.activity_select_city);
         setUpViews();
         setUpListener();
         setUpData();
-    }private void setUpViews() {
+    }
+
+    private void setUpViews() {
         mViewProvince = (WheelView) findViewById(R.id.id_province);
         mViewCity = (WheelView) findViewById(R.id.id_city);
         mViewDistrict = (WheelView) findViewById(R.id.id_district);
@@ -46,9 +49,9 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
     private void setUpData() {
         initProvinceDatas();
         mViewProvince.setViewAdapter(new ArrayWheelAdapter<String>(SelectCityActivity.this, mProvinceDatas));
-        mViewProvince.setVisibleItems(7);
-        mViewCity.setVisibleItems(7);
-        mViewDistrict.setVisibleItems(7);
+        mViewProvince.setVisibleItems(5);
+        mViewCity.setVisibleItems(5);
+        mViewDistrict.setVisibleItems(5);
         updateCities();
         updateAreas();
     }
@@ -71,7 +74,7 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
         String[] areas = mDistrictDatasMap.get(mCurrentCityName);
 
         if (areas == null) {
-            areas = new String[] { "" };
+            areas = new String[]{""};
         }
         mCurrentDistrictName = areas[0];
         mViewDistrict.setViewAdapter(new ArrayWheelAdapter<String>(this, areas));
@@ -83,7 +86,7 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
         mCurrentProviceName = mProvinceDatas[pCurrent];
         String[] cities = mCitisDatasMap.get(mCurrentProviceName);
         if (cities == null) {
-            cities = new String[] { "" };
+            cities = new String[]{""};
         }
         mViewCity.setViewAdapter(new ArrayWheelAdapter<String>(this, cities));
         mViewCity.setCurrentItem(0);
@@ -93,13 +96,13 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onClick(View v) {
         String ciyiName;
-        ciyiName=mCurrentCityName;
-        if (""==mCurrentCityName||null==mCurrentCityName)
-            ciyiName=mCurrentDistrictName;
+        ciyiName = mCurrentCityName;
+        if ("" == mCurrentCityName || null == mCurrentCityName)
+            ciyiName = mCurrentDistrictName;
 
-        Intent intent=new Intent();
-        intent.putExtra("returnString",ciyiName);
-        setResult(RESULT_OK,intent);
+        Intent intent = new Intent();
+        intent.putExtra("returnString", ciyiName);
+        setResult(RESULT_OK, intent);
         finish();
     }
 

@@ -17,29 +17,36 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/daofeisi"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="\n基本描述：\nXX虫\nXX生长期"/>
+            android:textColor="#ef0000"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="基本信息：\n此虫为稻飞虱、处于成虫期"/>
 
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textSize="25dp"
-        android:text="危害：\n此虫对水稻会有........\nxxx"/>
+        android:layout_weight="2"
+        android:textSize="16dp"
+        android:text="危害：\n稻飞虱常在稻株茎基部刺吸汁液，同时排出大量蜜露，使稻丛基部变黑，叶片发黄干枯。
+        雌虫用产卵管刺裂稻茎的表皮组织，将卵产于组织内。稻株被刺伤处常呈褐色条斑，严重时稻株基部茎秆腐烂，植株
+        枯死，形成一团一团的“黄塘”、“落窝”现象，常造成大片水稻枯黄倒伏，对产量影响极大，轻者减产20%~30%，严重
+        时可减产50%以上，甚至造成颗粒无收"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textSize="25dp"
-        android:text="对策:\n应该使用xxx药物\nxxx"/>
+        android:layout_weight="2"
+        android:textSize="16dp"
+        android:text="对策:\n选用抗（耐）虫水稻品种，进行科学肥水管理，适时烤田，避免偏施氮肥，防止水稻后期
+        贪青徒长，创造不利于褐飞虱孳生繁殖的生态条件。\n建议使用50％二嗪磷乳油，10％大功臣可湿性粉剂。"/>
 
 </LinearLayout>
