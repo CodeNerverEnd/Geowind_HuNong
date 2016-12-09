@@ -26,6 +26,7 @@ import com.geowind.hunong.weather.weatherjson.Weather_data;
 public class WeatherActivity extends BaseActivity {
 
     private RelativeLayout rootRelativeLayout;
+    private RelativeLayout relativeLayout;
     private LinearLayout linearLayout3;
 
     /**
@@ -70,6 +71,7 @@ public class WeatherActivity extends BaseActivity {
 
     private String selectCity;
 
+    private int weatherType1;
     private int weatherType2;
     private int weatherType3;
     private WeatherHelper weatherHelper = new WeatherHelper();
@@ -117,6 +119,7 @@ public class WeatherActivity extends BaseActivity {
 
     private void initView() {
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
 
         imageView_today = (ImageView) findViewById(R.id.imageView_today);
@@ -197,14 +200,11 @@ public class WeatherActivity extends BaseActivity {
                 if (result != null) {
                     Weather_data weather_data = result.getWeather_data().get(0);
 
-//                    btn.setImageResource(R.mipmap.select );
                     btn.setBackgroundResource(R.mipmap.select);
 
                     imageView_today.setImageResource(R.mipmap.today);
 
-                    /**
-                     * 显示城市名
-                     */
+
                     cityName.setText(result.getCurrentCity());
 
                     /**
@@ -231,8 +231,15 @@ public class WeatherActivity extends BaseActivity {
                     windstrength1.setText(weather_data.getWind());
                     line.setImageResource(R.mipmap.line);
 
-                    /**
-                     * 显示第二天天气基本数据
+                    /*
+                        显示背景
+                     */
+                    weatherType1 = weatherHelper.Sort(weather_data.getWeather());
+                    relativeLayout.setBackgroundResource(
+                            MyUtils.getBackgroundResourceBaseWeatherType(weatherType1));
+
+                    /*
+                        显示第二天天气基本数据
                      */
                     weather_data = result.getWeather_data().get(1);
 

@@ -46,7 +46,6 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
     };
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +55,7 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
         initTitleBar();
         initKeywordsFlow();
 
-        describeEditText= (EditText) findViewById(R.id.editText);
+        describeEditText = (EditText) findViewById(R.id.editText);
 
         confirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -79,23 +78,23 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
                     }
                 };
 
-                new Thread(){
-                    public void run(){
+                new Thread() {
+                    public void run() {
                         System.out.println("qewrtyuiop;lkjghfdsadfghj");
-                        String consultsDescribe=describeEditText.getText().toString();
-                        String contentKeyWords=keywordsTextView.getText().toString();
+                        String consultsDescribe = describeEditText.getText().toString();
+                        String contentKeyWords = keywordsTextView.getText().toString();
                         String result = "0";//服务器返回结果
 
                         final Map<String, String> map = new HashMap<String, String>();
-                        map.put("op",op);
-                        map.put("uesrname",userName);
-                        map.put("describe",consultsDescribe);
-                        map.put("keywords",contentKeyWords);
+                        map.put("op", op);
+                        map.put("uesrname", userName);
+                        map.put("describe", consultsDescribe);
+                        map.put("keywords", contentKeyWords);
 
-                        try{
-                            result=multiFilesUploadUtil.uploadSubmit(uploadUrl,map,null);
+                        try {
+                            result = multiFilesUploadUtil.uploadSubmit(uploadUrl, map, null);
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                         Message msg = handler.obtainMessage(Integer.parseInt(result));
