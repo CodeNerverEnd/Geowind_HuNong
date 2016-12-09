@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,6 +20,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:text="问题描述"
+                    android:textColor="@color/default_text_color"
                     android:layout_margin="10dp"
                     android:layout_height="wrap_content"/>
 
@@ -27,9 +30,11 @@
                     android:layout_margin="5dp"
                     android:ellipsize="end"
                     android:lines="12"
+                    android:textColor="@color/default_text_color"
                     android:layout_height="150dp"/>
 
                 <TextView
+                    android:textColor="@color/default_text_color"
                     android:layout_width="match_parent"
                     android:text="专家回复"
                     android:layout_margin="10dp"
@@ -41,6 +46,7 @@
                     android:layout_margin="5dp"
                     android:ellipsize="end"
                     android:lines="12"
+                    android:textColor="@color/default_text_color"
                     android:layout_height="150dp"/>
             </LinearLayout>
         </LinearLayout>
