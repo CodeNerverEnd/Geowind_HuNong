@@ -10,7 +10,7 @@
 <ListView
     android:layout_width="match_parent"
     android:id="@+id/lv_msgDetails"
-
+    android:divider="@color/transparent"
     android:stackFromBottom="true"
     android:transcriptMode="alwaysScroll"
     android:layout_height="wrap_content">

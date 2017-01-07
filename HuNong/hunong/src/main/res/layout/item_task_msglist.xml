@@ -24,6 +24,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:textSize="24dp"
+                    android:textColor="@color/default_text_color"
                     android:id="@+id/tv_msg_taskTile"
                     android:text="任务标题"
                     android:gravity="center_horizontal"
@@ -37,6 +38,7 @@
                     android:layout_width="wrap_content"
                     android:text="任务地点"
                     android:textSize="18sp"
+                    android:textColor="@color/default_text_color"
                     android:id="@+id/tv_msg_taskAdress"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -49,6 +51,7 @@
                     android:layout_width="match_parent"
                     android:scaleType="fitXY"
                     android:layout_margin="20dp"
+                    android:textColor="@color/default_text_color"
                     android:id="@+id/iv_msg_taskImg"
                     android:src="@drawable/default_image"
                     android:layout_height="200dp"/>
