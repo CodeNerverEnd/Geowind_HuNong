@@ -45,7 +45,7 @@ public class WeatherActivity extends BaseActivity {
     private LinearLayout thirdDayLayout;
 
 
-    private ImageButton btn;
+    private ImageButton btn;//更换城市按钮
     private TextView cityName;//城市名
     private TextView pm25Value;//pm2.5值
     private ImageView pm2_5Rank;//pm2.5等级
