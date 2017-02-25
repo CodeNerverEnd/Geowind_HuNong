@@ -137,7 +137,7 @@ public class WeatherActivity extends BaseActivity {
         temperatureUnit = (TextView) findViewById(R.id.temperatureUnit);
         line = (ImageView) findViewById(R.id.line);
         week2 = (TextView) findViewById(R.id.week2);
-        weather2 = (TextView) findViewById(R.id.weather2);
+        weather2 = (TextView)findViewById(R.id.weather2);
         windstrength2 = (TextView) findViewById(R.id.windstrength2);
         temperature2 = (TextView) findViewById(R.id.temperature2);
         image2 = (ImageView) findViewById(R.id.image2);
