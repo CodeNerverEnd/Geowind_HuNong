@@ -179,7 +179,7 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String jsonString=new String(responseBody);
-                System.out.println("文库====="+jsonString);
+
                 if(jsonString==null){
 
                 }else {

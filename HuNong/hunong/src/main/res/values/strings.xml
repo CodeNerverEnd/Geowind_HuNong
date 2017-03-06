@@ -164,6 +164,8 @@
     <string name="feed_back">用户反馈</string>
     <string name="clear_cache">清除缓存</string>
     <string name="check_update">检查更新</string>
+    <string name="push_light">通知时呼吸灯闪烁</string>
+    <string name="push_vibrate">通知时震动</string>
     <string name="demo_version_name">demo版本号:%s</string>
     <string name="sdk_version">\nsdk版本号:</string>
     <string name="about_date">\n6月28日</string>
@@ -253,7 +255,7 @@
     <string name="change_nickname_hint">修改此昵称只会在本群中显示</string>
     <string name="group_chat_history_hit">查找聊天内容</string>
     <string name="group_clear_history_hit">清空聊天记录</string>
-    <string name="jmui_clear_history_confirm_title">确定清空聊天记录？</string>
+    <string name="jmui_clear_history_confirm_title">确定清空缓存？</string>
     <string name="jmui_delete_group_confirm_title">确定删除并退出群聊？</string>
     <string name="deleting_hint">删除中</string>
     <string name="group_exit_btn">删除并退出</string>

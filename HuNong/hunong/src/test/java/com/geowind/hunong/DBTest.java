@@ -52,6 +52,7 @@ public class DBTest {
     public void testDelete(){
         TaskDaoImpl impl=new TaskDaoImpl(mMockContext);
         Task instance = impl.getInstance();
+
     }
     @Test
     public void testFindAll(){

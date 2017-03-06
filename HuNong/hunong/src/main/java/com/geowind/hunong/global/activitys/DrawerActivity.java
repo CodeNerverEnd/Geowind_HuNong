@@ -85,6 +85,7 @@ public class DrawerActivity extends AppCompatActivity {
     protected int mAvatarSize;
     protected int mWidth;
     protected int mHeight;
+    private ImageView mIv_usertype;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,7 +117,17 @@ public class DrawerActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
         initView();
+        initData();
         initEvnet();
+    }
+
+    private void initData() {
+        String userType=SpTools.getString(DrawerActivity.this,MyConstants.USER_TYPE,"");
+        if("0".equals(userType)){
+            mIv_usertype.setImageResource(R.mipmap.status);
+        }else {
+            mIv_usertype.setImageResource(R.mipmap.status2);
+        }
     }
 
     private void initEvnet() {
@@ -211,6 +222,8 @@ public class DrawerActivity extends AppCompatActivity {
         mTv_userName.setText(SpTools.getString(getApplicationContext(), MyConstants.USERNAME,""));
         mTakePhotoBtn= (CircleImageView) mDrawer.findViewById(R.id.iv_avatar);
         mTv_setting = (TextView) mDrawer.findViewById(R.id.tv_setting);
+        mIv_usertype = (ImageView) findViewById(R.id.iv_userType);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

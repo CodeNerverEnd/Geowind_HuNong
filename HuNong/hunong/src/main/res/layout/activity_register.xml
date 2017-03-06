@@ -64,10 +64,13 @@
             android:textColor="@color/chat_text_color"
             android:layout_height="wrap_content"/>
 
+
         <Spinner
             android:layout_width="wrap_content"
             android:id="@+id/sp_center"
             android:paddingBottom="20dp"
+            android:minHeight="40dp"
+            android:minWidth="150dp"
             android:layout_height="wrap_content"></Spinner>
         <com.geowind.hunong.view.RegisterEditView
             android:layout_width="wrap_content"

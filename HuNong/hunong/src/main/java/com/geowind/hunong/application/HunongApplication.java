@@ -2,6 +2,11 @@ package com.geowind.hunong.application;
 
 import android.app.Application;
 import com.baidu.mapapi.SDKInitializer;
+import com.geowind.hunong.utils.MyConstants;
+import com.geowind.hunong.utils.PushNotifiction;
+import com.geowind.hunong.utils.SpTools;
+
+import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -22,12 +27,15 @@ public class HunongApplication extends Application {
     public static  int NEW_TASK_COUNT=0;
     public static  int NEW_EXPERT_REPLY_COUNT=0;
     public static  int NEW_SYSTEM_MSG_COUNT=0;
-
+   public static BasicPushNotificationBuilder builder;
     @Override
     public void onCreate() {
         super.onCreate();
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
+        PushNotifiction.setPushNotificationStyle(getApplicationContext(),builder);
+
+
 /**
  * 发送key给服务 校验key是否正确
  */

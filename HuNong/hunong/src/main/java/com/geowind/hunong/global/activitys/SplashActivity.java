@@ -155,7 +155,7 @@ public class SplashActivity  extends Activity{
             }else {
                 mLocationClient.stop();
             }
-            System.out.println("当前定位："+mCurrentLocation.getAddrStr());
+
         }
     }
     /**

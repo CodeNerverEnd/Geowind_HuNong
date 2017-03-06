@@ -33,4 +33,7 @@ public interface MyConstants {
     String TABLE_TASK="task";//任务表名
     String TABLE_SYSTEM_MSG="system_msg";//系统消息表
     String TABLE_EXPERT_REPLY="expert_reply";//专家回复
+    String IS_LIGHT="isLight";//是否闪烁呼吸灯
+    String IS_VIBRATE="isVibrate";//是否震动
+    String USER_TYPE="userType";//用户类型
 }

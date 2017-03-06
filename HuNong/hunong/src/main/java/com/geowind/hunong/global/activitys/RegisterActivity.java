@@ -1,6 +1,7 @@
 package com.geowind.hunong.global.activitys;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -49,7 +50,7 @@ public class RegisterActivity extends BaseActivity  {
     private RegisterEditView mEt_realname;
     private String mRealname;
     private Spinner mSp_center;
-    private List mCenters;
+    private List<String> mCenters;
     private TextView mTv_title;
     private ImageButton mIb_return;
     private AsyncHttpClient mAsyncHttpClient;
@@ -124,27 +125,35 @@ public class RegisterActivity extends BaseActivity  {
                 }else {
                     mTv_center.setTextColor(getResources().getColor(R.color.chat_text_color));
                 }
-                if(!isPhone(mPhone)){
+                if(TextUtils.isEmpty(mPhone)){
+                    mEt_phone.setWarrorText("手机号不能为空");
+                    mEt_phone.setWarrorVisibility(View.VISIBLE);
+                    inputError=true;
+                }
+                else if(isPhone(mPhone)==false){
                   mEt_phone.setWarrorText("手机号格式有误");
                     mEt_phone.setWarrorVisibility(View.VISIBLE);
                     inputError=true;
-                }else {
+                }
+                else {
                     mEt_phone.setWarrorVisibility(View.GONE);
                 }
                 if(!mPassword.equals(mRePassword)){
                     mEt_rePsw.setWarrorText("两次密码不一致");
                     mEt_rePsw.setWarrorVisibility(View.VISIBLE);
+                    inputError=true;
                 }else {
                     mEt_rePsw.setWarrorVisibility(View.GONE);
                 }
                 if(mPassword.length()>16){
                     mEt_psw.setWarrorText("密码不能超过16位");
                     mEt_psw.setWarrorVisibility(View.VISIBLE);
+                    inputError=true;
                 }else {
                     mEt_psw.setWarrorVisibility(View.GONE);
-                    inputError=true;
+
                 }
-                if(!inputError)
+                if(inputError==false)
                 requestRegister();
             }
         });
@@ -154,18 +163,10 @@ public class RegisterActivity extends BaseActivity  {
                 finish();
             }
         });
-        if(mCenters!=null)
-          mSp_center.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-              @Override
-              public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                  mCenterName=mCenters.get(position).toString();
-              }
 
-              @Override
-              public void onNothingSelected(AdapterView<?> parent) {
 
-              }
-          });
+
+
         mRg_userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -182,9 +183,10 @@ public class RegisterActivity extends BaseActivity  {
     }
 
     private boolean isPhone(String phone) {
-        Pattern pattern=Pattern.compile("^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8]))//d{8}$");
-        Matcher matcher=pattern.matcher(phone);
-        return matcher.matches();
+        String telRegex = "[1][358]\\d{9}";
+        if (TextUtils.isEmpty(phone)) return false;
+        else return phone.matches(telRegex);
+
     }
 
     //初始化数据
@@ -197,9 +199,25 @@ public class RegisterActivity extends BaseActivity  {
         mParams = new RequestParams();
         //从服务器获取服务中心名称
         requestCenterFromNet();
-        if(mCenters!=null)
-        mSp_center.setAdapter(new ArrayAdapter<String>(getApplicationContext()
-                ,android.R.layout.simple_spinner_item, mCenters));
+
+
+        mSp_center.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mCenterName=mCenters.get(position);
+
+                mTv_center.setText(mCenterName);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
     }
 
     private void requestCenterFromNet() {
@@ -209,12 +227,16 @@ public class RegisterActivity extends BaseActivity  {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 mCenters.addAll(CenterJson.parseJson(result));
-                System.out.println("服务中心请求结果："+result);
+               // System.out.println("服务中心请求结果："+result);
+                ArrayAdapter adapter=new ArrayAdapter<String>(getApplicationContext()
+                        ,android.R.layout.simple_spinner_item, mCenters);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSp_center.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                System.out.println("服务中心请求失败"+statusCode);
+
             }
         });
     }
@@ -239,8 +261,8 @@ public class RegisterActivity extends BaseActivity  {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT).show();
                 System.out.println("注册成功"+statusCode);
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
 
             @Override

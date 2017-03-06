@@ -98,6 +98,7 @@
         <activity android:name=".global.activitys.AddBbsActivity" />
         <activity android:name=".drawer.AboutActivity" />
         <activity android:name=".drawer.SettingActivity" />
+        <activity android:name=".global.activitys.CacheActivity"/>
         <!-- 病虫害反馈相关 -->
         <activity
             android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity"

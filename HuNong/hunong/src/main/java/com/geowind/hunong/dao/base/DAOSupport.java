@@ -42,7 +42,8 @@ protected SQLiteDatabase db;
         return result;
     }
 
-    private void fillColumn(M m ,ContentValues values) {
+
+    private void fillColumn(M m , ContentValues values) {
 
         Field[] fields=m.getClass().getDeclaredFields();
         for (Field item:fields){
@@ -77,11 +78,18 @@ protected SQLiteDatabase db;
     }
 
     @Override
+    public void deleteAll() {
+        db.delete(getTableName(),null,null);
+    }
+
+
+    @Override
     public int update(M m) {
         ContentValues values=new ContentValues();
         fillColumn(m,values);
         return db.update(getTableName(),values ,getId(m)+"=?",new String[]{getId(m)});
     }
+
 
     //获取到主键封装的值
     private String getId(M m) {

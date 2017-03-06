@@ -13,5 +13,6 @@ public interface DAO<M> {
     int delete(Serializable id);
     int update(M m);
     List<M> findAll();
+    void deleteAll();
     List<M> findByCondition(String[] columns, String selection, String[] selectionArgs, String orderBy, String limit);
 }

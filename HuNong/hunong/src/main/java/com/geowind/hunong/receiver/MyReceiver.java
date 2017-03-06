@@ -20,6 +20,7 @@ import com.geowind.hunong.json.ExpertReplyJson;
 import com.geowind.hunong.json.SystemMsgJson;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.JpushUtil;
+import com.geowind.hunong.utils.NotificationVibrator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +45,7 @@ public class MyReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		//初始化数据库辅助类
         Bundle bundle = intent.getExtras();
+
 		Log.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
