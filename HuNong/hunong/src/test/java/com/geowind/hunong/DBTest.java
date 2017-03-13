@@ -35,17 +35,18 @@ public class DBTest {
     public void testUpdate(){
         TaskDaoImpl impl=new TaskDaoImpl(mMockContext);
         Task task=new Task();
-        task.setFaddr("南华大学");
-        task.setfUname("geowind");
+
+//        task.setFaddr("南华大学");
+//        task.setfUname("geowind");
         impl.update(task);
     }
     @Test
     public void testInsert(){
         TaskDaoImpl impl=new TaskDaoImpl(mMockContext);
         Task task=new Task();
-        task.setNo(1);
-        task.setfUname("张文");
-        task.setFaddr("湖南衡阳");
+        task.setTid(1);
+        task.setMuser("张文");
+        task.setAddress("湖南衡阳");
         impl.insert(task);
     }
     @Test

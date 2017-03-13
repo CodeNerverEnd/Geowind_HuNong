@@ -18,8 +18,8 @@ public interface MyConstants {
     String LibraryURL= "http://115.159.125.122:8080/MutualAgriculture/LibraryServlet";//文库
 //    String LibraryURL= "http://192.168.1.123:8080/MutualAgriculture/LibraryServlet";//文库
     //String TASKURL="http://115.159.125.122:8080/HuNong/TaskServlet";
-    String TASKURL="http://115.159.125.122:8080/MutualAgriculture/TaskServlet";//任务
-
+   // String TASKURL="http://115.159.125.122:8080/MutualAgriculture/TaskServlet";//任务
+    String TASKURL="http://192.168.0.107:8080/MutualAgriculture/TaskServlet";//任务
     String LIBRARY_JSON="libraryJson";//文库的json数据
     String HOMEURL="";//主页数据的URL
     String CACHED_APP_KEY="cachedAppkey";//缓存的appkey

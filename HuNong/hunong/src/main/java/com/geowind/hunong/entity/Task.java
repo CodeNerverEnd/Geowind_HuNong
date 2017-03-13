@@ -14,22 +14,22 @@ import java.util.Date;
 public class Task {
     @ID(autoincrement=true)
     @Colnum(DBHelper.ID)
-    private int no;
+    private int tid;
     //农机手
     @Colnum(DBHelper.UNMAE)
-    private String mUname;
-    //种粮大户
-    @Colnum(DBHelper.FNAME)
-    private String fUname;
-    //农田编号
+    private String muser;
+    //块编号
     @Colnum(DBHelper.FNO)
-    private int fno;
+    private int bid;
+    //块名
+    @Colnum(DBHelper.BNAME)
+    private  String bname;
     //工作量
     @Colnum(DBHelper.WORKLOAD)
     private String workLoad;
     //农机编号
     @Colnum(DBHelper.MNO)
-    private String mno;
+    private String mid;
     //作业类型
     @Colnum(DBHelper.TYPE)
     private String  type;
@@ -41,13 +41,13 @@ public class Task {
     private String state;
     //农田分区编号
     @Colnum(DBHelper.FZNO)
-    private String fzno;
+    private String zonename;
     //农田总面积
     @Colnum(DBHelper.FAREA)
-    private double farea;
+    private double barea;
     //农田地址
     @Colnum(DBHelper.FADDR)
-    private String faddr;
+    private String address;
     //经度
     @Colnum(DBHelper.LONGITUDE)
     private double longitude;
@@ -56,154 +56,158 @@ public class Task {
     private double latitude;
     //农田照片
     @Colnum(DBHelper.FPIC)
-    private String fpic;
+    private String pic;
     //作物类型
     @Colnum(DBHelper.CROPTYPE)
-    private String cropType;
+    private String croptype;
     //农机类型
     @Colnum(DBHelper.MSTYLE)
     private String mstyle;
     //备注
     @Colnum(DBHelper.NOTE)
     private String note;
-    public void setNo(int no) {
-        this.no = no;
+
+    public int getTid() {
+        return tid;
     }
 
-    public void setUname(String uname) {
-        mUname = uname;
+    public void setTid(int tid) {
+        this.tid = tid;
     }
 
-    public void setfUname(String fUname) {
-        this.fUname = fUname;
+    public String getMuser() {
+        return muser;
     }
 
-    public void setFno(int fno) {
-        this.fno = fno;
+    public void setMuser(String muser) {
+        this.muser = muser;
     }
 
-    public void setWorkLoad(String workLoad) {
-        this.workLoad = workLoad;
+    public int getBid() {
+        return bid;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBid(int bid) {
+        this.bid = bid;
     }
 
-    public void setMno(String mno) {
-        this.mno = mno;
+    public String getBname() {
+        return bname;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setFzno(String fzno) {
-        this.fzno = fzno;
-    }
-
-    public void setFaddr(String faddr) {
-        this.faddr = faddr;
-    }
-
-    public void setFarea(double farea) {
-        this.farea = farea;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setFpic(String fpic) {
-        this.fpic = fpic;
-    }
-
-    public void setCropType(String cropType) {
-        this.cropType = cropType;
-    }
-
-    public void setMstyle(String mstyle) {
-        this.mstyle = mstyle;
-    }
-
-
-   public int getNo() {
-        return no;
-    }
-
-    public String getUname() {
-        return mUname;
-    }
-
-    public String getfUname() {
-        return fUname;
-    }
-
-    public int getFno() {
-        return fno;
+    public void setBname(String bname) {
+        this.bname = bname;
     }
 
     public String getWorkLoad() {
         return workLoad;
     }
 
-    public String getMno() {
-        return mno;
+    public void setWorkLoad(String workLoad) {
+        this.workLoad = workLoad;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
     }
 
     public String getDate() {
         return date;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getState() {
         return state;
     }
 
-    public String getFzno() {
-        return fzno;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public double getFarea() {
-        return farea;
+    public String getZonename() {
+        return zonename;
     }
 
-    public String getFaddr() {
-        return faddr;
+    public void setZonename(String zonename) {
+        this.zonename = zonename;
+    }
+
+    public double getBarea() {
+        return barea;
+    }
+
+    public void setBarea(double barea) {
+        this.barea = barea;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     public double getLatitude() {
         return latitude;
     }
 
-    public String getFpic() {
-        return fpic;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public String getCropType() {
-        return cropType;
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public String getCroptype() {
+        return croptype;
+    }
+
+    public void setCroptype(String croptype) {
+        this.croptype = croptype;
     }
 
     public String getMstyle() {
         return mstyle;
     }
 
+    public void setMstyle(String mstyle) {
+        this.mstyle = mstyle;
+    }
+
     public String getNote() {
         return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

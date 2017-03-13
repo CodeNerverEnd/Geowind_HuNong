@@ -93,6 +93,7 @@ public class LibraryRecyclerViewFragment extends Fragment implements View.OnClic
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent=new Intent(getActivity(), ArticleDetailsActivity.class);
+
                 intent.putExtra("articleUrl",mAdapter.getLibraries().get(position-1).getUrl());
                 startActivity(intent);
             }

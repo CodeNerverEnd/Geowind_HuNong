@@ -90,6 +90,11 @@
             android:layout_height="wrap_content"/>
         <com.geowind.hunong.map.MyPopTextView
             android:layout_width="match_parent"
+            poptv:title="块名"
+            android:id="@+id/tv_pop_bname"
+            android:layout_height="wrap_content"/>
+        <com.geowind.hunong.map.MyPopTextView
+            android:layout_width="match_parent"
             poptv:title="任务时间"
             android:id="@+id/tv_pop_taskTime"
             android:layout_height="wrap_content"/>
@@ -98,6 +103,7 @@
             poptv:title="任务状态"
             android:id="@+id/tv_pop_taskState"
             android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 

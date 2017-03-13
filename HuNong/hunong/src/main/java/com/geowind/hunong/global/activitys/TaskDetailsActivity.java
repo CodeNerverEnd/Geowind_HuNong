@@ -31,9 +31,11 @@ public class TaskDetailsActivity extends BaseActivity {
         MyPopTextView tv_machineType= (MyPopTextView) findViewById(R.id.tv_taskDetails_minchineType);
         MyPopTextView tv_taskState= (MyPopTextView) findViewById(R.id.tv_taskDetails_taskState);
         MyPopTextView tv_workLoad= (MyPopTextView) findViewById(R.id.tv_taskDetails_workLoad);
+        MyPopTextView tv_bname= (MyPopTextView) findViewById(R.id.tv_bname);
         TextView tv_note= (TextView) findViewById(R.id.tv_taskDetails_note);
         ImageView iv_farm= (ImageView) findViewById(R.id.iv_farm);
         final Intent intent=this.getIntent();
+        tv_bname.setContent("bname");
         tv_croType.setContent(intent.getStringExtra("cropType"));
         tv_date.setContent(intent.getStringExtra("date"));
         tv_area.setContent(intent.getStringExtra("area"));

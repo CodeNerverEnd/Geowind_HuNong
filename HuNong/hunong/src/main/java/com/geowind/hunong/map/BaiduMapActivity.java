@@ -163,6 +163,9 @@ public class BaiduMapActivity extends Activity {
             }
         });
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
+
+            private MyPopTextView mTv_bname;
+
             @Override
             public boolean onMarkerClick(Marker marker) {
             if(TextUtils.isEmpty(marker.getTitle())){
@@ -178,6 +181,7 @@ public class BaiduMapActivity extends Activity {
                         AlertDialog.Builder builder=new AlertDialog.Builder(BaiduMapActivity.this);
                         View view=View.inflate(getApplicationContext(),R.layout.map_popwindow,null);
                         //获取弹出框中的组件
+                        mTv_bname = (MyPopTextView) view.findViewById(R.id.tv_pop_bname);
                         mTv_task_name = (TextView) view.findViewById(R.id.tv_taskName);
                         mIb_quxiao = (ImageButton) view.findViewById(R.id.ib_pop_quxiao);
                         mTv_address = (MyPopTextView) view.findViewById(R.id.tv_pop_address);
@@ -190,13 +194,14 @@ public class BaiduMapActivity extends Activity {
                         mIv_task=  (ImageView) view.findViewById(R.id.iv_map_pop_task);
                         int n=i+1;
                         mTv_task_name.setText("任务"+n+"详情");
-                        mTv_address.setContent(mTasks.get(i).getFaddr());
+                        mTv_bname.setContent(mTasks.get(i).getBname());
+                        mTv_address.setContent(mTasks.get(i).getAddress());
                         mTv_taskType.setContent(mTasks.get(i).getType());
                         mTv_machineName.setContent(mTasks.get(i).getMstyle());
-                        mTv_plantsType.setContent(mTasks.get(i).getCropType());
+                        mTv_plantsType.setContent(mTasks.get(i).getCroptype());
                         mTv_taskTime.setContent(mTasks.get(i).getDate());
                         mTv_note.setText(mTasks.get(i).getNote());
-                        mBitmapUtils.display(mIv_task,mTasks.get(i).getFpic());
+                        mBitmapUtils.display(mIv_task,mTasks.get(i).getPic());
                         if(mTasks.get(i).getState().equals(0)){
                             mTv_taskState.setContent("正在进行");
                         }else {
@@ -254,7 +259,7 @@ public class BaiduMapActivity extends Activity {
             MyPopTextView tv_adress= (MyPopTextView) view.findViewById(R.id.tv_pop_map_address);
             MyPopTextView tv_time= (MyPopTextView) view.findViewById(R.id.tv_pop_map_time);
             TextView tv_taskName= (TextView) view.findViewById(R.id.tv_pop_map_taskName);
-            tv_adress.setContent(mTasks.get(i).getFaddr());
+            tv_adress.setContent(mTasks.get(i).getAddress());
             tv_time.setContent(mTasks.get(i).getDate());
             tv_taskName.setText("任务"+(i+1));
             return view;
@@ -418,7 +423,7 @@ public class BaiduMapActivity extends Activity {
                destinations.add("我的位置");
                if(mTasks!=null){
                    for (int i=0;i<mTasks.size();i++)
-                       destinations.add("任务"+(i+1)+": "+mTasks.get(i).getFaddr());
+                       destinations.add("任务"+(i+1)+": "+mTasks.get(i).getAddress());
                }
                mRoutPlanDialog = DialogPlus.newDialog(BaiduMapActivity.this)
                         .setAdapter(new ArrayAdapter<>(BaiduMapActivity.this,android.R.layout.simple_list_item_1,destinations))

@@ -60,15 +60,16 @@ public class CurrentTaskActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(CurrentTaskActivity.this, TaskDetailsActivity.class);
-                intent.putExtra("cropType", mTasks.get(i).getCropType());
+                intent.putExtra("cropType", mTasks.get(i).getCroptype());
                 intent.putExtra("date", mTasks.get(i).getDate());
-                intent.putExtra("address", mTasks.get(i).getFaddr());
-                intent.putExtra("area", mTasks.get(i).getFarea() + "");
-                intent.putExtra("fpic", mTasks.get(i).getFpic());
-                intent.putExtra("farmZon", mTasks.get(i).getFzno() + "区");
-                intent.putExtra("machineId", mTasks.get(i).getMno());
+                intent.putExtra("address", mTasks.get(i).getAddress());
+                intent.putExtra("area", mTasks.get(i).getBarea() + "");
+                intent.putExtra("fpic", mTasks.get(i).getPic());
+                intent.putExtra("farmZon", mTasks.get(i).getBarea() + "块");
+                intent.putExtra("machineId", mTasks.get(i).getMid());
                 intent.putExtra("machineType", mTasks.get(i).getMstyle());
                 intent.putExtra("note", mTasks.get(i).getNote());
+                intent.putExtra("bname",mTasks.get(i).getBname());
                 String state = mTasks.get(i).getState();
                 if (state.equals("0")) {
                     intent.putExtra("taskState", "正在进行");
@@ -93,17 +94,6 @@ public class CurrentTaskActivity extends BaseActivity {
     private void getDataFromDB() {
         TaskDaoImpl taskDao = new TaskDaoImpl(getApplicationContext());
         mTasks.addAll(taskDao.findAll());
-        for (Task task : mTasks) {
-            System.out.print(task.getWorkLoad() + " WorkLoad");
-            System.out.print(task.getMno() + " Mno");
-            System.out.print(task.getDate() + " Date");
-            System.out.print(task.getWorkLoad() + " WorkLoad");
-            System.out.print(task.getState() + " State");
-            System.out.print(task.getFzno() + " Fzno");
-            System.out.print(task.getFarea() + "  Farea");
-            System.out.print(task.getfUname() + " fUname");
-            System.out.println(task.getFpic() + " Fpic");
-        }
     }
 
     private void initView() {
@@ -148,7 +138,7 @@ public class CurrentTaskActivity extends BaseActivity {
                 tv_taskState.setTextColor(Color.RED);
                 tv_taskState.setText("未完成");
             }
-            tv_taskAddress.setText(mTasks.get(i).getFaddr());
+            tv_taskAddress.setText(mTasks.get(i).getAddress());
             return view;
         }
     }

@@ -75,13 +75,18 @@
                android:layout_height="wrap_content"/>
            <com.geowind.hunong.map.MyPopTextView
                android:layout_width="wrap_content"
-               app:title="农田区域"
+               app:title="块区域"
                android:id="@+id/tv_taskDetails_farmZon"
                android:layout_height="wrap_content"/>
            <com.geowind.hunong.map.MyPopTextView
                android:layout_width="wrap_content"
                app:title="作业量"
                android:id="@+id/tv_taskDetails_workLoad"
+               android:layout_height="wrap_content"/>
+           <com.geowind.hunong.map.MyPopTextView
+               android:layout_width="wrap_content"
+               app:title="块名"
+               android:id="@+id/tv_bname"
                android:layout_height="wrap_content"/>
            <View
                android:layout_width="match_parent"

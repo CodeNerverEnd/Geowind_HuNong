@@ -76,10 +76,10 @@ public class MsgDetailAdapter  extends BaseAdapter{
                     mTv_mType = (TextView) convertView.findViewById(R.id.tv_taskDetails_minchineType);
                     mTv_msg_date = (TextView) convertView.findViewById(R.id.tv_msg_date);
                     if(mTasks.size()>0){
-                        mTv_address.setText(mTasks.get(position).getFaddr());
+                        mTv_address.setText(mTasks.get(position).getAddress());
                         mTv_title.setText("任务"+position);
                         BitmapUtils bitmapUtils=new BitmapUtils(mContext);
-                        bitmapUtils.display(mIv_msg_taskImg,mTasks.get(position).getFpic());
+                        bitmapUtils.display(mIv_msg_taskImg,mTasks.get(position).getPic());
                         mTv_msg_date.setText(mTasks.get(position).getDate());
                     }
 

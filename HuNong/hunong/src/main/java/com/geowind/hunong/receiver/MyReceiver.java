@@ -98,22 +98,26 @@ public class MyReceiver extends BroadcastReceiver {
 			JSONObject extraJson = null;
 				switch (bundleString){
 					case "任务提醒":
-						String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
+//						String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
 
-						System.out.println("s==="+s);
 
-//							extraJson = new JSONObject(jsonString);
-//							Object jsonExtra = extraJson.get("jsonExtra");
+						try {
+							extraJson = new JSONObject(jsonString);
+							//							Object jsonExtra = extraJson.get("jsonExtra");
 							HunongApplication.NEW_TASK_COUNT++;
 							TaskDaoImpl taskDao=new TaskDaoImpl(context);
-							Task task=TaskJson.parseJsonObject(s);
+							Task task=TaskJson.parseJsonObject(extraJson.toString());
 //							task= TaskJson.parseJsonObject(jsonExtra.toString());
 //							String t=task.getFpic().replace("\\","");
 //							System.out.print("=======t======="+t);
 //							task.setFpic(t);
-//						    System.out.println(task.getFpic());
+						    System.out.println(extraJson.toString());
 
 							taskDao.insert(task);
+
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
 
 
 						break;
