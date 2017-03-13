@@ -18,9 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.dao.impl.UserDaoImpl;
 import com.geowind.hunong.entity.User;
-import com.geowind.hunong.json.UserJson;
 import com.geowind.hunong.utils.DialogCreator;
 import com.geowind.hunong.utils.EncryptUtils;
 import com.geowind.hunong.utils.MyConstants;

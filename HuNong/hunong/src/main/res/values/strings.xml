@@ -336,4 +336,6 @@
     <string name="jmui_sdk_87x_871201">请求超时，请检查您的网络</string>
     <string name="lib_search_title">文库搜索</string>
     <string name="add_bbs_title">发贴</string>
+
+    <string name="check_network">请检查网络！</string>
 </resources>

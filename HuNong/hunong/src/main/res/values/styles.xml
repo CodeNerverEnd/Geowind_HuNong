@@ -12,14 +12,17 @@
         <item name="android:inputType">number</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="push_alias">
         <item name="android:hint">@string/alias_hint</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="push_tag">
         <item name="android:hint">@string/tag_hint</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="AppTheme" parent="AppBaseTheme">
 
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -34,9 +37,8 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
-
-
     </style>
+
     <style name="noTitle" parent="android:Theme.NoTitleBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
@@ -53,11 +55,13 @@
     <style name="Bubble.TextAppearance.Light" parent="AppBaseTheme">
         <item name="android:textColor">#ffeeeeee</item>
     </style>
+
     <style name="ClusterIcon.TextAppearance" parent="android:TextAppearance">
         <item name="android:textColor">#ffeeeeee</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="radioButonStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:width">0dp</item>
@@ -67,6 +71,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color_radio_text</item>
     </style>
+
     <style name="sliding_tv_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
@@ -76,10 +81,12 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/selector_left_tv</item>
     </style>
+
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@color/drawerArrowColor</item>
     </style>
+
     <style name="cardView_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -90,6 +97,7 @@
         <item name="background">@drawable/selector_left_tv</item>
         <item name="cardElevation">0dp</item>
     </style>
+
     <style name="cardView_standard_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">80dp</item>
@@ -103,10 +111,12 @@
         <item name="android:background">@drawable/round_check_box_bg</item>
         <item name="android:button">@null</item>
     </style>
+
     <style name="default_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:background">@drawable/default_check_box_style</item>
         <item name="android:button">@null</item>
     </style>
+
     <style name="default_input_style">
         <item name="android:padding">5dp</item>
         <item name="android:textSize">@dimen/text_medium_size</item>
@@ -114,6 +124,7 @@
         <item name="android:maxLength">64</item>
         <item name="android:background">@drawable/invisible_input_bg</item>
     </style>
+
     <style name="HorizontalSlide" parent="android:Theme.NoTitleBar">
         <item name="android:windowAnimationStyle">@style/AnimFade</item>
     </style>
@@ -157,7 +168,7 @@
         <item name="android:background">@drawable/jmui_list_item_bg</item>
         <item name="android:clickable">true</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:orientation">horizontal </item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="SettingItemStyle">
@@ -167,9 +178,6 @@
         <item name="android:background">@drawable/jmui_list_item_bg</item>
         <item name="android:orientation">horizontal</item>
     </style>
-
-
-
 
 
     <style name="MeInfoItemContent">
@@ -184,9 +192,6 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#808080</item>
     </style>
-
-
-
 
 
     <style name="BaseDialog">
@@ -462,4 +467,12 @@
         <item name="android:textSize">18sp</item>
         <item name="android:background">@drawable/jmui_register_btn_bg</item>
     </style>
+
+
+    <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

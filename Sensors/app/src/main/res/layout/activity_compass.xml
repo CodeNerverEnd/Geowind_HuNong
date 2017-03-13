@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_compass"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="com.example.logaxy.sensors.Compass">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="利用地磁传感器以及加速度传感器实现"/>
+
+    <ImageView
+        android:id="@+id/compassImage"
+        android:layout_width="250dp"
+        android:layout_height="246dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/compass"/>
+
+    <ImageView
+        android:id="@+id/arrowImage"
+        android:layout_width="158dp"
+        android:layout_height="157dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/arrow"/>
+
+
+</RelativeLayout>

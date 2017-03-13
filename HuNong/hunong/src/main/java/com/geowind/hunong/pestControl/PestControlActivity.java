@@ -98,12 +98,12 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                     public void handleMessage(Message msg) {
                         //上传成功
                         if (msg.what == 1) {
-                            Intent intent = new Intent(PestControlActivity.this, PestControlRecodes.class);
+                            Intent intent = new Intent(PestControlActivity.this, PestUploadSussessfullyActivity.class);
                             startActivity(intent);
                         }
                         //上传不成功
                         else {
-                            Intent intent = new Intent(PestControlActivity.this, PestControlRecodes.class);
+                            Intent intent = new Intent(PestControlActivity.this, PestFailToUploadActivity.class);
                             startActivity(intent);
                         }
                     }
