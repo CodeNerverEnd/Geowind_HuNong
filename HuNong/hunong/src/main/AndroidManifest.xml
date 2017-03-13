@@ -217,10 +217,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" /> <!-- </>值来自开发者平台取得的AppKey -->
         <activity android:name=".pestControl.PestControlRecodes" />
-        <activity android:name=".weather.WeatherSelectCity.activity.SelectCityActivity" />
+        <activity
+            android:name=".weather.WeatherSelectCity.activity.SelectCityActivity"
+            android:theme="@style/FullHeightDialog" />
         <activity android:name=".weather.WeatherSelectCity.activity.BaseActivity" />
         <activity android:name=".consult.ConsultRecodesActivity" />
-        <activity android:name=".global.activitys.FailToUploadActivity"></activity>
+        <activity android:name=".drawer.feedback.FeedbackActivity" />
+        <activity android:name=".consult.ConsultFailToUploadActivity" />
+        <activity android:name=".consult.ConsultUploadSussessfullyActivity" />
+        <activity android:name=".pestControl.PestUploadSussessfullyActivity" />
+        <activity android:name=".pestControl.PestFailToUploadActivity"></activity>
     </application>
 
 </manifest>

@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.geowind.hunong.R;
 import com.geowind.hunong.global.activitys.BaseActivity;
-import com.geowind.hunong.global.activitys.FailToUploadActivity;
 import com.geowind.hunong.utils.multiFilesUploadUtil;
 import com.geowind.hunong.utils.MyConstants;
 
@@ -42,7 +41,7 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
             "稻飞虱", "茶树种植", "小麦冻害", "水稻钻心病", "水稻叶瘟",
             "施肥", "玉米秃尖", "水稻黑条矮缩病", "防洪防旱", "农药使用",
             "玉米管理", "白粉虱", "棉红蜘蛛", "作物保鲜", "稻纵卷叶螟",
-            "水稻倒伏",
+            "水稻倒伏","种植技术",
     };
 
 
@@ -67,12 +66,12 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
                     public void handleMessage(Message msg) {
                         //上传成功
                         if (msg.what == 1) {
-                            Intent intent = new Intent(ConsultActivity.this, ConsultRecodesActivity.class);
+                            Intent intent = new Intent(ConsultActivity.this, ConsultUploadSussessfullyActivity.class);
                             startActivity(intent);
                         }
                         //上传不成功
                         else {
-                            Intent intent = new Intent(ConsultActivity.this, FailToUploadActivity.class);
+                            Intent intent = new Intent(ConsultActivity.this, ConsultFailToUploadActivity.class);
                             startActivity(intent);
                         }
                     }

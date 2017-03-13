@@ -137,7 +137,7 @@ public class WeatherActivity extends BaseActivity {
         temperatureUnit = (TextView) findViewById(R.id.temperatureUnit);
         line = (ImageView) findViewById(R.id.line);
         week2 = (TextView) findViewById(R.id.week2);
-        weather2 = (TextView)findViewById(R.id.weather2);
+        weather2 = (TextView) findViewById(R.id.weather2);
         windstrength2 = (TextView) findViewById(R.id.windstrength2);
         temperature2 = (TextView) findViewById(R.id.temperature2);
         image2 = (ImageView) findViewById(R.id.image2);
@@ -179,13 +179,12 @@ public class WeatherActivity extends BaseActivity {
          */
         @Override
         protected void onPostExecute(Weather w) {
+
             /**
-             * 若一开始使用时没有网,无法拿到天气信息，则只显示当前定位城市，
-             * 再若没开启定位权限，显示默认城市北京
+             * 若无网络且SharedPreferences没有之前保存的数据，即参数w==null，则提示检查网络
              */
             if (w == null) {
-                rootRelativeLayout.setBackgroundResource(R.drawable.ic_launcher);
-
+                setContentView(R.layout.network_unavailable_layout);
             }
 
             /**
@@ -201,10 +200,7 @@ public class WeatherActivity extends BaseActivity {
                     Weather_data weather_data = result.getWeather_data().get(0);
 
                     btn.setBackgroundResource(R.mipmap.select);
-
                     imageView_today.setImageResource(R.mipmap.today);
-
-
                     cityName.setText(result.getCurrentCity());
 
                     /**
@@ -219,11 +215,8 @@ public class WeatherActivity extends BaseActivity {
                     String pm2_5 = "".equals(result.getPm25()) ? "75" : result.getPm25();
                     pm25Value.setText("PM2.5: " + pm2_5);
 
-                    /**
-                     * 按xx/xx的格式显示日期
-                     */
+                    //按xx/xx的格式显示日期
                     date.setText(w.getDate().substring(5, 10).replace("-", "/"));
-
 
                     Temperature1.setText(MyUtils.changeTempFormat(weather_data.getTemperature()));
                     presentWeather.setImageResource(R.mipmap.presentweather);
@@ -231,9 +224,8 @@ public class WeatherActivity extends BaseActivity {
                     windstrength1.setText(weather_data.getWind());
                     line.setImageResource(R.mipmap.line);
 
-                    /*
-                        显示背景
-                     */
+
+                    //显示背景
                     weatherType1 = weatherHelper.Sort(weather_data.getWeather());
                     relativeLayout.setBackgroundResource(
                             MyUtils.getBackgroundResourceBaseWeatherType(weatherType1));
@@ -289,7 +281,6 @@ public class WeatherActivity extends BaseActivity {
                 if (resultCode == RESULT_OK) {
                     selectCity = data.getStringExtra("returnString");
                     new WeatherAsyncTask().execute(selectCity);
-
                 }
         }
 

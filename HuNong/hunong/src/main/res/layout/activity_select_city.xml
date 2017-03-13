@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#E9E9E9"
     android:orientation="vertical"
-    android:paddingTop="20dip"
     tools:context="com.geowind.hunong.weather.WeatherSelectCity.activity.SelectCityActivity">
 
     <LinearLayout
@@ -13,7 +12,6 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dip"
         android:orientation="horizontal" >
 
         <kankan.wheel.widget.WheelView
@@ -27,7 +25,7 @@
             android:id="@+id/id_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_weight="1">
         </kankan.wheel.widget.WheelView>
 
         <kankan.wheel.widget.WheelView
@@ -42,10 +40,11 @@
         android:id="@+id/btn_confirm"
         android:layout_marginTop="10dip"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="确定"
-        android:textColor="#000000" />
+        android:textSize="18dp"
+        android:textColor="@color/black" />
 
 </LinearLayout>

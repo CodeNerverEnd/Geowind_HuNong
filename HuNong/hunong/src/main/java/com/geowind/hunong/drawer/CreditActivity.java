@@ -18,9 +18,7 @@ public class CreditActivity extends BaseActivity {
     private int reputationValue;
     private TextView textView;
 
-    /*
-    * titlebar相关
-    * */
+
     private TextView title;
     private ImageButton returnButton;
 
@@ -29,10 +27,20 @@ public class CreditActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit);
 
+        initTitleBar();
 
-        /*
-        * titlebar设置
-        * */
+
+
+        progressBar = (ColorArcProgressBar) findViewById(R.id.progressBar);
+        textView = (TextView) findViewById(R.id.textView);
+
+        reputationValue = 92;
+        progressBar.setCurrentValues(reputationValue);
+
+    }
+
+    private void initTitleBar() {
+
         title = (TextView) findViewById(R.id.title);
         returnButton = (ImageButton) findViewById(R.id.return_btn);
         title.setText("信用信息");
@@ -42,12 +50,5 @@ public class CreditActivity extends BaseActivity {
                 finish();
             }
         });
-
-        progressBar = (ColorArcProgressBar) findViewById(R.id.progressBar);
-        textView = (TextView) findViewById(R.id.textView);
-
-        reputationValue = 92;
-        progressBar.setCurrentValues(reputationValue);
-
     }
 }

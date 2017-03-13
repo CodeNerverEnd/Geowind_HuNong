@@ -20,7 +20,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/clarity_icon" />
+            android:background="@mipmap/clarity_icon" />
 
         <TextView
             android:id="@+id/name"
@@ -33,12 +33,14 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/versionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:layout_centerInParent="true"
             android:text="V1.0.0"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
+
     </RelativeLayout>
 
 
@@ -54,7 +56,8 @@
             android:layout_height="1dp"
             android:background="@color/me_split_line_color" />
 
-        <RelativeLayout style="@style/SettingItemStyle">
+        <RelativeLayout style="@style/SettingItemStyle"
+            android:id="@+id/checkUpdateLayout">
 
             <TextView
                 style="@style/SettingItemTextStyle"
@@ -75,7 +78,8 @@
             android:layout_height="1dp"
             android:background="@color/me_split_line_color" />
 
-        <RelativeLayout style="@style/SettingItemStyle">
+        <RelativeLayout style="@style/SettingItemStyle"
+            android:id="@+id/rateLayout">
 
             <TextView
                 style="@style/SettingItemTextStyle"
@@ -96,7 +100,8 @@
             android:layout_height="1dp"
             android:background="@color/me_split_line_color" />
 
-        <RelativeLayout style="@style/SettingItemStyle">
+        <RelativeLayout style="@style/SettingItemStyle"
+            android:id="@+id/feedbackLayout">
 
             <TextView
                 style="@style/SettingItemTextStyle"
@@ -125,8 +130,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#ffffff"
+        android:gravity="center"
         android:text="Copyright © 2016 geowind. All rights reserved."
-        android:textSize="10dp"
-        android:gravity="center"/>
+        android:textSize="10dp" />
 
 </LinearLayout>
