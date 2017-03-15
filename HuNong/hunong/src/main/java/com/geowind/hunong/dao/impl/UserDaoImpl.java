@@ -14,4 +14,5 @@ public class UserDaoImpl extends DAOSupport<User> implements DAO<User> {
     public UserDaoImpl(Context context) {
         super(context);
     }
+
 }

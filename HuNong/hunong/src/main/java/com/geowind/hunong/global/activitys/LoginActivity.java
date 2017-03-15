@@ -199,18 +199,19 @@ public class LoginActivity extends Activity {
         RequestParams params =new RequestParams();
         params.add("method","login");
         params.add("username",mUserId);
-        params.add("password", EncryptUtils.md5AndSha(mPassword));
-
+      //  params.add("password", EncryptUtils.md5AndSha(mPassword));
+        params.add("password", mPassword);
         client.post(MyConstants.LOGINURL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISLOGIN,true);
                 SpTools.setString(getApplicationContext(),MyConstants.USERNAME,mUserId);
                 UserDaoImpl userDao=new UserDaoImpl(LoginActivity.this);
-                User user= UserJson.parseJsonObject(responseBody.toString());
+                User user= UserJson.parseJsonObject(new String(responseBody));
+                System.out.println("用户登录返回的数据"+new String(responseBody));
                 if(user!=null){
+                    user.setCenterName(user.getCenter().getName());
                     userDao.insert(user);
-
                     SpTools.setString(getApplicationContext(),MyConstants.USER_TYPE,user.getType().toString());
                 }
                 startMainActivity();

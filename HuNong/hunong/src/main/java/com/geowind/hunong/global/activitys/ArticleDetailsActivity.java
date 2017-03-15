@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.geowind.hunong.R;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
@@ -23,8 +24,8 @@ public class ArticleDetailsActivity extends BaseActivity{
 
     private WebView mWv_content;
     private ImageButton mBt_back;
-    private Button mBt_shell;
     private ProgressBar mProgressBar;
+    private TextView mTv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +95,11 @@ public class ArticleDetailsActivity extends BaseActivity{
     private void initView() {
         setContentView(R.layout.activity_article_details);
         mWv_content = (WebView) findViewById(R.id.wv_article_content);
-        mBt_back = (ImageButton) findViewById(R.id.bt_lib_back);
-        mBt_shell = (Button) findViewById(R.id.bt_lib_share);
+        mBt_back = (ImageButton) findViewById(R.id.return_btn);
+        mTv_title = (TextView) findViewById(R.id.title);
         mProgressBar = new ProgressBar(ArticleDetailsActivity.this);
-        mProgressBar.setVisibility(View.GONE);
+        mTv_title.setText("");
+        mProgressBar.setVisibility(View.VISIBLE);
 
     }
 }

@@ -1,26 +1,53 @@
 package com.geowind.hunong.entity;
 
+import com.geowind.hunong.annotation.Colnum;
+import com.geowind.hunong.annotation.ID;
+import com.geowind.hunong.annotation.TableName;
+import com.geowind.hunong.dao.DBHelper;
+
 import java.util.Date;
 
 
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
+@TableName(DBHelper.USER_TABLE)
 public class User {
 
 	// Fields
+	@ID(autoincrement=false)
+	@Colnum(DBHelper.USERNAME)
 	private String username;
 	private Center center;
 	private String password;
 	private String realname;
+	@Colnum(DBHelper.SEX)
 	private String sex;
+	@Colnum(DBHelper.BIRTHDAY)
 	private Date birthday;
+	@Colnum(DBHelper.PHONE)
 	private String phone;
+	@Colnum(DBHelper.USER_TYPE)
 	private Integer type;
+	@Colnum(DBHelper.PICTURE)
 	private String picture;
+	@Colnum(DBHelper.ADDRESS)
 	private String address;
+	@Colnum(DBHelper.CREDIT)
 	private String credit;
+	@Colnum(DBHelper.VALID)
 	private Integer valid;
+	@Colnum(DBHelper.CENTERNAME)
+	private String centerName;
+	public String getCenterName() {
+		return centerName;
+	}
+
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
+	}
+
+
 
 
 	public String getUsername() {
@@ -117,5 +144,24 @@ public class User {
 
 	public void setValid(Integer valid) {
 		this.valid = valid;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"username='" + username + '\'' +
+				", center=" + center +
+				", password='" + password + '\'' +
+				", realname='" + realname + '\'' +
+				", sex='" + sex + '\'' +
+				", birthday=" + birthday +
+				", phone='" + phone + '\'' +
+				", type=" + type +
+				", picture='" + picture + '\'' +
+				", address='" + address + '\'' +
+				", credit='" + credit + '\'' +
+				", valid=" + valid +
+				", centerName='" + centerName + '\'' +
+				'}';
 	}
 }

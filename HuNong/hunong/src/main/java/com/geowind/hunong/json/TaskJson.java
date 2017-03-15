@@ -19,4 +19,13 @@ public class TaskJson {
         Task task = gson.fromJson(jsonString, Task.class);
         return task;
     }
+    public static List<Task> paseJson(String jsonString){
+        Type listType = new TypeToken<List<Task>>(){}.getType();
+        if(gson==null)
+            //创建gson对象
+            gson = new Gson();
+        List<Task> list=gson.fromJson(jsonString,listType);
+        return list;
+
+    }
 }

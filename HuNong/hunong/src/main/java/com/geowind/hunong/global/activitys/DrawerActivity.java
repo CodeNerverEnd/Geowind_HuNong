@@ -123,6 +123,7 @@ public class DrawerActivity extends AppCompatActivity {
 
     private void initData() {
         String userType=SpTools.getString(DrawerActivity.this,MyConstants.USER_TYPE,"");
+
         if("0".equals(userType)){
             mIv_usertype.setImageResource(R.mipmap.status);
         }else {
@@ -329,6 +330,8 @@ public class DrawerActivity extends AppCompatActivity {
     //退出登录
     public void Logout() {
         SpTools.setBoolean(getApplicationContext(),MyConstants.ISLOGIN,false);
+        SpTools.setString(getApplicationContext(),MyConstants.USER_TYPE,"");
+        SpTools.setString(getApplicationContext(),MyConstants.USERNAME,"");
        startOntherActivity(LoginActivity.class);
     }
 

@@ -81,5 +81,16 @@ public class ExpertReply{
         this.status = status;
     }
 
-
+    @Override
+    public String toString() {
+        return "ExpertReply{" +
+                "cid=" + cid +
+                ", userName='" + userName + '\'' +
+                ", ccontent='" + ccontent + '\'' +
+                ", ctime='" + ctime + '\'' +
+                ", acontent='" + acontent + '\'' +
+                ", atime='" + atime + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

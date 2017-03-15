@@ -95,71 +95,43 @@ public class MyReceiver extends BroadcastReceiver {
 		if(bundleString!=null){
 			String jsonString=bundle.getString(JPushInterface.EXTRA_EXTRA);
 			System.out.println(jsonString);
-			JSONObject extraJson = null;
+
+
+
+			try {
+				JSONObject extraJson = new JSONObject(jsonString);
+				Object jsonExtra = extraJson.get("jsonExtra");
 				switch (bundleString){
+
 					case "任务提醒":
-//						String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
-
-
-						try {
-							extraJson = new JSONObject(jsonString);
-							//							Object jsonExtra = extraJson.get("jsonExtra");
 							HunongApplication.NEW_TASK_COUNT++;
 							TaskDaoImpl taskDao=new TaskDaoImpl(context);
-							Task task=TaskJson.parseJsonObject(extraJson.toString());
-//							task= TaskJson.parseJsonObject(jsonExtra.toString());
-//							String t=task.getFpic().replace("\\","");
-//							System.out.print("=======t======="+t);
-//							task.setFpic(t);
-						    System.out.println(extraJson.toString());
-
+							Task task=TaskJson.parseJsonObject(jsonExtra.toString());
+							String pic=task.getPic();
+							String s=pic.replace("\\","");
+							task.setPic(s);
+//							System.out.println("pic========"+s);
+//						    System.out.println(extraJson.toString());
 							taskDao.insert(task);
-
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-
-
 						break;
 					case  "专家回复":
-//						try {
-//							extraJson = new JSONObject(jsonString);
-//							Object jsonExtra = extraJson.get("jsonExtra");
-//							HunongApplication.NEW_EXPERT_REPLY_COUNT++;
-//							TaskDaoImpl taskDao=new TaskDaoImpl(context);
-////							String s="{\"mUname\":\"chang123\",\"cropType\":\"水稻\",\"workLoad\":\"200\",\"no\":54,\"farea\":11,\"fzno\":\"D\",\"fpic\":\"http://upload4.hlgnet.com/bbsupfile/2010/2010-06-13/20100613215134_99.jpg\",\"faddr\":\"湖南省衡阳市珠晖区衡茶路\",\"note\":\"今天务必完成\",\"date\":\"2016-12-10\",\"state\":\"0\",\"mstyle\":\"收获机械\",\"fUname\":\"xiao123\",\"longitude\":112.686963,\"mno\":\"x0001\",\"fno\":10102,\"latitude\":26.903015,\"type\":\"收割\"}";
-////							Task task=TaskJson.parseJsonObject(s);
-//							Task task=null;
-//							if(jsonExtra==null){
-//								task=TaskJson.parseJsonObject(jsonString);
-//
-//							}else {
-//								System.out.println("s==="+jsonExtra.toString());
-//								task= TaskJson.parseJsonObject(jsonExtra.toString());
-//								String t=task.getFpic().replace("\\","");
-//								System.out.print("=======t======="+t);
-//								task.setFpic(t);
-////						    System.out.println(task.getFpic());
-//							}
-//
-//							taskDao.insert(task);
-//						} catch (JSONException e) {
-//							e.printStackTrace();
-//						}
-
-
-//						ExpertReplyDaoImpl expertReplyDao=new ExpertReplyDaoImpl(context);
-//						ExpertReply expertReply= ExpertReplyJson.parseJsonObject(jsonExtra.toString());
-//						expertReplyDao.insert(expertReply);
+						HunongApplication.NEW_EXPERT_REPLY_COUNT++;
+						ExpertReplyDaoImpl expertReplyDao=new ExpertReplyDaoImpl(context);
+						ExpertReply expertReply=ExpertReplyJson.parseJsonObject(jsonExtra.toString());
+						System.out.println(expertReply.toString());
+						expertReplyDao.insert(expertReply);
 						break;
 					case   "系统消息":
-//						HunongApplication.NEW_SYSTEM_MSG_COUNT++;
-//						SystemMsgDaoImpl systemMsgDao=new SystemMsgDaoImpl(context);
-//						SystemMsg systemMsg= SystemMsgJson.parseJsonObject(jsonExtra.toString());
-//						systemMsgDao.insert(systemMsg);
+						HunongApplication.NEW_SYSTEM_MSG_COUNT++;
+						SystemMsgDaoImpl systemMsgDao=new SystemMsgDaoImpl(context);
+						SystemMsg systemMsg= SystemMsgJson.parseJsonObject(jsonExtra.toString());
+						systemMsgDao.insert(systemMsg);
 						break;
 
 				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 
 
 

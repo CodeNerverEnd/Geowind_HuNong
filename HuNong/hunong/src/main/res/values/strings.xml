@@ -338,4 +338,5 @@
     <string name="add_bbs_title">发贴</string>
 
     <string name="check_network">请检查网络！</string>
+    <string name="title_history_task">历史任务</string>
 </resources>

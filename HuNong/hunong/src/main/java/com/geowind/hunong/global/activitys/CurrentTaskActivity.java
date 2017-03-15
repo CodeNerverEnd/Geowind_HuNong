@@ -70,6 +70,8 @@ public class CurrentTaskActivity extends BaseActivity {
                 intent.putExtra("machineType", mTasks.get(i).getMstyle());
                 intent.putExtra("note", mTasks.get(i).getNote());
                 intent.putExtra("bname",mTasks.get(i).getBname());
+                intent.putExtra("workload",mTasks.get(i).getWorkLoad());
+                intent.putExtra("picUrl",mTasks.get(i).getPic());
                 String state = mTasks.get(i).getState();
                 if (state.equals("0")) {
                     intent.putExtra("taskState", "正在进行");

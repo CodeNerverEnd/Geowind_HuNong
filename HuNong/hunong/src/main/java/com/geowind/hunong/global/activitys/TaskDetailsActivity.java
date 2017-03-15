@@ -35,12 +35,11 @@ public class TaskDetailsActivity extends BaseActivity {
         TextView tv_note= (TextView) findViewById(R.id.tv_taskDetails_note);
         ImageView iv_farm= (ImageView) findViewById(R.id.iv_farm);
         final Intent intent=this.getIntent();
-        tv_bname.setContent("bname");
+        tv_bname.setContent(intent.getStringExtra("bname"));
         tv_croType.setContent(intent.getStringExtra("cropType"));
         tv_date.setContent(intent.getStringExtra("date"));
         tv_area.setContent(intent.getStringExtra("area"));
         tv_address.setContent(intent.getStringExtra("address"));
-        tv_area.setContent(intent.getStringExtra("area"));
         tv_farmZon.setContent(intent.getStringExtra("farmZon"));
         tv_machineId.setContent(intent.getStringExtra("machineId"));
         tv_machineType.setContent(intent.getStringExtra("machineType"));
