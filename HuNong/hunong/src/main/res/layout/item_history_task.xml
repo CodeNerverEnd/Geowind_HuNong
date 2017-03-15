@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<com.geowind.hunong.map.MyPopTextView
+    android:layout_width="match_parent"
+    app:title="时间:"
+    android:id="@+id/tv_hisTime"
+    android:layout_height="wrap_content">
+
+</com.geowind.hunong.map.MyPopTextView>
+    <com.geowind.hunong.map.MyPopTextView
+        android:layout_width="match_parent"
+        app:title="地点:"
+        android:id="@+id/tv_hisAddr"
+        android:layout_height="wrap_content">
+
+    </com.geowind.hunong.map.MyPopTextView>
+    <com.geowind.hunong.map.MyPopTextView
+        android:layout_width="match_parent"
+        app:title="块名:"
+        android:id="@+id/tv_hisBName"
+        android:layout_height="wrap_content">
+
+    </com.geowind.hunong.map.MyPopTextView>
+    <com.geowind.hunong.map.MyPopTextView
+        android:layout_width="match_parent"
+        app:title="作物类型:"
+        android:id="@+id/tv_hisCroType"
+        android:layout_height="wrap_content">
+
+    </com.geowind.hunong.map.MyPopTextView>
+    <com.geowind.hunong.map.MyPopTextView
+        android:layout_width="match_parent"
+        app:title="农机号:"
+        android:id="@+id/tv_hisMType"
+        android:layout_height="wrap_content">
+
+    </com.geowind.hunong.map.MyPopTextView>
+    <com.geowind.hunong.map.MyPopTextView
+        android:layout_width="match_parent"
+        app:title="完成状态:"
+        android:id="@+id/tv_hisState"
+        android:layout_height="wrap_content">
+
+    </com.geowind.hunong.map.MyPopTextView>
+</LinearLayout>

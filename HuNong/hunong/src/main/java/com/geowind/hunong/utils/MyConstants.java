@@ -10,14 +10,13 @@ public interface MyConstants {
     String USERNAME="username";//用户名id
 
     // String LOGINURL="http://115.159.125.122:8080/HuNong/UserServlet";
-    String LOGINURL="http://115.159.125.122:8080/MutualAgriculture/UserServlet";//登录
 
+    String LOGINURL="http://115.159.125.122:8080/MutualAgriculture/UserServlet";//登录
 
     String LOCATION="location";//当前的位置信息
     String ISLOGIN="islogin";//当前登录状态
     String LibraryURL= "http://115.159.125.122:8080/MutualAgriculture/LibraryServlet";//文库
     String TASKURL="http://115.159.125.122:8080/MutualAgriculture/TaskServlet";//任务
-
 
     String HISTORY_TASK_URL="http://115.159.125.122:8080/MutualAgriculture/taskServlet";//历史任务
     String LIBRARY_JSON="libraryJson";//文库的json数据
@@ -31,11 +30,11 @@ public interface MyConstants {
     String DATABASE="honong";//数据库名
     String TABLE_TASK="task";//任务表名
     String TABLE_SYSTEM_MSG="system_msg";//系统消息表
-    String TABLE_EXPERT_REPLY="expert_reply";//专家回复
-    String IS_LIGHT="isLight";//是否闪烁呼吸灯
+    String TABLE_EXPERT_REPLY="expert_reply";//专家回复    String IS_LIGHT="isLight";//是否闪烁呼吸灯
     String IS_VIBRATE="isVibrate";//是否震动
     String USER_TYPE="userType";//用户类型
    String HISTORY_TASK="historyTask";//历史任务列表
     String VERSION="V1.0.0";
 
+    String VERSION="V1.0.0";
 }
