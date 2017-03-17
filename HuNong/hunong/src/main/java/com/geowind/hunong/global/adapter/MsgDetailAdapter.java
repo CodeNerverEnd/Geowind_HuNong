@@ -42,7 +42,11 @@ public class MsgDetailAdapter  extends BaseAdapter{
     private  List<ExpertReply> mExpertReplies;
     private TextView mTv_feedbackDesc;
 
-    public  MsgDetailAdapter(Context context,Intent intent){
+    public List<Task> getTasks() {
+        return mTasks;
+    }
+
+    public  MsgDetailAdapter(Context context, Intent intent){
 
         mContext=context;
         mIntent=intent;
