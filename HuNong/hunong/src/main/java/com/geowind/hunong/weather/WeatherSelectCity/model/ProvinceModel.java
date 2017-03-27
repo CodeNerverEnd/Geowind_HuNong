@@ -1,4 +1,4 @@
-package com.geowind.hunong.weather.WeatherSelectCity.model;
+package com.geowind.hunong.weather.weatherselectcity.model;
 
 import java.util.List;
 

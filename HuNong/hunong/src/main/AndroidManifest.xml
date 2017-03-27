@@ -91,7 +91,7 @@
         <activity android:name=".global.activitys.CurrentTaskActivity" />
         <activity android:name=".global.activitys.TaskDetailsActivity" />
         <activity android:name=".consult.ConsultActivity" />
-        <activity android:name=".drawer.CreditActivity" />
+        <activity android:name=".drawer.feedback.Credit.CreditActivity" />
         <activity android:name=".drawer.HelpActivity" />
         <activity android:name=".drawer.HistoryTaskActivity" />
         <activity android:name=".global.activitys.MsgDetailsActivity" />
@@ -218,9 +218,9 @@
             android:value="@integer/google_play_services_version" /> <!-- </>值来自开发者平台取得的AppKey -->
         <activity android:name=".pestControl.PestControlRecodes" />
         <activity
-            android:name=".weather.WeatherSelectCity.activity.SelectCityActivity"
+            android:name=".weather.weatherselectcity.activity.SelectCityActivity"
             android:theme="@style/FullHeightDialog" />
-        <activity android:name=".weather.WeatherSelectCity.activity.BaseActivity" />
+        <activity android:name=".weather.weatherselectcity.activity.BaseActivity" />
         <activity android:name=".consult.ConsultRecodesActivity" />
         <activity android:name=".drawer.feedback.FeedbackActivity" />
         <activity android:name=".consult.ConsultFailToUploadActivity" />

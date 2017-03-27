@@ -5,23 +5,34 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0ffff"
-    android:fitsSystemWindows="true"
-    tools:context=".drawer.CreditActivity">
+    android:background="#363A51"
+    tools:context=".drawer.feedback.Credit.CreditActivity">
 
-    <include layout="@layout/menu_title_bar"
-        android:id="@+id/titleBar"/>
+    <ImageButton
+        android:id="@+id/backButtom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="27dp"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/map_back" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/backButtom"
+        android:gravity="center_horizontal"
+        android:text="信誉信息"
+        android:textColor="#F2F2F2"
+        android:textSize="24dp"/>
 
-    <!--app:is_need_unit="true"-->
-    <!--app:string_unit="ABC"-->
-
-
-    <com.shinelw.library.ColorArcProgressBar
+    <com.geowind.hunong.drawer.feedback.Credit.ColorArcProgressBar
         android:id="@+id/progressBar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         app:is_need_content="true"
         app:front_color1="#ff4040"
         app:front_color2="#ffd700"
@@ -33,8 +44,7 @@
         app:is_need_title="true"
         app:string_title="信誉值"
         app:is_need_dial="true"
-        app:back_color="@android:color/darker_gray"
-        android:layout_below="@+id/titleBar"
+        android:layout_below="@+id/titleText"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -42,10 +52,10 @@
         android:layout_below="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="信誉优秀\n继续保持"
-        android:textColor="#ff3300"
-        android:textSize="36dp"/>
+        android:text="您的信誉优秀\n请继续保持"
+        android:textColor="#F2F2F2"
+        android:textSize="25dp"/>
 
 </RelativeLayout>

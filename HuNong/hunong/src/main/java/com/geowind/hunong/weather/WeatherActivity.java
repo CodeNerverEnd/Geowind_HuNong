@@ -1,5 +1,6 @@
 package com.geowind.hunong.weather;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -16,14 +17,17 @@ import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
-import com.geowind.hunong.weather.WeatherSelectCity.activity.SelectCityActivity;
+import com.geowind.hunong.weather.weatherselectcity.activity.SelectCityActivity;
 import com.geowind.hunong.weather.tool.MyUtils;
 import com.geowind.hunong.weather.tool.WeatherUtils;
 import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
-public class WeatherActivity extends BaseActivity {
+public class WeatherActivity extends Activity {
+
+    private ImageButton backButtom;
+
 
     private RelativeLayout rootRelativeLayout;
     private RelativeLayout relativeLayout;
@@ -82,7 +86,6 @@ public class WeatherActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        initTitleBar();
         initView();
 
         //自动定位
@@ -90,34 +93,28 @@ public class WeatherActivity extends BaseActivity {
         selectCity = pcd[1];
         new WeatherAsyncTask().execute(selectCity);
 
-        //按钮监听
+        //选择省市区
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到选择省市区
                 Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
-    }
 
-    private void initTitleBar() {
-
-        TextView title;
-        ImageButton returnButton;
-
-        title = (TextView) findViewById(R.id.title);
-        returnButton = (ImageButton) findViewById(R.id.return_btn);
-        title.setText("天气预报");
-        returnButton.setOnClickListener(new View.OnClickListener() {
+        backButtom.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 finish();
             }
         });
     }
 
+
     private void initView() {
+
+        backButtom= (ImageButton) findViewById(R.id.backButtom);
+
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
@@ -193,7 +190,7 @@ public class WeatherActivity extends BaseActivity {
              */
             else {
                 linearLayout3.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                rootRelativeLayout.setBackgroundColor(Color.parseColor("#ECECEC"));
+                rootRelativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
                 Result result = w.getResults().get(0);
                 if (result != null) {

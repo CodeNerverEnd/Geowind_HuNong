@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/buttom_actionbar_height"
+                android:layout_height="50dp"
                 android:background="#42CEB8"
                 android:orientation="vertical">
     <!--android:background="#21282C"-->
@@ -40,9 +40,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/selector_action_done"
-        android:textColor="@color/default_text_color"
+        android:textColor="#4D4D4D"
         android:textSize="14sp"/>
-
-
 
 </RelativeLayout>

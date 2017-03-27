@@ -1,7 +1,6 @@
-package com.geowind.hunong.weather.WeatherSelectCity.activity;
+package com.geowind.hunong.weather.weatherselectcity.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.Gravity;
@@ -10,8 +9,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
-
 
 import com.geowind.hunong.R;
 
@@ -27,6 +24,7 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
     private WheelView mViewDistrict;
     private Button mBtnConfirm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +37,9 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.alpha=1f;
-        params.gravity = Gravity.BOTTOM;
+        params.alpha = 1f;
+        params.gravity = Gravity.CENTER;
         getWindow().setAttributes(params);
-
-
 
         setUpViews();
         setUpListener();
@@ -100,7 +96,6 @@ public class SelectCityActivity extends BaseActivity implements OnClickListener,
     }
 
     private void updateCities() {
-
 
 
         int pCurrent = mViewProvince.getCurrentItem();

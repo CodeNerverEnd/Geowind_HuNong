@@ -54,6 +54,34 @@ public class PestControlRecodes extends BaseActivity {
         recodesRefresh = (SwipeRefreshLayout) findViewById(R.id.recodes_sr_refresh);
         recodesRefresh.setColorSchemeResources(R.color.colorAccent);
 
+        recodesRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshRecodes();
+            }
+        });
+
+    }
+
+    private void refreshRecodes() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //更新记录....
+
+                        recodesRefresh.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
     private void initTitleBar() {

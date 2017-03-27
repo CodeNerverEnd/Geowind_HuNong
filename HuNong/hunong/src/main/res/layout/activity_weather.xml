@@ -4,31 +4,29 @@
     android:id="@+id/rootRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
     tools:context="com.geowind.hunong.weather.WeatherActivity">
-
-    <include
-        android:id="@+id/titleBar"
-        layout="@layout/menu_title_bar" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar">
+        android:layout_below="@+id/titleBar"
+        android:background="@color/white">
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:/>-->
-
+        <ImageButton
+            android:id="@+id/backButtom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="27dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/map_back" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -43,10 +41,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
-
 
 
         <TextView
@@ -55,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="140dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="84sp" />
 
         <TextView
@@ -64,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="156dp"
             android:layout_toRightOf="@+id/temperatureNow"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="42sp" />
 
         <ImageView
@@ -110,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="18dp"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
 
                 <TextView
@@ -118,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="32sp" />
 
             </LinearLayout>
@@ -134,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="56dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -155,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="68dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="15dp" />
 
                 <TextView
@@ -163,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="15dp" />
 
             </LinearLayout>
@@ -214,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/weather2"
@@ -222,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -237,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="30dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/windstrength2"
@@ -245,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -299,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="18dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/weather3"
@@ -307,7 +304,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -322,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="30dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/windstrength3"
@@ -330,7 +327,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:textColor="#000000" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 

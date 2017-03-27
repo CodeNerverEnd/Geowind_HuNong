@@ -8,7 +8,7 @@
     <include
         layout="@layout/selector_custom_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_actionbar_height"/>
+        android:layout_height="50dp"/>
 
     <FrameLayout
         android:id="@+id/selector_content"
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="0dp"
-            android:background="@android:color/black">
+            android:background="@android:color/white">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/image_recycerview"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/buttom_actionbar_height"
                 android:layout_alignParentBottom="true"
-                android:background="#cc000000"
+                android:background="#ccffffff"
                 android:clickable="true">
 
                 <Button
@@ -62,7 +62,7 @@
                     android:paddingRight="16dp"
                     android:singleLine="true"
                     android:text="@string/selector_folder_all"
-                    android:textColor="@color/folder_text_color"
+                    android:textColor="#4D4D4D"
                     android:textSize="16sp"/>
                 <Button
                     android:id="@+id/selector_image_preview_button"

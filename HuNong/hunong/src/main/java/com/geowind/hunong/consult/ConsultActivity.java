@@ -28,7 +28,7 @@ import java.util.Random;
  */
 public class ConsultActivity extends BaseActivity implements OnClickListener {
 
-    private TextView keywordsTextView;
+    private EditText keywordsTextView;
     private EditText describeEditText;
     private KeywordsFlow keywordsFlow;
     private Button confirm;//确认按钮
@@ -128,7 +128,7 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
         keywordsFlow.setOnItemClickListener(this);
         feedKeywordsFlow(keywordsFlow, keywords);
         keywordsFlow.go2Show(KeywordsFlow.ANIMATION_IN);
-        keywordsTextView = (TextView) findViewById(R.id.keywortextview);
+        keywordsTextView = (EditText) findViewById(R.id.keywortextview);
     }
 
     private static void feedKeywordsFlow(KeywordsFlow keywordsFlow, String[] arr) {

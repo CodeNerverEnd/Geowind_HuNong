@@ -1,8 +1,8 @@
-package com.geowind.hunong.weather.WeatherSelectCity.service;
+package com.geowind.hunong.weather.weatherselectcity.service;
 
-import com.geowind.hunong.weather.WeatherSelectCity.model.CityModel;
-import com.geowind.hunong.weather.WeatherSelectCity.model.DistrictModel;
-import com.geowind.hunong.weather.WeatherSelectCity.model.ProvinceModel;
+import com.geowind.hunong.weather.weatherselectcity.model.CityModel;
+import com.geowind.hunong.weather.weatherselectcity.model.DistrictModel;
+import com.geowind.hunong.weather.weatherselectcity.model.ProvinceModel;
 
 import java.util.ArrayList;
 import java.util.List;

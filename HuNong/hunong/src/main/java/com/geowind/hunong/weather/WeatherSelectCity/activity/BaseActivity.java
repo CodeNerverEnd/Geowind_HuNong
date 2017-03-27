@@ -1,22 +1,21 @@
-package com.geowind.hunong.weather.WeatherSelectCity.activity;
+package com.geowind.hunong.weather.weatherselectcity.activity;
 
 import android.app.Activity;
-import android.os.Bundle;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import android.app.Activity;
+
 import android.content.res.AssetManager;
 
 
-import com.geowind.hunong.R;
-import com.geowind.hunong.weather.WeatherSelectCity.model.CityModel;
-import com.geowind.hunong.weather.WeatherSelectCity.model.DistrictModel;
-import com.geowind.hunong.weather.WeatherSelectCity.model.ProvinceModel;
-import com.geowind.hunong.weather.WeatherSelectCity.service.XmlParserHandler;
+import com.geowind.hunong.weather.weatherselectcity.model.CityModel;
+import com.geowind.hunong.weather.weatherselectcity.model.DistrictModel;
+import com.geowind.hunong.weather.weatherselectcity.model.ProvinceModel;
+import com.geowind.hunong.weather.weatherselectcity.service.XmlParserHandler;
 
 public class BaseActivity extends Activity{
         protected String[] mProvinceDatas;

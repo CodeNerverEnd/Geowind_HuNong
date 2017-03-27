@@ -49,8 +49,7 @@ android {
      compile files('libs/httpmime-4.1.2.jar')
      compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
      compile files('libs/jpush-android-2.2.0.jar')
-     //圆形进度条，信用管理处使用到
-     compile 'com.github.shinelw:library:1.0.1'
+
 
      compile files('libs/jpush-android-2.2.0.jar')
      compile 'com.google.android.gms:play-services-appindexing:8.4.0'

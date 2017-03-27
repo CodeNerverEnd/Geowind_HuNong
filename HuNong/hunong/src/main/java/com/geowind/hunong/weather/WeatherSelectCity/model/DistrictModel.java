@@ -1,4 +1,4 @@
-package com.geowind.hunong.weather.WeatherSelectCity.model;
+package com.geowind.hunong.weather.weatherselectcity.model;
 
 /**
  * Created by logaxy on 16-11-23.
