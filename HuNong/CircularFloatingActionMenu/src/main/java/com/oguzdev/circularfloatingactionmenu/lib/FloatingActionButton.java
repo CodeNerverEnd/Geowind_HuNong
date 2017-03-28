@@ -111,7 +111,7 @@ public class FloatingActionButton extends FrameLayout {
             case POSITION_BOTTOM_RIGHT:
             default:
                 setDefaultMargin = true;
-                gravity = Gravity.BOTTOM | Gravity.RIGHT;
+                gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
                 break;
         }
         if(!systemOverlay) {
@@ -240,7 +240,7 @@ public class FloatingActionButton extends FrameLayout {
             int size = context.getResources().getDimensionPixelSize(R.dimen.action_button_size);
             int margin = context.getResources().getDimensionPixelSize(R.dimen.action_button_margin);
             FrameLayout.LayoutParams layoutParams = new LayoutParams(size, size, Gravity.BOTTOM | Gravity.RIGHT);
-            layoutParams.setMargins(margin, margin, margin, margin);
+            layoutParams.setMargins(0, 0, 0, margin);
             setLayoutParams(layoutParams);
             setTheme(FloatingActionButton.THEME_LIGHT);
             setPosition(FloatingActionButton.POSITION_BOTTOM_RIGHT);

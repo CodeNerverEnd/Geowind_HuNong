@@ -62,10 +62,10 @@ public class HomeScrollViewFragment extends Fragment {
     private int mPotinIsSelect;
     private SlidingShow mMySliding;
     //测试用的图片URL
-    String imgPaths[]={"http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
-            "http://dongying.dzwww.com/mldy/tsny/200612/W020061227331797817094.jpg",
+    String imgPaths[]={"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1755338578,1200826835&fm=23&gp=0.jpg",
+            "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1755338578,1200826835&fm=23&gp=0.jpg",
             "http://pic.ltpic.cn/list_thumb_temp/20100809/1281347222406006883tndiwy.jpg",
-            "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490278790646&di=37500fcbd852e5443d544f36ec70b834&imgtype=0&src=http%3A%2F%2Fnews.cnhubei.com%2Fncxb%2Fncxbsjk%2Fncxb04%2F201212%2FW020121213261037998256.jpg",
             "http://a4.att.hudong.com/72/51/01300000332400126398510292582.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg",
             "http://pic.58pic.com/58pic/15/75/10/29558PICBQK_1024.jpg"

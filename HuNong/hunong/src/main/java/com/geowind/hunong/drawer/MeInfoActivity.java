@@ -52,10 +52,9 @@ public class MeInfoActivity extends BaseActivity {
         List<User> users =new ArrayList<User>();
         try{
             UserDaoImpl userDao=new UserDaoImpl(MeInfoActivity.this);
-
             users.addAll( userDao.findAll());
         }catch (Exception e){
-
+                System.out.println("查询失败");
         }
         if(users.size()!=0){
             User user=users.get(0);

@@ -69,16 +69,11 @@ public class HistoryTaskActivity extends BaseActivity{
     }
 
     private void initData() {
+        mTv_title.setText("历史任务");
         mTasks=new ArrayList<Task>();
         //向服务器请求历史任务
         requstHistoryTask();
-        String s = SpTools.getString(HistoryTaskActivity.this, MyConstants.HISTORY_TASK, "");
 
-        mTasks.addAll(TaskJson.paseJson(s));
-        System.out.println(mTasks.size());
-        mAdapter = new MyAdapter();
-        mListView.setAdapter(mAdapter);
-        mTv_title.setText(R.string.title_history_task);
     }
     private class MyAdapter extends BaseAdapter {
         @Override
@@ -132,8 +127,15 @@ public class HistoryTaskActivity extends BaseActivity{
         client.post(MyConstants.HISTORY_TASK_URL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                SpTools.setString(HistoryTaskActivity.this,MyConstants.HISTORY_TASK,new String(responseBody));
-
+//                SpTools.setString(HistoryTaskActivity.this,MyConstants.HISTORY_TASK,);
+//                String s = SpTools.getString(HistoryTaskActivity.this, MyConstants.HISTORY_TASK, "");
+                List<Task> tasks = TaskJson.paseJson(new String(responseBody));
+                if(tasks!=null){
+                    mTasks.addAll(tasks);
+                }
+                mAdapter = new MyAdapter();
+                mListView.setAdapter(mAdapter);
+                mTv_title.setText(R.string.title_history_task);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {

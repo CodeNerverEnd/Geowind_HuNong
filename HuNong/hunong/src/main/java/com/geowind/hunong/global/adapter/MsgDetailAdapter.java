@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.geowind.hunong.R;
 import com.geowind.hunong.application.HunongApplication;
 import com.geowind.hunong.dao.impl.ExpertReplyDaoImpl;
+import com.geowind.hunong.dao.impl.SystemMsgDaoImpl;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.ExpertReply;
 import com.geowind.hunong.entity.SystemMsg;
@@ -54,6 +55,7 @@ public class MsgDetailAdapter  extends BaseAdapter{
         mSystemMsgs = new ArrayList<SystemMsg>();
         mExpertReplies = new ArrayList<ExpertReply>();
         mExpertReplies.addAll(new ExpertReplyDaoImpl(mContext).findAll());
+        mSystemMsgs.addAll(new SystemMsgDaoImpl(mContext).findAll()) ;
         mTasks.addAll(new TaskDaoImpl(mContext).findAll());
         mMsgType = mIntent.getStringExtra("msgType");
     }

@@ -3,7 +3,9 @@ package com.geowind.hunong.global.activitys;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.SslErrorHandler;
@@ -23,9 +25,9 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 public class ArticleDetailsActivity extends BaseActivity{
 
     private WebView mWv_content;
-    private ImageButton mBt_back;
+//    private ImageButton mBt_back;
     private ProgressBar mProgressBar;
-    private TextView mTv_title;
+//    private TextView mTv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +38,12 @@ public class ArticleDetailsActivity extends BaseActivity{
     }
 
     private void initEvent() {
-        mBt_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        mBt_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
     }
 
     private void initData() {
@@ -83,9 +85,10 @@ public class ArticleDetailsActivity extends BaseActivity{
        // mWv_content.loadUrl("http://geek.csdn.net/news/detail/172477");
       mWv_content.loadUrl(getIntent().getStringExtra("articleUrl"));
         mWv_content.setDownloadListener(new DownloadListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
-                mProgressBar.setBackgroundColor(Color.WHITE);
+                mProgressBar.setBackgroundColor(getColor(R.color.tb_bg));
                 mProgressBar.setVisibility(View.VISIBLE);
 
             }
@@ -95,10 +98,10 @@ public class ArticleDetailsActivity extends BaseActivity{
     private void initView() {
         setContentView(R.layout.activity_article_details);
         mWv_content = (WebView) findViewById(R.id.wv_article_content);
-        mBt_back = (ImageButton) findViewById(R.id.return_btn);
-        mTv_title = (TextView) findViewById(R.id.title);
+//        mBt_back = (ImageButton) findViewById(R.id.return_btn);
+//        mTv_title = (TextView) findViewById(R.id.title);
         mProgressBar = new ProgressBar(ArticleDetailsActivity.this);
-        mTv_title.setText("");
+//        mTv_title.setText("");
         mProgressBar.setVisibility(View.VISIBLE);
 
     }

@@ -7,7 +7,11 @@
             format="string"></attr>
         <attr name="textColor"
             format="color"></attr>
+        <attr name="icon"
+            format="reference"
+            ></attr>
     </declare-styleable>
+
     <declare-styleable name="registerEditView">
         <attr name="register_content"
               format="string"></attr>
@@ -16,6 +20,7 @@
         <attr name="register_password"
             format="boolean"></attr>
     </declare-styleable>
+
     <declare-styleable name="HoloCircularProgressBar">
         <attr name="stroke_width" format="dimension" />
         <attr name="progress" format="float" />

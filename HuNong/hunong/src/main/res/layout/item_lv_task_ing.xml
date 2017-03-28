@@ -12,47 +12,52 @@
         android:padding="5dp"
         android:paddingLeft="15dp"
         android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/task_type_gzjx"
+            android:id="@+id/iv_taskType"
+            android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="任务名称"
             android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_taskType"
             android:textColor="@color/default_text_color"
             android:id="@+id/tv_task_ing_name"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="类型"
-            android:layout_marginLeft="3dp"
-            android:id="@+id/tv_MachineType"
-            android:textColor="@color/default_text_color"
-            android:layout_toRightOf="@+id/tv_task_ing_name"
-            android:background="@drawable/bg_task_ing_tasktype"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="2016-8-15"
-            android:layout_below="@+id/tv_task_ing_name"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/default_text_color"
-            android:id="@+id/tv_task_ing_time"
-            android:layout_height="wrap_content"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:text="地点"
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_taskType"
             android:id="@+id/tv_task_ing_address"
-            android:layout_below="@+id/tv_task_ing_time"
+            android:layout_below="@+id/tv_task_ing_name"
             android:layout_marginTop="8dp"
-            android:textColor="@color/default_text_color"
+            android:textColor="@color/login_txt_hint_color"
             android:layout_height="wrap_content"/>
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="任务状态"
-            android:textColor="@color/default_text_color"
-            android:id="@+id/tv_task_ing_state"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:textSize="20sp"
-            android:layout_marginRight="15dp"
+            android:text="类型"
+            android:textSize="16sp"
+            android:id="@+id/tv_MachineType"
+            android:textColor="@color/login_txt_hint_color"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:text="2016-8-15"
+            android:textColor="@color/login_txt_hint_color"
+            android:id="@+id/tv_task_ing_time"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/tv_MachineType"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 </LinearLayout>

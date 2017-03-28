@@ -102,16 +102,12 @@ public class MsgRecyclerViewAdapter extends RecyclerView.Adapter<MsgRecyclerView
     {
         CircleImageView headIcon;
         TextView convName;
-        TextView content;
-        TextView datetime;
         TextView newMsgNumber;
         public MyViewHolder(View view)
         {
             super(view);
             headIcon= (CircleImageView) view.findViewById(R.id.msg_item_head_icon);
             convName= (TextView) view.findViewById(R.id.conv_item_name);
-            content= (TextView) view.findViewById(R.id.msg_item_content);
-            datetime= (TextView) view.findViewById(R.id.msg_item_date);
             newMsgNumber= (TextView) view.findViewById(R.id.new_msg_number);
 
         }

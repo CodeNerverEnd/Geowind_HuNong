@@ -17,10 +17,10 @@
 <color name="btn_pressed_bg">#37cbb2</color>
     <!-- 全局使用的颜色 -->
     <color name="titlebar_bg_color">#3C3C3C</color>
-    <color name="default_text_color">#343434</color>
+    <color name="default_text_color">#555555</color>
     <color name="float_button_bg_color">#8142ceb8</color>
     <!-- 这是Login相关界面中的颜色 -->
-    <color name="login_txt_hint_color">#555555</color>
+    <color name="login_txt_hint_color">#7f7f7f</color>
     <color name="register_split_line_color">#c2d4ec</color>
     <color name="login_split_line_color">#c1d3cc</color>
     <color name="login_btn_def_color">#98FB98</color>
@@ -36,7 +36,7 @@
     <!-- 主页面 -->
     <color name="action_bar_txt_color">#969696</color>
     <color name="actionbar_sel_color">#1c1c1c</color>
-    <color name="me_info_edit_color">#2d2d2d</color>
+    <color name="me_info_edit_color">#4d4d4d</color>
     <color name="me_info_hint_color">#cfcdce</color>
     <color name="actionbar_pres_color">#3f80dc</color>
     <color name="menu_item_back_pres_color">#3773cb</color>
@@ -52,7 +52,7 @@
     <color name="item_click_bg_color">#dddddd</color>
     <color name="friend_content_text_color">#7f7f7f</color>
     <color name="chat_text_color">#373334</color>
-    <color name="chat_detail_hit_color">#3C3C3C</color>
+    <color name="chat_detail_hit_color">#555555</color>
     <color name="chat_detail_item_hit_color">#555555</color>
     <color name="jmui_chat_detail_split_line_color">#d3d3d3</color>
     <color name="dialog_select_color">#d4d4d4</color>
@@ -76,7 +76,7 @@
     <color name="all_members_bg_color">#f0f1f3</color>
     <!-- 黑色 -->
     <color name="black">#000000</color>
-    <color name="gray">#808080</color>
+    <color name="gray">#d9d7d7</color>
 
     <!-- 灰色 -->
 

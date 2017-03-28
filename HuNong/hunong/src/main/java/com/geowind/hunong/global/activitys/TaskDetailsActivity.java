@@ -11,12 +11,15 @@ import com.geowind.hunong.R;
 import com.geowind.hunong.map.MyPopTextView;
 import com.lidroid.xutils.BitmapUtils;
 
+import cz.msebera.android.httpclient.util.TextUtils;
+
 /**
  * Created by zhangwen on 16-8-26.
  */
 public class TaskDetailsActivity extends BaseActivity {
 
     private ImageButton mIb_back;
+    private TextView mTv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,13 @@ public class TaskDetailsActivity extends BaseActivity {
         tv_taskState.setContent(intent.getStringExtra("taskState"));
         tv_workLoad.setContent(intent.getStringExtra("workLoad"));
         tv_note.setText(intent.getStringExtra("note"));
-        BitmapUtils bitmapUtils=new BitmapUtils(getApplicationContext());
-        bitmapUtils.display(iv_farm,intent.getStringExtra("picUrl"));
-        mIb_back = (ImageButton) findViewById(R.id.ib_taskDetails_back);
+       if(!TextUtils.isEmpty(intent.getStringExtra("picUrl"))&&!intent.getStringExtra("picUrl").equals("")){
+           BitmapUtils bitmapUtils=new BitmapUtils(getApplicationContext());
+           bitmapUtils.display(iv_farm,intent.getStringExtra("picUrl"));
+       }
+        mTv_title = (TextView) findViewById(R.id.title);
+        mTv_title.setText("任务详情");
+        mIb_back = (ImageButton) findViewById(R.id.return_btn);
         mIb_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -36,6 +36,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.util.TextUtils;
 
 public class LoginActivity extends Activity {
     private EditText mEt_userId;
@@ -195,29 +196,42 @@ public class LoginActivity extends Activity {
     }
 
     public void requstLogin() {
+        //创建一个AsyncHttipClient对象实例
         AsyncHttpClient client=new AsyncHttpClient();
+        //请求参数
         RequestParams params =new RequestParams();
         params.add("method","login");
         params.add("username",mUserId);
-      //  params.add("password", EncryptUtils.md5AndSha(mPassword));
+        //给密码进行加密
+        params.add("password", EncryptUtils.md5AndSha(mPassword));
         params.add("password", mPassword);
         client.post(MyConstants.LOGINURL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                //如果连接成功，保存用户的登录状态
                 SpTools.setBoolean(getApplicationContext(), MyConstants.ISLOGIN,true);
                 SpTools.setString(getApplicationContext(),MyConstants.USERNAME,mUserId);
+                //将用户信息保存到数据库
                 UserDaoImpl userDao=new UserDaoImpl(LoginActivity.this);
                 User user= UserJson.parseJsonObject(new String(responseBody));
-                System.out.println("用户登录返回的数据"+new String(responseBody));
+
                 if(user!=null){
-                    user.setCenterName(user.getCenter().getName());
-                    userDao.insert(user);
+//                    user.setCenterName(user.getCenter().getName());]
+                    if(TextUtils.isEmpty(user.getPicture())){
+                        user.setPicture("");
+                    }
+                    long insert = userDao.insert(user);
+                    System.out.println(new String(responseBody));
+                    System.out.println("插入影响的行数"+insert);
                     SpTools.setString(getApplicationContext(),MyConstants.USER_TYPE,user.getType().toString());
                 }
+
+                //进入主界面
                 startMainActivity();
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                //连接失败的操作
                 Toast.makeText(getApplicationContext(),"连接失败"+statusCode,Toast.LENGTH_LONG).show();
             }
         });

@@ -31,4 +31,14 @@ public class LibSearch {
     @Colnum(DBHelper.ARTICLE_TITLE)
     private String title;
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    private String summary;
+
 }

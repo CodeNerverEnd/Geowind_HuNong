@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.geowind.hunong.R;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Task;
+import com.geowind.hunong.global.adapter.CurrentTaskAdapter;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
@@ -34,7 +35,7 @@ public class CurrentTaskActivity extends BaseActivity {
     private ImageButton mIv_back;
     private ListView mLv_task;
     private List<Task> mTasks = new ArrayList<Task>();
-    private MyAdapter adapter = new MyAdapter();
+    private CurrentTaskAdapter adapter;
     private TextView mTv_nomoreTask;
     private TextView mTv_title;
 
@@ -86,11 +87,13 @@ public class CurrentTaskActivity extends BaseActivity {
 
     private void initData() {
         mTv_title.setText("正在进行");
-        mLv_task.setAdapter(adapter);
+
         getDataFromDB();
         if (mTasks == null || mTasks.size() == 0) {
             mTv_nomoreTask.setVisibility(View.VISIBLE);
         }
+        adapter=new CurrentTaskAdapter(mTasks,CurrentTaskActivity.this);
+        mLv_task.setAdapter(adapter);
     }
 
     private void getDataFromDB() {
@@ -105,43 +108,5 @@ public class CurrentTaskActivity extends BaseActivity {
         mTv_title = (TextView) findViewById(R.id.title);
     }
 
-    private class MyAdapter extends BaseAdapter {
 
-        @Override
-        public int getCount() {
-            return mTasks.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = View.inflate(getApplicationContext(), R.layout.item_lv_task_ing, null);
-            TextView tv_taskName = (TextView) view.findViewById(R.id.tv_task_ing_name);
-            TextView tv_taskTime = (TextView) view.findViewById(R.id.tv_task_ing_time);
-            TextView tv_taskState = (TextView) view.findViewById(R.id.tv_task_ing_state);
-            TextView tv_taskAddress = (TextView) view.findViewById(R.id.tv_task_ing_address);
-            TextView tv_machineType = (TextView) view.findViewById(R.id.tv_MachineType);
-            tv_taskName.setText("任务" + (i + 1));
-            tv_taskTime.setText(mTasks.get(i).getDate());
-            tv_machineType.setText(mTasks.get(i).getMstyle());
-            String state = mTasks.get(i).getState();
-            if (state != null && state.equals("0")) {
-                tv_taskState.setText("正在进行");
-            } else {
-                tv_taskState.setTextColor(Color.RED);
-                tv_taskState.setText("未完成");
-            }
-            tv_taskAddress.setText(mTasks.get(i).getAddress());
-            return view;
-        }
-    }
 }

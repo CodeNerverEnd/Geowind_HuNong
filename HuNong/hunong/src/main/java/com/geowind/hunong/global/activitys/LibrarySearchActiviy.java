@@ -72,7 +72,7 @@ public class LibrarySearchActiviy extends BaseActivity implements SearchView.Sea
     /**
      * 搜索结果的数据
      */
-    private List<LibSearch> resultData;
+    private List<LibSearch> resultData=new ArrayList<LibSearch>();
 
     /**
      * 默认提示框显示项的个数
@@ -135,13 +135,18 @@ public class LibrarySearchActiviy extends BaseActivity implements SearchView.Sea
         //初始化热搜版数据
         getHintData();
         //初始化搜索结果数据
-//        getResultData(null);
+        getResultData(null);
+
     }
 
     /**
      * 获取db 数据
      */
     private void getServerData(String text) {
+
+        if (resultAdapter == null) {
+            resultAdapter = new SearchAdapter(LibrarySearchActiviy.this, resultData, R.layout.gird_item_lib);
+        }
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params =new RequestParams();
         params.add("method","searchLib");
@@ -152,20 +157,17 @@ public class LibrarySearchActiviy extends BaseActivity implements SearchView.Sea
                 String result=new String(responseBody);
                 System.out.println("文库搜索=========="+result);
                     if(TextUtils.isEmpty(result)){
-                    Toast.makeText(getApplicationContext(),"没有要找的内容",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"没有要找的内容",Toast.LENGTH_SHORT).show();
                 }else {
-                        lvResults.setVisibility(View.VISIBLE);
-                        searchView.setHintVisible(View.GONE);
-                        if(resultData.size()>0)
-                            resultData.clear();
-                    resultData.addAll(LibSearchJson.paseJson(result));
 
-                        if (resultAdapter == null) {
-                            resultAdapter = new SearchAdapter(LibrarySearchActiviy.this, resultData, R.layout.item_bean_list);
-                            lvResults.setAdapter(resultAdapter);
-                        } else {
-                            resultAdapter.notifyDataSetChanged();
-                        }
+                        searchView.setHintVisible(View.GONE);
+                      if(resultData.size()>0){
+                          resultData.clear();
+                      }
+                    resultData.addAll(LibSearchJson.paseJson(result));
+                        resultAdapter.notifyDataSetChanged();
+                        lvResults.setAdapter(resultAdapter);
+                        lvResults.setVisibility(View.VISIBLE);
                 }
 
 
@@ -199,8 +201,7 @@ public class LibrarySearchActiviy extends BaseActivity implements SearchView.Sea
      * 获取搜索结果data和adapter
      */
    private void getResultData(String text) {
-       int size = 100;
-       resultData=new ArrayList<LibSearch>(size);
+
         //从数据库获取数据
         getServerData(text);
 

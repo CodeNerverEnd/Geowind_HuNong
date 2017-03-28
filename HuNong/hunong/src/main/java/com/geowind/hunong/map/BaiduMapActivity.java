@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -57,6 +58,7 @@ import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
 import com.geowind.hunong.R;
 import com.geowind.hunong.dao.impl.TaskDaoImpl;
 import com.geowind.hunong.entity.Task;
+import com.geowind.hunong.global.adapter.CurrentTaskAdapter;
 import com.geowind.hunong.json.TaskJson;
 import com.geowind.hunong.utils.MyConstants;
 import com.geowind.hunong.utils.SpTools;
@@ -201,7 +203,9 @@ public class BaiduMapActivity extends Activity {
                         mTv_plantsType.setContent(mTasks.get(i).getCroptype());
                         mTv_taskTime.setContent(mTasks.get(i).getDate());
                         mTv_note.setText(mTasks.get(i).getNote());
-                        mBitmapUtils.display(mIv_task,mTasks.get(i).getPic());
+                        if(!TextUtils.isEmpty(mTasks.get(i).getPic())&&!mTasks.get(i).getPic().equals("")){
+                            mBitmapUtils.display(mIv_task,mTasks.get(i).getPic());
+                        }
                         if(mTasks.get(i).getState().equals(0)){
                             mTv_taskState.setContent("正在进行");
                         }else {
@@ -236,65 +240,21 @@ public class BaiduMapActivity extends Activity {
         mRlIcon3.setOnClickListener(listener);
         mRlIcon4.setOnClickListener(listener);
     }
-    private  class PopAdapter extends BaseAdapter{
 
-        @Override
-        public int getCount() {
-            return mTasks.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(final int i, View view, ViewGroup viewGroup) {
-            view=View.inflate(getApplicationContext(),R.layout.item_pop_map_task_lv,null);
-            MyPopTextView tv_adress= (MyPopTextView) view.findViewById(R.id.tv_pop_map_address);
-            MyPopTextView tv_time= (MyPopTextView) view.findViewById(R.id.tv_pop_map_time);
-            TextView tv_taskName= (TextView) view.findViewById(R.id.tv_pop_map_taskName);
-            tv_adress.setContent(mTasks.get(i).getAddress());
-            tv_time.setContent(mTasks.get(i).getDate());
-            tv_taskName.setText("任务"+(i+1));
-            return view;
-        }
-    }
   private OnItemClickListener mOnItemClickListener=  new OnItemClickListener() {
         @Override
         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
             if(dialog.equals(mTaskListdialog)){
                 LatLng la=new LatLng(mTasks.get(position).getLatitude(),mTasks.get(position).getLongitude());
                 showLoction(la);
-            }else if(dialog.equals(mMapModeDialog)){
-                switch (position){
-                    case 0:
-                        if(mBaiduMap.getMapType()!=BaiduMap.MAP_TYPE_NORMAL)
-                            mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-                        break;
-                    case 1:
-                        if(mBaiduMap.isTrafficEnabled())
-                            mBaiduMap.setTrafficEnabled(false);
-                        else mBaiduMap.setTrafficEnabled(true);
-                        break;
-                    case 2:
-                        if(mBaiduMap.getMapType()!=BaiduMap.MAP_TYPE_SATELLITE)
-                            mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
-                        else mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-                        break;
-                    default:
-                        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
-                        break;
-                }
             }else if(dialog.equals(mMapPoiDialog)){
                 LatLng poiLating=mLatLngs.get(position);
-                if(mAllPoi.size()!=0)
-                mTv_endInfo.setText(mAllPoi.get(position).address);
+                if(mAllPoi.size()!=0){
+                    mTv_endInfo.setText(mAllPoi.get(position).address);
+                }else {
+                    Toast.makeText(BaiduMapActivity.this,"没有找到相关的地点",Toast.LENGTH_SHORT).show();
+                }
+
                 //显示路线规划结果
                 routePaln(poiLating);
             }else if(dialog.equals(mRoutPlanDialog)) {
@@ -354,42 +314,37 @@ public class BaiduMapActivity extends Activity {
         public void onClick(View view) {
            if(view.equals(mRlIcon1)){//查看任务清单
               if(mTasks!=null){
+                  if(mTasks.size()==0){
+                      Toast.makeText(getApplicationContext(),"当前没用任务哦",Toast.LENGTH_SHORT).show();
+                      return;
+                  }
                   mTaskListdialog = DialogPlus.newDialog(BaiduMapActivity.this)
-                          .setAdapter(new PopAdapter())
+                          .setAdapter(new CurrentTaskAdapter(mTasks,BaiduMapActivity.this))
                           .setContentBackgroundResource(R.drawable.pop_map_task_bg)
-                          .setInAnimation(R.anim.abc_fade_in)
-                          .setOutAnimation(R.anim.abc_fade_out)
                           .setHeader(R.layout.header_map_task_)
                           .setCancelable(true)
                           .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
                           .setOnItemClickListener(mOnItemClickListener)
-                          .setExpanded(true,300)
-                          .setGravity(Gravity.TOP)
+                          .setExpanded(true)
+                          .setGravity(Gravity.CENTER)
                           .create();
                   mTaskListdialog.show();
-              }else {
-                  Toast.makeText(getApplicationContext(),"当前没用任务哦",Toast.LENGTH_SHORT).show();
               }
            }else if(view.equals(mRlIcon2)){//更改地图模式
-               List<String> modes=new ArrayList<String>();
-               modes.add("普通模式");
-               modes.add("交通模式");
-               modes.add("卫星模式");
+
                mMapModeDialog = DialogPlus.newDialog(BaiduMapActivity.this)
-                       .setAdapter(new ArrayAdapter<>(BaiduMapActivity.this,android.R.layout.simple_list_item_1,modes))
+
+                       .setAdapter(new MapModeAdapter())
                        .setContentBackgroundResource(R.drawable.pop_map_task_bg)
-                       .setInAnimation(R.anim.abc_fade_in)
-                       .setOutAnimation(R.anim.abc_fade_out)
                        .setHeader(R.layout.header_map_task_)
                        .setCancelable(true)
                        .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                       .setOnItemClickListener(mOnItemClickListener)
                        .setExpanded(true)
                        .setGravity(Gravity.CENTER)
                        .create();
                View view1= mMapModeDialog.getHeaderView();
                TextView tv_headerName= (TextView) view1.findViewById(R.id.tv_pop_task_headerName);
-               tv_headerName.setText("地图模式");
+               tv_headerName.setText("地图模式选择");
                mMapModeDialog.show();
            }else if(view.equals(mRlIcon3)){//搜索附
                mPoiAdapter = new ArrayAdapter(BaiduMapActivity.this,android.R.layout.simple_dropdown_item_1line,mPois);
@@ -403,7 +358,7 @@ public class BaiduMapActivity extends Activity {
                         .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
                         .setOnItemClickListener(mOnItemClickListener)
                         .setExpanded(true)
-                        .setGravity(Gravity.TOP)
+                        .setGravity(Gravity.CENTER)
                         .create();
                View view1=mMapPoiDialog.getHeaderView();
                ImageButton ib_search= (ImageButton) view1.findViewById(R.id.ib_poiSearch);
@@ -540,14 +495,15 @@ public class BaiduMapActivity extends Activity {
     private void showFloatingActionMenu() {
         int blueSubActionButtonSize = getResources().getDimensionPixelSize(R.dimen.blue_sub_action_button_size);
         int blueSubActionButtonContentMargin = getResources().getDimensionPixelSize(R.dimen.blue_sub_action_button_content_margin);
-
+        FrameLayout.LayoutParams actionButtonParams=new FrameLayout.LayoutParams(200,200, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+        actionButtonParams.setMargins(0,0,0,100);
+//        rightLowerButton.setLayoutParams(actionButtonParams);
         mFabIconNew = new ImageView(this);
         mFabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_new_light));
         final FloatingActionButton rightLowerButton = new FloatingActionButton.Builder(this)
                 .setContentView(mFabIconNew)
-                .setPosition(FloatingActionButton.POSITION_LEFT_CENTER)
                 .build();
-
+        rightLowerButton.setPosition(FloatingActionButton.POSITION_BOTTOM_CENTER,actionButtonParams);
 
         SubActionButton.Builder rLSubBuilder = new SubActionButton.Builder(this);
         mRlIcon1 = new ImageView(this);
@@ -578,8 +534,8 @@ public class BaiduMapActivity extends Activity {
                 .addSubActionView(rLSubBuilder.setContentView(mRlIcon3, blueContentParams).build())
                 .addSubActionView(rLSubBuilder.setContentView(mRlIcon4, blueContentParams).build())
                 .attachTo(rightLowerButton)
-                .setStartAngle(360)
-                .setEndAngle(270)
+                .setStartAngle(330)
+                .setEndAngle(210)
                 .build();
         // Listen menu open and close events to animate the button content view
         mLeftLowerMenu.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
@@ -711,6 +667,61 @@ public class BaiduMapActivity extends Activity {
         super.onPause();
         // 在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
         mMapView.onPause();
+    }
+
+    private class MapModeAdapter extends BaseAdapter implements View.OnClickListener{
+        @Override
+        public int getCount() {
+            return 1;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
+            view=View.inflate(getApplicationContext(),R.layout.item_map_mode,null);
+            ImageButton iv_ptMode= (ImageButton) view.findViewById(R.id.iv_ptMode);
+            ImageButton iv_jtMode= (ImageButton) view.findViewById(R.id.iv_jtMode);
+            ImageButton iv_wxMode= (ImageButton) view.findViewById(R.id.iv_wxMode);
+            iv_ptMode.setOnClickListener(this);
+            iv_jtMode.setOnClickListener(this);
+            iv_wxMode.setOnClickListener(this);
+
+            return view;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_ptMode:
+                    if(mBaiduMap.getMapType()!=BaiduMap.MAP_TYPE_NORMAL)
+                        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+                    break;
+                case R.id.iv_jtMode:
+                    if(mBaiduMap.isTrafficEnabled())
+                        mBaiduMap.setTrafficEnabled(false);
+                    else mBaiduMap.setTrafficEnabled(true);
+                    break;
+                case R.id.iv_wxMode:
+                    if(mBaiduMap.getMapType()!=BaiduMap.MAP_TYPE_SATELLITE)
+                        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
+                    else mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+                    break;
+                default:
+                    mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
+                    break;
+
+            }
+            mMapModeDialog.dismiss();
+        }
     }
 }
 

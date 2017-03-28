@@ -17,11 +17,13 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:id="@+id/ll_map_pop"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:id="@+id/iv_map_pop_task"
-                android:layout_height="wrap_content"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/default_image"
+                android:layout_height="match_parent"/>
         </LinearLayout>
       <LinearLayout
           android:layout_width="0dp"
@@ -63,7 +65,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
          android:layout_marginLeft="25dp"
         android:orientation="vertical">

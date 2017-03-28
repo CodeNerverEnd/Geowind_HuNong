@@ -68,6 +68,7 @@ public class ViewHolder {
         return this;
     }
 
+
     /**
      *  set image res
      */

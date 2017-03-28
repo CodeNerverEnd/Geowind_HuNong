@@ -7,6 +7,7 @@ import com.geowind.hunong.entity.LibSearch;
 import com.geowind.hunong.entity.SearchBean;
 import com.geowind.hunong.utils.CommonAdapter;
 import com.geowind.hunong.utils.ViewHolder;
+import com.lidroid.xutils.BitmapUtils;
 
 import java.util.List;
 
@@ -22,7 +23,11 @@ public class SearchAdapter extends CommonAdapter<LibSearch> {
 
     @Override
     public void convert(ViewHolder holder, int position) {
-        holder.setText(R.id.item_search_tv_title,mData.get(position).getTitle());
+        holder.setText(R.id.tv_title,mData.get(position).getTitle());
+        holder.setText(R.id.tv_headContent,mData.get(position).getSummary());
+        BitmapUtils bitmapUtils=new BitmapUtils(mContext);
+        bitmapUtils.display(holder.getView(R.id.iv_library),mData.get(position).getUrl());
+
     }
 
 

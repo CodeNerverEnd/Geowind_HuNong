@@ -8,82 +8,87 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="2dp"
+        app:cardElevation="0dp"
         android:layout_marginBottom="2dp"
-        app:cardPreventCornerOverlap="false"
         app:contentPadding="0dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
                 android:layout_height="wrap_content">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="植物业"
-                    android:layout_margin="3dp"
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:id="@+id/category_1"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/type_1"
                     android:layout_height="wrap_content"/>
-                <Button
+
+                <ImageButton
                     android:layout_width="wrap_content"
-                    android:text="畜牧业"
+                    android:background="@android:color/transparent"
                     android:id="@+id/category_2"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_2"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="林业"
+
+                <ImageButton
+
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_3"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_3"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="渔业"
+
+                <ImageButton
+
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_4"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_4"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_height="wrap_content">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="副业"
-                    android:layout_margin="3dp"
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_5"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_5"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="密集农业"
-                    android:layout_margin="3dp"
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_6"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_6"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="混合业"
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_7"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_7"
                     android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="其他"
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     android:id="@+id/category_8"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/lib_catagory_bg"
+                    android:src="@drawable/type_8"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>

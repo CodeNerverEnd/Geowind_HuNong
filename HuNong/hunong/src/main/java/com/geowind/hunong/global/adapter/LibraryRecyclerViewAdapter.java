@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -205,14 +206,14 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
         private TextView tv_sortType;
         private TextView tv_title;
         private TextView tv_headContent;
-        private final Button mButton1;
-        private final Button mButton2;
-        private final Button mButton3;
-        private final Button mButton4;
-        private final Button mButton5;
-        private final Button mButton6;
-        private final Button mButton7;
-        private final Button mButton8;
+        private final ImageButton mButton1;
+        private final ImageButton mButton2;
+        private final ImageButton mButton3;
+        private final ImageButton mButton4;
+        private final ImageButton mButton5;
+        private final ImageButton mButton6;
+        private final ImageButton mButton7;
+        private final ImageButton mButton8;
         private final ImageView mIv_library;
 
         public MyViewHolder(View view)
@@ -221,14 +222,14 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
             tv_title = (TextView) view.findViewById(R.id.tv_title);
             tv_headContent = (TextView) view.findViewById(R.id.tv_headContent);
             mIv_library = (ImageView) view.findViewById(R.id.iv_library);
-            mButton1 = (Button) view.findViewById(R.id.category_1);
-            mButton2 = (Button) view.findViewById(R.id.category_2);
-            mButton3 = (Button) view.findViewById(R.id.category_3);
-            mButton4 = (Button) view.findViewById(R.id.category_4);
-            mButton5 = (Button) view.findViewById(R.id.category_5);
-            mButton6 = (Button) view.findViewById(R.id.category_6);
-            mButton7 = (Button) view.findViewById(R.id.category_7);
-            mButton8 = (Button) view.findViewById(R.id.category_8);
+            mButton1 = (ImageButton) view.findViewById(R.id.category_1);
+            mButton2 = (ImageButton) view.findViewById(R.id.category_2);
+            mButton3 = (ImageButton) view.findViewById(R.id.category_3);
+            mButton4 = (ImageButton) view.findViewById(R.id.category_4);
+            mButton5 = (ImageButton) view.findViewById(R.id.category_5);
+            mButton6 = (ImageButton) view.findViewById(R.id.category_6);
+            mButton7 = (ImageButton) view.findViewById(R.id.category_7);
+            mButton8 = (ImageButton) view.findViewById(R.id.category_8);
 
         }
 
