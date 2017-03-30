@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="75fb5adc186cf32221f8110f3430a4a70c9ece53">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4a341d6ea93e1280e4d0c9d11d6211e178627068\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="6e1ed00013584399dbe27d45ac1fd6a9828c9fca">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-imagepipeline-0.10.0_4a67faf3afa97dd8c1274a191638dc84207567f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\jpush-android-2.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ec655472ad073dd34019d3e2134e028f570598d9">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\jpush-android-2.2.0_b0085b00846012fa94accc279f62c72fb382f4e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\xyz.danoz\recyclerviewfastscroller\0.1.3\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="752bfaeaf44b9c4b63c98ceca421348a20ff10be">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\xyz.danoz-recyclerviewfastscroller-0.1.3_a19113ec6cfd239fdad7170321097c2320863868\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\drawee\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="65f0c887ee1f57cd0ea65b228e39b7f35372b798">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-drawee-0.10.0_56d9f6852dec7ab23f7562bf18123335b260a756\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\pinyin4j-2.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ae353005f973da1cd8545b54354504c2503f6865">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\pinyin4j-2.5.0_c615b85ab1938bb7150c0bb57f3542e9a5b8a06c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\baidumapapi_util_v4_0_0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="1e9069435803e5a4f32dc429906def33a95aaf17">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\baidumapapi_util_v4_0_0_fb3fda02ffe59f2fc3f5628abd6aacc68ded3360\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.flaviofaria\kenburnsview\1.0.7\ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1\kenburnsview-1.0.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\kenburnsview-1.0.7_dce3f30cf8a30337eeca87348d8f1caa9918c2b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_59e1f43bdafb10fe25d84096927c23232a375554\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\org.apache.http.legacy.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="fa331331b626ee78c52bea16ce1e34b39e666ce5">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\org.apache.http.legacy_90c0a5606b7ed9fc499e8b986c002d3da80a7522\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\HuNong\SMSSDK\unspecified\jars\libs\SMSSDK-2.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e544644feb0bfb0a344eb85fd6f79f0f8291b33c">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\8\SMSSDK-2.1.2_89db0d7a4f0c3714a09b02f1a128c0483b7ed6f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.jiechic.library\xUtils\2.6.14\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="fe75606aa9485cd20177894c204291a79a0cc7ab">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.jiechic.library-xUtils-2.6.14_1f373dc78b8266fbce38e4667af04d18910ba1c3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.3.0_8f9fd443e2db83291efe38de16d53c3e280c053c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="d323cf4983bdfce7136a1ce5e32710e1b36b20fe">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-fbcore-0.10.0_280f21f6b620c3df53e5f41d71a59bde872db359\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.3\5a1aef6a9d56efb473b8be6b66689077e7317c45\rxjava-1.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="5a1aef6a9d56efb473b8be6b66689077e7317c45">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\rxjava-1.1.3_079e30667fbcd46d4f7a860560ba511d6429637e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.7_0392e3aed59edcc11a1781640abd4abfa58ccc22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\animated-webp\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="340c6bfb6944bfdc265084ee5ffbb1bd7f425083">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-animated-webp-0.10.0_a04182bbc5565c6f96e838e8a3f55036910762dd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\httpmime-4.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ed8b5ee0167cb27dea55851259eb34b609f31df0">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\httpmime-4.1.2_438ba5c0caed1e089586a6a3b138355086e58518\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.orhanobut\dialogplus\1.11\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="184f86117c6463267c1f0deba84d4853cb165c40">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.orhanobut-dialogplus-1.11_61bad548dde23c01bef08a60b85f4f7fda72edd4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="d70a44a9c009c5fcefc9633a8d2b3179a28b90a2">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_e16421d8da97462661940fe2ce105d7a52b10b5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.jpardogo.materialtabstrip\library\1.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="611c7708cd3df0d7ae99105d4df5af8eb25c4b32">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.jpardogo.materialtabstrip-library-1.1.0_114589d37e6588d4bff998fcef2680dee6dc9c0f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="5e88a2a26ac71cd7f8fd8bd9f9381fa06d1a47a3">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-imagepipeline-base-0.10.0_63ebc9f5c7cdef3187112c4b61e46712b8d9d6d1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\animated-gif\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="47aef831e38120ca1d6fd3547c86cd5a9ed63905">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-animated-gif-0.10.0_d5c871805c2860a7ac92fc7a5b3c4a2e504af5c3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_13528e6749c65bf8008b5fc92faeba9706271905\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\library-2.4.0_d2591926493195301a8bb98db8b04e2e81ecf8f9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_ce2966731bc8419d353e4225eeaa5944db8432fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.4.0_12543a22ad6e94b1712e2aa907fe7f9aaf6bfa66\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_91f7112d17ef20886798c0c89c7beb67212ac353\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\webpsupport\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="85f4a6939efa90db6726ac2e3e2f6bd48d13b795">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-webpsupport-0.10.0_84cab41f3c6f9466dc196139058452fb1e0f3343\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\HuNong\SMSSDK\unspecified\jars\libs\MobTools-2016.0926.1008.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="b9508905dcc195b3db0f3de09a077397cc1dd963">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\8\MobTools-2016.0926.1008_e6d5249648bc47e1b32267197a65d07b0e507cfc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_c98120b59f9286fe3b484edbc2de723705ee50d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="bf11e1a965532c6d85c65c61d818601f4e3a114f">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_3087c1b47ddc825e9b9270c004a61dfd9bd5ed2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\eventbus.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="9a179701fef5778920c0471563bc1642e5df8217">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\eventbus_6d19d4a19e79f226fa4b64302abeafcecff0ca0d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.github.ksoichiro\android-observablescrollview\1.6.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="d125b199a427e5cc8d4234f7d8673c9a27ef6336">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.ksoichiro-android-observablescrollview-1.6.0_33cdb6f64eecce3d9dc4f60fabe3a6da511d11a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-android-1.1.4_cf0d026a766e5ef97a65ef8dea73bdfad7e8dfb2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_fb918c16d9c15a8f34e5e166f3eb2e758bd438cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\cz.msebera.android\httpclient\4.4.1.2\64950d33e2d3095cc831b414063bea45524103d4\httpclient-4.4.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="64950d33e2d3095cc831b414063bea45524103d4">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\httpclient-4.4.1.2_147e4cf699a89954981600356e68fc95c44a8b86\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_4e1f585e022424e6b2a4124ae56c8dea079c0b53\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\io.reactivex-rxandroid-1.1.0_f1bab9c5130ad6aa219ae3c8d32bc4d825335353\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_fe8b1f6a53235cf03fd107b17504e799371e88ea\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\HuNong\SMSSDK\unspecified\jars\libs\MobCommons-2016.0926.1008.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="94298cffc53090924c8aed30d06b45419475b307">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\8\MobCommons-2016.0926.1008_fc1fd4874f34d00425c93bb1a4034407e5251868\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\animated-base\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="682e5e4a5ac143145dddc5e77eab7b609432da23">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-animated-base-0.10.0_bb115855622fe15407e6347efedf901f61a84f8d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_b4325d36f64bf430dd13916db7e0eadd66a26075\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.melnykov-floatingactionbutton-1.3.0_ae2800d3bf61c0929809faaf7749ff5142db712f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_f70ec025d6635ca22cdc9b6bed2cda52eccf119d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_f6ceac63417d4695c56ce771cb77c5adef9f866b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.facebook.fresco\fresco\0.10.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="857099e23430445aeb65cf703d5adf646ff280f1">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.fresco-fresco-0.10.0_52aab8864a7d551eaf65da83d22870e27bf533b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\libs\picasso-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\2\picasso-2.4.0_845c63db528e58917eb49fb472db0fb26c8c8628\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\wgl18\.gradle\caches\modules-2\files-2.1\com.readystatesoftware.systembartint\systembartint\1.0.3\de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287\systembartint-1.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\systembartint-1.0.3_01f6ee45c0c6a314dfc3efcad92e922a3b3f557b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.github.florent37\materialviewpager\1.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e021a1a8f5600d1924bd69cd2b007c8d118d3ea7">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.florent37-materialviewpager-1.2.0_c1aa6af39f1b7222bf10b1ba5f332f0cfc8060ca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Develop\Android\HuNong\hunong\build\intermediates\exploded-aar\com.oguzdev\CircularFloatingActionMenu\1.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="607d961caf1a59b6e782724654c1f3229e036c20">
+        <dex dex="E:\Develop\Android\HuNong\hunong\build\intermediates\transforms\dex\debug\folders\1000\10\com.oguzdev-CircularFloatingActionMenu-1.0.2_075b5bf3031059545c28bad3d030cf4f3f3233b3\classes.dex" />
+    </item>
+
+</items>
