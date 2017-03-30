@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="popWindowTextView">
-        <attr name="title"
-            format="string"></attr>
-        <attr name="content"
-            format="string"></attr>
-        <attr name="textColor"
-            format="color"></attr>
-        <attr name="icon"
-            format="reference"
-            ></attr>
+        <attr name="title" format="string"></attr>
+        <attr name="content" format="string"></attr>
+        <attr name="textColor" format="color"></attr>
+        <attr name="icon" format="reference"></attr>
     </declare-styleable>
 
     <declare-styleable name="registerEditView">
-        <attr name="register_content"
-              format="string"></attr>
-        <attr name="contentHint"
-            format="string"></attr>
-        <attr name="register_password"
-            format="boolean"></attr>
+        <attr name="register_content" format="string"></attr>
+        <attr name="contentHint" format="string"></attr>
+        <attr name="register_password" format="boolean"></attr>
     </declare-styleable>
 
     <declare-styleable name="HoloCircularProgressBar">
@@ -73,7 +65,7 @@
     </declare-styleable>
 
     <declare-styleable name="StickyListHeadersListView">
-        <attr name="stickyListHeadersListViewStyle" format="reference"/>
+        <attr name="stickyListHeadersListViewStyle" format="reference" />
 
         <!-- View attributes -->
         <attr name="android:clipToPadding" />
@@ -111,4 +103,11 @@
         <attr name="isDropDownStyle" format="boolean" />
         <attr name="isOnBottomStyle" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="PanningView">
+        <attr name="panningDurationInMs" format="integer" />
+    </declare-styleable>
+
+
 </resources>

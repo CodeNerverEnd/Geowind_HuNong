@@ -50,9 +50,6 @@ public class multiFilesUploadUtil {
                 entity.addPart("images",new FileBody(fileArrayList.get(i)));
             }
         }
-        else {
-            System.out.println("服务器aaaaaaaaaaaaaaaa");
-        }
 
         post.setEntity(entity);
         HttpResponse response = httpClient.execute(post);

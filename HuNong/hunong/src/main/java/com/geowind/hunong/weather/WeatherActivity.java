@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,10 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geowind.hunong.R;
-import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.LocationUtils;
 import com.geowind.hunong.utils.SpTools;
 import com.geowind.hunong.utils.WeatherHelper;
+import com.geowind.hunong.weather.weatherAnimation.PanningView;
 import com.geowind.hunong.weather.weatherselectcity.activity.SelectCityActivity;
 import com.geowind.hunong.weather.tool.MyUtils;
 import com.geowind.hunong.weather.tool.WeatherUtils;
@@ -24,12 +25,15 @@ import com.geowind.hunong.weather.weatherjson.Result;
 import com.geowind.hunong.weather.weatherjson.Weather;
 import com.geowind.hunong.weather.weatherjson.Weather_data;
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements View.OnClickListener {
+
+    private PanningView panningView;
+
 
     private ImageButton backButtom;
 
 
-    private RelativeLayout rootRelativeLayout;
+    private LinearLayout rootRelativeLayout;
     private RelativeLayout relativeLayout;
     private LinearLayout linearLayout3;
 
@@ -88,19 +92,17 @@ public class WeatherActivity extends Activity {
 
         initView();
 
+        panningView.startPanning();
+
+
         //自动定位
         String[] pcd = LocationUtils.getAddr(getApplicationContext());
         selectCity = pcd[1];
         new WeatherAsyncTask().execute(selectCity);
 
         //选择省市区
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
-                startActivityForResult(intent, 1);
-            }
-        });
+        btn.setOnClickListener(this);
+        cityName.setOnClickListener(this);
 
         backButtom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,12 +112,14 @@ public class WeatherActivity extends Activity {
         });
     }
 
-
     private void initView() {
 
-        backButtom= (ImageButton) findViewById(R.id.backButtom);
+        panningView = (PanningView) findViewById(R.id.panningView);
 
-        rootRelativeLayout = (RelativeLayout) findViewById(R.id.rootRelativeLayout);
+
+        backButtom = (ImageButton) findViewById(R.id.backButtom);
+
+        rootRelativeLayout = (LinearLayout) findViewById(R.id.rootRelativeLayout);
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
 
@@ -147,6 +151,12 @@ public class WeatherActivity extends Activity {
         windstrength1 = (TextView) findViewById(R.id.windstrength1);
         temperatureNow = (TextView) findViewById(R.id.temperatureNow);
         Temperature1 = (TextView) findViewById(R.id.temperature1);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(WeatherActivity.this, SelectCityActivity.class);
+        startActivityForResult(intent, 1);
     }
 
 
@@ -224,8 +234,10 @@ public class WeatherActivity extends Activity {
 
                     //显示背景
                     weatherType1 = weatherHelper.Sort(weather_data.getWeather());
-                    relativeLayout.setBackgroundResource(
+
+                    panningView.setImageResource(
                             MyUtils.getBackgroundResourceBaseWeatherType(weatherType1));
+                    panningView.startPanning();
 
                     /*
                         显示第二天天气基本数据

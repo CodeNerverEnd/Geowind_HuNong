@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.geowind.hunong.weather.WeatherActivity">
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBar"
+        android:layout_height="0dp"
+        android:layout_weight="11"
         android:background="@color/white">
+
+        <com.geowind.hunong.weather.weatherAnimation.PanningView
+            android:id="@+id/panningView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/weatherbg"
+            custom:panningDurationInMs="25000" />
 
         <ImageButton
             android:id="@+id/backButtom"
@@ -171,8 +181,9 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_below="@+id/relativeLayout"
+        android:layout_weight="8"
         android:orientation="vertical">
 
         <LinearLayout
@@ -347,6 +358,7 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>
 
 

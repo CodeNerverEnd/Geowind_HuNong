@@ -18,9 +18,13 @@ import com.geowind.hunong.global.activitys.BaseActivity;
 import com.geowind.hunong.utils.multiFilesUploadUtil;
 import com.geowind.hunong.utils.MyConstants;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -35,13 +39,13 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
 
     private static String uploadUrl = MyConstants.PEST_OR_CONSULT_UPLOAD_URL;
     private static String op = "consultInfo";
-    private String userName = "geowind";
+    private String userName = "chang123";
 
     public String[] keywords = {
             "稻飞虱", "茶树种植", "小麦冻害", "水稻钻心病", "水稻叶瘟",
             "施肥", "玉米秃尖", "水稻黑条矮缩病", "防洪防旱", "农药使用",
             "玉米管理", "白粉虱", "棉红蜘蛛", "作物保鲜", "稻纵卷叶螟",
-            "水稻倒伏","种植技术",
+            "水稻倒伏", "种植技术",
     };
 
 
@@ -59,6 +63,13 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
         confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(describeEditText.getText().toString().equals("")){
+                    Toast.makeText(ConsultActivity.this, "您还未输入描述", Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+
+
                 Toast.makeText(ConsultActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
 
                 final Handler handler = new Handler() {
@@ -66,8 +77,10 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
                     public void handleMessage(Message msg) {
                         //上传成功
                         if (msg.what == 1) {
-                            Intent intent = new Intent(ConsultActivity.this, ConsultUploadSussessfullyActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(ConsultActivity.this, ConsultUploadSussessfullyActivity.class);
+//                            startActivity(intent);
+                            Toast.makeText(ConsultActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                         //上传不成功
                         else {
@@ -79,14 +92,14 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
 
                 new Thread() {
                     public void run() {
-                        System.out.println("qewrtyuiop;lkjghfdsadfghj");
                         String consultsDescribe = describeEditText.getText().toString();
                         String contentKeyWords = keywordsTextView.getText().toString();
                         String result = "0";//服务器返回结果
 
+
                         final Map<String, String> map = new HashMap<String, String>();
                         map.put("op", op);
-                        map.put("uesrname", userName);
+                        map.put("username", userName);
                         map.put("describe", consultsDescribe);
                         map.put("keywords", contentKeyWords);
 
@@ -97,6 +110,14 @@ public class ConsultActivity extends BaseActivity implements OnClickListener {
                             e.printStackTrace();
                         }
                         Message msg = handler.obtainMessage(Integer.parseInt(result));
+
+                        //延时两秒
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         msg.sendToTarget();
                     }
                 }.start();

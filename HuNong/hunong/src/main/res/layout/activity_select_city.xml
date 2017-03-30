@@ -37,7 +37,7 @@
 
     <Button
         android:id="@+id/btn_confirm"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="1dip"
         android:layout_height="50dp"
         android:background="@color/colorAccent"
         android:gravity="center"

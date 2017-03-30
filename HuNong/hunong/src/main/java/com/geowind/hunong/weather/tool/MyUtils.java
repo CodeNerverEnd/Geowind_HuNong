@@ -127,29 +127,29 @@ public class MyUtils {
     public static int getBackgroundResourceBaseWeatherType(int type) {
         switch (type) {
             case 1:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 2:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg2;
             case 3:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg3;
             case 4:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 5:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg3;
             case 6:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 7:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 8:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg3;
             case 9:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 10:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg1;
             case 11:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg4;
             default:
-                return R.drawable.weatherbg;
+                return R.drawable.weatherbg4;
         }
     }
 }

@@ -55,7 +55,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
      */
     public static final String uploadUrl = MyConstants.PEST_OR_CONSULT_UPLOAD_URL;
     private static String op = "pestInfo";
-    private String userName = "geowind";
+    private String userName = "chang123";
 
 
     @Override
@@ -86,11 +86,16 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
         imageViews[currentImageView].setImageResource(R.mipmap.my_add);
 
 
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PestControlActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
+                if(currentImageView==0){
+                    Toast.makeText(PestControlActivity.this, "您至少选择一张图片", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                Toast.makeText(PestControlActivity.this, "上传中...", Toast.LENGTH_SHORT).show();
 
                 //利用Handler判断是否上传成功
                 final Handler handler = new Handler() {
@@ -98,8 +103,8 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                     public void handleMessage(Message msg) {
                         //上传成功
                         if (msg.what == 1) {
-                            Intent intent = new Intent(PestControlActivity.this, PestUploadSussessfullyActivity.class);
-                            startActivity(intent);
+                            Toast.makeText(PestControlActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                         //上传不成功
                         else {
@@ -127,7 +132,7 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
                         map.put("describe", pestDescribe);
                         try {
                             result = multiFilesUploadUtil.uploadSubmit(uploadUrl, map, fileArrayList);
-                            System.out.println("服务器返回的结果，成功为1，否则为0:" + result);
+//                            System.out.println("服务器返回的结果，成功为1，否则为0:" + result);
 
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
@@ -136,6 +141,14 @@ public class PestControlActivity extends BaseActivity implements View.OnClickLis
 
                         //把“1”或“0”以int形式传回个给主线程，以便后续界面处理
                         Message msg = handler.obtainMessage(Integer.parseInt(result));
+
+                        //延时两秒
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         msg.sendToTarget();
                     }
                 }.start();
